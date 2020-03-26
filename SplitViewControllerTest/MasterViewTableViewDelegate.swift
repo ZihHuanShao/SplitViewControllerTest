@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+enum TableViewType: Int {
+    case groups  = 0
+    case members = 1
+    case none    = 2
+}
+
 private class CellData {
     
 }
@@ -20,24 +26,45 @@ class MasterViewTableViewDelegate: NSObject {
     weak var viewController: MasterViewController?
     weak var tableView: UITableView?
 
-    var preCell: GroupsTableViewCell?
-    var cells = [GroupsTableViewCell]()
-    let appleProduct = ["MaxkitDemo","Test Group","Fred Group","Fred Group2","Fred Group3"]
+    var preGroupCell: GroupsTableViewCell?
+    var groupCells = [GroupsTableViewCell]()
+    
+    var preMemberCell: MembersTableViewCell?
+    var memberCells = [MembersTableViewCell]()
+    
+    let groups = ["MaxkitDemo","Test Group","Fred Group","Fred Group2","Fred Group3"]
+    let members = ["Martin","Charley","Fred","Michael","MayMay"]
+    
+    var tableViewType = TableViewType.none
     
     // MARK: - initializer
     
-    init(masterViewController: MasterViewController, tableView: UITableView) {
+    init(masterViewController: MasterViewController, tableView: UITableView, type: TableViewType) {
         super.init()
         self.viewController = masterViewController
         self.tableView = tableView
         tableView.dataSource = self
         tableView.delegate = self
+        tableViewType = type
     }
-    
-    
+
+}
+
+// MARK: - Public Methods
+
+extension MasterViewTableViewDelegate {
     
     func getData() -> [String] {
-        return appleProduct
+        switch tableViewType {
+        case .groups:
+            return groups
+            
+        case .members:
+            return members
+            
+        case .none:
+            return []
+        }
     }
     
     func registerCell(cellName: String, cellId: String) {
@@ -52,23 +79,52 @@ class MasterViewTableViewDelegate: NSObject {
     }
 }
 
+
 // MARK: - UITableViewDataSource
 
 extension MasterViewTableViewDelegate: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appleProduct.count
+        switch tableViewType {
+        case .groups:
+            return groups.count
+            
+        case .members:
+            return members.count
+            
+        case .none:
+            return 0
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTableViewCell", for: indexPath) as! GroupsTableViewCell
-        cell.groupName.text = appleProduct[indexPath.row]
-        cell.groupMemberCount.text = "\(indexPath.row)"
-        cell.selectionStyle = .none
-    
-        cells.append(cell)
-    
-        return cell
+        switch tableViewType {
+        case .groups:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTableViewCell", for: indexPath) as! GroupsTableViewCell
+            cell.groupName.text = groups[indexPath.row]
+            cell.groupMemberCount.text = "\(indexPath.row)"
+            cell.selectionStyle = .none
+            cell.trailingLine.isHidden = true
+            groupCells.append(cell)
+            
+            return cell
+            
+        case .members:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MembersTableViewCell", for: indexPath) as! MembersTableViewCell
+            cell.userName.text = members[indexPath.row]
+            cell.onlineDesc.text = "有空"
+            cell.selectionStyle = .none
+            cell.trailingLine.isHidden = true
+            memberCells.append(cell)
+            
+            return cell
+            
+        case .none:
+            return UITableViewCell.init()
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -80,13 +136,29 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
 
 extension MasterViewTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let _preCell = preCell {
-            _preCell.disableColor()
-        }
-        print("didSelectRowAt: \(indexPath.row)")
-        cells[indexPath.row].enableColor()
-        preCell = cells[indexPath.row]
         
+        print("didSelectRowAt: \(indexPath.row)")
+        
+        switch tableViewType {
+        case .groups:
+            if let _preGroupCell = preGroupCell {
+                _preGroupCell.disableColor()
+            }
+            groupCells[indexPath.row].enableColor()
+            preGroupCell = groupCells[indexPath.row]
+            
+        case .members:
+            if let _preMemberCell = preMemberCell {
+                _preMemberCell.disableColor()
+            }
+            memberCells[indexPath.row].enableColor()
+            preMemberCell = memberCells[indexPath.row]
+            
+        case .none:
+            break
+        }
+        
+
         // W/A for segue
         viewController?.performSegue(withIdentifier: "showDetail", sender: nil)
     }

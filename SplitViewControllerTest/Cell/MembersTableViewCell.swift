@@ -1,21 +1,21 @@
 //
-//  GroupsTableViewCell.swift
+//  MembersTableViewCell.swift
 //  SplitViewControllerTest
 //
-//  Created by maxkitmac on 2020/3/25.
+//  Created by maxkitmac on 2020/3/26.
 //  Copyright © 2020年 fredshao. All rights reserved.
 //
 
 import UIKit
 
-class GroupsTableViewCell: UITableViewCell {
-
+class MembersTableViewCell: UITableViewCell {
+    
     // MARK: - IBOutlet
     
-    @IBOutlet weak var groupImage: UIImageView!
-    @IBOutlet weak var groupName: UILabel!
-    @IBOutlet weak var groupMemberCount: UILabel!
-    @IBOutlet weak var groupDesc: UILabel!
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var onlineStatus: UIImageView!
+    @IBOutlet weak var onlineDesc: UILabel!
     @IBOutlet weak var trailingLine: UIView!
     
     // MARK: - Life Cycle
@@ -31,7 +31,7 @@ class GroupsTableViewCell: UITableViewCell {
     
 }
 
-extension GroupsTableViewCell {
+extension MembersTableViewCell {
     func enableColor() {
         trailingLine.isHidden = false
     }

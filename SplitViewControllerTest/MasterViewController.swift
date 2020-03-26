@@ -40,19 +40,16 @@ class MasterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateDataSource()
         updateUI()
         updateGesture()
-        
-        tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView)
-        
 
-        tableViewDelegate?.registerCell(cellName: "GroupsTableViewCell", cellId: "GroupsTableViewCell")
-
-        self.navigationController?.navigationBar.isHidden = true
-        tableViewDelegate?.reloadUI()
+        
+        
     }
     
     /*
+    // 點擊空白處讓鍵盤消失, 同dismissKeyBoard(), 不知有什麼差別, 暫時先使用dismissKeyBoard()
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -64,17 +61,17 @@ class MasterViewController: UIViewController {
     }
     
     @IBAction func tabLeftContentButtonPressed(_ sender: UIButton) {
-        tabBottomLeftLine.backgroundColor = UIColorFromRGB(rgbValue: 0xBD1E49)
-        tabBottomRightLine.backgroundColor = .clear
+        tabLeftContentButtonPressedHandler()
     }
     
     @IBAction func tabRightContentButtonPressed(_ sender: UIButton) {
-        tabBottomLeftLine.backgroundColor = .clear
-        tabBottomRightLine.backgroundColor = UIColorFromRGB(rgbValue: 0xBD1E49)
+        tabRightContentButtonPressedHandler()
     }
     
     // MARK: - Navigation
 
+    // Note: 使用custom cell時, prepareforsegue並不會被呼叫.
+    // 因此目前暫時做法: 當按下某一個cell再回來call prepareforsegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("prepareforsegue is called")
         if segue.identifier == "showDetail" {
@@ -92,22 +89,27 @@ class MasterViewController: UIViewController {
 // MARK: - Private Methods
 
 extension MasterViewController {
+    
+    private func updateDataSource() {
+        searchTextField.delegate = self
+    }
+    
     private func updateUI() {
-        tabBottomLeftLine.backgroundColor = .clear
-        tabBottomRightLine.backgroundColor = .clear
         
+        // Navigation Bar Field
+        self.navigationController?.navigationBar.isHidden = true
         
         // Title Field
         dispatcherImage.layer.cornerRadius = dispatcherImage.frame.size.width / 2
-        dispatcherImage.clipsToBounds = true
-        dispatcherImage.backgroundColor = .lightGray
+        dispatcherImage.clipsToBounds      = true
+        dispatcherImage.backgroundColor    = .lightGray
         dispatcherName.text = "調度員"
         
         // Tab Filed
-        tabLeftTitle.text = "群組"
+        tabLeftTitle.text  = "群組"
         tabRightTitle.text = "聯絡人"
-        
-        
+        tabBottomLeftLine.isHidden  = true
+        tabBottomRightLine.isHidden = true
     }
     
     private func updateGesture() {
@@ -116,13 +118,26 @@ extension MasterViewController {
         self.view.addGestureRecognizer(tap)
     }
     
-    func UIColorFromRGB(rgbValue: UInt) -> UIColor {
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
+    private func tabLeftContentButtonPressedHandler() {
+        
+        tabBottomLeftLine.isHidden  = false
+        tabBottomRightLine.isHidden = true
+        
+        tableViewDelegate = nil
+        tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .groups)
+        tableViewDelegate?.registerCell(cellName: "GroupsTableViewCell", cellId: "GroupsTableViewCell")
+        tableViewDelegate?.reloadUI()
+    }
+    
+    private func tabRightContentButtonPressedHandler() {
+
+        tabBottomLeftLine.isHidden  = true
+        tabBottomRightLine.isHidden = false
+        
+        tableViewDelegate = nil
+        tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .members)
+        tableViewDelegate?.registerCell(cellName: "MembersTableViewCell", cellId: "MembersTableViewCell")
+        tableViewDelegate?.reloadUI()
     }
     
 }
