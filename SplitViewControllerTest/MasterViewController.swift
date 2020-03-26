@@ -46,7 +46,7 @@ class MasterViewController: UIViewController {
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView)
         
 
-        tableViewDelegate?.registerCell(cellName: "GroupMembersTableViewCell", cellId: "GroupMembersTableViewCell")
+        tableViewDelegate?.registerCell(cellName: "GroupsTableViewCell", cellId: "GroupsTableViewCell")
 
         self.navigationController?.navigationBar.isHidden = true
         tableViewDelegate?.reloadUI()

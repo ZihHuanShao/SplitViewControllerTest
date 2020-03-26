@@ -1,5 +1,5 @@
 //
-//  GroupMembersTableViewCell.swift
+//  GroupsTableViewCell.swift
 //  SplitViewControllerTest
 //
 //  Created by maxkitmac on 2020/3/25.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupMembersTableViewCell: UITableViewCell {
+class GroupsTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlet
     
@@ -32,7 +32,7 @@ class GroupMembersTableViewCell: UITableViewCell {
     
 }
 
-extension GroupMembersTableViewCell {
+extension GroupsTableViewCell {
     func enableColor() {
         trailingLine.isHidden = false
     }

@@ -20,8 +20,8 @@ class MasterViewTableViewDelegate: NSObject {
     weak var viewController: MasterViewController?
     weak var tableView: UITableView?
 
-    var preCell: GroupMembersTableViewCell?
-    var cells = [GroupMembersTableViewCell]()
+    var preCell: GroupsTableViewCell?
+    var cells = [GroupsTableViewCell]()
     let appleProduct = ["MaxkitDemo","Test Group","Fred Group","Fred Group2","Fred Group3"]
     
     // MARK: - initializer
@@ -61,7 +61,7 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupMembersTableViewCell", for: indexPath) as! GroupMembersTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTableViewCell", for: indexPath) as! GroupsTableViewCell
         cell.groupName.text = appleProduct[indexPath.row]
         cell.groupMemberCount.text = "\(indexPath.row)"
         cell.selectionStyle = .none

@@ -17,8 +17,8 @@
 		F2507FEA242AF38A003DBE79 /* warning-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F2507FE9242AF38A003DBE79 /* warning-icon.png */; };
 		F2507FEC242AFB2E003DBE79 /* Topbar_btn_notify_set_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = F2507FEB242AFB2E003DBE79 /* Topbar_btn_notify_set_normal.png */; };
 		F2507FFD242B4129003DBE79 /* Search-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F2507FFC242B4129003DBE79 /* Search-icon.png */; };
-		F2508003242B51AB003DBE79 /* GroupMembersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2508001242B51AB003DBE79 /* GroupMembersTableViewCell.swift */; };
-		F2508004242B51AB003DBE79 /* GroupMembersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2508002242B51AB003DBE79 /* GroupMembersTableViewCell.xib */; };
+		F2508003242B51AB003DBE79 /* GroupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2508001242B51AB003DBE79 /* GroupsTableViewCell.swift */; };
+		F2508004242B51AB003DBE79 /* GroupsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2508002242B51AB003DBE79 /* GroupsTableViewCell.xib */; };
 		F2508006242B5AD3003DBE79 /* Groupmember_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F2508005242B5AD3003DBE79 /* Groupmember_icon.png */; };
 		F2508008242B5BAE003DBE79 /* Pic_group.png in Resources */ = {isa = PBXBuildFile; fileRef = F2508007242B5BAE003DBE79 /* Pic_group.png */; };
 		F261B45C242C529E00482992 /* Toolbar_icon1_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = F261B45B242C529D00482992 /* Toolbar_icon1_normal.png */; };
@@ -37,8 +37,8 @@
 		F2507FE9242AF38A003DBE79 /* warning-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning-icon.png"; sourceTree = "<group>"; };
 		F2507FEB242AFB2E003DBE79 /* Topbar_btn_notify_set_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Topbar_btn_notify_set_normal.png; sourceTree = "<group>"; };
 		F2507FFC242B4129003DBE79 /* Search-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search-icon.png"; sourceTree = "<group>"; };
-		F2508001242B51AB003DBE79 /* GroupMembersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMembersTableViewCell.swift; sourceTree = "<group>"; };
-		F2508002242B51AB003DBE79 /* GroupMembersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupMembersTableViewCell.xib; sourceTree = "<group>"; };
+		F2508001242B51AB003DBE79 /* GroupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewCell.swift; sourceTree = "<group>"; };
+		F2508002242B51AB003DBE79 /* GroupsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupsTableViewCell.xib; sourceTree = "<group>"; };
 		F2508005242B5AD3003DBE79 /* Groupmember_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Groupmember_icon.png; sourceTree = "<group>"; };
 		F2508007242B5BAE003DBE79 /* Pic_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pic_group.png; sourceTree = "<group>"; };
 		F261B45B242C529D00482992 /* Toolbar_icon1_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Toolbar_icon1_normal.png; sourceTree = "<group>"; };
@@ -96,8 +96,8 @@
 		F2507FED242AFCBC003DBE79 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				F2508001242B51AB003DBE79 /* GroupMembersTableViewCell.swift */,
-				F2508002242B51AB003DBE79 /* GroupMembersTableViewCell.xib */,
+				F2508001242B51AB003DBE79 /* GroupsTableViewCell.swift */,
+				F2508002242B51AB003DBE79 /* GroupsTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -169,7 +169,7 @@
 				F20CCF042429F00900048BA3 /* Assets.xcassets in Resources */,
 				F2507FEC242AFB2E003DBE79 /* Topbar_btn_notify_set_normal.png in Resources */,
 				F20CCF022429F00800048BA3 /* Main.storyboard in Resources */,
-				F2508004242B51AB003DBE79 /* GroupMembersTableViewCell.xib in Resources */,
+				F2508004242B51AB003DBE79 /* GroupsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +184,7 @@
 				F20CCF312429F61200048BA3 /* MasterViewController.swift in Sources */,
 				F20CCEFD2429F00800048BA3 /* AppDelegate.swift in Sources */,
 				F20CCF35242A02D500048BA3 /* MasterViewTableViewDelegate.swift in Sources */,
-				F2508003242B51AB003DBE79 /* GroupMembersTableViewCell.swift in Sources */,
+				F2508003242B51AB003DBE79 /* GroupsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
