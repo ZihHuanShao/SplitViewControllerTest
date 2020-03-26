@@ -22,7 +22,7 @@ class GroupMembersTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-         trailingLine.backgroundColor = .clear
+        trailingLine.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -34,10 +34,10 @@ class GroupMembersTableViewCell: UITableViewCell {
 
 extension GroupMembersTableViewCell {
     func enableColor() {
-        trailingLine.backgroundColor = .red
+        trailingLine.isHidden = false
     }
     
     func disableColor() {
-        trailingLine.backgroundColor = .clear
+        trailingLine.isHidden = true
     }
 }

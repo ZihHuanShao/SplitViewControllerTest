@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         if let _str = str {
-            label.text = str
+            label.text = _str
         }
     }
     

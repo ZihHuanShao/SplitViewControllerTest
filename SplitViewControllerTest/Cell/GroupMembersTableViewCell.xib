@@ -157,7 +157,7 @@
                 <outlet property="groupName" destination="UqN-LF-Vbd" id="tSw-iS-BwP"/>
                 <outlet property="trailingLine" destination="12d-cY-I7F" id="Vlu-Tp-qRZ"/>
             </connections>
-            <point key="canvasLocation" x="373.91304347826087" y="66.964285714285708"/>
+            <point key="canvasLocation" x="320" y="66"/>
         </tableViewCell>
     </objects>
     <resources>
