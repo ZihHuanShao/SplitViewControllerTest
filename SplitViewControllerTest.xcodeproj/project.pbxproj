@@ -16,6 +16,13 @@
 		F20CCF35242A02D500048BA3 /* MasterViewTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20CCF34242A02D500048BA3 /* MasterViewTableViewDelegate.swift */; };
 		F22F8B4D242D871700CB08D5 /* add-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F22F8B4C242D871700CB08D5 /* add-icon.png */; };
 		F22F8B4F242D9B7F00CB08D5 /* ConfigAndConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8B4E242D9B7F00CB08D5 /* ConfigAndConst.swift */; };
+		F22F8B51242DABDB00CB08D5 /* MainMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8B50242DABDB00CB08D5 /* MainMenuCollectionViewCell.swift */; };
+		F22F8B53242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8B52242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift */; };
+		F22F8B56242DD43700CB08D5 /* Camera-2-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F22F8B54242DD43600CB08D5 /* Camera-2-icon.png */; };
+		F22F8B57242DD43700CB08D5 /* maps-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F22F8B55242DD43700CB08D5 /* maps-icon.png */; };
+		F22F8B59242DD43E00CB08D5 /* Time-Machine-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F22F8B58242DD43E00CB08D5 /* Time-Machine-icon.png */; };
+		F22F8B5B242DD44800CB08D5 /* phone-white-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F22F8B5A242DD44800CB08D5 /* phone-white-icon.png */; };
+		F22F8B5D242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8B5C242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift */; };
 		F2507FEC242AFB2E003DBE79 /* Topbar_btn_notify_set_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = F2507FEB242AFB2E003DBE79 /* Topbar_btn_notify_set_normal.png */; };
 		F2507FFD242B4129003DBE79 /* Search-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F2507FFC242B4129003DBE79 /* Search-icon.png */; };
 		F2508003242B51AB003DBE79 /* GroupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2508001242B51AB003DBE79 /* GroupsTableViewCell.swift */; };
@@ -40,6 +47,13 @@
 		F20CCF34242A02D500048BA3 /* MasterViewTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewTableViewDelegate.swift; sourceTree = "<group>"; };
 		F22F8B4C242D871700CB08D5 /* add-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-icon.png"; sourceTree = "<group>"; };
 		F22F8B4E242D9B7F00CB08D5 /* ConfigAndConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigAndConst.swift; sourceTree = "<group>"; };
+		F22F8B50242DABDB00CB08D5 /* MainMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		F22F8B52242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		F22F8B54242DD43600CB08D5 /* Camera-2-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Camera-2-icon.png"; sourceTree = "<group>"; };
+		F22F8B55242DD43700CB08D5 /* maps-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maps-icon.png"; sourceTree = "<group>"; };
+		F22F8B58242DD43E00CB08D5 /* Time-Machine-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Time-Machine-icon.png"; sourceTree = "<group>"; };
+		F22F8B5A242DD44800CB08D5 /* phone-white-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone-white-icon.png"; sourceTree = "<group>"; };
+		F22F8B5C242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchCenterSplitViewController.swift; sourceTree = "<group>"; };
 		F2507FEB242AFB2E003DBE79 /* Topbar_btn_notify_set_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Topbar_btn_notify_set_normal.png; sourceTree = "<group>"; };
 		F2507FFC242B4129003DBE79 /* Search-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search-icon.png"; sourceTree = "<group>"; };
 		F2508001242B51AB003DBE79 /* GroupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewCell.swift; sourceTree = "<group>"; };
@@ -82,13 +96,15 @@
 		F20CCEFB2429F00800048BA3 /* SplitViewControllerTest */ = {
 			isa = PBXGroup;
 			children = (
+				F22F8B5C242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift */,
 				F20CCF302429F61200048BA3 /* MasterViewController.swift */,
 				F20CCF34242A02D500048BA3 /* MasterViewTableViewDelegate.swift */,
 				F20CCF322429FC7F00048BA3 /* DetailViewController.swift */,
+				F22F8B52242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift */,
 				F22F8B4E242D9B7F00CB08D5 /* ConfigAndConst.swift */,
 				F20CCEFC2429F00800048BA3 /* AppDelegate.swift */,
-				F20CCF002429F00800048BA3 /* Main.storyboard */,
 				F20CCF032429F00900048BA3 /* Assets.xcassets */,
+				F20CCF002429F00800048BA3 /* Main.storyboard */,
 				F20CCF052429F00900048BA3 /* LaunchScreen.storyboard */,
 				F20CCF082429F00900048BA3 /* Info.plist */,
 				F2507FED242AFCBC003DBE79 /* Cell */,
@@ -100,6 +116,7 @@
 		F2507FED242AFCBC003DBE79 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				F22F8B50242DABDB00CB08D5 /* MainMenuCollectionViewCell.swift */,
 				F2508001242B51AB003DBE79 /* GroupsTableViewCell.swift */,
 				F2508002242B51AB003DBE79 /* GroupsTableViewCell.xib */,
 				F261B461242C9FD800482992 /* MembersTableViewCell.swift */,
@@ -111,6 +128,10 @@
 		F261B467242CAB1300482992 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F22F8B54242DD43600CB08D5 /* Camera-2-icon.png */,
+				F22F8B5A242DD44800CB08D5 /* phone-white-icon.png */,
+				F22F8B58242DD43E00CB08D5 /* Time-Machine-icon.png */,
+				F22F8B55242DD43700CB08D5 /* maps-icon.png */,
 				F2507FEB242AFB2E003DBE79 /* Topbar_btn_notify_set_normal.png */,
 				F2508005242B5AD3003DBE79 /* Groupmember_icon.png */,
 				F2508007242B5BAE003DBE79 /* Pic_group.png */,
@@ -182,12 +203,16 @@
 			files = (
 				F2508008242B5BAE003DBE79 /* Pic_group.png in Resources */,
 				F261B466242CA16300482992 /* Status_icon_online.png in Resources */,
+				F22F8B56242DD43700CB08D5 /* Camera-2-icon.png in Resources */,
 				F22F8B4D242D871700CB08D5 /* add-icon.png in Resources */,
 				F2507FFD242B4129003DBE79 /* Search-icon.png in Resources */,
+				F22F8B5B242DD44800CB08D5 /* phone-white-icon.png in Resources */,
 				F20CCF072429F00900048BA3 /* LaunchScreen.storyboard in Resources */,
+				F22F8B59242DD43E00CB08D5 /* Time-Machine-icon.png in Resources */,
 				F2508006242B5AD3003DBE79 /* Groupmember_icon.png in Resources */,
 				F261B45C242C529E00482992 /* Toolbar_icon1_normal.png in Resources */,
 				F20CCF042429F00900048BA3 /* Assets.xcassets in Resources */,
+				F22F8B57242DD43700CB08D5 /* maps-icon.png in Resources */,
 				F261B464242C9FD800482992 /* MembersTableViewCell.xib in Resources */,
 				F2507FEC242AFB2E003DBE79 /* Topbar_btn_notify_set_normal.png in Resources */,
 				F20CCF022429F00800048BA3 /* Main.storyboard in Resources */,
@@ -202,6 +227,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F22F8B51242DABDB00CB08D5 /* MainMenuCollectionViewCell.swift in Sources */,
+				F22F8B53242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift in Sources */,
+				F22F8B5D242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift in Sources */,
 				F20CCF332429FC8000048BA3 /* DetailViewController.swift in Sources */,
 				F20CCF312429F61200048BA3 /* MasterViewController.swift in Sources */,
 				F20CCEFD2429F00800048BA3 /* AppDelegate.swift in Sources */,

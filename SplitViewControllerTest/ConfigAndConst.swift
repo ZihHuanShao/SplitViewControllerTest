@@ -10,7 +10,7 @@ import Foundation
 
 let GROUPS_TABLE_VIEW_CELL  = "GroupsTableViewCell"  // nib name & cell name (the same)
 let MEMBERS_TABLE_VIEW_CELL = "MembersTableViewCell" // nib name & cell name (the same)
-
+let MAINMENU_COLLECTION_VIEW_CELL = "MainMenuCollectionViewCell"
 
 enum TableViewType: Int {
     case groups  = 0

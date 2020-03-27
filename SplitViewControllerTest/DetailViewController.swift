@@ -10,28 +10,27 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    // MARK: - IBOutlet
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var label: UILabel!
     
+    // MARK: - Properties
+    
     var str: String?
+    fileprivate var collectionViewDelegate: DetailViewCollectionViewDelegate?
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        collectionViewDelegate = DetailViewCollectionViewDelegate(detailViewController: self, collectionView: collectionView)
+        
         if let _str = str {
             label.text = _str
         }
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
