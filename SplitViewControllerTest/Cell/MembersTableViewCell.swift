@@ -31,6 +31,8 @@ class MembersTableViewCell: UITableViewCell {
     
 }
 
+// MARK: - Public Methods
+
 extension MembersTableViewCell {
     func enableColor() {
         trailingLine.isHidden = false

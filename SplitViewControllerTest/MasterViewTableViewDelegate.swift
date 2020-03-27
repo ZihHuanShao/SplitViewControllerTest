@@ -15,6 +15,10 @@ enum TableViewType: Int {
     case none    = 2
 }
 
+protocol MasterViewTableViewActivateSegueDelegate: NSObject {
+    func activate()
+}
+
 private class CellData {
     
 }
@@ -25,7 +29,8 @@ class MasterViewTableViewDelegate: NSObject {
     
     weak var viewController: MasterViewController?
     weak var tableView: UITableView?
-
+    weak var activateSegueDelegate: MasterViewTableViewActivateSegueDelegate?
+    
     var preGroupCell: GroupsTableViewCell?
     var groupCells = [GroupsTableViewCell]()
     
@@ -45,6 +50,7 @@ class MasterViewTableViewDelegate: NSObject {
         self.tableView = tableView
         tableView.dataSource = self
         tableView.delegate = self
+        activateSegueDelegate = self.viewController
         tableViewType = type
     }
 
@@ -137,6 +143,8 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
 extension MasterViewTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        activateSegueDelegate?.activate()
+        
         print("didSelectRowAt: \(indexPath.row)")
         
         switch tableViewType {
@@ -157,9 +165,5 @@ extension MasterViewTableViewDelegate: UITableViewDelegate {
         case .none:
             break
         }
-        
-
-        // W/A for segue
-        viewController?.performSegue(withIdentifier: "showDetail", sender: nil)
     }
 }

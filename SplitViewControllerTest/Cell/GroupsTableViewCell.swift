@@ -31,6 +31,8 @@ class GroupsTableViewCell: UITableViewCell {
     
 }
 
+// MARK: - Public Methods
+
 extension GroupsTableViewCell {
     func enableColor() {
         trailingLine.isHidden = false

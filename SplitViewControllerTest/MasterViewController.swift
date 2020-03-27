@@ -12,11 +12,11 @@ class MasterViewController: UIViewController {
 
     // MARK: - IBOutlet
     
-    // Title Filed
+    // TitleView Filed
     @IBOutlet weak var dispatcherImage: UIButton!
     @IBOutlet weak var dispatcherName: UILabel!
 
-    // Tab Filed
+    // TabView Filed
     @IBOutlet weak var tabLeftIcon: UIImageView!
     @IBOutlet weak var tabRightIcon: UIImageView!
     @IBOutlet weak var tabLeftTitle: UILabel!
@@ -24,12 +24,15 @@ class MasterViewController: UIViewController {
     @IBOutlet weak var tabBottomLeftLine: UIView!
     @IBOutlet weak var tabBottomRightLine: UIView!
     
-    // Search Filed
+    // SearchView Filed
     @IBOutlet weak var searchTextField: UITextField!
     
     // TableView Field
     @IBOutlet weak var tableView: UITableView!
     
+    // CreateGroupView Field
+    @IBOutlet weak var createGroupButton: UIButton!
+    @IBOutlet weak var createGroupTitle: UILabel!
     
     // MARK: - Properties
     
@@ -43,9 +46,6 @@ class MasterViewController: UIViewController {
         updateDataSource()
         updateUI()
         updateGesture()
-
-        
-        
     }
     
     /*
@@ -68,10 +68,15 @@ class MasterViewController: UIViewController {
         tabRightContentButtonPressedHandler()
     }
     
+    @IBAction func createGroupButtonPressed(_ sender: UIButton) {
+        print("createGroupButtonPressed")
+    }
+    
+    
     // MARK: - Navigation
 
     // Note: 使用custom cell時, prepareforsegue並不會被呼叫.
-    // 因此目前暫時做法: 當按下某一個cell再回來call prepareforsegue
+    // 因此目前暫時做法: 定義一protocol用來觸發prepareforsegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("prepareforsegue is called")
         if segue.identifier == "showDetail" {
@@ -83,8 +88,6 @@ class MasterViewController: UIViewController {
     }
     
 }
-
-
 
 // MARK: - Private Methods
 
@@ -99,22 +102,25 @@ extension MasterViewController {
         // Navigation Bar Field
         self.navigationController?.navigationBar.isHidden = true
         
-        // Title Field
+        // TitleView Field
         dispatcherImage.layer.cornerRadius = dispatcherImage.frame.size.width / 2
         dispatcherImage.clipsToBounds      = true
         dispatcherImage.backgroundColor    = .lightGray
         dispatcherName.text = "調度員"
         
-        // Tab Filed
+        // TabView Filed
         tabLeftTitle.text  = "群組"
         tabRightTitle.text = "聯絡人"
         tabBottomLeftLine.isHidden  = true
         tabBottomRightLine.isHidden = true
+        
+        // CreateGroupView Field
+        createGroupTitle.text = "建立新群組"
     }
     
     private func updateGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
-        tap.cancelsTouchesInView = false // 可以避免cell無法被trigger
+        tap.cancelsTouchesInView = false // 可以避免在view上加手勢, 點擊cell無法被trigger
         self.view.addGestureRecognizer(tap)
     }
     
@@ -157,5 +163,12 @@ extension MasterViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
+}
+
+// MARK: - MasterViewTableViewActivateSegueDelegate
+
+extension MasterViewController: MasterViewTableViewActivateSegueDelegate {
+    func activate() {
+        performSegue(withIdentifier: "showDetail", sender: self)
+    }
 }
