@@ -125,7 +125,8 @@ extension MasterViewController {
     }
     
     private func tabLeftContentButtonPressedHandler() {
-        
+        tabLeftTitle.textColor  = UIColorFromRGB(rgbValue: 0xBD1E49)
+        tabRightTitle.textColor = .darkGray
         tabBottomLeftLine.isHidden  = false
         tabBottomRightLine.isHidden = true
         
@@ -136,7 +137,8 @@ extension MasterViewController {
     }
     
     private func tabRightContentButtonPressedHandler() {
-
+        tabLeftTitle.textColor  = .darkGray
+        tabRightTitle.textColor = UIColorFromRGB(rgbValue: 0xBD1E49)
         tabBottomLeftLine.isHidden  = true
         tabBottomRightLine.isHidden = false
         
@@ -146,6 +148,14 @@ extension MasterViewController {
         tableViewDelegate?.reloadUI()
     }
     
+    private func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+        return UIColor(
+            red:   CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue:  CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
 }
 
 // MARK: - Event Methods

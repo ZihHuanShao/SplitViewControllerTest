@@ -84,15 +84,15 @@
 			children = (
 				F20CCF302429F61200048BA3 /* MasterViewController.swift */,
 				F20CCF34242A02D500048BA3 /* MasterViewTableViewDelegate.swift */,
-				F2507FED242AFCBC003DBE79 /* Cell */,
 				F20CCF322429FC7F00048BA3 /* DetailViewController.swift */,
 				F22F8B4E242D9B7F00CB08D5 /* ConfigAndConst.swift */,
-				F20CCF002429F00800048BA3 /* Main.storyboard */,
 				F20CCEFC2429F00800048BA3 /* AppDelegate.swift */,
-				F261B467242CAB1300482992 /* Images */,
+				F20CCF002429F00800048BA3 /* Main.storyboard */,
 				F20CCF032429F00900048BA3 /* Assets.xcassets */,
 				F20CCF052429F00900048BA3 /* LaunchScreen.storyboard */,
 				F20CCF082429F00900048BA3 /* Info.plist */,
+				F2507FED242AFCBC003DBE79 /* Cell */,
+				F261B467242CAB1300482992 /* Images */,
 			);
 			path = SplitViewControllerTest;
 			sourceTree = "<group>";
