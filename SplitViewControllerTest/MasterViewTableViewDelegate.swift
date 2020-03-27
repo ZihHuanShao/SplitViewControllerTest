@@ -9,11 +9,7 @@
 import Foundation
 import UIKit
 
-enum TableViewType: Int {
-    case groups  = 0
-    case members = 1
-    case none    = 2
-}
+// MARK: - Protocol
 
 protocol MasterViewTableViewActivateSegueDelegate: NSObject {
     func activate()
@@ -108,7 +104,7 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
         
         switch tableViewType {
         case .groups:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsTableViewCell", for: indexPath) as! GroupsTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: GROUPS_TABLE_VIEW_CELL, for: indexPath) as! GroupsTableViewCell
             cell.groupName.text = groups[indexPath.row]
             cell.groupMemberCount.text = "\(indexPath.row)"
             cell.selectionStyle = .none
@@ -118,7 +114,7 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
             return cell
             
         case .members:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MembersTableViewCell", for: indexPath) as! MembersTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: MEMBERS_TABLE_VIEW_CELL, for: indexPath) as! MembersTableViewCell
             cell.userName.text = members[indexPath.row]
             cell.onlineDesc.text = "有空"
             cell.selectionStyle = .none

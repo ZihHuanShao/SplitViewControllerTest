@@ -131,7 +131,7 @@ extension MasterViewController {
         
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .groups)
-        tableViewDelegate?.registerCell(cellName: "GroupsTableViewCell", cellId: "GroupsTableViewCell")
+        tableViewDelegate?.registerCell(cellName: GROUPS_TABLE_VIEW_CELL, cellId: GROUPS_TABLE_VIEW_CELL)
         tableViewDelegate?.reloadUI()
     }
     
@@ -142,7 +142,7 @@ extension MasterViewController {
         
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .members)
-        tableViewDelegate?.registerCell(cellName: "MembersTableViewCell", cellId: "MembersTableViewCell")
+        tableViewDelegate?.registerCell(cellName: MEMBERS_TABLE_VIEW_CELL, cellId: MEMBERS_TABLE_VIEW_CELL)
         tableViewDelegate?.reloadUI()
     }
     
