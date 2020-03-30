@@ -17,6 +17,7 @@ class GroupsTableViewCell: UITableViewCell {
     @IBOutlet weak var groupMemberCount: UILabel!
     @IBOutlet weak var groupDesc: UILabel!
     @IBOutlet weak var trailingLine: UIView!
+    @IBOutlet weak var monitorIcon: UIImageView!
     
     // MARK: - Life Cycle
     
@@ -41,4 +42,17 @@ extension GroupsTableViewCell {
     func disableColor() {
         trailingLine.isHidden = true
     }
+    
+    func enableMonitor() {
+//        monitorIcon.image =
+    }
+    
+    func disableMonitor() {
+//        monitorIcon.image =
+    }
+    
+    func updateGroupDate() {
+        
+    }
+
 }

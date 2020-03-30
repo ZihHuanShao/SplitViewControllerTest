@@ -76,12 +76,14 @@ class MasterViewController: UIViewController {
     // MARK: - Navigation
 
     // Note: 使用custom cell時, prepareforsegue並不會被呼叫.
-    // 因此目前暫時做法: 定義一protocol用來觸發prepareforsegue
+    // 因此目前做法: 定義一protocol用來觸發prepareforsegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("prepareforsegue is called")
         if segue.identifier == "showDetail" {
             let dVC = segue.destination as? DetailViewController
             if let data = tableViewDelegate?.getData() {
+                
+                
                 dVC?.str = data[tableView.indexPathForSelectedRow!.row]
             }
         }
@@ -106,11 +108,13 @@ extension MasterViewController {
         dispatcherImage.layer.cornerRadius = dispatcherImage.frame.size.width / 2
         dispatcherImage.clipsToBounds      = true
         dispatcherImage.backgroundColor    = .lightGray
-        dispatcherName.text = "調度員"
+        //dispatcherName.text = ""
         
         // TabView Filed
         tabLeftTitle.text  = "群組"
         tabRightTitle.text = "聯絡人"
+        tabBottomLeftLine.backgroundColor = UIColorFromRGB(rgbValue: UInt(TAB_BOTTOM_LINE_COLOR))
+        tabBottomRightLine.backgroundColor = UIColorFromRGB(rgbValue: UInt(TAB_BOTTOM_LINE_COLOR))
         tabBottomLeftLine.isHidden  = true
         tabBottomRightLine.isHidden = true
         
@@ -125,8 +129,10 @@ extension MasterViewController {
     }
     
     private func tabLeftContentButtonPressedHandler() {
-        tabLeftTitle.textColor  = UIColorFromRGB(rgbValue: 0xBD1E49)
-        tabRightTitle.textColor = .darkGray
+        tabLeftIcon.image = UIImage(named: "btn_contact_group_selected")
+        tabRightIcon.image = UIImage(named: "btn_contact_member_normal")
+        tabLeftTitle.textColor  = UIColorFromRGB(rgbValue: UInt(TAB_SELECTED_TITLE_COLOR))
+        tabRightTitle.textColor = UIColorFromRGB(rgbValue: UInt(TAB_UNSELECTED_TITLE_COLOR))
         tabBottomLeftLine.isHidden  = false
         tabBottomRightLine.isHidden = true
         
@@ -137,8 +143,10 @@ extension MasterViewController {
     }
     
     private func tabRightContentButtonPressedHandler() {
-        tabLeftTitle.textColor  = .darkGray
-        tabRightTitle.textColor = UIColorFromRGB(rgbValue: 0xBD1E49)
+        tabLeftIcon.image = UIImage(named: "btn_contact_group_normal")
+        tabRightIcon.image = UIImage(named: "btn_contact_member_selected")
+        tabLeftTitle.textColor  = UIColorFromRGB(rgbValue: UInt(TAB_UNSELECTED_TITLE_COLOR))
+        tabRightTitle.textColor = UIColorFromRGB(rgbValue: UInt(TAB_SELECTED_TITLE_COLOR))
         tabBottomLeftLine.isHidden  = true
         tabBottomRightLine.isHidden = false
         

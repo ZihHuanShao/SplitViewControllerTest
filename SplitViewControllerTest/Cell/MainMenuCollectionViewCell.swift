@@ -12,7 +12,6 @@ class MainMenuCollectionViewCell: UICollectionViewCell {
     
     // MARK: - IBOutlet
     
-    @IBOutlet weak var mainMenuItemBackground: UIView!
     @IBOutlet weak var mainMenuItem: UIImageView!
     
 }
@@ -20,19 +19,25 @@ class MainMenuCollectionViewCell: UICollectionViewCell {
 // MARK: - Public Methods
 
 extension MainMenuCollectionViewCell {
+
     func setMainMenuIcon(name: String) {
         if let image = UIImage(named: name) {
             mainMenuItem.image = image
         }
     }
     
-    func enableColor() {
-        mainMenuItemBackground.backgroundColor = UIColorFromRGB(rgbValue: 0x2C2B2B)
+    func enableBackgroundColor(name: String) {
+        if let image = UIImage(named: name) {
+            mainMenuItem.image = image
+        }
     }
     
-    func disableColor() {
-        mainMenuItemBackground.backgroundColor = .clear
+    func disableBackgroundColor(name: String) {
+        if let image = UIImage(named: name) {
+            mainMenuItem.image = image
+        }
     }
+    
 }
 
 // MARK: - Private Methods

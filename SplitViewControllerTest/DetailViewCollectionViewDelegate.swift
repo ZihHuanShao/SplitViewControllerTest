@@ -16,9 +16,20 @@ class DetailViewCollectionViewDelegate: NSObject {
     weak var viewController: DetailViewController?
     weak var collectionView: UICollectionView?
     
+    var preMainMenuCellIndex: Int?
     var preMainMenuCell: MainMenuCollectionViewCell?
     var mainMenuCells = [MainMenuCollectionViewCell]()
     
+    let mainMenuIcons_unselected = ["btn_menu_ptt_normal",
+                                    "btn_menu_map_normal",
+                                    "btn_menu_video_normal",
+                                    "btn_menu_history_normal"
+                                   ]
+    let mainMenuIcons_selected   = ["btn_menu_ptt_selected",
+                                    "btn_menu_map_selected",
+                                    "btn_menu_video_selected",
+                                    "btn_menu_history_selected"
+                                   ]
     
     // MARK: - initializer
     
@@ -59,18 +70,7 @@ extension DetailViewCollectionViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MAINMENU_COLLECTION_VIEW_CELL, for: indexPath) as! MainMenuCollectionViewCell
         
-        switch indexPath.row {
-        case 0:
-            cell.setMainMenuIcon(name: "phone-white-icon")
-        case 1:
-            cell.setMainMenuIcon(name: "maps-icon")
-        case 2:
-            cell.setMainMenuIcon(name: "Camera-2-icon")
-        case 3:
-            cell.setMainMenuIcon(name: "Time-Machine-icon")
-        default:
-            break
-        }
+        cell.setMainMenuIcon(name: mainMenuIcons_unselected[indexPath.row])
         
         mainMenuCells.append(cell)
         
@@ -85,13 +85,15 @@ extension DetailViewCollectionViewDelegate: UICollectionViewDataSource {
 extension DetailViewCollectionViewDelegate: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if let _preMainMenuCell = preMainMenuCell {
-            _preMainMenuCell.disableColor()
+        if let _preCell = preMainMenuCell, let _preCellIndex = preMainMenuCellIndex {
+            _preCell.setMainMenuIcon(name: mainMenuIcons_unselected[_preCellIndex])
         }
         
-        mainMenuCells[indexPath.row].enableColor()
+        let iconName = mainMenuIcons_selected[indexPath.row]
+        mainMenuCells[indexPath.row].setMainMenuIcon(name: iconName)
         
         preMainMenuCell = mainMenuCells[indexPath.row]
+        preMainMenuCellIndex = indexPath.row
     }
 }
 
@@ -99,6 +101,7 @@ extension DetailViewCollectionViewDelegate: UICollectionViewDelegate {
 
 extension DetailViewCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 64, height: 64)
+        // 固定80*64
+        return CGSize(width: 80, height: 64)
     }
 }

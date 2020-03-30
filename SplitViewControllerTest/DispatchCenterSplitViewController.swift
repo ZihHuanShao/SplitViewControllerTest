@@ -1,5 +1,5 @@
 //
-//  DispatchCenterSplitViewController.swift
+//  DispatchBoardSplitViewController.swift
 //  SplitViewControllerTest
 //
 //  Created by maxkitmac on 2020/3/27.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DispatchCenterSplitViewController: UISplitViewController {
+class DispatchBoardSplitViewController: UISplitViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class DispatchCenterSplitViewController: UISplitViewController {
         //let kMasterViewWidth: CGFloat = iPadHeight * 0.4
         //print("iPadHeight: \(iPadHeight), kMasterViewWidth: \(kMasterViewWidth)")
         
-        let kMasterViewWidth: CGFloat = 256.0
+        let kMasterViewWidth: CGFloat = 240.0
         
         let masterViewController = self.viewControllers[0]
         let detailViewController = self.viewControllers[1]

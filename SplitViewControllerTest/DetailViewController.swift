@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var containerView: UIView!
     
     // MARK: - Properties
     
@@ -30,6 +31,13 @@ class DetailViewController: UIViewController {
         if let _str = str {
             label.text = _str
         }
+        
+        let groupsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GroupsViewController") as! GroupsViewController
+        self.addChild(groupsVC)
+        groupsVC.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+        self.containerView.addSubview(groupsVC.view)
+        groupsVC.didMove(toParent: self)
+        
     }
     
 
