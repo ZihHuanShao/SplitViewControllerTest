@@ -1,5 +1,5 @@
 //
-//  MembersTableViewCell.swift
+//  MemberTableViewCell.swift
 //  SplitViewControllerTest
 //
 //  Created by maxkitmac on 2020/3/26.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class MembersTableViewCell: UITableViewCell {
+class MemberTableViewCell: UITableViewCell {
     
     // MARK: - IBOutlet
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var onlineStatus: UIImageView!
+    @IBOutlet weak var onlineStatusImage: UIImageView!
     @IBOutlet weak var onlineDesc: UILabel!
     @IBOutlet weak var trailingLine: UIView!
     
@@ -33,7 +33,27 @@ class MembersTableViewCell: UITableViewCell {
 
 // MARK: - Public Methods
 
-extension MembersTableViewCell {
+extension MemberTableViewCell {
+    func setUserImage(name: String) {
+        if let image = UIImage(named: name) {
+            userImage.image = image
+        }
+    }
+    
+    func setUserName(name: String) {
+        userName.text = name
+    }
+    
+    func setOnlineStatusImage(name: String) {
+        if let image = UIImage(named: name) {
+            onlineStatusImage.image = image
+        }
+    }
+    
+    func setOnlineDesc(desc: String) {
+        onlineDesc.text = desc
+    }
+    
     func enableColor() {
         trailingLine.isHidden = false
     }

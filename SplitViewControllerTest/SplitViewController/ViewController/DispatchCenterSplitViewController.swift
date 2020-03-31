@@ -38,6 +38,9 @@ class DispatchBoardSplitViewController: UISplitViewController {
             detailViewFrame.size.width += deltaX
             detailViewController.view.frame = detailViewFrame
             
+            UserDefaults.standard.set(masterViewController.view.frame.size.width, forKey: MASTER_VIEW_CONTROLLER_WIDTH)
+            UserDefaults.standard.set(detailViewController.view.frame.size.width, forKey: DETAIL_VIEW_CONTROLLER_WIDTH)
+            
             masterViewController.view.setNeedsLayout()
             detailViewController.view.setNeedsLayout()
         }

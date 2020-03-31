@@ -11,7 +11,7 @@ import UIKit
 class MasterViewController: UIViewController {
 
     // MARK: - IBOutlet
-    
+
     // TitleView Filed
     @IBOutlet weak var dispatcherImage: UIButton!
     @IBOutlet weak var dispatcherName: UILabel!
@@ -35,8 +35,14 @@ class MasterViewController: UIViewController {
     @IBOutlet weak var createGroupTitle: UILabel!
     
     // MARK: - Properties
-    
+
+    var tabSelected = TabType.none
     fileprivate var tableViewDelegate: MasterViewTableViewDelegate?
+    
+    // Original Test data
+    let groups = ["MaxkitDemo","Test Group","Fred Group","Fred Group2","Fred Group3"]
+    let members = ["Martin","Charley","Fred","Michael","MayMay"]
+    let groupNumbers = [6, 13, 18, 26, 50]
 
     // MARK: - Life Cycle
     
@@ -81,11 +87,24 @@ class MasterViewController: UIViewController {
         print("prepareforsegue is called")
         if segue.identifier == "showDetail" {
             let dVC = segue.destination as? DetailViewController
-            if let data = tableViewDelegate?.getData() {
+            dVC?.setTabSelected(type: tabSelected)
+            
+            switch tabSelected {
+            case .groups:
+                if let data = tableViewDelegate?.getData(), let groupNumbers = tableViewDelegate?.getGroupNumbers() {
+                    
+                    dVC?.setGroupNumber(groupNumbers[tableView.indexPathForSelectedRow!.row])
+                    dVC?.setGroupName(name: data[tableView.indexPathForSelectedRow!.row])
+                }
                 
+            case .members:
+                break
                 
-                dVC?.str = data[tableView.indexPathForSelectedRow!.row]
+            case .none:
+                break
             }
+            
+            
         }
     }
     
@@ -129,6 +148,9 @@ extension MasterViewController {
     }
     
     private func tabLeftContentButtonPressedHandler() {
+        tabSelected = .groups
+        
+        // update UI
         tabLeftIcon.image = UIImage(named: "btn_contact_group_selected")
         tabRightIcon.image = UIImage(named: "btn_contact_member_normal")
         tabLeftTitle.textColor  = UIColorFromRGB(rgbValue: UInt(TAB_SELECTED_TITLE_COLOR))
@@ -136,13 +158,19 @@ extension MasterViewController {
         tabBottomLeftLine.isHidden  = false
         tabBottomRightLine.isHidden = true
         
+        // update tableView
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .groups)
-        tableViewDelegate?.registerCell(cellName: GROUPS_TABLE_VIEW_CELL, cellId: GROUPS_TABLE_VIEW_CELL)
+        tableViewDelegate?.registerCell(cellName: GROUP_TABLE_VIEW_CELL, cellId: GROUP_TABLE_VIEW_CELL)
+        tableViewDelegate?.updateData(data: groups)
+        tableViewDelegate?.updateGroupNumbers(groupNumbers)
         tableViewDelegate?.reloadUI()
     }
     
     private func tabRightContentButtonPressedHandler() {
+        tabSelected = .members
+        
+        // update UI
         tabLeftIcon.image = UIImage(named: "btn_contact_group_normal")
         tabRightIcon.image = UIImage(named: "btn_contact_member_selected")
         tabLeftTitle.textColor  = UIColorFromRGB(rgbValue: UInt(TAB_UNSELECTED_TITLE_COLOR))
@@ -150,9 +178,11 @@ extension MasterViewController {
         tabBottomLeftLine.isHidden  = true
         tabBottomRightLine.isHidden = false
         
+        // update tableView
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .members)
-        tableViewDelegate?.registerCell(cellName: MEMBERS_TABLE_VIEW_CELL, cellId: MEMBERS_TABLE_VIEW_CELL)
+        tableViewDelegate?.registerCell(cellName: MEMBER_TABLE_VIEW_CELL, cellId: MEMBER_TABLE_VIEW_CELL)
+        tableViewDelegate?.updateData(data: members)
         tableViewDelegate?.reloadUI()
     }
     

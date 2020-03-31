@@ -27,27 +27,28 @@ class MasterViewTableViewDelegate: NSObject {
     weak var tableView: UITableView?
     weak var activateSegueDelegate: MasterViewTableViewActivateSegueDelegate?
     
-    var preGroupCell: GroupsTableViewCell?
-    var groupCells = [GroupsTableViewCell]()
+    var preGroupCell: GroupTableViewCell?
+    var groupCells = [GroupTableViewCell]()
     
-    var preMemberCell: MembersTableViewCell?
-    var memberCells = [MembersTableViewCell]()
+    var preMemberCell: MemberTableViewCell?
+    var memberCells = [MemberTableViewCell]()
     
-    let groups = ["MaxkitDemo","Test Group","Fred Group","Fred Group2","Fred Group3"]
-    let members = ["Martin","Charley","Fred","Michael","MayMay"]
+    var groups = [String]()
+    var members = [String]()
+    var groupNumbers = [Int]()
     
-    var tableViewType = TableViewType.none
+    var tabType = TabType.none
     
     // MARK: - initializer
     
-    init(masterViewController: MasterViewController, tableView: UITableView, type: TableViewType) {
+    init(masterViewController: MasterViewController, tableView: UITableView, type: TabType) {
         super.init()
         self.viewController = masterViewController
         self.tableView = tableView
         tableView.dataSource = self
         tableView.delegate = self
         activateSegueDelegate = self.viewController
-        tableViewType = type
+        tabType = type
     }
 
 }
@@ -56,13 +57,52 @@ class MasterViewTableViewDelegate: NSObject {
 
 extension MasterViewTableViewDelegate {
     
+    func updateData(data: [String]) {
+        switch tabType {
+        case .groups:
+            groups = data
+            
+        case .members:
+            members = data
+            
+        case .none:
+            break
+        }
+    }
+    
+    func updateGroupNumbers(_ numbers: [Int]) {
+        switch tabType {
+        case .groups:
+            self.groupNumbers = numbers
+            
+        case .members:
+            break
+            
+        case .none:
+            break
+        }
+    }
+    
     func getData() -> [String] {
-        switch tableViewType {
+        switch tabType {
         case .groups:
             return groups
             
         case .members:
             return members
+            
+        case .none:
+            return []
+        }
+    }
+    
+    func getGroupNumbers() -> [Int] {
+        switch tabType {
+        case .groups:
+            return groupNumbers
+            
+        case .members:
+            return []
             
         case .none:
             return []
@@ -87,7 +127,7 @@ extension MasterViewTableViewDelegate {
 extension MasterViewTableViewDelegate: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch tableViewType {
+        switch tabType {
         case .groups:
             return groups.count
             
@@ -102,23 +142,25 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch tableViewType {
+        switch tabType {
         case .groups:
-            let cell = tableView.dequeueReusableCell(withIdentifier: GROUPS_TABLE_VIEW_CELL, for: indexPath) as! GroupsTableViewCell
-            cell.groupName.text = groups[indexPath.row]
-            cell.groupMemberCount.text = "\(indexPath.row)"
+            let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_TABLE_VIEW_CELL, for: indexPath) as! GroupTableViewCell
+            cell.setGroupName(name: groups[indexPath.row])
+            cell.setGroupMemberCount(indexPath.row)
+            cell.disableColor()
             cell.selectionStyle = .none
-            cell.trailingLine.isHidden = true
+            
             groupCells.append(cell)
             
             return cell
             
         case .members:
-            let cell = tableView.dequeueReusableCell(withIdentifier: MEMBERS_TABLE_VIEW_CELL, for: indexPath) as! MembersTableViewCell
-            cell.userName.text = members[indexPath.row]
-            cell.onlineDesc.text = "有空"
+            let cell = tableView.dequeueReusableCell(withIdentifier: MEMBER_TABLE_VIEW_CELL, for: indexPath) as! MemberTableViewCell
+            cell.setUserName(name: members[indexPath.row])
+            cell.setOnlineDesc(desc: "有空")
             cell.selectionStyle = .none
-            cell.trailingLine.isHidden = true
+            cell.disableColor()
+            
             memberCells.append(cell)
             
             return cell
@@ -130,6 +172,7 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // 固定56
         return 56
     }
 }
@@ -139,11 +182,12 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
 extension MasterViewTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        // trigger seque to display UI
         activateSegueDelegate?.activate()
         
         print("didSelectRowAt: \(indexPath.row)")
         
-        switch tableViewType {
+        switch tabType {
         case .groups:
             if let _preGroupCell = preGroupCell {
                 _preGroupCell.disableColor()
