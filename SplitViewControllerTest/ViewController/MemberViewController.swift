@@ -10,10 +10,28 @@ import UIKit
 
 class MemberViewController: UIViewController {
 
+    // MARK: - IBOutlet
+    
+    @IBOutlet weak var memberImage: UIImageView!
+    @IBOutlet weak var memberNameLabel: UILabel!
+    
+    // tableView
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Properties
+    
+    var memberImageName: String?
+    var memberName: String?
+    let profileTitles = ["帳號", "SIP號碼", "國家", "電子信箱"]
+    
+    // tableview
+    fileprivate var tableViewDelegate: MemberViewTableViewDelegate?
+    
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateUI()
     }
     
 
@@ -27,4 +45,36 @@ class MemberViewController: UIViewController {
     }
     */
 
+}
+
+// MARK: - Public Methods
+
+extension MemberViewController {
+    func updateUI() {
+        memberImage.layer.cornerRadius = memberImage.frame.size.width / 2
+        memberImage.clipsToBounds      = true
+        
+        if let _memberImageName = memberImageName {
+            if let image = UIImage(named: _memberImageName) {
+                memberImage.image = image
+            }
+        }
+        
+        if let _memberName = memberName {
+            memberNameLabel.text = _memberName
+        }
+        
+        tableViewDelegate = MemberViewTableViewDelegate(memberViewController: self, tableView: tableView)
+        tableViewDelegate?.registerCell(cellName: MEMBER_PROFILE_TABLE_VIEW_CELL, cellId: MEMBER_PROFILE_TABLE_VIEW_CELL)
+        tableViewDelegate?.setProfileTitles(profileTitles)
+        tableViewDelegate?.reloadUI()
+    }
+    
+    func setMemberImage(name: String) {
+        memberImageName = name
+    }
+    
+    func setMemberName(name: String) {
+        memberName = name
+    }
 }

@@ -31,8 +31,11 @@ class MasterViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // CreateGroupView Field
-    @IBOutlet weak var createGroupButton: UIButton!
-    @IBOutlet weak var createGroupTitle: UILabel!
+
+    @IBOutlet weak var dispatchTitleLabel: UILabel!
+    @IBOutlet weak var dispatchView: UIView!
+    @IBOutlet weak var dispatchButtonView: UIButton!
+    
     
     // MARK: - Properties
 
@@ -74,9 +77,27 @@ class MasterViewController: UIViewController {
         tabRightContentButtonPressedHandler()
     }
     
-    @IBAction func createGroupButtonPressed(_ sender: UIButton) {
-        print("createGroupButtonPressed")
+    @IBAction func dispatchButtonPressed(_ sender: UIButton) {
+//        print("createGroupButtonPressed")
+        if sender.isFocused{
+            print("isHighlighted")
+        } else {
+            print("cancel")
+        }
     }
+    
+    
+    @IBAction func dispatchButtonTouchDown(_ sender: UIButton) {
+        print("dispatchButtonTouchDown")
+        
+        dispatchButtonView.setBackgroundImage(UIImage(named: "btn_contact_pressed"), for: .highlighted)
+    }
+    
+    @IBAction func dispatchButtonTouchUpInside(_ sender: UIButton) {
+        print("dispatchButtonTouchUpInside")
+        dispatchButtonView.setBackgroundImage(UIImage(named: "btn_contact_normal"), for: .normal)
+    }
+    
     
     
     // MARK: - Navigation
@@ -91,13 +112,17 @@ class MasterViewController: UIViewController {
             
             switch tabSelected {
             case .groups:
-                if let data = tableViewDelegate?.getData(), let groupNumbers = tableViewDelegate?.getGroupNumbers() {
+                if let data = tableViewDelegate?.getGroupData(), let groupNumbers = tableViewDelegate?.getGroupNumbers() {
                     
                     dVC?.setGroupNumber(groupNumbers[tableView.indexPathForSelectedRow!.row])
                     dVC?.setGroupName(name: data[tableView.indexPathForSelectedRow!.row])
                 }
                 
             case .members:
+                if let data = tableViewDelegate?.getMemberData() {
+                    dVC?.setMemberName(name: data[tableView.indexPathForSelectedRow!.row])
+                    //dVC?.setMemberImageName(name: "")
+                }
                 break
                 
             case .none:
@@ -138,7 +163,7 @@ extension MasterViewController {
         tabBottomRightLine.isHidden = true
         
         // CreateGroupView Field
-        createGroupTitle.text = "建立新群組"
+        dispatchTitleLabel.text = "群組調度"
     }
     
     private func updateGesture() {
@@ -157,13 +182,14 @@ extension MasterViewController {
         tabRightTitle.textColor = UIColorFromRGB(rgbValue: UInt(TAB_UNSELECTED_TITLE_COLOR))
         tabBottomLeftLine.isHidden  = false
         tabBottomRightLine.isHidden = true
+        dispatchView.isHidden = false
         
         // update tableView
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .groups)
         tableViewDelegate?.registerCell(cellName: GROUP_TABLE_VIEW_CELL, cellId: GROUP_TABLE_VIEW_CELL)
         tableViewDelegate?.updateData(data: groups)
-        tableViewDelegate?.updateGroupNumbers(groupNumbers)
+        tableViewDelegate?.setGroupNumbers(groupNumbers)
         tableViewDelegate?.reloadUI()
     }
     
@@ -177,6 +203,7 @@ extension MasterViewController {
         tabRightTitle.textColor = UIColorFromRGB(rgbValue: UInt(TAB_SELECTED_TITLE_COLOR))
         tabBottomLeftLine.isHidden  = true
         tabBottomRightLine.isHidden = false
+        dispatchView.isHidden = true
         
         // update tableView
         tableViewDelegate = nil

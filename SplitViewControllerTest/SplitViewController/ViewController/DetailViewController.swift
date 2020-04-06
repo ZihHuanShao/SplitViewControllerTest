@@ -25,6 +25,7 @@ class DetailViewController: UIViewController {
     
     // Single Member
     var memberName: String?
+    var memberImageName: String?
     
     // Delegate
     fileprivate var collectionViewDelegate: DetailViewCollectionViewDelegate?
@@ -40,21 +41,35 @@ class DetailViewController: UIViewController {
         
         switch tabSelected {
         case .groups:
-            let groupsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
+            let groupVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
             
             if let _groupName = groupName, let _groupNumber = groupNumber {
-                groupsVC.setGroupName(name: _groupName)
-                groupsVC.setGroupNumber(_groupNumber)
+                groupVC.setGroupName(name: _groupName)
+                groupVC.setGroupNumber(_groupNumber)
             }
             
-            self.addChild(groupsVC)
-            groupsVC.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-            self.containerView.addSubview(groupsVC.view)
+            self.addChild(groupVC)
+            groupVC.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+            self.containerView.addSubview(groupVC.view)
             
-            groupsVC.didMove(toParent: self)
+            groupVC.didMove(toParent: self)
         
         case .members:
-            break
+            let memberVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+            
+            if let _memberName = memberName {
+                memberVC.setMemberName(name: _memberName)
+            }
+            
+            if let _memberImageName = memberImageName {
+                memberVC.setMemberImage(name: _memberImageName)
+            }
+            
+            self.addChild(memberVC)
+            memberVC.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+            self.containerView.addSubview(memberVC.view)
+            
+            memberVC.didMove(toParent: self)
         
         case .none:
             break
@@ -64,6 +79,8 @@ class DetailViewController: UIViewController {
         
     }
 }
+
+// MARK: - Public Methods
 
 extension DetailViewController {
     func setTabSelected(type: TabType) {
@@ -76,5 +93,13 @@ extension DetailViewController {
     
     func setGroupName(name: String) {
         groupName = name
+    }
+    
+    func setMemberName(name: String) {
+        memberName = name
+    }
+    
+    func setMemberImageName(name: String) {
+        memberImageName = name
     }
 }

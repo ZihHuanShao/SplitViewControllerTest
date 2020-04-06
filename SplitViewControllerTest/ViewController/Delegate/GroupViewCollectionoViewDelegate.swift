@@ -30,7 +30,7 @@ class GroupViewCollectionoViewDelegate: NSObject {
 }
 
 extension GroupViewCollectionoViewDelegate {
-    func updateNum(num: Int) {
+    func setGroupNumber(_ num: Int) {
         number = num
     }
     
@@ -67,6 +67,9 @@ extension GroupViewCollectionoViewDelegate: UICollectionViewDelegate {
 extension GroupViewCollectionoViewDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        /*------------------------
+        /*根據ipad的尺寸自動分配Cell的大小 (目前不使用)*/
+         
         let viewWidth = UserDefaults.standard.float(forKey: DETAIL_VIEW_CONTROLLER_WIDTH)
         
         // NOTE: cell間距減掉12
@@ -79,6 +82,11 @@ extension GroupViewCollectionoViewDelegate: UICollectionViewDelegateFlowLayout {
         
         // 固定*64
         return CGSize(width: CGFloat(cellWidth), height: 64)
+         
+        ------------------------*/
+        
+        // 固定180*70
+        return CGSize(width: 180, height: 70)
     }
     
     // 每一列之間的間隔

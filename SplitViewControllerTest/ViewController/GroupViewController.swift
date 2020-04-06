@@ -16,10 +16,9 @@ class GroupViewController: UIViewController {
     @IBOutlet weak var monitorImage: UIImageView!
     @IBOutlet weak var groupNameLabel: UILabel!
     
-    
-    
     // MARK: - Properties
     
+    var monitorImageName: String?
     var groupNumber: Int?
     var groupName: String?
     fileprivate var collectionViewDelegate: GroupViewCollectionoViewDelegate?
@@ -31,12 +30,7 @@ class GroupViewController: UIViewController {
         
         updateUI()
         
-        collectionViewDelegate = GroupViewCollectionoViewDelegate(groupViewController: self, collectionView: collectionView)
-        collectionViewDelegate?.registerCell(cellName: GROUP_COLLECTION_VIEW_CELL, cellId: GROUP_COLLECTION_VIEW_CELL)
-        if let _groupNumber = groupNumber {
-            collectionViewDelegate?.updateNum(num: _groupNumber)
-        }
-        collectionViewDelegate?.reloadUI()
+        
     }
     
     // MARK: - Actions
@@ -48,6 +42,10 @@ class GroupViewController: UIViewController {
 
 // MARK: - Public Methods
 extension GroupViewController {
+    func setMonitorImageName(name: String) {
+        monitorImageName = name
+    }
+    
     func setGroupNumber(_ number: Int) {
         groupNumber = number
     }
@@ -60,9 +58,22 @@ extension GroupViewController {
 // MARK: - Private Methods
 extension GroupViewController {
     func updateUI() {
+        if let _monitorImageName = monitorImageName {
+            if let image = UIImage(named: _monitorImageName) {
+                monitorImage.image = image
+            }
+        }
         if let _groupName = groupName {
             groupNameLabel.text = _groupName
         }
+        
+        collectionViewDelegate = GroupViewCollectionoViewDelegate(groupViewController: self, collectionView: collectionView)
+        collectionViewDelegate?.registerCell(cellName: GROUP_COLLECTION_VIEW_CELL, cellId: GROUP_COLLECTION_VIEW_CELL)
+        
+        if let _groupNumber = groupNumber {
+            collectionViewDelegate?.setGroupNumber(_groupNumber)
+        }
+        collectionViewDelegate?.reloadUI()
     }
     
 }

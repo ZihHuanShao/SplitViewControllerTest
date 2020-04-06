@@ -70,7 +70,7 @@ extension MasterViewTableViewDelegate {
         }
     }
     
-    func updateGroupNumbers(_ numbers: [Int]) {
+    func setGroupNumbers(_ numbers: [Int]) {
         switch tabType {
         case .groups:
             self.groupNumbers = numbers
@@ -83,7 +83,7 @@ extension MasterViewTableViewDelegate {
         }
     }
     
-    func getData() -> [String] {
+    func getGroupData() -> [String] {
         switch tabType {
         case .groups:
             return groups
@@ -107,6 +107,10 @@ extension MasterViewTableViewDelegate {
         case .none:
             return []
         }
+    }
+    
+    func getMemberData() -> [String] {
+        return members
     }
     
     func registerCell(cellName: String, cellId: String) {

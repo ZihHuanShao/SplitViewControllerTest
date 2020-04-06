@@ -14,7 +14,6 @@ class GroupCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var memberImage: UIImageView!
     @IBOutlet weak var memberName: UILabel!
-    @IBOutlet weak var speakerImage: UIImageView!
     @IBOutlet weak var soundWaveImage: UIImageView!
     @IBOutlet weak var onlineStatusImage: UIImageView!
     
@@ -40,11 +39,6 @@ extension GroupCollectionViewCell {
         memberName.text = name
     }
     
-    func setSpeakerImage(name: String) {
-        if let image = UIImage(named: name) {
-            speakerImage.image = image
-        }
-    }
     
     func setSoundWaveImage(name: String) {
         if let image = UIImage(named: name) {

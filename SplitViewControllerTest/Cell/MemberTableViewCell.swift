@@ -22,7 +22,7 @@ class MemberTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        trailingLine.isHidden = true
+        disableColor()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
