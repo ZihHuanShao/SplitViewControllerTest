@@ -70,7 +70,7 @@ extension GroupViewCollectionoViewDelegate: UICollectionViewDelegateFlowLayout {
         /*------------------------
         /*根據ipad的尺寸自動分配Cell的大小 (目前不使用)*/
          
-        let viewWidth = UserDefaults.standard.float(forKey: DETAIL_VIEW_CONTROLLER_WIDTH)
+        let viewWidth = UserDefaults.standard.float(forKey: SPLIT_DETAIL_VIEW_CONTROLLER_WIDTH)
         
         // NOTE: cell間距減掉12
         // ┌─┐     ┌─┐     ┌─┐     ┌─┐

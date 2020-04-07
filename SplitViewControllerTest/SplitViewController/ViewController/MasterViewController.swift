@@ -11,7 +11,7 @@ import UIKit
 class MasterViewController: UIViewController {
 
     // MARK: - IBOutlet
-
+    
     // TitleView Filed
     @IBOutlet weak var dispatcherImage: UIButton!
     @IBOutlet weak var dispatcherName: UILabel!
@@ -53,6 +53,7 @@ class MasterViewController: UIViewController {
         updateDataSource()
         updateUI()
         updateGesture()
+        
     }
     
     /*
@@ -78,6 +79,8 @@ class MasterViewController: UIViewController {
     
     @IBAction func createGroupButtonPressed(_ sender: UIButton) {
         print("createGroupButtonPressed pressed")
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.showOverlay()
     }
     
     @IBAction func dispatchButtonTouchDown(_ sender: UIButton) {

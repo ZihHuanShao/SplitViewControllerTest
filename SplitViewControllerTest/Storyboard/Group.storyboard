@@ -148,6 +148,35 @@
             </objects>
             <point key="canvasLocation" x="772" y="93"/>
         </scene>
+        <!--Group Dispatch View Controller-->
+        <scene sceneID="xZi-vZ-qNx">
+            <objects>
+                <viewController storyboardIdentifier="Overlay" id="XOB-jN-cLO" customClass="GroupDispatchViewController" customModule="SplitViewControllerTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6ky-7e-Aqa">
+                        <rect key="frame" x="0.0" y="0.0" width="682" height="512"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nn-M7-Xea">
+                                <rect key="frame" x="318" y="241" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="dismissButtonPressed:" destination="XOB-jN-cLO" eventType="touchUpInside" id="kei-3U-KaP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="7nn-M7-Xea" firstAttribute="centerX" secondItem="6ky-7e-Aqa" secondAttribute="centerX" id="FHJ-7g-0u8"/>
+                            <constraint firstItem="7nn-M7-Xea" firstAttribute="centerY" secondItem="6ky-7e-Aqa" secondAttribute="centerY" id="c7b-Gv-k6T"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZlZ-iF-ptG"/>
+                    </view>
+                    <size key="freeformSize" width="682" height="512"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2eH-79-4qE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="671" y="728"/>
+        </scene>
     </scenes>
     <resources>
         <image name="btn_group_set.png" width="45" height="45"/>

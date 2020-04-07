@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t5r-Lf-JyS">
-    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -13,20 +13,20 @@
             <objects>
                 <viewController id="biV-Bj-S4I" customClass="DetailViewController" customModule="SplitViewControllerTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2bx-nU-14A">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1t4-lI-pOU" userLabel="Main Menu View">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="64"/>
+                                <rect key="frame" x="0.0" y="0.0" width="703.5" height="64"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_menu.png" translatesAutoresizingMaskIntoConstraints="NO" id="xzm-0n-3cc">
-                                        <rect key="frame" x="0.0" y="0.0" width="768" height="64"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="64"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ilJ-hL-BAp" userLabel="Main Menu Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="768" height="64"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="64"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kIb-uH-rW4">
-                                                <rect key="frame" x="0.0" y="0.0" width="768" height="64"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="703.5" height="64"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ZGh-qJ-lbn">
                                                     <size key="itemSize" width="50" height="50"/>
@@ -96,7 +96,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wo0-pD-jtW">
-                                <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                                <rect key="frame" x="0.0" y="64" width="703.5" height="704"/>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -125,7 +125,6 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="unq-0w-3Vu" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Cx0-UH-IbW">
-                        <rect key="frame" x="0.31999999999999318" y="0.0" width="0.0" height="0.0"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -141,7 +140,7 @@
             <objects>
                 <viewController id="dnk-cw-6M6" customClass="MasterViewController" customModule="SplitViewControllerTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mLX-wI-FHT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ReM-lW-hgi" userLabel="Title View">
@@ -408,7 +407,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Ed-h1-9BM">
-                                <rect key="frame" x="0.0" y="176" width="320" height="848"/>
+                                <rect key="frame" x="0.0" y="176" width="320" height="592"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="UJv-Ka-aMB">
@@ -426,7 +425,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2NP-mh-ilh" userLabel="Dispatch Button View">
-                                <rect key="frame" x="45" y="976" width="230" height="40"/>
+                                <rect key="frame" x="45" y="720" width="230" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPa-ap-c2H">
                                         <rect key="frame" x="0.0" y="0.0" width="230" height="40"/>
@@ -496,7 +495,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yc4-NU-99x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="733" y="-640"/>
+            <point key="canvasLocation" x="732.421875" y="-640.625"/>
         </scene>
         <!--Dispatch Board Split View Controller-->
         <scene sceneID="0nv-Hc-u3D">

@@ -20,8 +20,9 @@ let STORYBOARD_NAME_MEMBER = "Member"
 let STORYBOARD_NAME_GROUP  = "Group"
 
 // UserDefault
-let MASTER_VIEW_CONTROLLER_WIDTH = "masterViewControllerWidth"
-let DETAIL_VIEW_CONTROLLER_WIDTH = "detailViewControllerWidth"
+let SPLIT_MASTER_VIEW_CONTROLLER_WIDTH = "splitMasterViewControllerWidth"
+let SPLIT_DETAIL_VIEW_CONTROLLER_WIDTH = "splitDetailViewControllerWidth"
+let SPLIT_VIEW_CONTROLLER_HEIGHT       = "splitViewControllerHeight"
 
 //通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼

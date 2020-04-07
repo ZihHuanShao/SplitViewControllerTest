@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var splitView: UISplitViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -44,3 +44,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate {
+    private func grabScreenshot() -> UIImage? {
+        
+        // create graphics context with screen size
+        let screenRect = UIScreen.main.bounds
+        UIGraphicsBeginImageContext(screenRect.size)
+        let ctx = UIGraphicsGetCurrentContext()
+        UIColor.black.set()
+        ctx?.fill(screenRect)
+        
+        // grab reference to our window
+        let window = UIApplication.shared.keyWindow
+        
+        // transfer content into our context
+        window?.layer.render(in: ctx!)
+        let screengrab = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        return screengrab
+        
+    }
+}
+
+extension AppDelegate {
+    func showOverlay() {
+        // grab a screenshot
+        let screenshot = grabScreenshot()
+
+        
+        // create a new view controller with it
+        let underlay = UIViewController.init()
+        let background = UIImageView.init(image: screenshot)
+        underlay.view = background
+        
+        // grab the overlay controller
+        let storyboard = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil)
+        let overlay = storyboard.instantiateViewController(withIdentifier: "Overlay")
+        
+        overlay.modalPresentationStyle = .formSheet
+        
+        // swap the split view
+        
+        splitView = window?.rootViewController as? UISplitViewController
+        window?.rootViewController = underlay
+       
+        
+        // present the overlay
+        underlay.present(overlay, animated: true, completion: nil)
+    }
+    
+    func dismissOverlay() {
+        
+        // dismiss the overlay
+        window?.rootViewController?.dismiss(animated: true, completion: {
+            self.window?.rootViewController = self.splitView
+        })
+    }
+}

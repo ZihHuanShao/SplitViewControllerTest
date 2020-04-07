@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D0E23595243C20810009506F /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23594243C20810009506F /* Group.storyboard */; };
 		D0E23597243C20E70009506F /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23596243C20E70009506F /* Member.storyboard */; };
+		D0E2359A243C4DD50009506F /* GroupDispatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */; };
 		F20CCEFD2429F00800048BA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20CCEFC2429F00800048BA3 /* AppDelegate.swift */; };
 		F20CCF022429F00800048BA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20CCF002429F00800048BA3 /* Main.storyboard */; };
 		F20CCF042429F00900048BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F20CCF032429F00900048BA3 /* Assets.xcassets */; };
@@ -91,6 +92,7 @@
 /* Begin PBXFileReference section */
 		D0E23594243C20810009506F /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		D0E23596243C20E70009506F /* Member.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
+		D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchViewController.swift; sourceTree = "<group>"; };
 		F20CCEF92429F00800048BA3 /* SplitViewControllerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitViewControllerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20CCEFC2429F00800048BA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F20CCF012429F00800048BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -217,11 +219,11 @@
 				F21E21F92431F123001AE003 /* ViewController */,
 				F2507FED242AFCBC003DBE79 /* Cell */,
 				D0E23598243C21650009506F /* Storyboard */,
+				F261B467242CAB1300482992 /* Images */,
 				F20CCEFC2429F00800048BA3 /* AppDelegate.swift */,
 				F22F8B4E242D9B7F00CB08D5 /* ConfigAndConst.swift */,
 				F20CCF032429F00900048BA3 /* Assets.xcassets */,
 				F20CCF082429F00900048BA3 /* Info.plist */,
-				F261B467242CAB1300482992 /* Images */,
 			);
 			path = SplitViewControllerTest;
 			sourceTree = "<group>";
@@ -231,6 +233,7 @@
 			children = (
 				F21E21CF243186C8001AE003 /* GroupViewController.swift */,
 				F23C0DE92432DC3700DD7A48 /* MemberViewController.swift */,
+				D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */,
 				F21E21FD2431F1B2001AE003 /* Delegate */,
 			);
 			path = ViewController;
@@ -481,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0E2359A243C4DD50009506F /* GroupDispatchViewController.swift in Sources */,
 				F21E21F42431C7D3001AE003 /* GroupCollectionViewCell.swift in Sources */,
 				F22F8B51242DABDB00CB08D5 /* MainMenuCollectionViewCell.swift in Sources */,
 				F22F8B53242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift in Sources */,
