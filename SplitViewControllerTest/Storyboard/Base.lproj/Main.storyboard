@@ -343,8 +343,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hQ-82-vr1" userLabel="Search Text View">
                                         <rect key="frame" x="8" y="8" width="264" height="40"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jHf-Tl-DAb" userLabel="Search Text Field">
+                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8XR-l6-hpx" userLabel="Dummy Text Field">
                                                 <rect key="frame" x="0.0" y="0.0" width="256" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jHf-Tl-DAb" userLabel="Search Text Field">
+                                                <rect key="frame" x="34" y="0.0" width="222" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -359,12 +364,16 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="jHf-Tl-DAb" firstAttribute="leading" secondItem="7hQ-82-vr1" secondAttribute="leading" id="HmY-aS-AYh"/>
+                                            <constraint firstItem="8XR-l6-hpx" firstAttribute="leading" secondItem="7hQ-82-vr1" secondAttribute="leading" id="AtC-8M-DV4"/>
+                                            <constraint firstAttribute="trailing" secondItem="8XR-l6-hpx" secondAttribute="trailing" constant="8" id="Hpu-9Z-p4I"/>
                                             <constraint firstAttribute="bottom" secondItem="jHf-Tl-DAb" secondAttribute="bottom" id="P6Q-O4-MoN"/>
+                                            <constraint firstAttribute="bottom" secondItem="8XR-l6-hpx" secondAttribute="bottom" id="QbY-6f-Lgh"/>
                                             <constraint firstItem="jHf-Tl-DAb" firstAttribute="top" secondItem="7hQ-82-vr1" secondAttribute="top" id="Sqb-CW-V1z"/>
+                                            <constraint firstItem="8XR-l6-hpx" firstAttribute="top" secondItem="7hQ-82-vr1" secondAttribute="top" id="iwu-oQ-nUp"/>
                                             <constraint firstItem="g35-PF-Uts" firstAttribute="centerY" secondItem="7hQ-82-vr1" secondAttribute="centerY" id="jfH-bf-78n"/>
                                             <constraint firstItem="g35-PF-Uts" firstAttribute="leading" secondItem="7hQ-82-vr1" secondAttribute="leading" constant="8" id="sH2-HL-rWM"/>
                                             <constraint firstAttribute="trailing" secondItem="jHf-Tl-DAb" secondAttribute="trailing" constant="8" id="vlQ-ra-uau"/>
+                                            <constraint firstItem="jHf-Tl-DAb" firstAttribute="leading" secondItem="g35-PF-Uts" secondAttribute="trailing" constant="2" id="xkG-IZ-uG8"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7K-gY-ydU" userLabel="Create Group View">

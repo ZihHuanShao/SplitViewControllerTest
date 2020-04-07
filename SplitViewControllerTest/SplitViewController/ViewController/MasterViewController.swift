@@ -79,8 +79,10 @@ class MasterViewController: UIViewController {
     
     @IBAction func createGroupButtonPressed(_ sender: UIButton) {
         print("createGroupButtonPressed pressed")
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.showOverlay()
+        
+        // wait a moment before taking the screenshot
+        let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showOverlayDelayed), userInfo: nil, repeats: false)
+        
     }
     
     @IBAction func dispatchButtonTouchDown(_ sender: UIButton) {
@@ -222,6 +224,11 @@ extension MasterViewController {
 extension MasterViewController {
     @objc func dismissKeyBoard() {
         self.view.endEditing(true)
+    }
+    
+    @objc func showOverlayDelayed() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.showOverlay()
     }
 }
 
