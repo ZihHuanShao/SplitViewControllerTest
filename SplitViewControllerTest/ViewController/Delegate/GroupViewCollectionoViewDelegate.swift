@@ -91,7 +91,7 @@ extension GroupViewCollectionoViewDelegate: UICollectionViewDelegateFlowLayout {
     
     // 每一列之間的間隔
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+        return 16
     }
     
 

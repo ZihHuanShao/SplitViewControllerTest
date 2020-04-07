@@ -30,11 +30,9 @@ class MasterViewController: UIViewController {
     // TableView Field
     @IBOutlet weak var tableView: UITableView!
     
-    // CreateGroupView Field
-
+    // Dispatch Button View Field
     @IBOutlet weak var dispatchTitleLabel: UILabel!
     @IBOutlet weak var dispatchView: UIView!
-    @IBOutlet weak var dispatchButtonView: UIButton!
     
     
     // MARK: - Properties
@@ -67,6 +65,7 @@ class MasterViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func dispatcherSetting(_ sender: UIButton) {
+        print("dispatcherSetting pressed")
     }
     
     @IBAction func tabLeftContentButtonPressed(_ sender: UIButton) {
@@ -77,25 +76,19 @@ class MasterViewController: UIViewController {
         tabRightContentButtonPressedHandler()
     }
     
-    @IBAction func dispatchButtonPressed(_ sender: UIButton) {
-//        print("createGroupButtonPressed")
-        if sender.isFocused{
-            print("isHighlighted")
-        } else {
-            print("cancel")
-        }
+    @IBAction func createGroupButtonPressed(_ sender: UIButton) {
+        print("createGroupButtonPressed pressed")
     }
     
-    
     @IBAction func dispatchButtonTouchDown(_ sender: UIButton) {
-        print("dispatchButtonTouchDown")
+        print("dispatchButtonTouchDown pressed")
         
-        dispatchButtonView.setBackgroundImage(UIImage(named: "btn_contact_pressed"), for: .highlighted)
+        sender.setBackgroundImage(UIImage(named: "btn_contact_pressed"), for: .normal)
     }
     
     @IBAction func dispatchButtonTouchUpInside(_ sender: UIButton) {
-        print("dispatchButtonTouchUpInside")
-        dispatchButtonView.setBackgroundImage(UIImage(named: "btn_contact_normal"), for: .normal)
+        print("dispatchButtonTouchUpInside pressed")
+        sender.setBackgroundImage(UIImage(named: "btn_contact_normal"), for: .normal)
     }
     
     
@@ -128,8 +121,6 @@ class MasterViewController: UIViewController {
             case .none:
                 break
             }
-            
-            
         }
     }
     
