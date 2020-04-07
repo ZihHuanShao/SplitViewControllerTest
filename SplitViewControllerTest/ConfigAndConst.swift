@@ -13,6 +13,7 @@ let MEMBER_TABLE_VIEW_CELL = "MemberTableViewCell" // nib name & cell name (the 
 let MAINMENU_COLLECTION_VIEW_CELL = "MainMenuCollectionViewCell"
 let GROUP_COLLECTION_VIEW_CELL = "GroupCollectionViewCell"
 let MEMBER_PROFILE_TABLE_VIEW_CELL = "MemberProfileTableViewCell"
+let GROUP_DISPATCH_TABLE_VIEW_CELL = "GroupDispatchTableViewCell"
 
 // Storyboard
 let STORYBOARD_NAME_MAIN   = "Main"

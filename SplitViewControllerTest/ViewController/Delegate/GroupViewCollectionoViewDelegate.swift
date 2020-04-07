@@ -1,5 +1,5 @@
 //
-//  GroupViewCollectionoViewDelegate.swift
+//  GroupCollectionoViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by maxkitmac on 2020/3/30.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GroupViewCollectionoViewDelegate: NSObject {
+class GroupCollectionoViewDelegate: NSObject {
     
     // MARK: - Properties
     
@@ -29,7 +29,9 @@ class GroupViewCollectionoViewDelegate: NSObject {
     
 }
 
-extension GroupViewCollectionoViewDelegate {
+// MARK: - Public Methods
+
+extension GroupCollectionoViewDelegate {
     func setGroupNumber(_ num: Int) {
         number = num
     }
@@ -46,7 +48,9 @@ extension GroupViewCollectionoViewDelegate {
     }
 }
 
-extension GroupViewCollectionoViewDelegate: UICollectionViewDataSource {
+// MARK: - UICollectionViewDataSource
+
+extension GroupCollectionoViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return number
 //        return 16
@@ -60,11 +64,15 @@ extension GroupViewCollectionoViewDelegate: UICollectionViewDataSource {
     
 }
 
-extension GroupViewCollectionoViewDelegate: UICollectionViewDelegate {
+// MARK: - UICollectionViewDelegate
+
+extension GroupCollectionoViewDelegate: UICollectionViewDelegate {
     
 }
 
-extension GroupViewCollectionoViewDelegate: UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension GroupCollectionoViewDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         /*------------------------

@@ -25,7 +25,7 @@ class MemberViewController: UIViewController {
     let profileTitles = ["帳號", "SIP號碼", "國家", "電子信箱"]
     
     // tableview
-    fileprivate var tableViewDelegate: MemberViewTableViewDelegate?
+    fileprivate var tableViewDelegate: MemberTableViewDelegate?
     
     // MARK: - Life Cycle
     
@@ -64,7 +64,7 @@ extension MemberViewController {
             memberNameLabel.text = _memberName
         }
         
-        tableViewDelegate = MemberViewTableViewDelegate(memberViewController: self, tableView: tableView)
+        tableViewDelegate = MemberTableViewDelegate(memberViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: MEMBER_PROFILE_TABLE_VIEW_CELL, cellId: MEMBER_PROFILE_TABLE_VIEW_CELL)
         tableViewDelegate?.setProfileTitles(profileTitles)
         tableViewDelegate?.reloadUI()

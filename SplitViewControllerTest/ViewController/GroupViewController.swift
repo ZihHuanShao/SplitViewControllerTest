@@ -21,7 +21,7 @@ class GroupViewController: UIViewController {
     var monitorImageName: String?
     var groupNumber: Int?
     var groupName: String?
-    fileprivate var collectionViewDelegate: GroupViewCollectionoViewDelegate?
+    fileprivate var collectionViewDelegate: GroupCollectionoViewDelegate?
     
     // MARK: - Life Cycle
     
@@ -67,7 +67,7 @@ extension GroupViewController {
             groupNameLabel.text = _groupName
         }
         
-        collectionViewDelegate = GroupViewCollectionoViewDelegate(groupViewController: self, collectionView: collectionView)
+        collectionViewDelegate = GroupCollectionoViewDelegate(groupViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: GROUP_COLLECTION_VIEW_CELL, cellId: GROUP_COLLECTION_VIEW_CELL)
         
         if let _groupNumber = groupNumber {

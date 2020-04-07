@@ -1,5 +1,5 @@
 //
-//  MemberViewTableViewDelegate.swift
+//  MemberTableViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by maxkitmac on 2020/3/31.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MemberViewTableViewDelegate: NSObject {
+class MemberTableViewDelegate: NSObject {
     
     // MARK: - Properties
     
@@ -30,7 +30,7 @@ class MemberViewTableViewDelegate: NSObject {
 
 // MARK: - Public Methods
 
-extension MemberViewTableViewDelegate {
+extension MemberTableViewDelegate {
     func registerCell(cellName: String, cellId: String) {
         tableView?.register(
             UINib(nibName: cellName, bundle: nil),
@@ -47,13 +47,16 @@ extension MemberViewTableViewDelegate {
     }
 }
 
-extension MemberViewTableViewDelegate: UITableViewDataSource {
+// MARK: - UITableViewDataSource
+
+extension MemberTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // 目前只有四個欄位(帳號/ SIP號碼/ 國家/ 電子信箱)
         return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MemberProfileTableViewCell", for: indexPath) as! MemberProfileTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MEMBER_PROFILE_TABLE_VIEW_CELL, for: indexPath) as! MemberProfileTableViewCell
         cell.setProfileTitle(title: profileTitles[indexPath.row])
         cell.setProfileDesc(desc: "123")
         return cell
@@ -65,6 +68,8 @@ extension MemberViewTableViewDelegate: UITableViewDataSource {
     }
 }
 
-extension MemberViewTableViewDelegate: UITableViewDelegate {
+// MARK: - UITableViewDelegate
+
+extension MemberTableViewDelegate: UITableViewDelegate {
     
 }

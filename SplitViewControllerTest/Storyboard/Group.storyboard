@@ -255,6 +255,9 @@
                                             <constraint firstAttribute="height" constant="30" id="Nzj-JJ-YaZ"/>
                                         </constraints>
                                         <state key="normal" image="btn_member_reset.png"/>
+                                        <connections>
+                                            <action selector="resetButtonPressed:" destination="XOB-jN-cLO" eventType="touchUpInside" id="kwe-Jv-LC9"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="409-IL-Tkg" userLabel="Selected Content View">
                                         <rect key="frame" x="8" y="8" width="457" height="48"/>
@@ -360,8 +363,10 @@
                     <size key="freeformSize" width="512" height="512"/>
                     <connections>
                         <outlet property="cancelButtonView" destination="wWw-Rx-aed" id="LR3-XV-7fV"/>
+                        <outlet property="collectionView" destination="GCp-NB-kgD" id="P04-w2-JQt"/>
                         <outlet property="finishButtonView" destination="7nn-M7-Xea" id="S5J-hX-fYm"/>
                         <outlet property="searchTextField" destination="GiE-zC-mKU" id="qdm-ex-y2P"/>
+                        <outlet property="tableView" destination="M7Q-Lp-dh4" id="8xa-SQ-c7L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2eH-79-4qE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
