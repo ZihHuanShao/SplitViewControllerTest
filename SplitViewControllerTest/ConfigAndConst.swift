@@ -14,6 +14,11 @@ let MAINMENU_COLLECTION_VIEW_CELL = "MainMenuCollectionViewCell"
 let GROUP_COLLECTION_VIEW_CELL = "GroupCollectionViewCell"
 let MEMBER_PROFILE_TABLE_VIEW_CELL = "MemberProfileTableViewCell"
 
+// Storyboard
+let STORYBOARD_NAME_MAIN   = "Main"
+let STORYBOARD_NAME_MEMBER = "Member"
+let STORYBOARD_NAME_GROUP  = "Group"
+
 // UserDefault
 let MASTER_VIEW_CONTROLLER_WIDTH = "masterViewControllerWidth"
 let DETAIL_VIEW_CONTROLLER_WIDTH = "detailViewControllerWidth"

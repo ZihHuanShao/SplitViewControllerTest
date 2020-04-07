@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0E23595243C20810009506F /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23594243C20810009506F /* Group.storyboard */; };
+		D0E23597243C20E70009506F /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23596243C20E70009506F /* Member.storyboard */; };
 		F20CCEFD2429F00800048BA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20CCEFC2429F00800048BA3 /* AppDelegate.swift */; };
 		F20CCF022429F00800048BA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20CCF002429F00800048BA3 /* Main.storyboard */; };
 		F20CCF042429F00900048BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F20CCF032429F00900048BA3 /* Assets.xcassets */; };
@@ -87,6 +89,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D0E23594243C20810009506F /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
+		D0E23596243C20E70009506F /* Member.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
 		F20CCEF92429F00800048BA3 /* SplitViewControllerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitViewControllerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20CCEFC2429F00800048BA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F20CCF012429F00800048BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -179,6 +183,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0E23598243C21650009506F /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				F20CCF002429F00800048BA3 /* Main.storyboard */,
+				D0E23596243C20E70009506F /* Member.storyboard */,
+				D0E23594243C20810009506F /* Group.storyboard */,
+				F20CCF052429F00900048BA3 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		F20CCEF02429F00800048BA3 = {
 			isa = PBXGroup;
 			children = (
@@ -201,11 +216,10 @@
 				F21E21FA2431F149001AE003 /* SplitViewController */,
 				F21E21F92431F123001AE003 /* ViewController */,
 				F2507FED242AFCBC003DBE79 /* Cell */,
+				D0E23598243C21650009506F /* Storyboard */,
 				F20CCEFC2429F00800048BA3 /* AppDelegate.swift */,
 				F22F8B4E242D9B7F00CB08D5 /* ConfigAndConst.swift */,
 				F20CCF032429F00900048BA3 /* Assets.xcassets */,
-				F20CCF002429F00800048BA3 /* Main.storyboard */,
-				F20CCF052429F00900048BA3 /* LaunchScreen.storyboard */,
 				F20CCF082429F00900048BA3 /* Info.plist */,
 				F261B467242CAB1300482992 /* Images */,
 			);
@@ -434,6 +448,8 @@
 				F23C0E4C24331CE200DD7A48 /* icon_status_online.png in Resources */,
 				F23C0E5124331CE200DD7A48 /* btn_menu_ptt_selected.png in Resources */,
 				F23C0E4D24331CE200DD7A48 /* btn_menu_video_selected.png in Resources */,
+				D0E23595243C20810009506F /* Group.storyboard in Resources */,
+				D0E23597243C20E70009506F /* Member.storyboard in Resources */,
 				F261B464242C9FD800482992 /* MemberTableViewCell.xib in Resources */,
 				F23C0E3224331CE200DD7A48 /* icon_titile_notify_off.png in Resources */,
 				F23C0E4024331CE200DD7A48 /* btn_video_normal.png in Resources */,

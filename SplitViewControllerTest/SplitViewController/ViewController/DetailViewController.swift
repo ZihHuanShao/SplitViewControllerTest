@@ -41,7 +41,7 @@ class DetailViewController: UIViewController {
         
         switch tabSelected {
         case .groups:
-            let groupVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
+            let groupVC = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
             
             if let _groupName = groupName, let _groupNumber = groupNumber {
                 groupVC.setGroupName(name: _groupName)
@@ -55,7 +55,7 @@ class DetailViewController: UIViewController {
             groupVC.didMove(toParent: self)
         
         case .members:
-            let memberVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+            let memberVC = UIStoryboard(name: STORYBOARD_NAME_MEMBER, bundle: nil).instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
             
             if let _memberName = memberName {
                 memberVC.setMemberName(name: _memberName)
@@ -74,9 +74,6 @@ class DetailViewController: UIViewController {
         case .none:
             break
         }
-        
-
-        
     }
 }
 
