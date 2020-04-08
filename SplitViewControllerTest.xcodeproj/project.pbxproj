@@ -71,6 +71,8 @@
 		D0E23684243C7E760009506F /* GroupDispatchTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E23683243C7E760009506F /* GroupDispatchTableViewDelegate.swift */; };
 		D0E23687243C818C0009506F /* GroupDispatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E23685243C818C0009506F /* GroupDispatchTableViewCell.swift */; };
 		D0E23688243C818C0009506F /* GroupDispatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E23686243C818C0009506F /* GroupDispatchTableViewCell.xib */; };
+		D0E2368B243C88060009506F /* icon_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = D0E23689243C88060009506F /* icon_selected.png */; };
+		D0E2368C243C88060009506F /* icon_unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = D0E2368A243C88060009506F /* icon_unselected.png */; };
 		F20CCEFD2429F00800048BA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20CCEFC2429F00800048BA3 /* AppDelegate.swift */; };
 		F20CCF022429F00800048BA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20CCF002429F00800048BA3 /* Main.storyboard */; };
 		F20CCF042429F00900048BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F20CCF032429F00900048BA3 /* Assets.xcassets */; };
@@ -161,6 +163,8 @@
 		D0E23683243C7E760009506F /* GroupDispatchTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchTableViewDelegate.swift; sourceTree = "<group>"; };
 		D0E23685243C818C0009506F /* GroupDispatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchTableViewCell.swift; sourceTree = "<group>"; };
 		D0E23686243C818C0009506F /* GroupDispatchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDispatchTableViewCell.xib; sourceTree = "<group>"; };
+		D0E23689243C88060009506F /* icon_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_selected.png; sourceTree = "<group>"; };
+		D0E2368A243C88060009506F /* icon_unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_unselected.png; sourceTree = "<group>"; };
 		F20CCEF92429F00800048BA3 /* SplitViewControllerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitViewControllerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20CCEFC2429F00800048BA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F20CCF012429F00800048BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -316,6 +320,8 @@
 				D0E23631243C76780009506F /* bg_profile.png */,
 				D0E23622243C76770009506F /* bg_ptt_animation1.png */,
 				D0E23647243C767A0009506F /* bg_ptt_animation2.png */,
+				D0E23689243C88060009506F /* icon_selected.png */,
+				D0E2368A243C88060009506F /* icon_unselected.png */,
 				D0E2360F243C76760009506F /* bg_ptt_animation3.png */,
 				D0E23639243C76790009506F /* bg_ptt_animation4.png */,
 				D0E2361E243C76770009506F /* bg_ptt_animation5.png */,
@@ -432,6 +438,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0E2368B243C88060009506F /* icon_selected.png in Resources */,
 				D0E23676243C767B0009506F /* btn_contact_pressed.png in Resources */,
 				D0E2366A243C767B0009506F /* bg_text_box1.png in Resources */,
 				D0E2367F243C767B0009506F /* btn_menu_video_normal.png in Resources */,
@@ -461,6 +468,7 @@
 				D0E2367C243C767B0009506F /* btn_menu_map_selected.png in Resources */,
 				D0E23688243C818C0009506F /* GroupDispatchTableViewCell.xib in Resources */,
 				D0E23662243C767B0009506F /* btn_menu_history_selected.png in Resources */,
+				D0E2368C243C88060009506F /* icon_unselected.png in Resources */,
 				D0E23671243C767B0009506F /* btn_video_pressed.png in Resources */,
 				D0E2366E243C767B0009506F /* bg_text_box2.png in Resources */,
 				D0E23658243C767B0009506F /* bg_ptt_animation5.png in Resources */,
