@@ -41,7 +41,7 @@ class MasterViewController: UIViewController {
     fileprivate var tableViewDelegate: MasterViewTableViewDelegate?
     
     // Original Test data
-    let groups = ["MaxkitDemo","Test Group","Fred Group","Fred Group2","Fred Group3"]
+    let groups = ["MaxkitDemo","Test Group","Fred Group1","Fred Group2","Fred Group3"]
     let members = ["Martin","Charley","Fred","Michael","MayMay"]
     let groupNumbers = [6, 13, 18, 26, 50]
 

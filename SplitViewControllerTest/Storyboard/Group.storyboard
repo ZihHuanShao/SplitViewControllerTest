@@ -245,6 +245,44 @@
                                     <constraint firstAttribute="height" constant="56" id="wvi-WV-hgM"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMw-BR-xhP" userLabel="Pick up View">
+                                <rect key="frame" x="0.0" y="112" width="512" height="336"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sKH-se-Z2t" userLabel="Pick up Content View">
+                                        <rect key="frame" x="8" y="8" width="496" height="320"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M7Q-Lp-dh4">
+                                                <rect key="frame" x="0.0" y="0.0" width="496" height="320"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="5yg-xX-1Un">
+                                                        <rect key="frame" x="0.0" y="28" width="496" height="43.5"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5yg-xX-1Un" id="dIX-ha-3Hm">
+                                                            <rect key="frame" x="0.0" y="0.0" width="496" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="M7Q-Lp-dh4" secondAttribute="bottom" id="6Se-Yo-lHL"/>
+                                            <constraint firstItem="M7Q-Lp-dh4" firstAttribute="leading" secondItem="sKH-se-Z2t" secondAttribute="leading" id="NEq-wl-aoY"/>
+                                            <constraint firstAttribute="trailing" secondItem="M7Q-Lp-dh4" secondAttribute="trailing" id="SVd-JA-LoN"/>
+                                            <constraint firstItem="M7Q-Lp-dh4" firstAttribute="top" secondItem="sKH-se-Z2t" secondAttribute="top" id="nNJ-AU-XBH"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="sKH-se-Z2t" secondAttribute="bottom" constant="8" id="GxT-hc-ScM"/>
+                                    <constraint firstItem="sKH-se-Z2t" firstAttribute="leading" secondItem="gMw-BR-xhP" secondAttribute="leading" constant="8" id="Iom-se-AVu"/>
+                                    <constraint firstAttribute="trailing" secondItem="sKH-se-Z2t" secondAttribute="trailing" constant="8" id="J89-FY-Bqj"/>
+                                    <constraint firstItem="sKH-se-Z2t" firstAttribute="top" secondItem="gMw-BR-xhP" secondAttribute="top" constant="8" id="ZRm-dg-EBE"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s61-Hi-mXb" userLabel="Selected View">
                                 <rect key="frame" x="0.0" y="448" width="512" height="64"/>
                                 <subviews>
@@ -301,44 +339,6 @@
                                     <constraint firstItem="5fP-fx-IZv" firstAttribute="centerY" secondItem="s61-Hi-mXb" secondAttribute="centerY" id="j5N-DL-Q2G"/>
                                     <constraint firstItem="5fP-fx-IZv" firstAttribute="leading" secondItem="409-IL-Tkg" secondAttribute="trailing" constant="8" id="j9R-ZP-vFb"/>
                                     <constraint firstItem="409-IL-Tkg" firstAttribute="leading" secondItem="s61-Hi-mXb" secondAttribute="leading" constant="8" id="onM-Cu-BeC"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMw-BR-xhP" userLabel="Pick up View">
-                                <rect key="frame" x="0.0" y="112" width="512" height="336"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sKH-se-Z2t" userLabel="Pick up Content View">
-                                        <rect key="frame" x="8" y="8" width="496" height="320"/>
-                                        <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M7Q-Lp-dh4">
-                                                <rect key="frame" x="0.0" y="0.0" width="496" height="320"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="5yg-xX-1Un">
-                                                        <rect key="frame" x="0.0" y="28" width="496" height="43.5"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5yg-xX-1Un" id="dIX-ha-3Hm">
-                                                            <rect key="frame" x="0.0" y="0.0" width="496" height="43.5"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                        </tableViewCellContentView>
-                                                    </tableViewCell>
-                                                </prototypes>
-                                            </tableView>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="M7Q-Lp-dh4" secondAttribute="bottom" id="6Se-Yo-lHL"/>
-                                            <constraint firstItem="M7Q-Lp-dh4" firstAttribute="leading" secondItem="sKH-se-Z2t" secondAttribute="leading" id="NEq-wl-aoY"/>
-                                            <constraint firstAttribute="trailing" secondItem="M7Q-Lp-dh4" secondAttribute="trailing" id="SVd-JA-LoN"/>
-                                            <constraint firstItem="M7Q-Lp-dh4" firstAttribute="top" secondItem="sKH-se-Z2t" secondAttribute="top" id="nNJ-AU-XBH"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="sKH-se-Z2t" secondAttribute="bottom" constant="8" id="GxT-hc-ScM"/>
-                                    <constraint firstItem="sKH-se-Z2t" firstAttribute="leading" secondItem="gMw-BR-xhP" secondAttribute="leading" constant="8" id="Iom-se-AVu"/>
-                                    <constraint firstAttribute="trailing" secondItem="sKH-se-Z2t" secondAttribute="trailing" constant="8" id="J89-FY-Bqj"/>
-                                    <constraint firstItem="sKH-se-Z2t" firstAttribute="top" secondItem="gMw-BR-xhP" secondAttribute="top" constant="8" id="ZRm-dg-EBE"/>
                                 </constraints>
                             </view>
                         </subviews>

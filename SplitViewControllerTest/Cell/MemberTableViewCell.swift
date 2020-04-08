@@ -22,13 +22,25 @@ class MemberTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        disableColor()
+        updateUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+}
+
+// MARK: - Private Methods
+
+extension MemberTableViewCell {
+    private func updateUI() {
+        disableColor()
+        
+        userImage.layer.cornerRadius = userImage.frame.size.width / 2
+        userImage.clipsToBounds      = true
+        userImage.backgroundColor    = .lightGray
+    }
 }
 
 // MARK: - Public Methods

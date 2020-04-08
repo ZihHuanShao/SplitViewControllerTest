@@ -26,6 +26,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sh3-BR-JMF">
                                         <rect key="frame" x="0.0" y="0.0" width="20" height="22"/>
                                         <state key="normal" backgroundImage="icon_unselected.png"/>
+                                        <connections>
+                                            <action selector="checkboxButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4jP-8u-SJc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -163,6 +166,13 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="checkboxButtonView" destination="Sh3-BR-JMF" id="Jm7-77-qPF"/>
+                <outlet property="groupDesc" destination="wih-dn-utd" id="vU8-5Y-Ln4"/>
+                <outlet property="groupImage" destination="S23-mw-3D3" id="KFi-UI-a0I"/>
+                <outlet property="groupMemberCount" destination="akh-HD-fsE" id="Wea-v9-Rnb"/>
+                <outlet property="groupName" destination="16X-lF-Scc" id="gZz-Zk-jXc"/>
+            </connections>
             <point key="canvasLocation" x="24.637681159420293" y="-3.3482142857142856"/>
         </tableViewCell>
     </objects>

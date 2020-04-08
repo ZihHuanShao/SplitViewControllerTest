@@ -23,7 +23,8 @@ class GroupTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        trailingLine.isHidden = true
+        
+        updateUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,6 +32,19 @@ class GroupTableViewCell: UITableViewCell {
     }
     
 }
+
+// MARK: - Private Methods
+
+extension GroupTableViewCell {
+    private func updateUI() {
+        disableColor()
+        
+        groupImage.layer.cornerRadius = groupImage.frame.size.width / 2
+        groupImage.clipsToBounds      = true
+        groupImage.backgroundColor    = .lightGray
+    }
+}
+
 
 // MARK: - Public Methods
 
