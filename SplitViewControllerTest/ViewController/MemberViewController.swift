@@ -20,8 +20,8 @@ class MemberViewController: UIViewController {
     
     // MARK: - Properties
     
-    var memberImageName: String?
-    var memberName: String?
+    fileprivate var memberImageName: String?
+    fileprivate var memberName: String?
     let profileTitles = ["帳號", "SIP號碼", "國家", "電子信箱"]
     
     // tableview

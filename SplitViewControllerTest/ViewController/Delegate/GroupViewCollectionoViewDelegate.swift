@@ -13,9 +13,9 @@ class GroupCollectionoViewDelegate: NSObject {
     
     // MARK: - Properties
     
-    weak var viewController: GroupViewController?
-    weak var collectionView: UICollectionView?
-    var number = Int()
+    fileprivate weak var viewController: GroupViewController?
+    fileprivate weak var collectionView: UICollectionView?
+    fileprivate var number = Int()
     
     // MARK: - initializer
     

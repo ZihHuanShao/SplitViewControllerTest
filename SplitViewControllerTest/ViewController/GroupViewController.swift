@@ -18,9 +18,9 @@ class GroupViewController: UIViewController {
     
     // MARK: - Properties
     
-    var monitorImageName: String?
-    var groupNumber: Int?
-    var groupName: String?
+    fileprivate var monitorImageName: String?
+    fileprivate var groupNumber: Int?
+    fileprivate var groupName: String?
     fileprivate var collectionViewDelegate: GroupCollectionoViewDelegate?
     
     // MARK: - Life Cycle

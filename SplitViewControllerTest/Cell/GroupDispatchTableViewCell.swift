@@ -20,7 +20,7 @@ class GroupDispatchTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    var isChecked: Bool? = nil
+    fileprivate var isChecked: Bool? = nil
     
     // MARK: - Life Cycle
     

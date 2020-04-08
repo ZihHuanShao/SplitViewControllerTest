@@ -37,7 +37,7 @@ class MasterViewController: UIViewController {
     
     // MARK: - Properties
 
-    var tabSelected = TabType.none
+    fileprivate var tabSelected = TabType.none
     fileprivate var tableViewDelegate: MasterViewTableViewDelegate?
     
     // Original Test data

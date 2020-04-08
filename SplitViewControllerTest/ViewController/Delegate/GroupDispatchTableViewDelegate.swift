@@ -13,11 +13,11 @@ class GroupDispatchTableViewDelegate: NSObject {
     
     // MARK: - Properties
     
-    weak var viewController: GroupDispatchViewController?
-    weak var tableView: UITableView?
-    var groups = [String]()
-    var groupDescs = [String]()
-    var groupNumbers = [Int]()
+    fileprivate weak var viewController: GroupDispatchViewController?
+    fileprivate weak var tableView: UITableView?
+    fileprivate var groups = [String]()
+    fileprivate var groupDescs = [String]()
+    fileprivate var groupNumbers = [Int]()
     
     // MARK: - initializer
     

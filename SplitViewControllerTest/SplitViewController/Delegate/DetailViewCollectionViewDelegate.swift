@@ -13,12 +13,12 @@ class DetailViewCollectionViewDelegate: NSObject {
 
     // MARK: - Properties
     
-    weak var viewController: DetailViewController?
-    weak var collectionView: UICollectionView?
+    fileprivate weak var viewController: DetailViewController?
+    fileprivate weak var collectionView: UICollectionView?
     
-    var preMainMenuCellIndex: Int?
-    var preMainMenuCell: MainMenuCollectionViewCell?
-    var mainMenuCells = [MainMenuCollectionViewCell]()
+    fileprivate var preMainMenuCellIndex: Int?
+    fileprivate var preMainMenuCell: MainMenuCollectionViewCell?
+    fileprivate var mainMenuCells = [MainMenuCollectionViewCell]()
     
     let mainMenuIcons_unselected = ["btn_menu_ptt_normal",
                                     "btn_menu_map_normal",

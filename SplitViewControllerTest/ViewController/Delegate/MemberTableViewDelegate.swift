@@ -13,9 +13,9 @@ class MemberTableViewDelegate: NSObject {
     
     // MARK: - Properties
     
-    weak var viewController: MemberViewController?
-    weak var tableView: UITableView?
-    var profileTitles = [String]()
+    fileprivate weak var viewController: MemberViewController?
+    fileprivate weak var tableView: UITableView?
+    fileprivate var profileTitles = [String]()
     
     // MARK: - initializer
     

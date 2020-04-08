@@ -23,23 +23,23 @@ class MasterViewTableViewDelegate: NSObject {
     
     // MARK: - Properties
     
-    weak var viewController: MasterViewController?
-    weak var tableView: UITableView?
-    weak var activateSegueDelegate: MasterViewTableViewActivateSegueDelegate?
+    fileprivate weak var viewController: MasterViewController?
+    fileprivate weak var tableView: UITableView?
+    fileprivate weak var activateSegueDelegate: MasterViewTableViewActivateSegueDelegate?
     
-    var preGroupCell: GroupTableViewCell?
-    var groupCells = [GroupTableViewCell]()
+    fileprivate var preGroupCell: GroupTableViewCell?
+    fileprivate var groupCells = [GroupTableViewCell]()
     
-    var preMemberCell: MemberTableViewCell?
-    var memberCells = [MemberTableViewCell]()
+    fileprivate var preMemberCell: MemberTableViewCell?
+    fileprivate var memberCells = [MemberTableViewCell]()
     
-    var groups = [String]()
-    var groupNumbers = [Int]()
-    var groupDescs = [String]()
+    fileprivate var groups = [String]()
+    fileprivate var groupNumbers = [Int]()
+    fileprivate var groupDescs = [String]()
     
-    var members = [String]()
+    fileprivate var members = [String]()
     
-    var tabType = TabType.none
+    fileprivate var tabType = TabType.none
     
     // MARK: - initializer
     

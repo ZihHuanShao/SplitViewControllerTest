@@ -17,15 +17,15 @@ class DetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    var tabSelected = TabType.none
+    fileprivate var tabSelected = TabType.none
     
     // Group
-    var groupNumber: Int?
-    var groupName: String?
+    fileprivate var groupNumber: Int?
+    fileprivate var groupName: String?
     
     // Single Member
-    var memberName: String?
-    var memberImageName: String?
+    fileprivate var memberName: String?
+    fileprivate var memberImageName: String?
     
     // Delegate
     fileprivate var collectionViewDelegate: DetailViewCollectionViewDelegate?

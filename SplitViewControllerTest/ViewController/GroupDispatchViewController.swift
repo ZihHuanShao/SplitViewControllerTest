@@ -25,9 +25,9 @@ class GroupDispatchViewController: UIViewController {
     fileprivate var tableViewDelegate: GroupDispatchTableViewDelegate?
     
     // Original Test data
-    var groups = [String]()
-    var groupDescs = [String]()
-    var groupNumbers = [Int]()
+    fileprivate var groups = [String]()
+    fileprivate var groupDescs = [String]()
+    fileprivate var groupNumbers = [Int]()
     
     // MARK: - Life Cycle
     
