@@ -34,8 +34,12 @@ class MasterViewTableViewDelegate: NSObject {
     var memberCells = [MemberTableViewCell]()
     
     var groups = [String]()
-    var members = [String]()
     var groupNumbers = [Int]()
+    var groupDescs = [String]()
+    
+    var members = [String]()
+    
+    var groupInfos = [GroupInfo]()
     
     var tabType = TabType.none
     
@@ -73,7 +77,20 @@ extension MasterViewTableViewDelegate {
     func setGroupNumbers(_ numbers: [Int]) {
         switch tabType {
         case .groups:
-            self.groupNumbers = numbers
+            groupNumbers = numbers
+            
+        case .members:
+            break
+            
+        case .none:
+            break
+        }
+    }
+    
+    func setGroupDescs(descs: [String]) {
+        switch tabType {
+        case .groups:
+            groupDescs = descs
             
         case .members:
             break
@@ -100,6 +117,19 @@ extension MasterViewTableViewDelegate {
         switch tabType {
         case .groups:
             return groupNumbers
+            
+        case .members:
+            return []
+            
+        case .none:
+            return []
+        }
+    }
+    
+    func getGroupDescs() -> [String] {
+        switch tabType {
+        case .groups:
+            return groupDescs
             
         case .members:
             return []
@@ -150,7 +180,8 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
         case .groups:
             let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_TABLE_VIEW_CELL, for: indexPath) as! GroupTableViewCell
             cell.setGroupName(name: groups[indexPath.row])
-            cell.setGroupMemberCount(indexPath.row)
+            cell.setGroupMemberCount(groupNumbers[indexPath.row])
+            cell.setGroupDesc(desc: groupDescs[indexPath.row])
             cell.disableColor()
             cell.selectionStyle = .none
             

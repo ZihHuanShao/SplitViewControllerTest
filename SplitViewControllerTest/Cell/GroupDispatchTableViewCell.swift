@@ -18,6 +18,8 @@ class GroupDispatchTableViewCell: UITableViewCell {
     @IBOutlet weak var groupDesc: UILabel!
     @IBOutlet weak var checkboxButtonView: UIButton!
     
+    // MARK: - Properties
+    
     var isChecked: Bool? = nil
     
     // MARK: - Life Cycle

@@ -35,3 +35,10 @@ enum TabType: Int {
     case members = 1
     case none    = 2
 }
+
+struct GroupInfo {
+    var groupName: String?
+    var groupNumber: Int?
+    var groupImage: String?
+    var groupDesc: String?
+}

@@ -80,9 +80,10 @@ extension AppDelegate {
         
         // grab the overlay controller
         let storyboard = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil)
-        let overlay = storyboard.instantiateViewController(withIdentifier: "Overlay")
+        let overlayViewController = storyboard.instantiateViewController(withIdentifier: "Overlay") as! GroupDispatchViewController
         
-        overlay.modalPresentationStyle = .formSheet
+        
+        overlayViewController.modalPresentationStyle = .formSheet
         
         // swap the split view
         
@@ -91,7 +92,7 @@ extension AppDelegate {
        
         
         // present the overlay
-        underlay.present(overlay, animated: true, completion: nil)
+        underlay.present(overlayViewController, animated: true, completion: nil)
     }
     
     func dismissOverlay() {

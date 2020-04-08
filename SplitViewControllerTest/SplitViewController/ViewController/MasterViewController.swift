@@ -41,9 +41,18 @@ class MasterViewController: UIViewController {
     fileprivate var tableViewDelegate: MasterViewTableViewDelegate?
     
     // Original Test data
-    let groups = ["MaxkitDemo","Test Group","Fred Group1","Fred Group2","Fred Group3"]
+//    let groupInfos: [GroupInfo] = [
+//        GroupInfo(groupName: "Martin Group", groupNumber: 6, groupImage: nil, groupDesc: "Martin Group"),
+//        GroupInfo(groupName: "Charley Group", groupNumber: 35, groupImage: nil, groupDesc: "Charley Group"),
+//        GroupInfo(groupName: "Fred Group", groupNumber: 18, groupImage: nil, groupDesc: "Fred Group"),
+//        GroupInfo(groupName: "May Group", groupNumber: 28, groupImage: nil, groupDesc: "May Group"),
+//        GroupInfo(groupName: "Michael Group", groupNumber: 70, groupImage: nil, groupDesc: "Michael Group")
+//    ]
+    
+    let groups = ["Martin Group","Charley Group","Fred Group","May Group","Michael Group"]
+    let groupNumbers = [6, 35, 18, 26, 50]
+    let groupDescs = ["Martin Group","Charley Group","Fred Group","May Group","Michael Group"]
     let members = ["Martin","Charley","Fred","Michael","MayMay"]
-    let groupNumbers = [6, 13, 18, 26, 50]
 
     // MARK: - Life Cycle
     
@@ -80,8 +89,6 @@ class MasterViewController: UIViewController {
     @IBAction func createGroupButtonPressed(_ sender: UIButton) {
         print("createGroupButtonPressed pressed")
         
-        // wait a moment before taking the screenshot
-        let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showOverlayDelayed), userInfo: nil, repeats: false)
         
     }
     
@@ -94,6 +101,9 @@ class MasterViewController: UIViewController {
     @IBAction func dispatchButtonTouchUpInside(_ sender: UIButton) {
         print("dispatchButtonTouchUpInside pressed")
         sender.setBackgroundImage(UIImage(named: "btn_contact_normal"), for: .normal)
+        
+        // wait a moment before taking the screenshot
+        let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showOverlayDelayed), userInfo: nil, repeats: false)
     }
     
     
@@ -186,6 +196,7 @@ extension MasterViewController {
         tableViewDelegate?.registerCell(cellName: GROUP_TABLE_VIEW_CELL, cellId: GROUP_TABLE_VIEW_CELL)
         tableViewDelegate?.updateData(data: groups)
         tableViewDelegate?.setGroupNumbers(groupNumbers)
+        tableViewDelegate?.setGroupDescs(descs: groupDescs)
         tableViewDelegate?.reloadUI()
     }
     
