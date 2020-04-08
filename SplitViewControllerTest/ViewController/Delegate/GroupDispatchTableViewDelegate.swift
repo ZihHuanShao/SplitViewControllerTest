@@ -16,7 +16,7 @@ class GroupDispatchTableViewDelegate: NSObject {
     weak var viewController: GroupDispatchViewController?
     weak var tableView: UITableView?
     var groups = [String]()
-    var members = [String]()
+    var groupDescs = [String]()
     var groupNumbers = [Int]()
     
     // MARK: - initializer
@@ -34,6 +34,18 @@ class GroupDispatchTableViewDelegate: NSObject {
 // MARK: - Public Methods
 
 extension GroupDispatchTableViewDelegate {
+    func setGroups(data: [String]) {
+        groups = data
+    }
+    
+    func setGroupDescs(descs: [String]) {
+        groupDescs = descs
+    }
+    
+    func setGroupNumbers(numbers: [Int]) {
+        groupNumbers = numbers
+    }
+    
     func registerCell(cellName: String, cellId: String) {
         tableView?.register(
             UINib(nibName: cellName, bundle: nil),
@@ -48,12 +60,15 @@ extension GroupDispatchTableViewDelegate {
 
 extension GroupDispatchTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return groups.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_DISPATCH_TABLE_VIEW_CELL, for: indexPath) as! GroupDispatchTableViewCell
         cell.selectionStyle = .none
+        cell.setGroupName(name: groups[indexPath.row])
+        cell.setGroupMemberCount(groupNumbers[indexPath.row])
+        cell.setGroupDesc(desc: groupDescs[indexPath.row])
         return cell
     }
     

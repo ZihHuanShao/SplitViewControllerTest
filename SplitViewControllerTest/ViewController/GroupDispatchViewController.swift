@@ -20,13 +20,14 @@ class GroupDispatchViewController: UIViewController {
     
     // MARK: - Properties
     
+    
     // tableview
     fileprivate var tableViewDelegate: GroupDispatchTableViewDelegate?
     
     // Original Test data
-    let groups = ["MaxkitDemo","Test Group","Fred Group","Fred Group2","Fred Group3"]
-    let members = ["Martin","Charley","Fred","Michael","MayMay"]
-    let groupNumbers = [6, 13, 18, 26, 50]
+    var groups = [String]()
+    var groupDescs = [String]()
+    var groupNumbers = [Int]()
     
     // MARK: - Life Cycle
     
@@ -67,6 +68,24 @@ extension GroupDispatchViewController: UITextFieldDelegate {
     }
 }
 
+
+
+// MARK: - Public Methods
+
+extension GroupDispatchViewController {
+    func setGroups(data: [String]) {
+        groups = data
+    }
+    
+    func setGroupDescs(descs: [String]) {
+        groupDescs = descs
+    }
+    
+    func setGroupNumbers(numbers: [Int]) {
+        groupNumbers = numbers
+    }
+}
+
 // MARK: - Private Methods
 
 extension GroupDispatchViewController {
@@ -96,7 +115,9 @@ extension GroupDispatchViewController {
         
         tableViewDelegate = GroupDispatchTableViewDelegate(groupDispatchViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: GROUP_DISPATCH_TABLE_VIEW_CELL, cellId: GROUP_DISPATCH_TABLE_VIEW_CELL)
-        
+        tableViewDelegate?.setGroups(data: groups)
+        tableViewDelegate?.setGroupDescs(descs: groupDescs)
+        tableViewDelegate?.setGroupNumbers(numbers: groupNumbers)
         tableViewDelegate?.reloadUI()
     }
     

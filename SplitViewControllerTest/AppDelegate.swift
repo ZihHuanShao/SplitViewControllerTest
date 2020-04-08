@@ -68,7 +68,7 @@ extension AppDelegate {
 }
 
 extension AppDelegate {
-    func showOverlay() {
+    func showGroupDispatch(groups: [String], groupNumbers: [Int], groupDescs: [String]) {
         // grab a screenshot
         let screenshot = grabScreenshot()
 
@@ -82,6 +82,9 @@ extension AppDelegate {
         let storyboard = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil)
         let overlayViewController = storyboard.instantiateViewController(withIdentifier: "Overlay") as! GroupDispatchViewController
         
+        overlayViewController.setGroups(data: groups)
+        overlayViewController.setGroupNumbers(numbers: groupNumbers)
+        overlayViewController.setGroupDescs(descs: groupDescs)
         
         overlayViewController.modalPresentationStyle = .formSheet
         

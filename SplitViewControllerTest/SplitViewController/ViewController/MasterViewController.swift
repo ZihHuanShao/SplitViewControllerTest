@@ -103,7 +103,7 @@ class MasterViewController: UIViewController {
         sender.setBackgroundImage(UIImage(named: "btn_contact_normal"), for: .normal)
         
         // wait a moment before taking the screenshot
-        let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showOverlayDelayed), userInfo: nil, repeats: false)
+        let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showGroupDispatchDelayed), userInfo: nil, repeats: false)
     }
     
     
@@ -237,9 +237,9 @@ extension MasterViewController {
         self.view.endEditing(true)
     }
     
-    @objc func showOverlayDelayed() {
+    @objc func showGroupDispatchDelayed() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.showOverlay()
+        appDelegate?.showGroupDispatch(groups: groups, groupNumbers: groupNumbers, groupDescs: groupDescs)
     }
 }
 

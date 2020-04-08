@@ -39,8 +39,6 @@ class MasterViewTableViewDelegate: NSObject {
     
     var members = [String]()
     
-    var groupInfos = [GroupInfo]()
-    
     var tabType = TabType.none
     
     // MARK: - initializer
