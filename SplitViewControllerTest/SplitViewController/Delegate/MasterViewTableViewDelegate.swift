@@ -9,11 +9,7 @@
 import Foundation
 import UIKit
 
-// MARK: - Protocol
 
-protocol MasterViewTableViewActivateSegueDelegate: NSObject {
-    func activate()
-}
 
 private class CellData {
     
@@ -25,7 +21,7 @@ class MasterViewTableViewDelegate: NSObject {
     
     fileprivate weak var viewController: MasterViewController?
     fileprivate weak var tableView: UITableView?
-    fileprivate weak var activateSegueDelegate: MasterViewTableViewActivateSegueDelegate?
+    fileprivate weak var tableViewExtendDelegate: MasterViewTableViewExtendDelegate?
     
     fileprivate var preGroupCell: GroupTableViewCell?
     fileprivate var groupCells = [GroupTableViewCell]()
@@ -49,7 +45,7 @@ class MasterViewTableViewDelegate: NSObject {
         self.tableView = tableView
         tableView.dataSource = self
         tableView.delegate = self
-        activateSegueDelegate = self.viewController
+        tableViewExtendDelegate = self.viewController
         tabType = type
     }
 
@@ -216,7 +212,7 @@ extension MasterViewTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // trigger seque to display UI
-        activateSegueDelegate?.activate()
+        tableViewExtendDelegate?.activateSegue()
         
         print("didSelectRowAt: \(indexPath.row)")
         
@@ -239,4 +235,10 @@ extension MasterViewTableViewDelegate: UITableViewDelegate {
             break
         }
     }
+}
+
+// MARK: - Protocol
+
+protocol MasterViewTableViewExtendDelegate: NSObject {
+    func activateSegue()
 }

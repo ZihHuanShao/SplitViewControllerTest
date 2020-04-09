@@ -292,7 +292,7 @@
                                             <constraint firstAttribute="width" constant="31" id="7iu-Bu-5lU"/>
                                             <constraint firstAttribute="height" constant="30" id="Nzj-JJ-YaZ"/>
                                         </constraints>
-                                        <state key="normal" image="btn_member_reset.png"/>
+                                        <state key="normal" backgroundImage="btn_member_reset.png"/>
                                         <connections>
                                             <action selector="resetButtonPressed:" destination="XOB-jN-cLO" eventType="touchUpInside" id="kwe-Jv-LC9"/>
                                         </connections>

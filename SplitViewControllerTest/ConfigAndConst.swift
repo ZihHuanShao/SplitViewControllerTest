@@ -44,3 +44,8 @@ struct GroupInfo {
     var groupImage: String?
     var groupDesc: String?
 }
+
+struct SelectedGroupInfo {
+    var rowIndex: Int?
+    var name: String?
+}

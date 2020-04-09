@@ -39,8 +39,10 @@ extension GroupDispatchCollectionViewCell {
         }
     }
     
-    func setGroupName(name: String) {
-        groupName.text = name
+    func setGroupName(name: String?) {
+        if let _name = name {
+            groupName.text = _name
+        }
     }
     
 }

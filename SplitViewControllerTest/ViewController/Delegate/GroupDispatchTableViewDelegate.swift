@@ -15,6 +15,7 @@ class GroupDispatchTableViewDelegate: NSObject {
     
     fileprivate weak var viewController: GroupDispatchViewController?
     fileprivate weak var tableView: UITableView?
+    fileprivate var tableViewExtendDelegate: GroupDispatchTableViewExtendDelegate?
     fileprivate var groupCells = [GroupDispatchTableViewCell]()
     fileprivate var groups = [String]()
     fileprivate var groupDescs = [String]()
@@ -28,6 +29,7 @@ class GroupDispatchTableViewDelegate: NSObject {
         self.tableView = tableView
         tableView.dataSource = self
         tableView.delegate   = self
+        tableViewExtendDelegate = self.viewController
     }
     
 }
@@ -47,6 +49,14 @@ extension GroupDispatchTableViewDelegate {
         groupNumbers = numbers
     }
     
+    func resetGroups() {
+        for cell in groupCells {
+            cell.disableCheckbox()
+        }
+
+        groupCells.removeAll()
+    }
+    
     func registerCell(cellName: String, cellId: String) {
         tableView?.register(
             UINib(nibName: cellName, bundle: nil),
@@ -59,6 +69,8 @@ extension GroupDispatchTableViewDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource
+
 extension GroupDispatchTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groups.count
@@ -66,12 +78,14 @@ extension GroupDispatchTableViewDelegate: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_DISPATCH_TABLE_VIEW_CELL, for: indexPath) as! GroupDispatchTableViewCell
+        
         cell.selectionStyle = .none
         cell.setGroupName(name: groups[indexPath.row])
         cell.setGroupMemberCount(groupNumbers[indexPath.row])
         cell.setGroupDesc(desc: groupDescs[indexPath.row])
         
         groupCells.append(cell)
+        
         return cell
     }
     
@@ -80,8 +94,27 @@ extension GroupDispatchTableViewDelegate: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
+
 extension GroupDispatchTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // display checked
         groupCells[indexPath.row].triggerCheckbox()
+        
+        //
+        let rowIndex  = indexPath.row
+        let groupName = groups[rowIndex]
+        print("rowIndex: \(rowIndex), groupName: \(groupName)")
+        tableViewExtendDelegate?.pickupGroup(rowIndex: rowIndex, name: groupName)
     }
+}
+
+// MARK: - Protocol
+
+protocol GroupDispatchTableViewExtendDelegate {
+    
+    // 選到的Group會被加入到CollectionView裡面
+    func pickupGroup(rowIndex: Int, name: String)
+    
 }

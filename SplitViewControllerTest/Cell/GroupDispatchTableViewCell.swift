@@ -17,6 +17,7 @@ class GroupDispatchTableViewCell: UITableViewCell {
     @IBOutlet weak var groupMemberCount: UILabel!
     @IBOutlet weak var groupDesc: UILabel!
     @IBOutlet weak var checkboxButtonView: UIButton!
+    @IBOutlet weak var checkboxImage: UIImageView!
     
     // MARK: - Properties
     
@@ -31,16 +32,6 @@ class GroupDispatchTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
-    
-    // MARK: - Actions
-    
-    @IBAction func checkboxButtonPressed(_ sender: UIButton) {
-        if let _isChecked = isChecked {
-            (_isChecked == true) ? disableCheckbox() : enableCheckbox()
-        } else {
-            enableCheckbox()
-        }
     }
     
 }
@@ -83,18 +74,22 @@ extension GroupDispatchTableViewCell {
     }
     
     func triggerCheckbox() {
-        checkboxButtonPressed(UIButton())
+        
+        if let _isChecked = isChecked {
+            (_isChecked == true) ? disableCheckbox() : enableCheckbox()
+        } else {
+            enableCheckbox()
+        }
     }
     
     func enableCheckbox() {
         isChecked = true
-        checkboxButtonView.setBackgroundImage(UIImage(named: "icon_selected"), for: .normal)
+        checkboxImage.image = UIImage(named: "icon_selected")
     }
     
     func disableCheckbox() {
         isChecked = false
-        checkboxButtonView.setBackgroundImage(UIImage(named: "icon_unselected"), for: .normal)
-        
+        checkboxImage.image = UIImage(named: "icon_unselected")
     }
 
 }

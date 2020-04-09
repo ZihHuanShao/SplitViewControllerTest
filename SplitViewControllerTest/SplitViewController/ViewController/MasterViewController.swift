@@ -253,10 +253,10 @@ extension MasterViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - MasterViewTableViewActivateSegueDelegate
+// MARK: - MasterViewTableViewExtendDelegate
 
-extension MasterViewController: MasterViewTableViewActivateSegueDelegate {
-    func activate() {
+extension MasterViewController: MasterViewTableViewExtendDelegate {
+    func activateSegue() {
         performSegue(withIdentifier: "showDetail", sender: self)
     }
 }

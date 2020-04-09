@@ -60,6 +60,11 @@ class GroupDispatchViewController: UIViewController {
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         print("resetButtonPressed")
+        collectionViewDelegate?.resetSelectGroups()
+        collectionViewDelegate?.reloadUI()
+        
+        tableViewDelegate?.resetGroups()
+        tableViewDelegate?.reloadUI()
     }
     
 }
@@ -151,4 +156,25 @@ extension GroupDispatchViewController {
     @objc func dismissKeyBoard() {
         self.view.endEditing(true)
     }
+}
+
+// MARK: - GroupDispatchTableViewExtendDelegate
+
+extension GroupDispatchViewController: GroupDispatchTableViewExtendDelegate {
+    func pickupGroup(rowIndex: Int, name: String) {
+     
+        collectionViewDelegate?.appendSelectedGroup(rowIndex: rowIndex, name: name)
+        collectionViewDelegate?.reloadUI()
+    }
+}
+
+// MARK: - GroupDispatchCollectionViewExtendDelegate
+
+extension GroupDispatchViewController: GroupDispatchCollectionViewExtendDelegate {
+    func dropSelectedGroup(rowIndex: Int) {
+        collectionViewDelegate?.removeSelectedGroup(rowIndex: rowIndex)
+        collectionViewDelegate?.reloadUI()
+    }
+    
+    
 }
