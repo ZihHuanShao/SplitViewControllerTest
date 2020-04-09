@@ -24,6 +24,9 @@ class GroupDispatchViewController: UIViewController {
     // tableview
     fileprivate var tableViewDelegate: GroupDispatchTableViewDelegate?
     
+    // collectionview
+    fileprivate var collectionViewDelegate: GroupDispatchCollectionViewDelegate?
+    
     // Original Test data
     fileprivate var groups = [String]()
     fileprivate var groupDescs = [String]()
@@ -56,6 +59,7 @@ class GroupDispatchViewController: UIViewController {
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
+        print("resetButtonPressed")
     }
     
 }
@@ -73,7 +77,7 @@ extension GroupDispatchViewController: UITextFieldDelegate {
 // MARK: - Public Methods
 
 extension GroupDispatchViewController {
-    func setGroups(data: [String]) {
+    func setGroupsData(data: [String]) {
         groups = data
     }
     
@@ -99,9 +103,9 @@ extension GroupDispatchViewController {
         let fullHeight = UserDefaults.standard.float(forKey: SPLIT_VIEW_CONTROLLER_HEIGHT)
         let fullWidth  = width1 + width2
         
-        // 讓寬度固定為整個畫面寬度的1/2, 高度固定為整個畫面高度的2/3
-        preferredContentSize = CGSize(width: CGFloat(fullWidth * 0.5), height: CGFloat(fullHeight * 0.667))
-        print("width = \(CGFloat(fullWidth * 0.5)), height = \(CGFloat(fullHeight * 0.667))")
+        // 讓寬度固定為整個畫面寬度的1/2, 高度固定為整個畫面高度的3/4
+        preferredContentSize = CGSize(width: CGFloat(fullWidth * 0.5), height: CGFloat(fullHeight * 0.75))
+        print("width = \(CGFloat(fullWidth * 0.5)), height = \(CGFloat(fullHeight * 0.75))")
     }
     
     private func updateUI() {
@@ -119,6 +123,15 @@ extension GroupDispatchViewController {
         tableViewDelegate?.setGroupDescs(descs: groupDescs)
         tableViewDelegate?.setGroupNumbers(numbers: groupNumbers)
         tableViewDelegate?.reloadUI()
+        
+        //
+        // CollectionView
+        //
+        
+        collectionViewDelegate = GroupDispatchCollectionViewDelegate(groupDispatchViewController: self, collectionView: collectionView)
+        collectionViewDelegate?.registerCell(cellName: GROUP_DISPATCH_COLLECTION_VIEW_CELL, cellId: GROUP_DISPATCH_COLLECTION_VIEW_CELL)
+        collectionViewDelegate?.setGroupsData(data: groups)
+        collectionViewDelegate?.reloadUI()
     }
     
     private func updateDataSource() {

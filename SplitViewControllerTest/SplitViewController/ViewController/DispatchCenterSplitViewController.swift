@@ -10,6 +10,8 @@ import UIKit
 
 class DispatchBoardSplitViewController: UISplitViewController {
 
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

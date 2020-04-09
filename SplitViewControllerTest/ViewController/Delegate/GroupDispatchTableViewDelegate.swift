@@ -15,6 +15,7 @@ class GroupDispatchTableViewDelegate: NSObject {
     
     fileprivate weak var viewController: GroupDispatchViewController?
     fileprivate weak var tableView: UITableView?
+    fileprivate var groupCells = [GroupDispatchTableViewCell]()
     fileprivate var groups = [String]()
     fileprivate var groupDescs = [String]()
     fileprivate var groupNumbers = [Int]()
@@ -69,6 +70,8 @@ extension GroupDispatchTableViewDelegate: UITableViewDataSource {
         cell.setGroupName(name: groups[indexPath.row])
         cell.setGroupMemberCount(groupNumbers[indexPath.row])
         cell.setGroupDesc(desc: groupDescs[indexPath.row])
+        
+        groupCells.append(cell)
         return cell
     }
     
@@ -78,5 +81,7 @@ extension GroupDispatchTableViewDelegate: UITableViewDataSource {
 }
 
 extension GroupDispatchTableViewDelegate: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        groupCells[indexPath.row].triggerCheckbox()
+    }
 }

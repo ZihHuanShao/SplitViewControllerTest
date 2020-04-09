@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D06E35B8243DC00C00E33C44 /* GroupDispatchCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E35B7243DC00B00E33C44 /* GroupDispatchCollectionViewDelegate.swift */; };
+		D06E35BB243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E35B9243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift */; };
+		D06E35BC243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06E35BA243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib */; };
+		D06E35BE243DD1ED00E33C44 /* icon_member_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D06E35BD243DD1ED00E33C44 /* icon_member_delete.png */; };
 		D0E23595243C20810009506F /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23594243C20810009506F /* Group.storyboard */; };
 		D0E23597243C20E70009506F /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23596243C20E70009506F /* Member.storyboard */; };
 		D0E2359A243C4DD50009506F /* GroupDispatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */; };
@@ -99,6 +103,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D06E35B7243DC00B00E33C44 /* GroupDispatchCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		D06E35B9243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchCollectionViewCell.swift; sourceTree = "<group>"; };
+		D06E35BA243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDispatchCollectionViewCell.xib; sourceTree = "<group>"; };
+		D06E35BD243DD1ED00E33C44 /* icon_member_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_member_delete.png; sourceTree = "<group>"; };
 		D0E23594243C20810009506F /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		D0E23596243C20E70009506F /* Member.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
 		D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchViewController.swift; sourceTree = "<group>"; };
@@ -238,8 +246,8 @@
 				F2507FED242AFCBC003DBE79 /* Cell */,
 				D0E23598243C21650009506F /* Storyboard */,
 				F261B467242CAB1300482992 /* Images */,
-				F20CCEFC2429F00800048BA3 /* AppDelegate.swift */,
 				F22F8B4E242D9B7F00CB08D5 /* ConfigAndConst.swift */,
+				F20CCEFC2429F00800048BA3 /* AppDelegate.swift */,
 				F20CCF032429F00900048BA3 /* Assets.xcassets */,
 				F20CCF082429F00900048BA3 /* Info.plist */,
 			);
@@ -289,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				D0E23683243C7E760009506F /* GroupDispatchTableViewDelegate.swift */,
+				D06E35B7243DC00B00E33C44 /* GroupDispatchCollectionViewDelegate.swift */,
 				F21E21F62431CA4F001AE003 /* GroupViewCollectionoViewDelegate.swift */,
 				F23C0DED2433139600DD7A48 /* MemberTableViewDelegate.swift */,
 			);
@@ -309,6 +318,8 @@
 				F23C0DF02433155600DD7A48 /* MemberProfileTableViewCell.xib */,
 				D0E23685243C818C0009506F /* GroupDispatchTableViewCell.swift */,
 				D0E23686243C818C0009506F /* GroupDispatchTableViewCell.xib */,
+				D06E35B9243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift */,
+				D06E35BA243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -316,6 +327,7 @@
 		F261B467242CAB1300482992 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D06E35BD243DD1ED00E33C44 /* icon_member_delete.png */,
 				D0E23623243C76770009506F /* bg_menu.png */,
 				D0E23631243C76780009506F /* bg_profile.png */,
 				D0E23622243C76770009506F /* bg_ptt_animation1.png */,
@@ -473,6 +485,7 @@
 				D0E2366E243C767B0009506F /* bg_text_box2.png in Resources */,
 				D0E23658243C767B0009506F /* bg_ptt_animation5.png in Resources */,
 				D0E23660243C767B0009506F /* bg_ptt_animation8.png in Resources */,
+				D06E35BE243DD1ED00E33C44 /* icon_member_delete.png in Resources */,
 				D0E2364E243C767B0009506F /* icon_voice_animation4.png in Resources */,
 				D0E23670243C767B0009506F /* btn_contact_creategroup.png in Resources */,
 				D0E23677243C767B0009506F /* btn_chat_normal.png in Resources */,
@@ -484,6 +497,7 @@
 				D0E23652243C767B0009506F /* icon_group_notify_on.png in Resources */,
 				D0E23659243C767B0009506F /* icon_search.png in Resources */,
 				D0E2366B243C767B0009506F /* bg_profile.png in Resources */,
+				D06E35BC243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib in Resources */,
 				D0E23669243C767B0009506F /* icon_contact_groupmember.png in Resources */,
 				D0E2364B243C767B0009506F /* icon_voice_play.png in Resources */,
 				D0E23661243C767B0009506F /* btn_menu_map_normal.png in Resources */,
@@ -529,6 +543,7 @@
 				F20CCF312429F61200048BA3 /* MasterViewController.swift in Sources */,
 				D0E23684243C7E760009506F /* GroupDispatchTableViewDelegate.swift in Sources */,
 				F23C0DEE2433139600DD7A48 /* MemberTableViewDelegate.swift in Sources */,
+				D06E35B8243DC00C00E33C44 /* GroupDispatchCollectionViewDelegate.swift in Sources */,
 				F21E21D0243186C8001AE003 /* GroupViewController.swift in Sources */,
 				F23C0DEA2432DC3700DD7A48 /* MemberViewController.swift in Sources */,
 				F20CCEFD2429F00800048BA3 /* AppDelegate.swift in Sources */,
@@ -537,6 +552,7 @@
 				F22F8B4F242D9B7F00CB08D5 /* ConfigAndConst.swift in Sources */,
 				F23C0DF12433155600DD7A48 /* MemberProfileTableViewCell.swift in Sources */,
 				F2508003242B51AB003DBE79 /* GroupTableViewCell.swift in Sources */,
+				D06E35BB243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,9 +49,10 @@ class MasterViewController: UIViewController {
 //        GroupInfo(groupName: "Michael Group", groupNumber: 70, groupImage: nil, groupDesc: "Michael Group")
 //    ]
     
-    let groups = ["Martin Group","Charley Group","Fred Group","May Group","Michael Group"]
-    let groupNumbers = [6, 35, 18, 26, 50]
-    let groupDescs = ["Martin Group","Charley Group","Fred Group","May Group","Michael Group"]
+    let groups = ["Martin Group", "Charley Group", "Fred Group", "May Group", "Michael Group", "Maxkit Group", "Test Group 001", "Test Group 002"]
+    let groupDescs = ["Martin Group", "Charley Group", "Fred Group", "May Group", "Michael Group", "Maxkit Group", "Test Group 001", "Test Group 002"]
+    let groupNumbers = [6, 35, 18, 26, 50, 40, 17, 63]
+    
     let members = ["Martin","Charley","Fred","Michael","MayMay"]
 
     // MARK: - Life Cycle

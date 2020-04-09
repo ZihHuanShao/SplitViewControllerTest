@@ -82,6 +82,10 @@ extension GroupDispatchTableViewCell {
         groupDesc.text = desc
     }
     
+    func triggerCheckbox() {
+        checkboxButtonPressed(UIButton())
+    }
+    
     func enableCheckbox() {
         isChecked = true
         checkboxButtonView.setBackgroundImage(UIImage(named: "icon_selected"), for: .normal)
