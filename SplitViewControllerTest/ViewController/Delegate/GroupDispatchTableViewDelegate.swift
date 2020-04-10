@@ -18,8 +18,8 @@ class GroupDispatchTableViewDelegate: NSObject {
     fileprivate var tableViewExtendDelegate: GroupDispatchTableViewExtendDelegate?
     fileprivate var groupCells = [GroupDispatchTableViewCell]()
     fileprivate var groups = [String]()
-    fileprivate var groupDescs = [String]()
-    fileprivate var groupNumbers = [Int]()
+    fileprivate var groupsDesc = [String]()
+    fileprivate var groupsCount = [Int]()
     
     // MARK: - initializer
     
@@ -41,12 +41,12 @@ extension GroupDispatchTableViewDelegate {
         groups = data
     }
     
-    func setGroupDescs(descs: [String]) {
-        groupDescs = descs
+    func setgroupsDesc(descs: [String]) {
+        groupsDesc = descs
     }
     
-    func setGroupNumbers(numbers: [Int]) {
-        groupNumbers = numbers
+    func setgroupsCount(numbers: [Int]) {
+        groupsCount = numbers
     }
     
     func deselectGroup(rowIndex: Int) {
@@ -86,8 +86,8 @@ extension GroupDispatchTableViewDelegate: UITableViewDataSource {
         
         cell.selectionStyle = .none
         cell.setGroupName(name: groups[indexPath.row])
-        cell.setGroupMemberCount(groupNumbers[indexPath.row])
-        cell.setGroupDesc(desc: groupDescs[indexPath.row])
+        cell.setGroupMemberCount(groupsCount[indexPath.row])
+        cell.setGroupDesc(desc: groupsDesc[indexPath.row])
         
         
         groupCells.append(cell)

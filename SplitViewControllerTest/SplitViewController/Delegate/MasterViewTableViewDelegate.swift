@@ -30,8 +30,8 @@ class MasterViewTableViewDelegate: NSObject {
     fileprivate var memberCells = [MemberTableViewCell]()
     
     fileprivate var groups = [String]()
-    fileprivate var groupNumbers = [Int]()
-    fileprivate var groupDescs = [String]()
+    fileprivate var groupsCount = [Int]()
+    fileprivate var groupsDesc = [String]()
     
     fileprivate var members = [String]()
     
@@ -68,10 +68,10 @@ extension MasterViewTableViewDelegate {
         }
     }
     
-    func setGroupNumbers(_ numbers: [Int]) {
+    func setgroupsCount(_ numbers: [Int]) {
         switch tabType {
         case .groups:
-            groupNumbers = numbers
+            groupsCount = numbers
             
         case .members:
             break
@@ -81,10 +81,10 @@ extension MasterViewTableViewDelegate {
         }
     }
     
-    func setGroupDescs(descs: [String]) {
+    func setgroupsDesc(descs: [String]) {
         switch tabType {
         case .groups:
-            groupDescs = descs
+            groupsDesc = descs
             
         case .members:
             break
@@ -107,10 +107,10 @@ extension MasterViewTableViewDelegate {
         }
     }
     
-    func getGroupNumbers() -> [Int] {
+    func getgroupsCount() -> [Int] {
         switch tabType {
         case .groups:
-            return groupNumbers
+            return groupsCount
             
         case .members:
             return []
@@ -120,10 +120,10 @@ extension MasterViewTableViewDelegate {
         }
     }
     
-    func getGroupDescs() -> [String] {
+    func getgroupsDesc() -> [String] {
         switch tabType {
         case .groups:
-            return groupDescs
+            return groupsDesc
             
         case .members:
             return []
@@ -174,8 +174,8 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
         case .groups:
             let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_TABLE_VIEW_CELL, for: indexPath) as! GroupTableViewCell
             cell.setGroupName(name: groups[indexPath.row])
-            cell.setGroupMemberCount(groupNumbers[indexPath.row])
-            cell.setGroupDesc(desc: groupDescs[indexPath.row])
+            cell.setGroupMemberCount(groupsCount[indexPath.row])
+            cell.setGroupDesc(desc: groupsDesc[indexPath.row])
             cell.disableColor()
             cell.selectionStyle = .none
             

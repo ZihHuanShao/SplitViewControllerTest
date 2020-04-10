@@ -29,8 +29,8 @@ class GroupDispatchViewController: UIViewController {
     
     // Original Test data
     fileprivate var groups = [String]()
-    fileprivate var groupDescs = [String]()
-    fileprivate var groupNumbers = [Int]()
+    fileprivate var groupsDesc = [String]()
+    fileprivate var groupsCount = [Int]()
     
     var dropSelectedGroupObserver: NSObjectProtocol?
     
@@ -94,12 +94,12 @@ extension GroupDispatchViewController {
         groups = data
     }
     
-    func setGroupDescs(descs: [String]) {
-        groupDescs = descs
+    func setgroupsDesc(descs: [String]) {
+        groupsDesc = descs
     }
     
-    func setGroupNumbers(numbers: [Int]) {
-        groupNumbers = numbers
+    func setgroupsCount(numbers: [Int]) {
+        groupsCount = numbers
     }
 }
 
@@ -138,8 +138,8 @@ extension GroupDispatchViewController {
         tableViewDelegate = GroupDispatchTableViewDelegate(groupDispatchViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: GROUP_DISPATCH_TABLE_VIEW_CELL, cellId: GROUP_DISPATCH_TABLE_VIEW_CELL)
         tableViewDelegate?.setGroups(data: groups)
-        tableViewDelegate?.setGroupDescs(descs: groupDescs)
-        tableViewDelegate?.setGroupNumbers(numbers: groupNumbers)
+        tableViewDelegate?.setgroupsDesc(descs: groupsDesc)
+        tableViewDelegate?.setgroupsCount(numbers: groupsCount)
         tableViewDelegate?.reloadUI()
         
         //

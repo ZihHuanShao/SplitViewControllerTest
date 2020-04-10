@@ -50,8 +50,8 @@ class MasterViewController: UIViewController {
 //    ]
     
     let groups = ["Martin Group", "Charley Group", "Fred Group", "May Group", "Michael Group", "Maxkit Group", "Test Group 001", "Test Group 002"]
-    let groupDescs = ["Martin Group", "Charley Group", "Fred Group", "May Group", "Michael Group", "Maxkit Group", "Test Group 001", "Test Group 002"]
-    let groupNumbers = [6, 35, 18, 26, 50, 40, 17, 63]
+    let groupsDesc = ["Martin Group", "Charley Group", "Fred Group", "May Group", "Michael Group", "Maxkit Group", "Test Group 001", "Test Group 002"]
+    let groupsCount = [6, 35, 18, 26, 50, 40, 17, 63]
     
     let members = ["Martin","Charley","Fred","Michael","MayMay"]
 
@@ -121,9 +121,9 @@ class MasterViewController: UIViewController {
             
             switch tabSelected {
             case .groups:
-                if let data = tableViewDelegate?.getGroupData(), let groupNumbers = tableViewDelegate?.getGroupNumbers() {
+                if let data = tableViewDelegate?.getGroupData(), let groupsCount = tableViewDelegate?.getgroupsCount() {
                     
-                    dVC?.setGroupNumber(groupNumbers[tableView.indexPathForSelectedRow!.row])
+                    dVC?.setGroupNumber(groupsCount[tableView.indexPathForSelectedRow!.row])
                     dVC?.setGroupName(name: data[tableView.indexPathForSelectedRow!.row])
                 }
                 
@@ -196,8 +196,8 @@ extension MasterViewController {
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .groups)
         tableViewDelegate?.registerCell(cellName: GROUP_TABLE_VIEW_CELL, cellId: GROUP_TABLE_VIEW_CELL)
         tableViewDelegate?.updateData(data: groups)
-        tableViewDelegate?.setGroupNumbers(groupNumbers)
-        tableViewDelegate?.setGroupDescs(descs: groupDescs)
+        tableViewDelegate?.setgroupsCount(groupsCount)
+        tableViewDelegate?.setgroupsDesc(descs: groupsDesc)
         tableViewDelegate?.reloadUI()
     }
     
@@ -240,7 +240,7 @@ extension MasterViewController {
     
     @objc func showGroupDispatchDelayed() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.showGroupDispatch(groups: groups, groupNumbers: groupNumbers, groupDescs: groupDescs)
+        appDelegate?.showGroupDispatch(groups: groups, groupsCount: groupsCount, groupsDesc: groupsDesc)
     }
 }
 

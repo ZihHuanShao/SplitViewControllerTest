@@ -68,7 +68,7 @@ extension AppDelegate {
 }
 
 extension AppDelegate {
-    func showGroupDispatch(groups: [String], groupNumbers: [Int], groupDescs: [String]) {
+    func showGroupDispatch(groups: [String], groupsCount: [Int], groupsDesc: [String]) {
         // grab a screenshot
         let screenshot = grabScreenshot()
 
@@ -83,8 +83,8 @@ extension AppDelegate {
         let groupDispatchViewController = storyboard.instantiateViewController(withIdentifier: "Overlay") as! GroupDispatchViewController
         
         groupDispatchViewController.setGroupsData(data: groups)
-        groupDispatchViewController.setGroupNumbers(numbers: groupNumbers)
-        groupDispatchViewController.setGroupDescs(descs: groupDescs)
+        groupDispatchViewController.setgroupsCount(numbers: groupsCount)
+        groupDispatchViewController.setgroupsDesc(descs: groupsDesc)
         
         groupDispatchViewController.modalPresentationStyle = .formSheet
         
