@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
+private class CellData {
+    var mainMenuIconVo: MainMenuIconVo?
+    
+    init(_ mainMenuIconVo: MainMenuIconVo) {
+        self.mainMenuIconVo = mainMenuIconVo
+    }
+}
+
 class DetailViewCollectionViewDelegate: NSObject {
 
     // MARK: - Properties
@@ -16,19 +24,10 @@ class DetailViewCollectionViewDelegate: NSObject {
     fileprivate weak var viewController: DetailViewController?
     fileprivate weak var collectionView: UICollectionView?
     
-    fileprivate var preMainMenuCellIndex: Int?
-    fileprivate var preMainMenuCell: MainMenuCollectionViewCell?
-    fileprivate var mainMenuCells = [MainMenuCollectionViewCell]()
+    fileprivate var cellsData = [CellData]()
+    fileprivate var mainMenuIconsVo  = [MainMenuIconVo]()
     
-    let mainMenuIcons_unselected = ["btn_menu_ptt_normal",
-                                    "btn_menu_map_normal",
-                                    "btn_menu_video_normal",
-                                    "btn_menu_history_normal"]
-    
-    let mainMenuIcons_selected   = ["btn_menu_ptt_selected",
-                                    "btn_menu_map_selected",
-                                    "btn_menu_video_selected",
-                                    "btn_menu_history_selected"]
+    fileprivate var preSelectedIconIndex: Int?
     
     // MARK: - initializer
     
@@ -44,7 +43,12 @@ class DetailViewCollectionViewDelegate: NSObject {
 // MARK: - Public Methods
 
 extension DetailViewCollectionViewDelegate {
+    func updateMainMenuIcons(mainMenuIconsVo: [MainMenuIconVo]) {
+        self.mainMenuIconsVo = mainMenuIconsVo
+    }
+    
     func reloadUI() {
+        reloadCellData()
         collectionView?.reloadData()
     }
 }
@@ -52,7 +56,20 @@ extension DetailViewCollectionViewDelegate {
 // MARK: - Private Methods
 
 extension DetailViewCollectionViewDelegate {
-
+    private func reloadCellData() {
+        cellsData.removeAll()
+        for mainMenuIconVo in mainMenuIconsVo {
+            cellsData.append(CellData(mainMenuIconVo))
+        }
+    }
+    
+    private func setBackgroundColor(rowIndex: Int) {
+        if let index = preSelectedIconIndex {
+            mainMenuIconsVo[index].isSelected = false
+        }
+        
+        mainMenuIconsVo[rowIndex].isSelected = true
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -65,10 +82,15 @@ extension DetailViewCollectionViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MAINMENU_COLLECTION_VIEW_CELL, for: indexPath) as! MainMenuCollectionViewCell
         
-        cell.setMainMenuIcon(name: mainMenuIcons_unselected[indexPath.row])
+        let cellData = cellsData[indexPath.row]
         
-        mainMenuCells.append(cell)
-        
+        if (cellData.mainMenuIconVo?.isSelected == true) {
+            cell.setMainMenuIcon(name: cellData.mainMenuIconVo?.selectedIconName ?? "")
+        } else {
+            cell.setMainMenuIcon(name: cellData.mainMenuIconVo?.unselectedIconName ?? "")
+        }
+    
+       
         return cell
     }
     
@@ -79,16 +101,11 @@ extension DetailViewCollectionViewDelegate: UICollectionViewDataSource {
 
 extension DetailViewCollectionViewDelegate: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+        setBackgroundColor(rowIndex: indexPath.row)
         
-        if let _preCell = preMainMenuCell, let _preCellIndex = preMainMenuCellIndex {
-            _preCell.setMainMenuIcon(name: mainMenuIcons_unselected[_preCellIndex])
-        }
-        
-        let iconName = mainMenuIcons_selected[indexPath.row]
-        mainMenuCells[indexPath.row].setMainMenuIcon(name: iconName)
-        
-        preMainMenuCell = mainMenuCells[indexPath.row]
-        preMainMenuCellIndex = indexPath.row
+        preSelectedIconIndex = indexPath.row
+        reloadUI()
     }
 }
 

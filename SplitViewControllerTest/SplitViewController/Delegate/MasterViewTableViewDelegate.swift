@@ -42,7 +42,7 @@ class MasterViewTableViewDelegate: NSObject {
     fileprivate var membersVo = [MemberVo]()
     
     fileprivate var tabType = TabType.NONE
-    fileprivate var preColorIndex: Int?
+    fileprivate var preSelectedColorIndex: Int?
     
     // MARK: - initializer
     
@@ -60,13 +60,13 @@ class MasterViewTableViewDelegate: NSObject {
     deinit {
         switch tabType {
         case .GROUP:
-            if let _preColorIndex = preColorIndex {
-                groupsVo[_preColorIndex].isSelected = false
+            if let index = preSelectedColorIndex {
+                groupsVo[index].isSelected = false
             }
             
         case .MEMBER:
-            if let _preColorIndex = preColorIndex {
-                membersVo[_preColorIndex].isSelected = false
+            if let index = preSelectedColorIndex {
+                membersVo[index].isSelected = false
             }
             
         case .NONE:
@@ -100,18 +100,18 @@ extension MasterViewTableViewDelegate {
         }
     }
     
-    private func enableColor(rowIndex: Int) {
+    private func setColorBar(rowIndex: Int) {
         
         switch tabType {
         case .GROUP:
-            if let _preColorIndex = preColorIndex {
-                groupsVo[_preColorIndex].isSelected = false
+            if let index = preSelectedColorIndex {
+                groupsVo[index].isSelected = false
             }
             groupsVo[rowIndex].isSelected = true
             
         case .MEMBER:
-            if let _preColorIndex = preColorIndex {
-                membersVo[_preColorIndex].isSelected = false
+            if let index = preSelectedColorIndex {
+                membersVo[index].isSelected = false
             }
             membersVo[rowIndex].isSelected = true
             
@@ -243,13 +243,13 @@ extension MasterViewTableViewDelegate: UITableViewDelegate {
         
         switch tabType {
         case .GROUP, .MEMBER:
-            enableColor(rowIndex: indexPath.row)
+            setColorBar(rowIndex: indexPath.row)
             
         case .NONE:
             break
         }
         
-        preColorIndex = indexPath.row
+        preSelectedColorIndex = indexPath.row
         reloadUI()
     }
 }

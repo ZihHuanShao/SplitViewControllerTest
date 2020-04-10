@@ -25,13 +25,23 @@ class DetailViewController: UIViewController {
     // Delegate
     fileprivate var collectionViewDelegate: DetailViewCollectionViewDelegate?
     
+    fileprivate var mainMenuIconsVo = [MainMenuIconVo]()
+    
+    let mainMenuIcons = [
+        MainMenuIconInfo(selectedIcon: MAIN_MENU_ICON_PTT[0], unselectedIcon: MAIN_MENU_ICON_PTT[1]),
+        MainMenuIconInfo(selectedIcon: MAIN_MENU_ICON_MAP[0], unselectedIcon: MAIN_MENU_ICON_MAP[1]),
+        MainMenuIconInfo(selectedIcon: MAIN_MENU_ICON_VIDEO[0], unselectedIcon: MAIN_MENU_ICON_VIDEO[1]),
+        MainMenuIconInfo(selectedIcon: MAIN_MENU_ICON_HISTORY[0], unselectedIcon: MAIN_MENU_ICON_HISTORY[1])
+    ]
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        reloadTestData()
         
         // Main menu
         collectionViewDelegate = DetailViewCollectionViewDelegate(detailViewController: self, collectionView: collectionView)
+        collectionViewDelegate?.updateMainMenuIcons(mainMenuIconsVo: mainMenuIconsVo)
         collectionViewDelegate?.reloadUI()
         
         switch tabSelected {
@@ -42,7 +52,6 @@ class DetailViewController: UIViewController {
             if let _groupVo = groupVo {
                 groupVC.setGroupName(name: _groupVo.name ?? "")
                 groupVC.setGroupNumber(_groupVo.count ?? 0)
-                
             }
 
             
@@ -85,5 +94,21 @@ extension DetailViewController {
     
     func setTabSelected(type: TabType) {
         tabSelected = type
+    }
+}
+
+// MARK: - Private Methods
+
+extension DetailViewController {
+    private func reloadTestData() {
+        for mainMenuIcon in mainMenuIcons {
+            mainMenuIconsVo.append(
+                MainMenuIconVo(
+                    selectedIconName: mainMenuIcon.selectedIcon,
+                    unselectedIconName: mainMenuIcon.unselectedIcon,
+                    isSelected: false
+                )
+            )
+        }
     }
 }

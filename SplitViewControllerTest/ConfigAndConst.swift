@@ -8,6 +8,26 @@
 
 import Foundation
 
+// MainMenuIcon [點擊時的圖,未點擊時的圖]
+let MAIN_MENU_ICON_PTT     = ["btn_menu_ptt_selected", "btn_menu_ptt_normal"]
+let MAIN_MENU_ICON_MAP     = ["btn_menu_map_selected", "btn_menu_map_normal"]
+let MAIN_MENU_ICON_VIDEO   = ["btn_menu_video_selected", "btn_menu_video_normal"]
+let MAIN_MENU_ICON_HISTORY = ["btn_menu_history_selected", "btn_menu_history_normal"]
+
+//let MAIN_MENU_ICONS_UNSELECTED = [
+//    "btn_menu_ptt_normal",
+//    "btn_menu_map_normal",
+//    "btn_menu_video_normal",
+//    "btn_menu_history_normal"
+//]
+//
+//let MAIN_MENU_ICONS_SELECTED = [
+//    "btn_menu_ptt_selected",
+//    "btn_menu_map_selected",
+//    "btn_menu_video_selected",
+//    "btn_menu_history_selected"
+//]
+
 // Cell
 let GROUP_TABLE_VIEW_CELL  = "GroupTableViewCell"  // nib name & cell name (the same)
 let MEMBER_TABLE_VIEW_CELL = "MemberTableViewCell" // nib name & cell name (the same)
@@ -58,4 +78,9 @@ enum OnlineType: Int {
 struct SelectedGroupInfo {
     var rowIndex: Int?
     var name: String?
+}
+
+struct MainMenuIconInfo {
+    var selectedIcon: String?
+    var unselectedIcon: String?
 }

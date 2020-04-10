@@ -147,22 +147,25 @@ extension MasterViewController {
     private func reloadTestData() {
         for (index, _) in groupsName.enumerated() {
             groupsVo.append(
-                GroupVo(name: groupsName[index],
-                        count: groupsCount[index],
-                        imageName: nil,
-                        desc: groupsDesc[index],
-                        notifyState: true,
-                        isSelected: false
-                        )
+                GroupVo(
+                    name: groupsName[index],
+                    count: groupsCount[index],
+                    imageName: nil,
+                    desc: groupsDesc[index],
+                    notifyState: true,
+                    isSelected: false
+                )
             )
         }
         
         for (index, _) in membersName.enumerated() {
             membersVo.append(
-                MemberVo(name: membersName[index],
-                         imageName: nil,
-                         onlineState: membersOnlineState[index],
-                         isSelected: false)
+                MemberVo(
+                    name: membersName[index],
+                    imageName: nil,
+                    onlineState: membersOnlineState[index],
+                    isSelected: false
+                )
             )
         }
     }

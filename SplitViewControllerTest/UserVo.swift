@@ -39,3 +39,16 @@ class MemberVo {
         self.isSelected = isSelected
     }
 }
+
+
+class MainMenuIconVo {
+    var selectedIconName: String?
+    var unselectedIconName: String?
+    var isSelected = Bool()
+    
+    init(selectedIconName: String?, unselectedIconName: String?, isSelected: Bool) {
+        self.selectedIconName = selectedIconName
+        self.unselectedIconName = unselectedIconName
+        self.isSelected = isSelected
+    }
+}
