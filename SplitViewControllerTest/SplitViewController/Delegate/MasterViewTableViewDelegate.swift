@@ -35,7 +35,7 @@ class MasterViewTableViewDelegate: NSObject {
     
     fileprivate var members = [String]()
     
-    fileprivate var tabType = TabType.none
+    fileprivate var tabType = TabType.NONE
     
     // MARK: - initializer
     
@@ -57,78 +57,78 @@ extension MasterViewTableViewDelegate {
     
     func updateData(data: [String]) {
         switch tabType {
-        case .groups:
+        case .GROUP:
             groups = data
             
-        case .members:
+        case .MEMBER:
             members = data
             
-        case .none:
+        case .NONE:
             break
         }
     }
     
     func setgroupsCount(_ numbers: [Int]) {
         switch tabType {
-        case .groups:
+        case .GROUP:
             groupsCount = numbers
             
-        case .members:
+        case .MEMBER:
             break
             
-        case .none:
+        case .NONE:
             break
         }
     }
     
     func setgroupsDesc(descs: [String]) {
         switch tabType {
-        case .groups:
+        case .GROUP:
             groupsDesc = descs
             
-        case .members:
+        case .MEMBER:
             break
             
-        case .none:
+        case .NONE:
             break
         }
     }
     
     func getGroupData() -> [String] {
         switch tabType {
-        case .groups:
+        case .GROUP:
             return groups
             
-        case .members:
+        case .MEMBER:
             return members
             
-        case .none:
+        case .NONE:
             return []
         }
     }
     
     func getgroupsCount() -> [Int] {
         switch tabType {
-        case .groups:
+        case .GROUP:
             return groupsCount
             
-        case .members:
+        case .MEMBER:
             return []
             
-        case .none:
+        case .NONE:
             return []
         }
     }
     
     func getgroupsDesc() -> [String] {
         switch tabType {
-        case .groups:
+        case .GROUP:
             return groupsDesc
             
-        case .members:
+        case .MEMBER:
             return []
             
-        case .none:
+        case .NONE:
             return []
         }
     }
@@ -156,13 +156,13 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tabType {
-        case .groups:
+        case .GROUP:
             return groups.count
             
-        case .members:
+        case .MEMBER:
             return members.count
             
-        case .none:
+        case .NONE:
             return 0
         }
         
@@ -171,7 +171,7 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch tabType {
-        case .groups:
+        case .GROUP:
             let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_TABLE_VIEW_CELL, for: indexPath) as! GroupTableViewCell
             cell.setGroupName(name: groups[indexPath.row])
             cell.setGroupMemberCount(groupsCount[indexPath.row])
@@ -183,7 +183,7 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
             
             return cell
             
-        case .members:
+        case .MEMBER:
             let cell = tableView.dequeueReusableCell(withIdentifier: MEMBER_TABLE_VIEW_CELL, for: indexPath) as! MemberTableViewCell
             cell.setUserName(name: members[indexPath.row])
             cell.setOnlineDesc(desc: "有空")
@@ -194,7 +194,7 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
             
             return cell
             
-        case .none:
+        case .NONE:
             return UITableViewCell.init()
             
         }
@@ -217,21 +217,21 @@ extension MasterViewTableViewDelegate: UITableViewDelegate {
         print("didSelectRowAt: \(indexPath.row)")
         
         switch tabType {
-        case .groups:
+        case .GROUP:
             if let _preGroupCell = preGroupCell {
                 _preGroupCell.disableColor()
             }
             groupCells[indexPath.row].enableColor()
             preGroupCell = groupCells[indexPath.row]
             
-        case .members:
+        case .MEMBER:
             if let _preMemberCell = preMemberCell {
                 _preMemberCell.disableColor()
             }
             memberCells[indexPath.row].enableColor()
             preMemberCell = memberCells[indexPath.row]
             
-        case .none:
+        case .NONE:
             break
         }
     }

@@ -37,7 +37,7 @@ class MasterViewController: UIViewController {
     
     // MARK: - Properties
 
-    fileprivate var tabSelected = TabType.none
+    fileprivate var tabSelected = TabType.NONE
     fileprivate var tableViewDelegate: MasterViewTableViewDelegate?
     
     // Original Test data
@@ -49,11 +49,10 @@ class MasterViewController: UIViewController {
 //        GroupInfo(groupName: "Michael Group", groupNumber: 70, groupImage: nil, groupDesc: "Michael Group")
 //    ]
     
-    let groups = ["Martin Group", "Charley Group", "Fred Group", "May Group", "Michael Group", "Maxkit Group", "Test Group 001", "Test Group 002"]
-    let groupsDesc = ["Martin Group", "Charley Group", "Fred Group", "May Group", "Michael Group", "Maxkit Group", "Test Group 001", "Test Group 002"]
-    let groupsCount = [6, 35, 18, 26, 50, 40, 17, 63]
-    
-    let members = ["Martin","Charley","Fred","Michael","MayMay"]
+    let groupsName   = TSET_GROUPS
+    let groupsDesc  = TSET_GROUPS_DESC
+    let groupsCount = TSET_GROUPS_COUNT
+    let members     = TEST_MEMBERS
 
     // MARK: - Life Cycle
     
@@ -120,21 +119,21 @@ class MasterViewController: UIViewController {
             dVC?.setTabSelected(type: tabSelected)
             
             switch tabSelected {
-            case .groups:
+            case .GROUP:
                 if let data = tableViewDelegate?.getGroupData(), let groupsCount = tableViewDelegate?.getgroupsCount() {
                     
                     dVC?.setGroupNumber(groupsCount[tableView.indexPathForSelectedRow!.row])
                     dVC?.setGroupName(name: data[tableView.indexPathForSelectedRow!.row])
                 }
                 
-            case .members:
+            case .MEMBER:
                 if let data = tableViewDelegate?.getMemberData() {
                     dVC?.setMemberName(name: data[tableView.indexPathForSelectedRow!.row])
                     //dVC?.setMemberImageName(name: "")
                 }
                 break
                 
-            case .none:
+            case .NONE:
                 break
             }
         }
@@ -180,7 +179,7 @@ extension MasterViewController {
     }
     
     private func tabLeftContentButtonPressedHandler() {
-        tabSelected = .groups
+        tabSelected = .GROUP
         
         // update UI
         tabLeftIcon.image = UIImage(named: "btn_contact_group_selected")
@@ -193,16 +192,16 @@ extension MasterViewController {
         
         // update tableView
         tableViewDelegate = nil
-        tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .groups)
+        tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .GROUP)
         tableViewDelegate?.registerCell(cellName: GROUP_TABLE_VIEW_CELL, cellId: GROUP_TABLE_VIEW_CELL)
-        tableViewDelegate?.updateData(data: groups)
+        tableViewDelegate?.updateData(data: groupsName)
         tableViewDelegate?.setgroupsCount(groupsCount)
         tableViewDelegate?.setgroupsDesc(descs: groupsDesc)
         tableViewDelegate?.reloadUI()
     }
     
     private func tabRightContentButtonPressedHandler() {
-        tabSelected = .members
+        tabSelected = .MEMBER
         
         // update UI
         tabLeftIcon.image = UIImage(named: "btn_contact_group_normal")
@@ -215,7 +214,7 @@ extension MasterViewController {
         
         // update tableView
         tableViewDelegate = nil
-        tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .members)
+        tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .MEMBER)
         tableViewDelegate?.registerCell(cellName: MEMBER_TABLE_VIEW_CELL, cellId: MEMBER_TABLE_VIEW_CELL)
         tableViewDelegate?.updateData(data: members)
         tableViewDelegate?.reloadUI()
@@ -240,7 +239,7 @@ extension MasterViewController {
     
     @objc func showGroupDispatchDelayed() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.showGroupDispatch(groups: groups, groupsCount: groupsCount, groupsDesc: groupsDesc)
+        appDelegate?.showGroupDispatch(groups: groupsName, groupsCount: groupsCount, groupsDesc: groupsDesc)
     }
 }
 

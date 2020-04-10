@@ -17,7 +17,7 @@ class DetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    fileprivate var tabSelected = TabType.none
+    fileprivate var tabSelected = TabType.NONE
     
     // Group
     fileprivate var groupNumber: Int?
@@ -40,7 +40,7 @@ class DetailViewController: UIViewController {
         collectionViewDelegate?.reloadUI()
         
         switch tabSelected {
-        case .groups:
+        case .GROUP:
             let groupVC = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
             
             if let _groupName = groupName, let _groupNumber = groupNumber {
@@ -54,7 +54,7 @@ class DetailViewController: UIViewController {
             
             groupVC.didMove(toParent: self)
         
-        case .members:
+        case .MEMBER:
             let memberVC = UIStoryboard(name: STORYBOARD_NAME_MEMBER, bundle: nil).instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
             
             if let _memberName = memberName {
@@ -71,7 +71,7 @@ class DetailViewController: UIViewController {
             
             memberVC.didMove(toParent: self)
         
-        case .none:
+        case .NONE:
             break
         }
     }

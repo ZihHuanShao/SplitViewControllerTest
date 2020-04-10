@@ -40,9 +40,9 @@ let TAB_SELECTED_TITLE_COLOR   = 0xE94242 // 已選文字色碼
 let TAB_UNSELECTED_TITLE_COLOR = 0x9F9A94 // 未選文字色碼
 
 enum TabType: Int {
-    case groups  = 0
-    case members = 1
-    case none    = 2
+    case GROUP  = 0
+    case MEMBER = 1
+    case NONE    = 2
 }
 
 struct GroupInfo {
