@@ -39,19 +39,22 @@ let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
 let TAB_SELECTED_TITLE_COLOR   = 0xE94242 // 已選文字色碼
 let TAB_UNSELECTED_TITLE_COLOR = 0x9F9A94 // 未選文字色碼
 
+
+// enum
 enum TabType: Int {
     case GROUP  = 0
     case MEMBER = 1
     case NONE    = 2
 }
 
-struct GroupInfo {
-    var groupName: String?
-    var groupNumber: Int?
-    var groupImage: String?
-    var groupDesc: String?
+enum OnlineType: Int {
+    case AVAILABLE  = 0
+    case BUSY       = 1
+    case NO_DISTURB = 2
+    case OFFLINE    = 3
 }
 
+// struct
 struct SelectedGroupInfo {
     var rowIndex: Int?
     var name: String?

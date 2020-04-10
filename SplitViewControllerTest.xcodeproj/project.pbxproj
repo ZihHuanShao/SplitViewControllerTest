@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D06DEECF244012960056A7E7 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DEECE244012960056A7E7 /* TestCase.swift */; };
+		D06DEED124405FE70056A7E7 /* UserVo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DEED024405FE70056A7E7 /* UserVo.swift */; };
 		D06E35B8243DC00C00E33C44 /* GroupDispatchCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E35B7243DC00B00E33C44 /* GroupDispatchCollectionViewDelegate.swift */; };
 		D06E35BB243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E35B9243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift */; };
 		D06E35BC243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06E35BA243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib */; };
@@ -105,6 +106,7 @@
 
 /* Begin PBXFileReference section */
 		D06DEECE244012960056A7E7 /* TestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase.swift; sourceTree = "<group>"; };
+		D06DEED024405FE70056A7E7 /* UserVo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVo.swift; sourceTree = "<group>"; };
 		D06E35B7243DC00B00E33C44 /* GroupDispatchCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		D06E35B9243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchCollectionViewCell.swift; sourceTree = "<group>"; };
 		D06E35BA243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDispatchCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				D0E23598243C21650009506F /* Storyboard */,
 				F261B467242CAB1300482992 /* Images */,
 				F22F8B4E242D9B7F00CB08D5 /* ConfigAndConst.swift */,
+				D06DEED024405FE70056A7E7 /* UserVo.swift */,
 				D06DEECE244012960056A7E7 /* TestCase.swift */,
 				F20CCEFC2429F00800048BA3 /* AppDelegate.swift */,
 				F20CCF032429F00900048BA3 /* Assets.xcassets */,
@@ -548,6 +551,7 @@
 				F23C0DEE2433139600DD7A48 /* MemberTableViewDelegate.swift in Sources */,
 				D06E35B8243DC00C00E33C44 /* GroupDispatchCollectionViewDelegate.swift in Sources */,
 				F21E21D0243186C8001AE003 /* GroupViewController.swift in Sources */,
+				D06DEED124405FE70056A7E7 /* UserVo.swift in Sources */,
 				F23C0DEA2432DC3700DD7A48 /* MemberViewController.swift in Sources */,
 				F20CCEFD2429F00800048BA3 /* AppDelegate.swift in Sources */,
 				F261B463242C9FD800482992 /* MemberTableViewCell.swift in Sources */,

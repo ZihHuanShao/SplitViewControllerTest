@@ -23,13 +23,12 @@ class DetailViewCollectionViewDelegate: NSObject {
     let mainMenuIcons_unselected = ["btn_menu_ptt_normal",
                                     "btn_menu_map_normal",
                                     "btn_menu_video_normal",
-                                    "btn_menu_history_normal"
-                                   ]
+                                    "btn_menu_history_normal"]
+    
     let mainMenuIcons_selected   = ["btn_menu_ptt_selected",
                                     "btn_menu_map_selected",
                                     "btn_menu_video_selected",
-                                    "btn_menu_history_selected"
-                                   ]
+                                    "btn_menu_history_selected"]
     
     // MARK: - initializer
     
@@ -39,10 +38,6 @@ class DetailViewCollectionViewDelegate: NSObject {
         self.collectionView = collectionView
         collectionView.dataSource = self
         collectionView.delegate   = self
-//        collectionView.alwaysBounceVertical = false
-//        collectionView.alwaysBounceHorizontal = true
-        
-        
     }
 }
 

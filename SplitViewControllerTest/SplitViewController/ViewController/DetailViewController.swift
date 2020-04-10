@@ -19,13 +19,8 @@ class DetailViewController: UIViewController {
     
     fileprivate var tabSelected = TabType.NONE
     
-    // Group
-    fileprivate var groupNumber: Int?
-    fileprivate var groupName: String?
-    
-    // Single Member
-    fileprivate var memberName: String?
-    fileprivate var memberImageName: String?
+    fileprivate var groupVo:  GroupVo?
+    fileprivate var memberVo: MemberVo?
     
     // Delegate
     fileprivate var collectionViewDelegate: DetailViewCollectionViewDelegate?
@@ -40,13 +35,16 @@ class DetailViewController: UIViewController {
         collectionViewDelegate?.reloadUI()
         
         switch tabSelected {
+            
         case .GROUP:
             let groupVC = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
             
-            if let _groupName = groupName, let _groupNumber = groupNumber {
-                groupVC.setGroupName(name: _groupName)
-                groupVC.setGroupNumber(_groupNumber)
+            if let _groupVo = groupVo {
+                groupVC.setGroupName(name: _groupVo.name ?? "")
+                groupVC.setGroupNumber(_groupVo.count ?? 0)
+                
             }
+
             
             self.addChild(groupVC)
             groupVC.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
@@ -57,12 +55,9 @@ class DetailViewController: UIViewController {
         case .MEMBER:
             let memberVC = UIStoryboard(name: STORYBOARD_NAME_MEMBER, bundle: nil).instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
             
-            if let _memberName = memberName {
-                memberVC.setMemberName(name: _memberName)
-            }
-            
-            if let _memberImageName = memberImageName {
-                memberVC.setMemberImage(name: _memberImageName)
+            if let _memberVo = memberVo {
+                    memberVC.setMemberName(name: _memberVo.name ?? "")
+                    memberVC.setMemberImage(name: _memberVo.imageName ?? "")
             }
             
             self.addChild(memberVC)
@@ -80,23 +75,15 @@ class DetailViewController: UIViewController {
 // MARK: - Public Methods
 
 extension DetailViewController {
+    func updateGroup(_ groupVo: GroupVo) {
+        self.groupVo = groupVo
+    }
+    
+    func updateMember(_ memberVo: MemberVo) {
+        self.memberVo = memberVo
+    }
+    
     func setTabSelected(type: TabType) {
         tabSelected = type
-    }
-    
-    func setGroupNumber(_ number: Int) {
-        groupNumber = number
-    }
-    
-    func setGroupName(name: String) {
-        groupName = name
-    }
-    
-    func setMemberName(name: String) {
-        memberName = name
-    }
-    
-    func setMemberImageName(name: String) {
-        memberImageName = name
     }
 }

@@ -11,8 +11,20 @@ import UIKit
 
 
 
-private class CellData {
+private class GroupCellData {
+    var groupVo: GroupVo?
     
+    init(_ groupVo: GroupVo) {
+        self.groupVo = groupVo
+    }
+}
+
+private class MemberCellData {
+    var memberVo: MemberVo?
+    
+    init(_ memberVo: MemberVo) {
+        self.memberVo = memberVo
+    }
 }
 
 class MasterViewTableViewDelegate: NSObject {
@@ -23,19 +35,14 @@ class MasterViewTableViewDelegate: NSObject {
     fileprivate weak var tableView: UITableView?
     fileprivate weak var tableViewExtendDelegate: MasterViewTableViewExtendDelegate?
     
-    fileprivate var preGroupCell: GroupTableViewCell?
-    fileprivate var groupCells = [GroupTableViewCell]()
+    fileprivate var groupCellsData  = [GroupCellData]()
+    fileprivate var memberCellsData = [MemberCellData]()
     
-    fileprivate var preMemberCell: MemberTableViewCell?
-    fileprivate var memberCells = [MemberTableViewCell]()
-    
-    fileprivate var groups = [String]()
-    fileprivate var groupsCount = [Int]()
-    fileprivate var groupsDesc = [String]()
-    
-    fileprivate var members = [String]()
+    fileprivate var groupsVo  = [GroupVo]()
+    fileprivate var membersVo = [MemberVo]()
     
     fileprivate var tabType = TabType.NONE
+    fileprivate var preColorIndex: Int?
     
     // MARK: - initializer
     
@@ -47,94 +54,84 @@ class MasterViewTableViewDelegate: NSObject {
         tableView.delegate = self
         tableViewExtendDelegate = self.viewController
         tabType = type
+        
     }
+    
+    deinit {
+        switch tabType {
+        case .GROUP:
+            if let _preColorIndex = preColorIndex {
+                groupsVo[_preColorIndex].isSelected = false
+            }
+            
+        case .MEMBER:
+            if let _preColorIndex = preColorIndex {
+                membersVo[_preColorIndex].isSelected = false
+            }
+            
+        case .NONE:
+            break
+        }
+        
+    }
+}
 
+// MARK: - Private Methods
+
+extension MasterViewTableViewDelegate {
+    private func reloadCellData() {
+        switch tabType {
+        case .GROUP:
+            groupCellsData.removeAll()
+            for groupVo in groupsVo {
+                groupCellsData.append(GroupCellData(groupVo))
+            }
+            break
+            
+        case .MEMBER:
+            memberCellsData.removeAll()
+            for memberVo in membersVo {
+                memberCellsData.append(MemberCellData(memberVo))
+            }
+            break
+            
+        case .NONE:
+            break
+        }
+    }
+    
+    private func enableColor(rowIndex: Int) {
+        
+        switch tabType {
+        case .GROUP:
+            if let _preColorIndex = preColorIndex {
+                groupsVo[_preColorIndex].isSelected = false
+            }
+            groupsVo[rowIndex].isSelected = true
+            
+        case .MEMBER:
+            if let _preColorIndex = preColorIndex {
+                membersVo[_preColorIndex].isSelected = false
+            }
+            membersVo[rowIndex].isSelected = true
+            
+        case .NONE:
+            break
+        }
+        
+    }
 }
 
 // MARK: - Public Methods
 
 extension MasterViewTableViewDelegate {
     
-    func updateData(data: [String]) {
-        switch tabType {
-        case .GROUP:
-            groups = data
-            
-        case .MEMBER:
-            members = data
-            
-        case .NONE:
-            break
-        }
+    func updateGroups(_ groupsVo: [GroupVo]) {
+        self.groupsVo = groupsVo
     }
     
-    func setgroupsCount(_ numbers: [Int]) {
-        switch tabType {
-        case .GROUP:
-            groupsCount = numbers
-            
-        case .MEMBER:
-            break
-            
-        case .NONE:
-            break
-        }
-    }
-    
-    func setgroupsDesc(descs: [String]) {
-        switch tabType {
-        case .GROUP:
-            groupsDesc = descs
-            
-        case .MEMBER:
-            break
-            
-        case .NONE:
-            break
-        }
-    }
-    
-    func getGroupData() -> [String] {
-        switch tabType {
-        case .GROUP:
-            return groups
-            
-        case .MEMBER:
-            return members
-            
-        case .NONE:
-            return []
-        }
-    }
-    
-    func getgroupsCount() -> [Int] {
-        switch tabType {
-        case .GROUP:
-            return groupsCount
-            
-        case .MEMBER:
-            return []
-            
-        case .NONE:
-            return []
-        }
-    }
-    
-    func getgroupsDesc() -> [String] {
-        switch tabType {
-        case .GROUP:
-            return groupsDesc
-            
-        case .MEMBER:
-            return []
-            
-        case .NONE:
-            return []
-        }
-    }
-    
-    func getMemberData() -> [String] {
-        return members
+    func updateMembers(_ membersVo: [MemberVo]) {
+        self.membersVo = membersVo
     }
     
     func registerCell(cellName: String, cellId: String) {
@@ -145,6 +142,7 @@ extension MasterViewTableViewDelegate {
     }
     
     func reloadUI() {
+        reloadCellData()
         tableView?.reloadData()
     }
 }
@@ -157,10 +155,10 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tabType {
         case .GROUP:
-            return groups.count
+            return groupCellsData.count
             
         case .MEMBER:
-            return members.count
+            return memberCellsData.count
             
         case .NONE:
             return 0
@@ -173,24 +171,51 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
         switch tabType {
         case .GROUP:
             let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_TABLE_VIEW_CELL, for: indexPath) as! GroupTableViewCell
-            cell.setGroupName(name: groups[indexPath.row])
-            cell.setGroupMemberCount(groupsCount[indexPath.row])
-            cell.setGroupDesc(desc: groupsDesc[indexPath.row])
-            cell.disableColor()
+            
+            let groupCellData = groupCellsData[indexPath.row]
+            
+            cell.setGroupName(name: groupCellData.groupVo?.name ?? "")
+            cell.setGroupMemberCount(groupCellData.groupVo?.count ?? 0)
+            cell.setGroupDesc(desc: groupCellData.groupVo?.desc ?? "")
+            cell.setGroupImage(name: groupCellData.groupVo?.imageName ?? "")
+            
+            (groupCellData.groupVo?.isSelected == true) ? cell.enableColor() : cell.disableColor()
+       
             cell.selectionStyle = .none
-            
-            groupCells.append(cell)
-            
+
             return cell
             
         case .MEMBER:
             let cell = tableView.dequeueReusableCell(withIdentifier: MEMBER_TABLE_VIEW_CELL, for: indexPath) as! MemberTableViewCell
-            cell.setUserName(name: members[indexPath.row])
-            cell.setOnlineDesc(desc: "有空")
-            cell.selectionStyle = .none
-            cell.disableColor()
             
-            memberCells.append(cell)
+            let memberCellData = memberCellsData[indexPath.row]
+            
+            cell.setUserName(name: memberCellData.memberVo?.name ?? "")
+            
+            
+            if let onlineState = memberCellData.memberVo?.onlineState {
+               switch onlineState {
+                case .AVAILABLE:
+                    cell.setOnlineStatusImage(name: "icon_status_online")
+                    cell.setOnlineDesc(desc: "有空")
+                
+                case .BUSY:
+                    cell.setOnlineStatusImage(name: "icon_status_busy")
+                    cell.setOnlineDesc(desc: "忙碌")
+                
+                case .NO_DISTURB:
+                    cell.setOnlineStatusImage(name: "icon_status_nodisturbing")
+                    cell.setOnlineDesc(desc: "勿擾")
+                
+                case .OFFLINE:
+                    cell.setOnlineStatusImage(name: "icon_status_offline")
+                    cell.setOnlineDesc(desc: "離線")
+                }
+            }
+            
+            (memberCellData.memberVo?.isSelected == true) ? cell.enableColor() : cell.disableColor()
+
+            cell.selectionStyle = .none
             
             return cell
             
@@ -217,23 +242,15 @@ extension MasterViewTableViewDelegate: UITableViewDelegate {
         print("didSelectRowAt: \(indexPath.row)")
         
         switch tabType {
-        case .GROUP:
-            if let _preGroupCell = preGroupCell {
-                _preGroupCell.disableColor()
-            }
-            groupCells[indexPath.row].enableColor()
-            preGroupCell = groupCells[indexPath.row]
-            
-        case .MEMBER:
-            if let _preMemberCell = preMemberCell {
-                _preMemberCell.disableColor()
-            }
-            memberCells[indexPath.row].enableColor()
-            preMemberCell = memberCells[indexPath.row]
+        case .GROUP, .MEMBER:
+            enableColor(rowIndex: indexPath.row)
             
         case .NONE:
             break
         }
+        
+        preColorIndex = indexPath.row
+        reloadUI()
     }
 }
 

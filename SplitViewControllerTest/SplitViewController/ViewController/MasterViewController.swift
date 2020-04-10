@@ -41,24 +41,24 @@ class MasterViewController: UIViewController {
     fileprivate var tableViewDelegate: MasterViewTableViewDelegate?
     
     // Original Test data
-//    let groupInfos: [GroupInfo] = [
-//        GroupInfo(groupName: "Martin Group", groupNumber: 6, groupImage: nil, groupDesc: "Martin Group"),
-//        GroupInfo(groupName: "Charley Group", groupNumber: 35, groupImage: nil, groupDesc: "Charley Group"),
-//        GroupInfo(groupName: "Fred Group", groupNumber: 18, groupImage: nil, groupDesc: "Fred Group"),
-//        GroupInfo(groupName: "May Group", groupNumber: 28, groupImage: nil, groupDesc: "May Group"),
-//        GroupInfo(groupName: "Michael Group", groupNumber: 70, groupImage: nil, groupDesc: "Michael Group")
-//    ]
     
-    let groupsName   = TSET_GROUPS
-    let groupsDesc  = TSET_GROUPS_DESC
-    let groupsCount = TSET_GROUPS_COUNT
-    let members     = TEST_MEMBERS
+    let groupsName         = TSET_GROUPS
+    let groupsDesc         = TSET_GROUPS_DESC
+    let groupsCount        = TSET_GROUPS_COUNT
+    let membersName        = TEST_MEMBERS
+    let membersOnlineState = TEST_MEMBERS_ONLINE_STATE
+    
+    var groupsVo  = [GroupVo]()
+    var membersVo = [MemberVo]()
+    
 
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         splitViewController?.preferredDisplayMode = .allVisible
+        
+        reloadTestData()
         updateDataSource()
         updateUI()
         updateGesture()
@@ -118,20 +118,15 @@ class MasterViewController: UIViewController {
             let dVC = segue.destination as? DetailViewController
             dVC?.setTabSelected(type: tabSelected)
             
+            let rowIndex = tableView.indexPathForSelectedRow!.row
+            
             switch tabSelected {
+                
             case .GROUP:
-                if let data = tableViewDelegate?.getGroupData(), let groupsCount = tableViewDelegate?.getgroupsCount() {
-                    
-                    dVC?.setGroupNumber(groupsCount[tableView.indexPathForSelectedRow!.row])
-                    dVC?.setGroupName(name: data[tableView.indexPathForSelectedRow!.row])
-                }
+                dVC?.updateGroup(groupsVo[rowIndex])
                 
             case .MEMBER:
-                if let data = tableViewDelegate?.getMemberData() {
-                    dVC?.setMemberName(name: data[tableView.indexPathForSelectedRow!.row])
-                    //dVC?.setMemberImageName(name: "")
-                }
-                break
+                dVC?.updateMember(membersVo[rowIndex])
                 
             case .NONE:
                 break
@@ -147,6 +142,29 @@ extension MasterViewController {
     
     private func updateDataSource() {
         searchTextField.delegate = self
+    }
+    
+    private func reloadTestData() {
+        for (index, _) in groupsName.enumerated() {
+            groupsVo.append(
+                GroupVo(name: groupsName[index],
+                        count: groupsCount[index],
+                        imageName: nil,
+                        desc: groupsDesc[index],
+                        notifyState: true,
+                        isSelected: false
+                        )
+            )
+        }
+        
+        for (index, _) in membersName.enumerated() {
+            membersVo.append(
+                MemberVo(name: membersName[index],
+                         imageName: nil,
+                         onlineState: membersOnlineState[index],
+                         isSelected: false)
+            )
+        }
     }
     
     private func updateUI() {
@@ -194,9 +212,7 @@ extension MasterViewController {
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .GROUP)
         tableViewDelegate?.registerCell(cellName: GROUP_TABLE_VIEW_CELL, cellId: GROUP_TABLE_VIEW_CELL)
-        tableViewDelegate?.updateData(data: groupsName)
-        tableViewDelegate?.setgroupsCount(groupsCount)
-        tableViewDelegate?.setgroupsDesc(descs: groupsDesc)
+        tableViewDelegate?.updateGroups(groupsVo)
         tableViewDelegate?.reloadUI()
     }
     
@@ -216,7 +232,7 @@ extension MasterViewController {
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .MEMBER)
         tableViewDelegate?.registerCell(cellName: MEMBER_TABLE_VIEW_CELL, cellId: MEMBER_TABLE_VIEW_CELL)
-        tableViewDelegate?.updateData(data: members)
+        tableViewDelegate?.updateMembers(membersVo)
         tableViewDelegate?.reloadUI()
     }
     
