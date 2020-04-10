@@ -15,6 +15,11 @@ class GroupDispatchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var groupImage: UIImageView!
     @IBOutlet weak var groupName: UILabel!
     
+    // MARK: - Properties
+    
+    // Tableview的group列表中, 存放cell的row index值
+    fileprivate var cellRowIndex = Int()
+    
     // MARK: - Life Cycle
     
     override func awakeFromNib() {
@@ -22,10 +27,15 @@ class GroupDispatchCollectionViewCell: UICollectionViewCell {
         updateUI()
     }
     
+    deinit {
+        
+    }
+    
     // MARK: - Actions
     
     @IBAction func dropoutButtonPressed(_ sender: UIButton) {
         print("dropoutButtonPressed")
+        NotificationCenter.default.post(name: DROP_SELECTED_GROUP_NOTIFY_KEY, object: self, userInfo: [REMOVE_SELECTED_GROUP_BUTTON_NOTIFY_USER_KEY: cellRowIndex])
     }
     
 }
@@ -45,6 +55,9 @@ extension GroupDispatchCollectionViewCell {
         }
     }
     
+    func setRowIndex(_ tableviewCellIndexPathRow: Int) {
+        cellRowIndex = tableviewCellIndexPathRow
+    }
 }
 
 // MARK: - Private Methods

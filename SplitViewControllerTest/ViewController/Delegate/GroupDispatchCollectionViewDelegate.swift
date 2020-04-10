@@ -15,8 +15,8 @@ class GroupDispatchCollectionViewDelegate: NSObject {
     
     fileprivate weak var viewController: GroupDispatchViewController?
     fileprivate weak var collectionView: UICollectionView?
-    fileprivate var collectionViewExtendDelegate: GroupDispatchCollectionViewExtendDelegate?
-    fileprivate var groups = [String]()
+    
+    // 目前所挑選要調度的群組
     fileprivate var selectedGroups = [SelectedGroupInfo]()
     
     // MARK: - initializer
@@ -57,15 +57,20 @@ extension GroupDispatchCollectionViewDelegate {
     }
     
     func removeSelectedGroup(rowIndex: Int) {
-        selectedGroups.remove(at: rowIndex)
+        var selectedGroupsIndex = Int()
+        
+        for (index, group) in selectedGroups.enumerated() {
+            if group.rowIndex == rowIndex {
+                selectedGroupsIndex = index
+            }
+        }
+        
+        selectedGroups.remove(at: selectedGroupsIndex)
+        
     }
     
     func resetSelectGroups() {
         selectedGroups.removeAll()
-    }
-    
-    func setGroupsData(data: [String]) {
-        groups = data
     }
     
     func registerCell(cellName: String, cellId: String) {
@@ -84,14 +89,17 @@ extension GroupDispatchCollectionViewDelegate {
 
 extension GroupDispatchCollectionViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return groups.count
         return selectedGroups.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GROUP_DISPATCH_COLLECTION_VIEW_CELL, for: indexPath) as! GroupDispatchCollectionViewCell
+
         cell.setGroupName(name: selectedGroups[indexPath.row].name)
-//        cell.setGroupName(name: groups[indexPath.row])
+        if let rowIndex = selectedGroups[indexPath.row].rowIndex {
+            cell.setRowIndex(rowIndex)
+        }
+        
         return cell
     }
     
@@ -110,10 +118,4 @@ extension GroupDispatchCollectionViewDelegate: UICollectionViewDelegateFlowLayou
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 80, height: 72)
     }
-}
-
-// MARK: - Protocol
-
-protocol GroupDispatchCollectionViewExtendDelegate {
-    func dropSelectedGroup(rowIndex: Int)
 }

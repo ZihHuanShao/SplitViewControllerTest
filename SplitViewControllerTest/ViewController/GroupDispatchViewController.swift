@@ -32,18 +32,26 @@ class GroupDispatchViewController: UIViewController {
     fileprivate var groupDescs = [String]()
     fileprivate var groupNumbers = [Int]()
     
+    var dropSelectedGroupObserver: NSObjectProtocol?
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateDataSource()
         updateGesture()
+        updateNotificationCenter()
         updateUI()
     }
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         updateSelfViewSize()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+//        NotificationCenter.default.removeObserver(dropSelectedGroupObserver)
     }
     
     // MARK: - Actions
@@ -98,6 +106,11 @@ extension GroupDispatchViewController {
 // MARK: - Private Methods
 
 extension GroupDispatchViewController {
+    
+    private func updateNotificationCenter() {
+        dropSelectedGroupObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_GROUP_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedGroup)
+    }
+    
     private func updateSelfViewSize() {
         //
         // 整體外觀
@@ -135,7 +148,7 @@ extension GroupDispatchViewController {
         
         collectionViewDelegate = GroupDispatchCollectionViewDelegate(groupDispatchViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: GROUP_DISPATCH_COLLECTION_VIEW_CELL, cellId: GROUP_DISPATCH_COLLECTION_VIEW_CELL)
-        collectionViewDelegate?.setGroupsData(data: groups)
+        
         collectionViewDelegate?.reloadUI()
     }
     
@@ -158,6 +171,23 @@ extension GroupDispatchViewController {
     }
 }
 
+// MARK: - Notification Methods
+
+extension GroupDispatchViewController {
+    func dropSelectedGroup(notification: Notification) -> Void {
+        if let rowIndex = notification.userInfo?[REMOVE_SELECTED_GROUP_BUTTON_NOTIFY_USER_KEY] as? Int {
+            
+            tableViewDelegate?.deselectGroup(rowIndex: rowIndex)
+            tableViewDelegate?.reloadUI()
+            
+            collectionViewDelegate?.removeSelectedGroup(rowIndex: rowIndex)
+            collectionViewDelegate?.reloadUI()
+        }
+        
+    }
+}
+
+
 // MARK: - GroupDispatchTableViewExtendDelegate
 
 extension GroupDispatchViewController: GroupDispatchTableViewExtendDelegate {
@@ -166,15 +196,4 @@ extension GroupDispatchViewController: GroupDispatchTableViewExtendDelegate {
         collectionViewDelegate?.appendSelectedGroup(rowIndex: rowIndex, name: name)
         collectionViewDelegate?.reloadUI()
     }
-}
-
-// MARK: - GroupDispatchCollectionViewExtendDelegate
-
-extension GroupDispatchViewController: GroupDispatchCollectionViewExtendDelegate {
-    func dropSelectedGroup(rowIndex: Int) {
-        collectionViewDelegate?.removeSelectedGroup(rowIndex: rowIndex)
-        collectionViewDelegate?.reloadUI()
-    }
-    
-    
 }

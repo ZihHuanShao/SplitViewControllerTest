@@ -49,6 +49,10 @@ extension GroupDispatchTableViewDelegate {
         groupNumbers = numbers
     }
     
+    func deselectGroup(rowIndex: Int) {
+        groupCells[rowIndex].disableCheckbox()
+    }
+    
     func resetGroups() {
         for cell in groupCells {
             cell.disableCheckbox()
@@ -65,6 +69,7 @@ extension GroupDispatchTableViewDelegate {
     }
     
     func reloadUI() {
+        
         tableView?.reloadData()
     }
 }
@@ -84,7 +89,9 @@ extension GroupDispatchTableViewDelegate: UITableViewDataSource {
         cell.setGroupMemberCount(groupNumbers[indexPath.row])
         cell.setGroupDesc(desc: groupDescs[indexPath.row])
         
+        
         groupCells.append(cell)
+        
         
         return cell
     }

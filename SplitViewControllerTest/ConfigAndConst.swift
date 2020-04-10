@@ -27,6 +27,13 @@ let SPLIT_MASTER_VIEW_CONTROLLER_WIDTH = "splitMasterViewControllerWidth"
 let SPLIT_DETAIL_VIEW_CONTROLLER_WIDTH = "splitDetailViewControllerWidth"
 let SPLIT_VIEW_CONTROLLER_HEIGHT       = "splitViewControllerHeight"
 
+// Notification
+let DROP_SELECTED_GROUP_NOTIFY_KEY = NSNotification.Name(rawValue: "dropSelectedGroupNotifyKey")
+
+// Notification userInfo
+let REMOVE_SELECTED_GROUP_BUTTON_NOTIFY_USER_KEY = "removeSelectedGroupButton"
+
+
 //通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
 let TAB_SELECTED_TITLE_COLOR   = 0xE94242 // 已選文字色碼
