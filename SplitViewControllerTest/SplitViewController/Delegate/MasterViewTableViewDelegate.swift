@@ -179,7 +179,11 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
             cell.setGroupDesc(desc: groupCellData.groupVo?.desc ?? "")
             cell.setGroupImage(name: groupCellData.groupVo?.imageName ?? "")
             
-            (groupCellData.groupVo?.isSelected == true) ? cell.enableColor() : cell.disableColor()
+            (groupCellData.groupVo?.notifyState == true) ?
+                cell.setMonitorImage(name: "icon_group_notify_on") : cell.setMonitorImage(name: "icon_group_notify_off")
+            
+            (groupCellData.groupVo?.isSelected == true) ?
+                cell.enableColor() : cell.disableColor()
        
             cell.selectionStyle = .none
 

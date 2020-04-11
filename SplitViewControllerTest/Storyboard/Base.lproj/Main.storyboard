@@ -504,7 +504,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yc4-NU-99x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="732.421875" y="-640.625"/>
+            <point key="canvasLocation" x="648" y="-639"/>
         </scene>
         <!--Dispatch Board Split View Controller-->
         <scene sceneID="0nv-Hc-u3D">

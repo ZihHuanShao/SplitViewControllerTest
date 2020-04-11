@@ -152,7 +152,7 @@ extension MasterViewController {
                     count: groupsCount[index],
                     imageName: nil,
                     desc: groupsDesc[index],
-                    notifyState: true,
+                    notifyState: false,
                     isSelected: false
                 )
             )

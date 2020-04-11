@@ -52,6 +52,11 @@ class DetailViewController: UIViewController {
             if let _groupVo = groupVo {
                 groupVC.setGroupName(name: _groupVo.name ?? "")
                 groupVC.setGroupNumber(_groupVo.count ?? 0)
+                if _groupVo.notifyState {
+                    groupVC.setMonitorImageName(name: "icon_titile_notify_on")
+                } else {
+                    groupVC.setMonitorImageName(name: "icon_titile_notify_off")
+                }
             }
 
             
