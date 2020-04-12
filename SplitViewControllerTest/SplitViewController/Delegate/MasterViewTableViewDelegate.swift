@@ -55,6 +55,7 @@ class MasterViewTableViewDelegate: NSObject {
         tableViewExtendDelegate = self.viewController
         tabType = type
         
+        
     }
     
     deinit {
@@ -126,12 +127,24 @@ extension MasterViewTableViewDelegate {
 
 extension MasterViewTableViewDelegate {
     
-    func updateGroups(_ groupsVo: [GroupVo]) {
-        self.groupsVo = groupsVo
+    func updateGroups(_ groups: [GroupVo]) {
+        self.groupsVo = groups
     }
     
-    func updateMembers(_ membersVo: [MemberVo]) {
-        self.membersVo = membersVo
+    func updateMembers(_ members: [MemberVo]) {
+        self.membersVo = members
+    }
+    
+    func updateGroup(_ group: GroupVo) {
+        for groupVo in groupsVo {
+            if (groupVo.name == group.name) {
+                groupVo.count = group.count
+                groupVo.desc = group.desc
+                groupVo.imageName = group.imageName
+                groupVo.notifyState = group.notifyState
+                groupVo.isSelected = group.isSelected
+            }
+        }
     }
     
     func registerCell(cellName: String, cellId: String) {
@@ -178,12 +191,12 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
             cell.setGroupMemberCount(groupCellData.groupVo?.count ?? 0)
             cell.setGroupDesc(desc: groupCellData.groupVo?.desc ?? "")
             cell.setGroupImage(name: groupCellData.groupVo?.imageName ?? "")
+            cell.setMonitorState(groupCellData.groupVo?.notifyState ?? false)
+            cell.setGroupCellRowIndex(indexPath.row)
             
-            (groupCellData.groupVo?.notifyState == true) ?
-                cell.setMonitorImage(name: "icon_group_notify_on") : cell.setMonitorImage(name: "icon_group_notify_off")
+            (groupCellData.groupVo?.notifyState == true) ? cell.enableMonitor() : cell.disableMonitor()
             
-            (groupCellData.groupVo?.isSelected == true) ?
-                cell.enableColor() : cell.disableColor()
+            (groupCellData.groupVo?.isSelected == true) ? cell.enableColor() : cell.disableColor()
        
             cell.selectionStyle = .none
 

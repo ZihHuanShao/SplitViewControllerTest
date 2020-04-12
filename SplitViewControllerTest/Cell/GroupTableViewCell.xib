@@ -104,30 +104,33 @@
                                             <constraint firstItem="4bY-8g-VYW" firstAttribute="leading" secondItem="0iX-C3-bd4" secondAttribute="leading" id="o73-ck-GmS"/>
                                         </constraints>
                                     </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_group_notify_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="6TQ-N9-NKO">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IA3-mF-5OT">
                                         <rect key="frame" x="132" y="-8" width="56" height="56"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="YnZ-ib-P4c"/>
-                                            <constraint firstAttribute="width" constant="56" id="vLX-Vh-KxY"/>
+                                            <constraint firstAttribute="width" constant="56" id="kzc-Hf-geR"/>
+                                            <constraint firstAttribute="height" constant="56" id="pDx-jT-JLA"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" image="icon_group_notify_on.png"/>
+                                        <connections>
+                                            <action selector="monitorButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="dch-4Z-Y58"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="IA3-mF-5OT" firstAttribute="leading" secondItem="1Nb-Hr-yZZ" secondAttribute="trailing" id="35l-kb-UoS"/>
                                     <constraint firstAttribute="bottom" secondItem="0iX-C3-bd4" secondAttribute="bottom" id="5IX-Or-L47"/>
                                     <constraint firstItem="T9F-nh-aEv" firstAttribute="leading" secondItem="kmy-R0-ysH" secondAttribute="leading" id="81O-w6-Eg9"/>
                                     <constraint firstItem="0iX-C3-bd4" firstAttribute="leading" secondItem="kmy-R0-ysH" secondAttribute="leading" id="D9E-KT-qt3"/>
                                     <constraint firstAttribute="trailing" secondItem="T9F-nh-aEv" secondAttribute="trailing" id="DSp-zF-kxs"/>
                                     <constraint firstItem="1Nb-Hr-yZZ" firstAttribute="leading" secondItem="kmy-R0-ysH" secondAttribute="leading" id="FCb-uQ-jDm"/>
-                                    <constraint firstItem="6TQ-N9-NKO" firstAttribute="leading" secondItem="0iX-C3-bd4" secondAttribute="trailing" id="FVh-05-q7A"/>
                                     <constraint firstItem="T9F-nh-aEv" firstAttribute="centerY" secondItem="kmy-R0-ysH" secondAttribute="centerY" id="KNL-c7-8Pb"/>
-                                    <constraint firstItem="6TQ-N9-NKO" firstAttribute="centerY" secondItem="kmy-R0-ysH" secondAttribute="centerY" id="MyV-Ca-ekD"/>
+                                    <constraint firstItem="IA3-mF-5OT" firstAttribute="leading" secondItem="0iX-C3-bd4" secondAttribute="trailing" id="LOf-Te-xjL"/>
+                                    <constraint firstAttribute="trailing" secondItem="IA3-mF-5OT" secondAttribute="trailing" id="Uce-kh-lZe"/>
                                     <constraint firstItem="1Nb-Hr-yZZ" firstAttribute="top" secondItem="kmy-R0-ysH" secondAttribute="top" id="Vn3-CG-4h6"/>
                                     <constraint firstItem="0iX-C3-bd4" firstAttribute="top" secondItem="T9F-nh-aEv" secondAttribute="bottom" id="b2x-cI-IOq"/>
                                     <constraint firstItem="T9F-nh-aEv" firstAttribute="top" secondItem="1Nb-Hr-yZZ" secondAttribute="bottom" id="oAv-ct-Qmm"/>
-                                    <constraint firstItem="6TQ-N9-NKO" firstAttribute="leading" secondItem="1Nb-Hr-yZZ" secondAttribute="trailing" id="u1x-PG-kgP"/>
-                                    <constraint firstAttribute="trailing" secondItem="6TQ-N9-NKO" secondAttribute="trailing" id="yrS-Kz-FsW"/>
+                                    <constraint firstItem="IA3-mF-5OT" firstAttribute="centerY" secondItem="kmy-R0-ysH" secondAttribute="centerY" id="wXf-FL-hNu"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -166,7 +169,7 @@
                 <outlet property="groupImage" destination="tjJ-Fw-NpB" id="1bq-OK-Wr9"/>
                 <outlet property="groupMemberCount" destination="J51-Lo-SO2" id="n2F-Vy-Trj"/>
                 <outlet property="groupName" destination="UqN-LF-Vbd" id="tSw-iS-BwP"/>
-                <outlet property="monitorImage" destination="6TQ-N9-NKO" id="0r8-du-meG"/>
+                <outlet property="monitorButton" destination="IA3-mF-5OT" id="7G8-Gp-Whi"/>
                 <outlet property="trailingLine" destination="12d-cY-I7F" id="Vlu-Tp-qRZ"/>
             </connections>
             <point key="canvasLocation" x="318.84057971014494" y="65.625"/>

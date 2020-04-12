@@ -35,7 +35,7 @@ class GroupDispatchCollectionViewCell: UICollectionViewCell {
     
     @IBAction func dropoutButtonPressed(_ sender: UIButton) {
         print("dropoutButtonPressed")
-        NotificationCenter.default.post(name: DROP_SELECTED_GROUP_NOTIFY_KEY, object: self, userInfo: [REMOVE_SELECTED_GROUP_BUTTON_NOTIFY_USER_KEY: cellRowIndex])
+        NotificationCenter.default.post(name: DROP_SELECTED_GROUP_NOTIFY_KEY, object: self, userInfo: [DROP_SELECTED_GROUP_USER_KEY: cellRowIndex])
     }
     
 }

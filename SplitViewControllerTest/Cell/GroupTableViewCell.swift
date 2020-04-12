@@ -17,7 +17,13 @@ class GroupTableViewCell: UITableViewCell {
     @IBOutlet weak var groupMemberCount: UILabel!
     @IBOutlet weak var groupDesc: UILabel!
     @IBOutlet weak var trailingLine: UIView!
-    @IBOutlet weak var monitorImage: UIImageView!
+    @IBOutlet weak var monitorButton: UIButton!
+    
+    
+    private var monitorState: Bool?
+    
+    // Tableview的group列表中, 存放cell的row index值
+    fileprivate var groupCellRowIndex: Int?
     
     // MARK: - Life Cycle
     
@@ -29,6 +35,20 @@ class GroupTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func monitorButtonPressed(_ sender: UIButton) {
+        print("monitorButtonPressed")
+        
+        if let state = monitorState {
+            (state == true) ? disableMonitor() : enableMonitor()
+        }
+        if let index = groupCellRowIndex {
+           NotificationCenter.default.post(name: CHANGE_MONITOR_NOTIFY_KEY, object: self, userInfo: [CHANGE_MONITOR_USER_KEY: index])
+        }
+        
     }
     
 }
@@ -49,6 +69,10 @@ extension GroupTableViewCell {
 // MARK: - Public Methods
 
 extension GroupTableViewCell {
+    func setMonitorState(_ state: Bool) {
+        self.monitorState = state
+    }
+    
     func setGroupImage(name: String) {
         if let image = UIImage(named: name) {
             groupImage.image = image
@@ -67,10 +91,16 @@ extension GroupTableViewCell {
         groupDesc.text = desc
     }
     
-    func setMonitorImage(name: String) {
-        if let image = UIImage(named: name) {
-            monitorImage.image = image
-        }
+    func setGroupCellRowIndex(_ index: Int) {
+        groupCellRowIndex = index
+    }
+    
+    func enableMonitor() {
+        monitorButton.setImage(UIImage(named: "icon_group_notify_on"), for: .normal)
+    }
+    
+    func disableMonitor() {
+        monitorButton.setImage(UIImage(named: "icon_group_notify_off"), for: .normal)
     }
     
     func enableColor() {

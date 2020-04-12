@@ -48,9 +48,10 @@ class MasterViewController: UIViewController {
     let membersName        = TEST_MEMBERS
     let membersOnlineState = TEST_MEMBERS_ONLINE_STATE
     
-    var groupsVo  = [GroupVo]()
-    var membersVo = [MemberVo]()
+    fileprivate var groups  = [GroupVo]()
+    fileprivate var members = [MemberVo]()
     
+    var changeMonitorObserver: NSObjectProtocol?
 
     // MARK: - Life Cycle
     
@@ -58,10 +59,12 @@ class MasterViewController: UIViewController {
         super.viewDidLoad()
         splitViewController?.preferredDisplayMode = .allVisible
         
+        
         reloadTestData()
         updateDataSource()
         updateUI()
         updateGesture()
+        updateNotificationCenter()
         
     }
     
@@ -118,15 +121,24 @@ class MasterViewController: UIViewController {
             let dVC = segue.destination as? DetailViewController
             dVC?.setTabSelected(type: tabSelected)
             
-            let rowIndex = tableView.indexPathForSelectedRow!.row
+            var rowIndex = Int()
+            
+            // 透過點擊monitor button取得tableview cell row index
+            if let index = sender as? Int {
+                rowIndex = index
+            }
+            // 點擊tableViewCell直接取得row index
+            else {
+                rowIndex = tableView.indexPathForSelectedRow!.row
+            }
             
             switch tabSelected {
                 
             case .GROUP:
-                dVC?.updateGroup(groupsVo[rowIndex])
+                dVC?.updateGroup(groups[rowIndex])
                 
             case .MEMBER:
-                dVC?.updateMember(membersVo[rowIndex])
+                dVC?.updateMember(members[rowIndex])
                 
             case .NONE:
                 break
@@ -140,13 +152,17 @@ class MasterViewController: UIViewController {
 
 extension MasterViewController {
     
+    private func updateNotificationCenter() {
+        changeMonitorObserver = NotificationCenter.default.addObserver(forName: CHANGE_MONITOR_NOTIFY_KEY, object: nil, queue: nil, using: changeMonitor)
+    }
+    
     private func updateDataSource() {
         searchTextField.delegate = self
     }
     
     private func reloadTestData() {
         for (index, _) in groupsName.enumerated() {
-            groupsVo.append(
+            groups.append(
                 GroupVo(
                     name: groupsName[index],
                     count: groupsCount[index],
@@ -159,7 +175,7 @@ extension MasterViewController {
         }
         
         for (index, _) in membersName.enumerated() {
-            membersVo.append(
+            members.append(
                 MemberVo(
                     name: membersName[index],
                     imageName: nil,
@@ -215,7 +231,7 @@ extension MasterViewController {
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .GROUP)
         tableViewDelegate?.registerCell(cellName: GROUP_TABLE_VIEW_CELL, cellId: GROUP_TABLE_VIEW_CELL)
-        tableViewDelegate?.updateGroups(groupsVo)
+        tableViewDelegate?.updateGroups(groups)
         tableViewDelegate?.reloadUI()
     }
     
@@ -235,7 +251,7 @@ extension MasterViewController {
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .MEMBER)
         tableViewDelegate?.registerCell(cellName: MEMBER_TABLE_VIEW_CELL, cellId: MEMBER_TABLE_VIEW_CELL)
-        tableViewDelegate?.updateMembers(membersVo)
+        tableViewDelegate?.updateMembers(members)
         tableViewDelegate?.reloadUI()
     }
     
@@ -248,6 +264,23 @@ extension MasterViewController {
         )
     }
 }
+
+// MARK: - Notification Methods
+
+extension MasterViewController {
+    func changeMonitor(notification: Notification) -> Void {
+        if let rowIndex = notification.userInfo?[CHANGE_MONITOR_USER_KEY] as? Int {
+            let group = groups[rowIndex]
+            group.notifyState = !(group.notifyState)
+            tableViewDelegate?.updateGroup(group)
+            tableViewDelegate?.reloadUI()
+            
+            performSegue(withIdentifier: "showDetail", sender: rowIndex)
+        }
+        
+    }
+}
+
 
 // MARK: - Event Methods
 

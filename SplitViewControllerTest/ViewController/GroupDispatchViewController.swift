@@ -175,7 +175,7 @@ extension GroupDispatchViewController {
 
 extension GroupDispatchViewController {
     func dropSelectedGroup(notification: Notification) -> Void {
-        if let rowIndex = notification.userInfo?[REMOVE_SELECTED_GROUP_BUTTON_NOTIFY_USER_KEY] as? Int {
+        if let rowIndex = notification.userInfo?[DROP_SELECTED_GROUP_USER_KEY] as? Int {
             
             tableViewDelegate?.deselectGroup(rowIndex: rowIndex)
             tableViewDelegate?.reloadUI()

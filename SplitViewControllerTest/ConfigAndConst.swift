@@ -49,10 +49,11 @@ let SPLIT_VIEW_CONTROLLER_HEIGHT       = "splitViewControllerHeight"
 
 // Notification
 let DROP_SELECTED_GROUP_NOTIFY_KEY = NSNotification.Name(rawValue: "dropSelectedGroupNotifyKey")
+let CHANGE_MONITOR_NOTIFY_KEY = NSNotification.Name(rawValue: "changeMonitorNotifyKey")
 
 // Notification userInfo
-let REMOVE_SELECTED_GROUP_BUTTON_NOTIFY_USER_KEY = "removeSelectedGroupButton"
-
+let DROP_SELECTED_GROUP_USER_KEY = "dropSelectedGroupUserKey"
+let CHANGE_MONITOR_USER_KEY = "changeMonitorUserKey"
 
 //通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
