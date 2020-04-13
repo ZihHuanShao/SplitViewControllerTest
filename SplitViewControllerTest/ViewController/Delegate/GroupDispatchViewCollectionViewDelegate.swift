@@ -1,5 +1,5 @@
 //
-//  GroupDispatchCollectionViewDelegate.swift
+//  GroupDispatchViewCollectionViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by kokome maxkit on 2020/4/8.
@@ -9,7 +9,17 @@
 import Foundation
 import UIKit
 
-class GroupDispatchCollectionViewDelegate: NSObject {
+private class CellData {
+    var tableRowIndex: Int?
+    var groupVo: GroupVo?
+    
+    init(tableRowIndex: Int, _ groupVo: GroupVo) {
+        self.tableRowIndex = tableRowIndex
+        self.groupVo = groupVo
+    }
+}
+
+class GroupDispatchViewCollectionViewDelegate: NSObject {
     
     // MARK: - Properties
     
@@ -17,7 +27,9 @@ class GroupDispatchCollectionViewDelegate: NSObject {
     fileprivate weak var collectionView: UICollectionView?
     
     // 目前所挑選要調度的群組
-    fileprivate var selectedGroups = [SelectedGroupInfo]()
+    fileprivate var selectedGroups = [SelectedGroupVo]()
+    
+    fileprivate var cellsData = [CellData]()
     
     // MARK: - initializer
     
@@ -31,9 +43,23 @@ class GroupDispatchCollectionViewDelegate: NSObject {
     
 }
 
+// MARK: - Private Methods
+
+extension GroupDispatchViewCollectionViewDelegate {
+    private func reloadCellData() {
+        cellsData.removeAll()
+        
+        for group in selectedGroups {
+            if let groupVo = group.groupVo , let tableRowIndex = group.tableRowIndex {
+                cellsData.append(CellData(tableRowIndex: tableRowIndex, groupVo))
+            }
+        }
+    }
+}
+
 // MARK: - Public Methods
 
-extension GroupDispatchCollectionViewDelegate {
+extension GroupDispatchViewCollectionViewDelegate {
     
     func appendSelectedGroup(tableRowIndex: Int, _ selectedGroupVo: GroupVo) {
         
@@ -51,12 +77,7 @@ extension GroupDispatchCollectionViewDelegate {
         if isPickedup {
             selectedGroups.remove(at: collectionRowIndex)
         } else {
-            selectedGroups.append(
-                SelectedGroupInfo(
-                    tableRowIndex: tableRowIndex,
-                    groupVo: selectedGroupVo
-                )
-            )
+            selectedGroups.append(SelectedGroupVo(tableRowIndex: tableRowIndex, groupVo: selectedGroupVo))
         }
         
     }
@@ -86,13 +107,14 @@ extension GroupDispatchCollectionViewDelegate {
     }
     
     func reloadUI() {
+        reloadCellData()
         collectionView?.reloadData()
     }
 }
 
 // MARK: - UICollectionViewDataSource
 
-extension GroupDispatchCollectionViewDelegate: UICollectionViewDataSource {
+extension GroupDispatchViewCollectionViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedGroups.count
     }
@@ -100,14 +122,14 @@ extension GroupDispatchCollectionViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GROUP_DISPATCH_COLLECTION_VIEW_CELL, for: indexPath) as! GroupDispatchCollectionViewCell
 
-        let rowIndex = indexPath.row
+        let cellData = cellsData[indexPath.row]
         
-        if let tableRowIndex = selectedGroups[rowIndex].tableRowIndex {
+        if let tableRowIndex = cellData.tableRowIndex {
             cell.setTableRowIndex(tableRowIndex)
         }
         
-        cell.setGroupName(name: selectedGroups[rowIndex].groupVo?.name)
-        cell.setGroupImage(name: selectedGroups[rowIndex].groupVo?.imageName ?? "")
+        cell.setGroupName(name: cellData.groupVo?.name ?? "")
+        cell.setGroupImage(name: cellData.groupVo?.imageName ?? "")
         
         return cell
     }
@@ -117,13 +139,13 @@ extension GroupDispatchCollectionViewDelegate: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 
-extension GroupDispatchCollectionViewDelegate: UICollectionViewDelegate {
+extension GroupDispatchViewCollectionViewDelegate: UICollectionViewDelegate {
     
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension GroupDispatchCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
+extension GroupDispatchViewCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 80, height: 72)
     }

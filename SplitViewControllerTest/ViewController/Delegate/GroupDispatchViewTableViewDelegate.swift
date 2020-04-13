@@ -1,5 +1,5 @@
 //
-//  GroupDispatchTableViewDelegate.swift
+//  GroupDispatchViewTableViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by kokome maxkit on 2020/4/7.
@@ -9,15 +9,23 @@
 import Foundation
 import UIKit
 
-class GroupDispatchTableViewDelegate: NSObject {
+private class CellData {
+    var groupVo: GroupVo?
+    
+    init(_ groupVo: GroupVo) {
+        self.groupVo = groupVo
+    }
+}
+
+class GroupDispatchViewTableViewDelegate: NSObject {
     
     // MARK: - Properties
     
     fileprivate weak var viewController: GroupDispatchViewController?
     fileprivate weak var tableView: UITableView?
     fileprivate var tableViewExtendDelegate: GroupDispatchTableViewExtendDelegate?
-    fileprivate var groupCells = [GroupDispatchTableViewCell]()
-
+    
+    fileprivate var cellsData = [CellData]()
     fileprivate var groupsVo = [GroupVo]()
     
     // MARK: - initializer
@@ -33,23 +41,34 @@ class GroupDispatchTableViewDelegate: NSObject {
     
 }
 
+// MARK: - Private Methods
+
+extension GroupDispatchViewTableViewDelegate {
+    private func reloadCellData() {
+        cellsData.removeAll()
+        for groupVo in groupsVo {
+            cellsData.append(CellData(groupVo))
+        }
+
+    }
+}
 // MARK: - Public Methods
 
-extension GroupDispatchTableViewDelegate {
-        func updateGroupsVo(_ groupsVo: [GroupVo]) {
+extension GroupDispatchViewTableViewDelegate {
+    func updateGroupsVo(_ groupsVo: [GroupVo]) {
         self.groupsVo = groupsVo
     }
     
     func deselectGroup(rowIndex: Int) {
-        groupCells[rowIndex].disableCheckbox()
+        groupsVo[rowIndex].isSelected = false
     }
     
     func resetGroups() {
-        for cell in groupCells {
-            cell.disableCheckbox()
+        for groupVo in groupsVo {
+            groupVo.isSelected = false
         }
 
-        groupCells.removeAll()
+        cellsData.removeAll()
     }
     
     func registerCell(cellName: String, cellId: String) {
@@ -60,14 +79,14 @@ extension GroupDispatchTableViewDelegate {
     }
     
     func reloadUI() {
-        
+        reloadCellData()
         tableView?.reloadData()
     }
 }
 
 // MARK: - UITableViewDataSource
 
-extension GroupDispatchTableViewDelegate: UITableViewDataSource {
+extension GroupDispatchViewTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupsVo.count
     }
@@ -75,13 +94,15 @@ extension GroupDispatchTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_DISPATCH_TABLE_VIEW_CELL, for: indexPath) as! GroupDispatchTableViewCell
         
-        cell.selectionStyle = .none
-        cell.setGroupName(name: groupsVo[indexPath.row].name ?? "")
-        cell.setGroupImage(name: groupsVo[indexPath.row].imageName ?? "")
-        cell.setGroupMemberCount(groupsVo[indexPath.row].count ?? 0)
-        cell.setGroupDesc(desc: groupsVo[indexPath.row].desc ?? "")
+        let cellData = cellsData[indexPath.row]
         
-        groupCells.append(cell)
+        cell.selectionStyle = .none
+        cell.setGroupName(name: cellData.groupVo?.name ?? "")
+        cell.setGroupImage(name: cellData.groupVo?.imageName ?? "")
+        cell.setGroupMemberCount(cellData.groupVo?.count ?? 0)
+        cell.setGroupDesc(desc: cellData.groupVo?.desc ?? "")
+        
+        (cellData.groupVo?.isSelected == true) ? cell.enableCheckbox() : cell.disableCheckbox()
         
         
         return cell
@@ -94,18 +115,21 @@ extension GroupDispatchTableViewDelegate: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension GroupDispatchTableViewDelegate: UITableViewDelegate {
+extension GroupDispatchViewTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let rowIndex  = indexPath.row
         
-        // display checked
-        groupCells[rowIndex].triggerCheckbox()
-        
+        if let cellData = cellsData[rowIndex].groupVo {
+            cellData.isSelected = !(cellData.isSelected)
+        }
+
         //
         let selectedGroupVo = groupsVo[rowIndex]
         print("rowIndex: \(rowIndex), groupName: \(String(describing: selectedGroupVo.name))")
         tableViewExtendDelegate?.pickupGroup(tableRowIndex: rowIndex, selectedGroupVo: selectedGroupVo)
+        
+        reloadUI()
     }
 }
 

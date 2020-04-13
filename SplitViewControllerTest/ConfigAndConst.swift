@@ -14,19 +14,8 @@ let MAIN_MENU_ICON_MAP     = ["btn_menu_map_selected", "btn_menu_map_normal"]
 let MAIN_MENU_ICON_VIDEO   = ["btn_menu_video_selected", "btn_menu_video_normal"]
 let MAIN_MENU_ICON_HISTORY = ["btn_menu_history_selected", "btn_menu_history_normal"]
 
-//let MAIN_MENU_ICONS_UNSELECTED = [
-//    "btn_menu_ptt_normal",
-//    "btn_menu_map_normal",
-//    "btn_menu_video_normal",
-//    "btn_menu_history_normal"
-//]
-//
-//let MAIN_MENU_ICONS_SELECTED = [
-//    "btn_menu_ptt_selected",
-//    "btn_menu_map_selected",
-//    "btn_menu_video_selected",
-//    "btn_menu_history_selected"
-//]
+// 聯絡人資訊
+let MEMBER_PROFILE_TITLES = ["帳號", "SIP號碼", "國家", "電子信箱"]
 
 // Cell
 let GROUP_TABLE_VIEW_CELL  = "GroupTableViewCell"  // nib name & cell name (the same)
@@ -55,7 +44,7 @@ let CHANGE_MONITOR_NOTIFY_KEY = NSNotification.Name(rawValue: "changeMonitorNoti
 let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
 let CHANGE_MONITOR_USER_KEY = "changeMonitorUserKey"
 
-//通訊錄Tab
+// 通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
 let TAB_SELECTED_TITLE_COLOR   = 0xE94242 // 已選文字色碼
 let TAB_UNSELECTED_TITLE_COLOR = 0x9F9A94 // 未選文字色碼
@@ -75,14 +64,14 @@ enum OnlineType: Int {
     case OFFLINE    = 3
 }
 
-// struct
-struct SelectedGroupInfo {
-    var tableRowIndex: Int?
-//    var name: String?
-    var groupVo: GroupVo?
-    
+enum MemberProfileType: CaseIterable {
+    case USER_ID
+    case SIP_NUMBER
+    case COUNTRY
+    case EMAIL
 }
 
+// struct
 struct GroupInfo {
     var name: String?
     var count: Int?
@@ -95,6 +84,10 @@ struct GroupInfo {
 struct MemberInfo {
     var name: String?
     var imageName: String?
+    var userId: String?
+    var sipId: String?
+    var country: String?
+    var email: String?
     var onlineState = OnlineType.OFFLINE
     var isSelected = Bool()
 }

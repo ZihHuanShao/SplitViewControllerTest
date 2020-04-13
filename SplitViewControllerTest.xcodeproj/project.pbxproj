@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		D06DEECF244012960056A7E7 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DEECE244012960056A7E7 /* TestCase.swift */; };
 		D06DEED124405FE70056A7E7 /* UserVo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DEED024405FE70056A7E7 /* UserVo.swift */; };
-		D06E35B8243DC00C00E33C44 /* GroupDispatchCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E35B7243DC00B00E33C44 /* GroupDispatchCollectionViewDelegate.swift */; };
+		D06E35B8243DC00C00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E35B7243DC00B00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift */; };
 		D06E35BB243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E35B9243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift */; };
 		D06E35BC243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06E35BA243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib */; };
 		D06E35BE243DD1ED00E33C44 /* icon_member_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D06E35BD243DD1ED00E33C44 /* icon_member_delete.png */; };
@@ -74,7 +74,7 @@
 		D0E23680243C767B0009506F /* bg_ptt_animation7.png in Resources */ = {isa = PBXBuildFile; fileRef = D0E23646243C767A0009506F /* bg_ptt_animation7.png */; };
 		D0E23681243C767B0009506F /* bg_ptt_animation2.png in Resources */ = {isa = PBXBuildFile; fileRef = D0E23647243C767A0009506F /* bg_ptt_animation2.png */; };
 		D0E23682243C767B0009506F /* btn_member_reset.png in Resources */ = {isa = PBXBuildFile; fileRef = D0E23648243C767A0009506F /* btn_member_reset.png */; };
-		D0E23684243C7E760009506F /* GroupDispatchTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E23683243C7E760009506F /* GroupDispatchTableViewDelegate.swift */; };
+		D0E23684243C7E760009506F /* GroupDispatchViewTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E23683243C7E760009506F /* GroupDispatchViewTableViewDelegate.swift */; };
 		D0E23687243C818C0009506F /* GroupDispatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E23685243C818C0009506F /* GroupDispatchTableViewCell.swift */; };
 		D0E23688243C818C0009506F /* GroupDispatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E23686243C818C0009506F /* GroupDispatchTableViewCell.xib */; };
 		D0E2368B243C88060009506F /* icon_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = D0E23689243C88060009506F /* icon_selected.png */; };
@@ -95,7 +95,7 @@
 		F22F8B53242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8B52242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift */; };
 		F22F8B5D242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8B5C242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift */; };
 		F23C0DEA2432DC3700DD7A48 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C0DE92432DC3700DD7A48 /* MemberViewController.swift */; };
-		F23C0DEE2433139600DD7A48 /* MemberTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C0DED2433139600DD7A48 /* MemberTableViewDelegate.swift */; };
+		F23C0DEE2433139600DD7A48 /* MemberViewTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C0DED2433139600DD7A48 /* MemberViewTableViewDelegate.swift */; };
 		F23C0DF12433155600DD7A48 /* MemberProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C0DEF2433155600DD7A48 /* MemberProfileTableViewCell.swift */; };
 		F23C0DF22433155600DD7A48 /* MemberProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23C0DF02433155600DD7A48 /* MemberProfileTableViewCell.xib */; };
 		F2508003242B51AB003DBE79 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2508001242B51AB003DBE79 /* GroupTableViewCell.swift */; };
@@ -107,7 +107,7 @@
 /* Begin PBXFileReference section */
 		D06DEECE244012960056A7E7 /* TestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase.swift; sourceTree = "<group>"; };
 		D06DEED024405FE70056A7E7 /* UserVo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVo.swift; sourceTree = "<group>"; };
-		D06E35B7243DC00B00E33C44 /* GroupDispatchCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		D06E35B7243DC00B00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchViewCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		D06E35B9243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchCollectionViewCell.swift; sourceTree = "<group>"; };
 		D06E35BA243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDispatchCollectionViewCell.xib; sourceTree = "<group>"; };
 		D06E35BD243DD1ED00E33C44 /* icon_member_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_member_delete.png; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 		D0E23646243C767A0009506F /* bg_ptt_animation7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_ptt_animation7.png; sourceTree = "<group>"; };
 		D0E23647243C767A0009506F /* bg_ptt_animation2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_ptt_animation2.png; sourceTree = "<group>"; };
 		D0E23648243C767A0009506F /* btn_member_reset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_member_reset.png; sourceTree = "<group>"; };
-		D0E23683243C7E760009506F /* GroupDispatchTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchTableViewDelegate.swift; sourceTree = "<group>"; };
+		D0E23683243C7E760009506F /* GroupDispatchViewTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchViewTableViewDelegate.swift; sourceTree = "<group>"; };
 		D0E23685243C818C0009506F /* GroupDispatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchTableViewCell.swift; sourceTree = "<group>"; };
 		D0E23686243C818C0009506F /* GroupDispatchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDispatchTableViewCell.xib; sourceTree = "<group>"; };
 		D0E23689243C88060009506F /* icon_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_selected.png; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 		F22F8B52242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		F22F8B5C242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchCenterSplitViewController.swift; sourceTree = "<group>"; };
 		F23C0DE92432DC3700DD7A48 /* MemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
-		F23C0DED2433139600DD7A48 /* MemberTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableViewDelegate.swift; sourceTree = "<group>"; };
+		F23C0DED2433139600DD7A48 /* MemberViewTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewTableViewDelegate.swift; sourceTree = "<group>"; };
 		F23C0DEF2433155600DD7A48 /* MemberProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberProfileTableViewCell.swift; sourceTree = "<group>"; };
 		F23C0DF02433155600DD7A48 /* MemberProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberProfileTableViewCell.xib; sourceTree = "<group>"; };
 		F2508001242B51AB003DBE79 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
@@ -302,10 +302,10 @@
 		F21E21FD2431F1B2001AE003 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				D0E23683243C7E760009506F /* GroupDispatchTableViewDelegate.swift */,
-				D06E35B7243DC00B00E33C44 /* GroupDispatchCollectionViewDelegate.swift */,
+				D0E23683243C7E760009506F /* GroupDispatchViewTableViewDelegate.swift */,
+				D06E35B7243DC00B00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift */,
 				F21E21F62431CA4F001AE003 /* GroupViewCollectionoViewDelegate.swift */,
-				F23C0DED2433139600DD7A48 /* MemberTableViewDelegate.swift */,
+				F23C0DED2433139600DD7A48 /* MemberViewTableViewDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -547,9 +547,9 @@
 				F22F8B5D242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift in Sources */,
 				F20CCF332429FC8000048BA3 /* DetailViewController.swift in Sources */,
 				F20CCF312429F61200048BA3 /* MasterViewController.swift in Sources */,
-				D0E23684243C7E760009506F /* GroupDispatchTableViewDelegate.swift in Sources */,
-				F23C0DEE2433139600DD7A48 /* MemberTableViewDelegate.swift in Sources */,
-				D06E35B8243DC00C00E33C44 /* GroupDispatchCollectionViewDelegate.swift in Sources */,
+				D0E23684243C7E760009506F /* GroupDispatchViewTableViewDelegate.swift in Sources */,
+				F23C0DEE2433139600DD7A48 /* MemberViewTableViewDelegate.swift in Sources */,
+				D06E35B8243DC00C00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift in Sources */,
 				F21E21D0243186C8001AE003 /* GroupViewController.swift in Sources */,
 				D06DEED124405FE70056A7E7 /* UserVo.swift in Sources */,
 				F23C0DEA2432DC3700DD7A48 /* MemberViewController.swift in Sources */,

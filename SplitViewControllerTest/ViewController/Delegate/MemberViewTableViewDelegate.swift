@@ -1,5 +1,5 @@
 //
-//  MemberTableViewDelegate.swift
+//  MemberViewTableViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by maxkitmac on 2020/3/31.
@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 
-class MemberTableViewDelegate: NSObject {
+class MemberViewTableViewDelegate: NSObject {
     
     // MARK: - Properties
     
     fileprivate weak var viewController: MemberViewController?
     fileprivate weak var tableView: UITableView?
     fileprivate var profileTitles = [String]()
+    fileprivate var memberVo: MemberVo?
     
     // MARK: - initializer
     
@@ -30,7 +31,11 @@ class MemberTableViewDelegate: NSObject {
 
 // MARK: - Public Methods
 
-extension MemberTableViewDelegate {
+extension MemberViewTableViewDelegate {
+    func updateMemberVo(_ memberVo: MemberVo) {
+        self.memberVo = memberVo
+    }
+    
     func registerCell(cellName: String, cellId: String) {
         tableView?.register(
             UINib(nibName: cellName, bundle: nil),
@@ -49,16 +54,19 @@ extension MemberTableViewDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension MemberTableViewDelegate: UITableViewDataSource {
+extension MemberViewTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 目前只有四個欄位(帳號/ SIP號碼/ 國家/ 電子信箱)
-        return 4
+        return MemberProfileType.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MEMBER_PROFILE_TABLE_VIEW_CELL, for: indexPath) as! MemberProfileTableViewCell
-        cell.setProfileTitle(title: profileTitles[indexPath.row])
-        cell.setProfileDesc(desc: "123")
+        
+        if let _memberVo = memberVo {
+            cell.updateCell(MemberProfileType.allCases[indexPath.row], memberVo: _memberVo)
+        }
+        
         return cell
     }
     
@@ -70,6 +78,6 @@ extension MemberTableViewDelegate: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension MemberTableViewDelegate: UITableViewDelegate {
+extension MemberViewTableViewDelegate: UITableViewDelegate {
     
 }

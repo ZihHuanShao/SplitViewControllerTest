@@ -62,6 +62,10 @@ class MasterViewController: UIViewController {
         
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(changeMonitorObserver!)
+    }
+    
     /*
     // 點擊空白處讓鍵盤消失, 同dismissKeyBoard(), 不知有什麼差別, 暫時先使用dismissKeyBoard()
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -173,6 +177,10 @@ extension MasterViewController {
                 MemberVo(
                     name: member.name,
                     imageName: member.imageName,
+                    userId: member.userId,
+                    sipId: member.sipId,
+                    country: member.country,
+                    email: member.email,
                     onlineState: member.onlineState,
                     isSelected: member.isSelected
                 )

@@ -21,7 +21,7 @@ class GroupDispatchTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    fileprivate var isChecked: Bool? = nil
+
     
     // MARK: - Life Cycle
     
@@ -43,12 +43,6 @@ extension GroupDispatchTableViewCell {
         groupImage.layer.cornerRadius = groupImage.frame.size.width / 2
         groupImage.clipsToBounds      = true
         groupImage.backgroundColor    = .lightGray
-        
-        if let _isChecked = isChecked {
-            (_isChecked == true) ? enableCheckbox() : disableCheckbox()
-        } else {
-            disableCheckbox()
-        }
     }
 }
 
@@ -73,22 +67,12 @@ extension GroupDispatchTableViewCell {
         groupDesc.text = desc
     }
     
-    func triggerCheckbox() {
-        
-        if let _isChecked = isChecked {
-            (_isChecked == true) ? disableCheckbox() : enableCheckbox()
-        } else {
-            enableCheckbox()
-        }
-    }
     
     func enableCheckbox() {
-        isChecked = true
         checkboxImage.image = UIImage(named: "icon_selected")
     }
     
     func disableCheckbox() {
-        isChecked = false
         checkboxImage.image = UIImage(named: "icon_unselected")
     }
 

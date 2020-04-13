@@ -18,26 +18,18 @@ class DetailViewController: UIViewController {
     // MARK: - Properties
     
     fileprivate var tabSelected = TabType.NONE
-    
     fileprivate var groupVo:  GroupVo?
     fileprivate var memberVo: MemberVo?
+    fileprivate var mainMenuIconsVo = [MainMenuIconVo]()
     
     // Delegate
     fileprivate var collectionViewDelegate: DetailViewCollectionViewDelegate?
     
-    fileprivate var mainMenuIconsVo = [MainMenuIconVo]()
-    
-    let mainMenuIcons = [
-        MainMenuIconInfo(selectedIcon: MAIN_MENU_ICON_PTT[0], unselectedIcon: MAIN_MENU_ICON_PTT[1]),
-        MainMenuIconInfo(selectedIcon: MAIN_MENU_ICON_MAP[0], unselectedIcon: MAIN_MENU_ICON_MAP[1]),
-        MainMenuIconInfo(selectedIcon: MAIN_MENU_ICON_VIDEO[0], unselectedIcon: MAIN_MENU_ICON_VIDEO[1]),
-        MainMenuIconInfo(selectedIcon: MAIN_MENU_ICON_HISTORY[0], unselectedIcon: MAIN_MENU_ICON_HISTORY[1])
-    ]
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadTestData()
+        reloadMainMenuData()
         
         // Main menu
         collectionViewDelegate = DetailViewCollectionViewDelegate(detailViewController: self, collectionView: collectionView)
@@ -47,38 +39,23 @@ class DetailViewController: UIViewController {
         switch tabSelected {
             
         case .GROUP:
-            let groupVC = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
+            let groupViewController = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
             
             if let _groupVo = groupVo {
-                groupVC.setGroupName(name: _groupVo.name ?? "")
-                groupVC.setGroupNumber(_groupVo.count ?? 0)
-                if _groupVo.notifyState {
-                    groupVC.setMonitorImageName(name: "icon_titile_notify_on")
-                } else {
-                    groupVC.setMonitorImageName(name: "icon_titile_notify_off")
-                }
+                groupViewController.updateGroupVo(_groupVo)
             }
 
+            setChildView(viewController: groupViewController)
             
-            self.addChild(groupVC)
-            groupVC.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-            self.containerView.addSubview(groupVC.view)
-            
-            groupVC.didMove(toParent: self)
         
         case .MEMBER:
-            let memberVC = UIStoryboard(name: STORYBOARD_NAME_MEMBER, bundle: nil).instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+            let memberViewController = UIStoryboard(name: STORYBOARD_NAME_MEMBER, bundle: nil).instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
             
             if let _memberVo = memberVo {
-                    memberVC.setMemberName(name: _memberVo.name ?? "")
-                    memberVC.setMemberImage(name: _memberVo.imageName ?? "")
+                memberViewController.updateMemberVo(_memberVo)
             }
             
-            self.addChild(memberVC)
-            memberVC.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-            self.containerView.addSubview(memberVC.view)
-            
-            memberVC.didMove(toParent: self)
+            setChildView(viewController: memberViewController)
         
         case .NONE:
             break
@@ -105,7 +82,14 @@ extension DetailViewController {
 // MARK: - Private Methods
 
 extension DetailViewController {
-    private func reloadTestData() {
+    private func reloadMainMenuData() {
+        let mainMenuIcons = [
+            MainMenuIconInfo(selectedIcon: MAIN_MENU_ICON_PTT[0], unselectedIcon: MAIN_MENU_ICON_PTT[1]),
+            MainMenuIconInfo(selectedIcon: MAIN_MENU_ICON_MAP[0], unselectedIcon: MAIN_MENU_ICON_MAP[1]),
+            MainMenuIconInfo(selectedIcon: MAIN_MENU_ICON_VIDEO[0], unselectedIcon: MAIN_MENU_ICON_VIDEO[1]),
+            MainMenuIconInfo(selectedIcon: MAIN_MENU_ICON_HISTORY[0], unselectedIcon: MAIN_MENU_ICON_HISTORY[1])
+        ]
+        
         for mainMenuIcon in mainMenuIcons {
             mainMenuIconsVo.append(
                 MainMenuIconVo(
@@ -114,6 +98,30 @@ extension DetailViewController {
                     isSelected: false
                 )
             )
+        }
+    }
+    
+    private func setChildView(viewController: UIViewController) {
+        switch tabSelected {
+            
+        case .GROUP:
+            let groupViewController = viewController as! GroupViewController
+            self.addChild(groupViewController)
+            groupViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+            self.containerView.addSubview(groupViewController.view)
+            
+            groupViewController.didMove(toParent: self)
+            
+        case .MEMBER:
+            let memberViewController = viewController as! MemberViewController
+            self.addChild(memberViewController)
+            memberViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+            self.containerView.addSubview(memberViewController.view)
+            
+            memberViewController.didMove(toParent: self)
+            
+        case .NONE:
+            break
         }
     }
 }

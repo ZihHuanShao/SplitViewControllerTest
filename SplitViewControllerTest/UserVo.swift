@@ -29,12 +29,20 @@ class GroupVo {
 class MemberVo {
     var name: String?
     var imageName: String?
+    var userId: String?
+    var sipId: String?
+    var country: String?
+    var email: String?
     var onlineState = OnlineType.OFFLINE
     var isSelected = Bool()
     
-    init(name: String?, imageName: String?, onlineState: OnlineType, isSelected: Bool) {
+    init(name: String?, imageName: String?, userId: String?, sipId: String?, country: String?, email: String?, onlineState: OnlineType, isSelected: Bool) {
         self.name = name
         self.imageName = imageName
+        self.userId = userId
+        self.sipId = sipId
+        self.country = country
+        self.email = email
         self.onlineState = onlineState
         self.isSelected = isSelected
     }
@@ -52,3 +60,15 @@ class MainMenuIconVo {
         self.isSelected = isSelected
     }
 }
+
+
+class SelectedGroupVo {
+    var tableRowIndex: Int?
+    var groupVo: GroupVo?
+    
+    init(tableRowIndex: Int?, groupVo: GroupVo?) {
+        self.tableRowIndex = tableRowIndex
+        self.groupVo = groupVo
+    }
+}
+

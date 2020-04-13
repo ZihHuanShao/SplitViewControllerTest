@@ -22,10 +22,10 @@ class GroupDispatchViewController: UIViewController {
     
     
     // tableview
-    fileprivate var tableViewDelegate: GroupDispatchTableViewDelegate?
+    fileprivate var tableViewDelegate: GroupDispatchViewTableViewDelegate?
     
     // collectionview
-    fileprivate var collectionViewDelegate: GroupDispatchCollectionViewDelegate?
+    fileprivate var collectionViewDelegate: GroupDispatchViewCollectionViewDelegate?
     
     // Original Test data
     fileprivate var groups = [String]()
@@ -52,7 +52,7 @@ class GroupDispatchViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-//        NotificationCenter.default.removeObserver(dropSelectedGroupObserver)
+        NotificationCenter.default.removeObserver(dropSelectedGroupObserver!)
     }
     
     // MARK: - Actions
@@ -128,7 +128,7 @@ extension GroupDispatchViewController {
         // TableView
         //
         
-        tableViewDelegate = GroupDispatchTableViewDelegate(groupDispatchViewController: self, tableView: tableView)
+        tableViewDelegate = GroupDispatchViewTableViewDelegate(groupDispatchViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: GROUP_DISPATCH_TABLE_VIEW_CELL, cellId: GROUP_DISPATCH_TABLE_VIEW_CELL)
         
         tableViewDelegate?.updateGroupsVo(groupsVo)
@@ -139,7 +139,7 @@ extension GroupDispatchViewController {
         // CollectionView
         //
         
-        collectionViewDelegate = GroupDispatchCollectionViewDelegate(groupDispatchViewController: self, collectionView: collectionView)
+        collectionViewDelegate = GroupDispatchViewCollectionViewDelegate(groupDispatchViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: GROUP_DISPATCH_COLLECTION_VIEW_CELL, cellId: GROUP_DISPATCH_COLLECTION_VIEW_CELL)
         
         collectionViewDelegate?.reloadUI()

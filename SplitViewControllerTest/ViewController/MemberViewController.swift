@@ -20,12 +20,10 @@ class MemberViewController: UIViewController {
     
     // MARK: - Properties
     
-    fileprivate var memberImageName: String?
-    fileprivate var memberName: String?
-    let profileTitles = ["帳號", "SIP號碼", "國家", "電子信箱"]
+    fileprivate var memberVo: MemberVo?
     
     // tableview
-    fileprivate var tableViewDelegate: MemberTableViewDelegate?
+    fileprivate var tableViewDelegate: MemberViewTableViewDelegate?
     
     // MARK: - Life Cycle
     
@@ -33,48 +31,33 @@ class MemberViewController: UIViewController {
         super.viewDidLoad()
         updateUI()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 // MARK: - Public Methods
 
 extension MemberViewController {
+    func updateMemberVo(_ memberVo: MemberVo) {
+        self.memberVo = memberVo
+    }
+    
     func updateUI() {
         memberImage.layer.cornerRadius = memberImage.frame.size.width / 2
         memberImage.clipsToBounds      = true
         
-        if let _memberImageName = memberImageName {
-            if let image = UIImage(named: _memberImageName) {
-                memberImage.image = image
-            }
+        guard let mVo = memberVo else {
+            return
         }
         
-        if let _memberName = memberName {
-            memberNameLabel.text = _memberName
-        }
+        memberNameLabel.text = mVo.name
+        memberImage.image = UIImage(named: mVo.imageName ?? "")
         
-        tableViewDelegate = MemberTableViewDelegate(memberViewController: self, tableView: tableView)
+        tableViewDelegate = MemberViewTableViewDelegate(memberViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: MEMBER_PROFILE_TABLE_VIEW_CELL, cellId: MEMBER_PROFILE_TABLE_VIEW_CELL)
-        tableViewDelegate?.setProfileTitles(profileTitles)
+        if let _memberVo = memberVo {
+            tableViewDelegate?.updateMemberVo(_memberVo)
+        }
+        
         tableViewDelegate?.reloadUI()
-    }
-    
-    func setMemberImage(name: String) {
-        memberImageName = name
-    }
-    
-    func setMemberName(name: String) {
-        memberName = name
     }
 }

@@ -31,6 +31,29 @@ class MemberProfileTableViewCell: UITableViewCell {
 // MARK: - Public Methods
 
 extension MemberProfileTableViewCell {
+    
+    func updateCell(_ type: MemberProfileType, memberVo: MemberVo) {
+        switch type {
+      
+        case .USER_ID:
+            profileTitleLabel.text = MEMBER_PROFILE_TITLES[0]
+            profileDescLabel.text  = memberVo.userId
+            
+        case .SIP_NUMBER:
+            profileTitleLabel.text = MEMBER_PROFILE_TITLES[1]
+            profileDescLabel.text  = memberVo.sipId
+            
+        case .COUNTRY:
+            profileTitleLabel.text = MEMBER_PROFILE_TITLES[2]
+            profileDescLabel.text  = memberVo.country
+            
+        case .EMAIL:
+            profileTitleLabel.text = MEMBER_PROFILE_TITLES[3]
+            profileDescLabel.text  = memberVo.email
+            
+        }
+    }
+    
     func setProfileTitle(title: String) {
         profileTitleLabel.text = title
     }

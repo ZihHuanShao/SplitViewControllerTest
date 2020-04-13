@@ -18,9 +18,8 @@ class GroupViewController: UIViewController {
     
     // MARK: - Properties
     
-    fileprivate var monitorImageName: String?
-    fileprivate var groupNumber: Int?
-    fileprivate var groupName: String?
+    fileprivate var groupVo: GroupVo?
+    
     fileprivate var collectionViewDelegate: GroupCollectionoViewDelegate?
     
     // MARK: - Life Cycle
@@ -40,38 +39,35 @@ class GroupViewController: UIViewController {
 
 // MARK: - Public Methods
 extension GroupViewController {
-    func setMonitorImageName(name: String) {
-        monitorImageName = name
-    }
-    
-    func setGroupNumber(_ number: Int) {
-        groupNumber = number
-    }
-    
-    func setGroupName(name: String) {
-        groupName = name
+    func updateGroupVo(_ groupVo: GroupVo) {
+        self.groupVo = groupVo
     }
 }
 
 // MARK: - Private Methods
 extension GroupViewController {
-    func updateUI() {
-        if let _monitorImageName = monitorImageName {
-            if let image = UIImage(named: _monitorImageName) {
-                monitorImage.image = image
-            }
-        }
-        if let _groupName = groupName {
-            groupNameLabel.text = _groupName
+    private func updateUI() {
+        
+        guard let gVo = groupVo else {
+            return
         }
         
+        groupNameLabel.text = gVo.name
+        (gVo.notifyState == true) ? enableMonitor() : disableMonitor()
+        
+
         collectionViewDelegate = GroupCollectionoViewDelegate(groupViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: GROUP_COLLECTION_VIEW_CELL, cellId: GROUP_COLLECTION_VIEW_CELL)
+        collectionViewDelegate?.setGroupNumber(gVo.count ?? 0)
         
-        if let _groupNumber = groupNumber {
-            collectionViewDelegate?.setGroupNumber(_groupNumber)
-        }
         collectionViewDelegate?.reloadUI()
     }
     
+    private func enableMonitor() {
+        monitorImage.image = UIImage(named: "icon_titile_notify_on")
+    }
+    
+    private func disableMonitor() {
+        monitorImage.image = UIImage(named: "icon_titile_notify_off")
+    }
 }
