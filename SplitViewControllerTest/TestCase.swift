@@ -9,71 +9,33 @@
 import Foundation
 
 //
-// 群組
+// 群組 (name, imageName, count, desc, notifyState, isSelected)
 //
 
-let TSET_GROUPS = [
-    "Martin Group",
-    "Charley Group",
-    "Fred Group",
-    "May Group",
-    "Michael Group",
-    "Maxkit Group",
-    "Test Group 001",
-    "Test Group 002",
-    "Test Group 003",
-    "Test Group 004",
-    "Test Group 005",
-    "Test Group 006"
-]
-
-let TSET_GROUPS_DESC = [
-    "Martin Group",
-    "Charley Group",
-    "Fred Group",
-    "May Group",
-    "Michael Group",
-    "Maxkit Group",
-    "Test Group 001",
-    "Test Group 002",
-    "Test Group 003",
-    "Test Group 004",
-    "Test Group 005",
-    "Test Group 006"
-]
-
-let TSET_GROUPS_COUNT = [
-    6,
-    35,
-    18,
-    26,
-    50,
-    40,
-    17,
-    63,
-    8,
-    27,
-    35,
-    41
+let TEST_GROUPS: [GroupInfo] =
+    [GroupInfo(name: "Martin Group", count: 6, imageName: nil, desc: "Martin Group", notifyState: false, isSelected: false),
+     GroupInfo(name: "Charley Group", count: 35, imageName: nil, desc: "Charley Group", notifyState: false, isSelected: false),
+     GroupInfo(name: "Fred Group", count: 18, imageName: nil, desc: "Fred Group", notifyState: false, isSelected: false),
+     GroupInfo(name: "May Group", count: 26, imageName: nil, desc: "May Group", notifyState: false, isSelected: false),
+     GroupInfo(name: "Michael Group", count: 50, imageName: nil, desc: "Michael Group", notifyState: false, isSelected: false),
+     GroupInfo(name: "Maxkit Group", count: 40, imageName: nil, desc: "Maxkit Group", notifyState: false, isSelected: false),
+     GroupInfo(name: "Test Group 00001", count: 17, imageName: nil, desc: "Test Group 00001", notifyState: false, isSelected: false),
+     GroupInfo(name: "Test Group 00002", count: 63, imageName: nil, desc: "Test Group 00002", notifyState: false, isSelected: false),
+     GroupInfo(name: "Test Group 00003", count: 38, imageName: nil, desc: "Test Group 00003", notifyState: false, isSelected: false),
+     GroupInfo(name: "Test Group 00004", count: 27, imageName: nil, desc: "Test Group 00004", notifyState: false, isSelected: false),
+     GroupInfo(name: "Test Group 00005", count: 47, imageName: nil, desc: "Test Group 00005", notifyState: false, isSelected: false),
+     GroupInfo(name: "Test Group 00006", count: 21, imageName: nil, desc: "Test Group 00006", notifyState: false, isSelected: false)
+     
 ]
 
 //
 // 聯絡人
 //
 
-let TEST_MEMBERS = [
-    "Martin",
-    "Charley",
-    "Fred",
-    "Michael",
-    "MayMay"
-]
-
-let TEST_MEMBERS_ONLINE_STATE = [
-    OnlineType.AVAILABLE,
-    OnlineType.OFFLINE,
-    OnlineType.BUSY,
-    OnlineType.NO_DISTURB,
-    OnlineType.OFFLINE
-]
-                                    
+let TEST_MEMBERS: [MemberInfo] =
+    [MemberInfo(name: "Martin", imageName: nil, onlineState: .AVAILABLE, isSelected: false),
+     MemberInfo(name: "Charley", imageName: nil, onlineState: .OFFLINE, isSelected: false),
+     MemberInfo(name: "Fred", imageName: nil, onlineState: .BUSY, isSelected: false),
+     MemberInfo(name: "Michael", imageName: nil, onlineState: .NO_DISTURB, isSelected: false),
+     MemberInfo(name: "MayMay", imageName: nil, onlineState: .OFFLINE, isSelected: false)
+    ]

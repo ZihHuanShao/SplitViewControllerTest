@@ -68,7 +68,7 @@ extension AppDelegate {
 }
 
 extension AppDelegate {
-    func showGroupDispatch(groups: [String], groupsCount: [Int], groupsDesc: [String]) {
+    func showGroupDispatch(groupsVo: [GroupVo]) {
         // grab a screenshot
         let screenshot = grabScreenshot()
 
@@ -82,10 +82,8 @@ extension AppDelegate {
         let storyboard = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil)
         let groupDispatchViewController = storyboard.instantiateViewController(withIdentifier: "Overlay") as! GroupDispatchViewController
         
-        groupDispatchViewController.setGroupsData(data: groups)
-        groupDispatchViewController.setgroupsCount(numbers: groupsCount)
-        groupDispatchViewController.setgroupsDesc(descs: groupsDesc)
-        
+        groupDispatchViewController.updateGroupsVo(groupsVo)
+
         groupDispatchViewController.modalPresentationStyle = .formSheet
         
         // swap the split view

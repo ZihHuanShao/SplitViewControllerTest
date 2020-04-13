@@ -17,9 +17,8 @@ class GroupDispatchTableViewDelegate: NSObject {
     fileprivate weak var tableView: UITableView?
     fileprivate var tableViewExtendDelegate: GroupDispatchTableViewExtendDelegate?
     fileprivate var groupCells = [GroupDispatchTableViewCell]()
-    fileprivate var groups = [String]()
-    fileprivate var groupsDesc = [String]()
-    fileprivate var groupsCount = [Int]()
+
+    fileprivate var groupsVo = [GroupVo]()
     
     // MARK: - initializer
     
@@ -37,16 +36,8 @@ class GroupDispatchTableViewDelegate: NSObject {
 // MARK: - Public Methods
 
 extension GroupDispatchTableViewDelegate {
-    func setGroups(data: [String]) {
-        groups = data
-    }
-    
-    func setgroupsDesc(descs: [String]) {
-        groupsDesc = descs
-    }
-    
-    func setgroupsCount(numbers: [Int]) {
-        groupsCount = numbers
+        func updateGroupsVo(_ groupsVo: [GroupVo]) {
+        self.groupsVo = groupsVo
     }
     
     func deselectGroup(rowIndex: Int) {
@@ -78,17 +69,17 @@ extension GroupDispatchTableViewDelegate {
 
 extension GroupDispatchTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups.count
+        return groupsVo.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_DISPATCH_TABLE_VIEW_CELL, for: indexPath) as! GroupDispatchTableViewCell
         
         cell.selectionStyle = .none
-        cell.setGroupName(name: groups[indexPath.row])
-        cell.setGroupMemberCount(groupsCount[indexPath.row])
-        cell.setGroupDesc(desc: groupsDesc[indexPath.row])
-        
+        cell.setGroupName(name: groupsVo[indexPath.row].name ?? "")
+        cell.setGroupImage(name: groupsVo[indexPath.row].imageName ?? "")
+        cell.setGroupMemberCount(groupsVo[indexPath.row].count ?? 0)
+        cell.setGroupDesc(desc: groupsVo[indexPath.row].desc ?? "")
         
         groupCells.append(cell)
         
@@ -106,14 +97,15 @@ extension GroupDispatchTableViewDelegate: UITableViewDataSource {
 extension GroupDispatchTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let rowIndex  = indexPath.row
+        
         // display checked
-        groupCells[indexPath.row].triggerCheckbox()
+        groupCells[rowIndex].triggerCheckbox()
         
         //
-        let rowIndex  = indexPath.row
-        let groupName = groups[rowIndex]
-        print("rowIndex: \(rowIndex), groupName: \(groupName)")
-        tableViewExtendDelegate?.pickupGroup(rowIndex: rowIndex, name: groupName)
+        let selectedGroupVo = groupsVo[rowIndex]
+        print("rowIndex: \(rowIndex), groupName: \(String(describing: selectedGroupVo.name))")
+        tableViewExtendDelegate?.pickupGroup(tableRowIndex: rowIndex, selectedGroupVo: selectedGroupVo)
     }
 }
 
@@ -122,6 +114,6 @@ extension GroupDispatchTableViewDelegate: UITableViewDelegate {
 protocol GroupDispatchTableViewExtendDelegate {
     
     // 選到的Group會被加入到CollectionView裡面
-    func pickupGroup(rowIndex: Int, name: String)
+    func pickupGroup(tableRowIndex: Int, selectedGroupVo: GroupVo)
     
 }

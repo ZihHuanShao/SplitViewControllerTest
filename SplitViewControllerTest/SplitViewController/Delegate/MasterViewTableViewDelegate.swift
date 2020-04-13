@@ -127,22 +127,23 @@ extension MasterViewTableViewDelegate {
 
 extension MasterViewTableViewDelegate {
     
-    func updateGroups(_ groups: [GroupVo]) {
-        self.groupsVo = groups
+    func updateGroups(_ groupsVo: [GroupVo]) {
+        self.groupsVo = groupsVo
     }
     
-    func updateMembers(_ members: [MemberVo]) {
-        self.membersVo = members
+    func updateMembers(_ membersVo: [MemberVo]) {
+        self.membersVo = membersVo
     }
     
-    func updateGroup(_ group: GroupVo) {
-        for groupVo in groupsVo {
-            if (groupVo.name == group.name) {
-                groupVo.count = group.count
-                groupVo.desc = group.desc
-                groupVo.imageName = group.imageName
-                groupVo.notifyState = group.notifyState
-                groupVo.isSelected = group.isSelected
+    // 更新某個group資訊
+    func updateGroup(_ groupVo: GroupVo) {
+        for _groupVo in groupsVo {
+            if (_groupVo.name == groupVo.name) {
+                _groupVo.count = groupVo.count
+                _groupVo.desc = groupVo.desc
+                _groupVo.imageName = groupVo.imageName
+                _groupVo.notifyState = groupVo.notifyState
+                _groupVo.isSelected = groupVo.isSelected
             }
         }
     }

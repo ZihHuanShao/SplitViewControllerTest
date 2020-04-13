@@ -31,6 +31,7 @@ class GroupDispatchViewController: UIViewController {
     fileprivate var groups = [String]()
     fileprivate var groupsDesc = [String]()
     fileprivate var groupsCount = [Int]()
+    fileprivate var groupsVo = [GroupVo]()
     
     var dropSelectedGroupObserver: NSObjectProtocol?
     
@@ -90,16 +91,8 @@ extension GroupDispatchViewController: UITextFieldDelegate {
 // MARK: - Public Methods
 
 extension GroupDispatchViewController {
-    func setGroupsData(data: [String]) {
-        groups = data
-    }
-    
-    func setgroupsDesc(descs: [String]) {
-        groupsDesc = descs
-    }
-    
-    func setgroupsCount(numbers: [Int]) {
-        groupsCount = numbers
+    func updateGroupsVo(_ groupsVo: [GroupVo]) {
+        self.groupsVo = groupsVo
     }
 }
 
@@ -108,7 +101,7 @@ extension GroupDispatchViewController {
 extension GroupDispatchViewController {
     
     private func updateNotificationCenter() {
-        dropSelectedGroupObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_GROUP_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedGroup)
+        dropSelectedGroupObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_GROUP_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedGroup)
     }
     
     private func updateSelfViewSize() {
@@ -137,9 +130,9 @@ extension GroupDispatchViewController {
         
         tableViewDelegate = GroupDispatchTableViewDelegate(groupDispatchViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: GROUP_DISPATCH_TABLE_VIEW_CELL, cellId: GROUP_DISPATCH_TABLE_VIEW_CELL)
-        tableViewDelegate?.setGroups(data: groups)
-        tableViewDelegate?.setgroupsDesc(descs: groupsDesc)
-        tableViewDelegate?.setgroupsCount(numbers: groupsCount)
+        
+        tableViewDelegate?.updateGroupsVo(groupsVo)
+        
         tableViewDelegate?.reloadUI()
         
         //
@@ -175,12 +168,12 @@ extension GroupDispatchViewController {
 
 extension GroupDispatchViewController {
     func dropSelectedGroup(notification: Notification) -> Void {
-        if let rowIndex = notification.userInfo?[DROP_SELECTED_GROUP_USER_KEY] as? Int {
+        if let rowIndex = notification.userInfo?[DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY] as? Int {
             
             tableViewDelegate?.deselectGroup(rowIndex: rowIndex)
             tableViewDelegate?.reloadUI()
             
-            collectionViewDelegate?.removeSelectedGroup(rowIndex: rowIndex)
+            collectionViewDelegate?.removeSelectedGroup(tableRowIndex: rowIndex)
             collectionViewDelegate?.reloadUI()
         }
         
@@ -191,9 +184,8 @@ extension GroupDispatchViewController {
 // MARK: - GroupDispatchTableViewExtendDelegate
 
 extension GroupDispatchViewController: GroupDispatchTableViewExtendDelegate {
-    func pickupGroup(rowIndex: Int, name: String) {
-     
-        collectionViewDelegate?.appendSelectedGroup(rowIndex: rowIndex, name: name)
+    func pickupGroup(tableRowIndex: Int, selectedGroupVo: GroupVo) {
+        collectionViewDelegate?.appendSelectedGroup(tableRowIndex: tableRowIndex, selectedGroupVo)
         collectionViewDelegate?.reloadUI()
     }
 }

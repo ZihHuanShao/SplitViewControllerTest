@@ -29,8 +29,6 @@ class GroupViewController: UIViewController {
         super.viewDidLoad()
         
         updateUI()
-        
-        
     }
     
     // MARK: - Actions

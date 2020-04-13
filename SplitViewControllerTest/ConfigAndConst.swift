@@ -48,11 +48,11 @@ let SPLIT_DETAIL_VIEW_CONTROLLER_WIDTH = "splitDetailViewControllerWidth"
 let SPLIT_VIEW_CONTROLLER_HEIGHT       = "splitViewControllerHeight"
 
 // Notification
-let DROP_SELECTED_GROUP_NOTIFY_KEY = NSNotification.Name(rawValue: "dropSelectedGroupNotifyKey")
+let DROP_SELECTED_GROUP_TABLE_CELL_NOTIFY_KEY = NSNotification.Name(rawValue: "dropSelectedGroupTableCellNotifyKey")
 let CHANGE_MONITOR_NOTIFY_KEY = NSNotification.Name(rawValue: "changeMonitorNotifyKey")
 
 // Notification userInfo
-let DROP_SELECTED_GROUP_USER_KEY = "dropSelectedGroupUserKey"
+let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
 let CHANGE_MONITOR_USER_KEY = "changeMonitorUserKey"
 
 //通訊錄Tab
@@ -77,8 +77,26 @@ enum OnlineType: Int {
 
 // struct
 struct SelectedGroupInfo {
-    var rowIndex: Int?
+    var tableRowIndex: Int?
+//    var name: String?
+    var groupVo: GroupVo?
+    
+}
+
+struct GroupInfo {
     var name: String?
+    var count: Int?
+    var imageName: String?
+    var desc: String?
+    var notifyState = Bool()
+    var isSelected = Bool()
+}
+
+struct MemberInfo {
+    var name: String?
+    var imageName: String?
+    var onlineState = OnlineType.OFFLINE
+    var isSelected = Bool()
 }
 
 struct MainMenuIconInfo {

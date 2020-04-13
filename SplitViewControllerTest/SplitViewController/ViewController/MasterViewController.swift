@@ -41,15 +41,9 @@ class MasterViewController: UIViewController {
     fileprivate var tableViewDelegate: MasterViewTableViewDelegate?
     
     // Original Test data
-    
-    let groupsName         = TSET_GROUPS
-    let groupsDesc         = TSET_GROUPS_DESC
-    let groupsCount        = TSET_GROUPS_COUNT
-    let membersName        = TEST_MEMBERS
-    let membersOnlineState = TEST_MEMBERS_ONLINE_STATE
-    
-    fileprivate var groups  = [GroupVo]()
-    fileprivate var members = [MemberVo]()
+
+    fileprivate var groupsVo  = [GroupVo]()
+    fileprivate var membersVo = [MemberVo]()
     
     var changeMonitorObserver: NSObjectProtocol?
 
@@ -135,10 +129,10 @@ class MasterViewController: UIViewController {
             switch tabSelected {
                 
             case .GROUP:
-                dVC?.updateGroup(groups[rowIndex])
+                dVC?.updateGroup(groupsVo[rowIndex])
                 
             case .MEMBER:
-                dVC?.updateMember(members[rowIndex])
+                dVC?.updateMember(membersVo[rowIndex])
                 
             case .NONE:
                 break
@@ -161,26 +155,26 @@ extension MasterViewController {
     }
     
     private func reloadTestData() {
-        for (index, _) in groupsName.enumerated() {
-            groups.append(
+        for group in TEST_GROUPS {
+            groupsVo.append(
                 GroupVo(
-                    name: groupsName[index],
-                    count: groupsCount[index],
-                    imageName: nil,
-                    desc: groupsDesc[index],
-                    notifyState: false,
-                    isSelected: false
+                    name: group.name,
+                    count: group.count,
+                    imageName: group.imageName,
+                    desc: group.desc,
+                    notifyState: group.notifyState,
+                    isSelected: group.isSelected
                 )
             )
         }
         
-        for (index, _) in membersName.enumerated() {
-            members.append(
+        for member in TEST_MEMBERS {
+            membersVo.append(
                 MemberVo(
-                    name: membersName[index],
-                    imageName: nil,
-                    onlineState: membersOnlineState[index],
-                    isSelected: false
+                    name: member.name,
+                    imageName: member.imageName,
+                    onlineState: member.onlineState,
+                    isSelected: member.isSelected
                 )
             )
         }
@@ -231,7 +225,7 @@ extension MasterViewController {
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .GROUP)
         tableViewDelegate?.registerCell(cellName: GROUP_TABLE_VIEW_CELL, cellId: GROUP_TABLE_VIEW_CELL)
-        tableViewDelegate?.updateGroups(groups)
+        tableViewDelegate?.updateGroups(groupsVo)
         tableViewDelegate?.reloadUI()
     }
     
@@ -251,7 +245,7 @@ extension MasterViewController {
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .MEMBER)
         tableViewDelegate?.registerCell(cellName: MEMBER_TABLE_VIEW_CELL, cellId: MEMBER_TABLE_VIEW_CELL)
-        tableViewDelegate?.updateMembers(members)
+        tableViewDelegate?.updateMembers(membersVo)
         tableViewDelegate?.reloadUI()
     }
     
@@ -270,7 +264,7 @@ extension MasterViewController {
 extension MasterViewController {
     func changeMonitor(notification: Notification) -> Void {
         if let rowIndex = notification.userInfo?[CHANGE_MONITOR_USER_KEY] as? Int {
-            let group = groups[rowIndex]
+            let group = groupsVo[rowIndex]
             group.notifyState = !(group.notifyState)
             tableViewDelegate?.updateGroup(group)
             tableViewDelegate?.reloadUI()
@@ -291,7 +285,7 @@ extension MasterViewController {
     
     @objc func showGroupDispatchDelayed() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.showGroupDispatch(groups: groupsName, groupsCount: groupsCount, groupsDesc: groupsDesc)
+        appDelegate?.showGroupDispatch(groupsVo: groupsVo)
     }
 }
 

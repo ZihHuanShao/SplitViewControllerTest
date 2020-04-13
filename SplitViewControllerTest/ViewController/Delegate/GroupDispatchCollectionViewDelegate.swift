@@ -35,37 +35,42 @@ class GroupDispatchCollectionViewDelegate: NSObject {
 
 extension GroupDispatchCollectionViewDelegate {
     
-    func appendSelectedGroup(rowIndex: Int, name: String) {
+    func appendSelectedGroup(tableRowIndex: Int, _ selectedGroupVo: GroupVo) {
         
         var isPickedup = false
-        var selectedGroupsIndex = Int()
+        var collectionRowIndex = Int()
         
         for (index, group) in selectedGroups.enumerated() {
-            if group.rowIndex == rowIndex {
+            if group.tableRowIndex == tableRowIndex {
                 // 已經被挑選了
                 isPickedup = true
-                selectedGroupsIndex = index
+                collectionRowIndex = index
             }
         }
         
         if isPickedup {
-            selectedGroups.remove(at: selectedGroupsIndex)
+            selectedGroups.remove(at: collectionRowIndex)
         } else {
-            selectedGroups.append(SelectedGroupInfo(rowIndex: rowIndex, name: name))
+            selectedGroups.append(
+                SelectedGroupInfo(
+                    tableRowIndex: tableRowIndex,
+                    groupVo: selectedGroupVo
+                )
+            )
         }
         
     }
     
-    func removeSelectedGroup(rowIndex: Int) {
-        var selectedGroupsIndex = Int()
+    func removeSelectedGroup(tableRowIndex: Int) {
+        var collectionRowIndex = Int()
         
         for (index, group) in selectedGroups.enumerated() {
-            if group.rowIndex == rowIndex {
-                selectedGroupsIndex = index
+            if group.tableRowIndex == tableRowIndex {
+                collectionRowIndex = index
             }
         }
         
-        selectedGroups.remove(at: selectedGroupsIndex)
+        selectedGroups.remove(at: collectionRowIndex)
         
     }
     
@@ -95,10 +100,14 @@ extension GroupDispatchCollectionViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GROUP_DISPATCH_COLLECTION_VIEW_CELL, for: indexPath) as! GroupDispatchCollectionViewCell
 
-        cell.setGroupName(name: selectedGroups[indexPath.row].name)
-        if let rowIndex = selectedGroups[indexPath.row].rowIndex {
-            cell.setRowIndex(rowIndex)
+        let rowIndex = indexPath.row
+        
+        if let tableRowIndex = selectedGroups[rowIndex].tableRowIndex {
+            cell.setTableRowIndex(tableRowIndex)
         }
+        
+        cell.setGroupName(name: selectedGroups[rowIndex].groupVo?.name)
+        cell.setGroupImage(name: selectedGroups[rowIndex].groupVo?.imageName ?? "")
         
         return cell
     }
