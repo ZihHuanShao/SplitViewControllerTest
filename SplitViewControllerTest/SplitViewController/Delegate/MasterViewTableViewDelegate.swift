@@ -210,24 +210,19 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
             
             cell.setUserName(name: memberCellData.memberVo?.name ?? "")
             
-            
             if let onlineState = memberCellData.memberVo?.onlineState {
                switch onlineState {
                 case .AVAILABLE:
-                    cell.setOnlineStatusImage(name: "icon_status_online")
-                    cell.setOnlineDesc(desc: "有空")
+                    cell.setOnlineState(type: .AVAILABLE)
                 
                 case .BUSY:
-                    cell.setOnlineStatusImage(name: "icon_status_busy")
-                    cell.setOnlineDesc(desc: "忙碌")
+                    cell.setOnlineState(type: .BUSY)
                 
                 case .NO_DISTURB:
-                    cell.setOnlineStatusImage(name: "icon_status_nodisturbing")
-                    cell.setOnlineDesc(desc: "勿擾")
+                    cell.setOnlineState(type: .NO_DISTURB)
                 
                 case .OFFLINE:
-                    cell.setOnlineStatusImage(name: "icon_status_offline")
-                    cell.setOnlineDesc(desc: "離線")
+                    cell.setOnlineState(type: .OFFLINE)
                 }
             }
             

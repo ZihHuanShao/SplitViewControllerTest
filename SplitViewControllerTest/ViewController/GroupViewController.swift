@@ -15,6 +15,8 @@ class GroupViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var monitorImage: UIImageView!
     @IBOutlet weak var groupNameLabel: UILabel!
+    @IBOutlet weak var pttButtonImage: UIImageView!
+    @IBOutlet weak var chatButtonImage: UIImageView!
     
     // MARK: - Properties
     
@@ -33,8 +35,17 @@ class GroupViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func groupSettingButtonPressed(_ sender: UIButton) {
+        print("groupSettingButtonPressed")
     }
-
+    
+    @IBAction func pttButtonPressed(_ sender: UIButton) {
+        print("pttButtonPressed")
+    }
+    
+    @IBAction func chatButtonPressed(_ sender: UIButton) {
+        print("chatButtonPressed")
+    }
+    
 }
 
 // MARK: - Public Methods

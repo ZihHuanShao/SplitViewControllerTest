@@ -126,23 +126,83 @@
                                     <constraint firstItem="0ZM-3i-t14" firstAttribute="top" secondItem="7Nw-pH-S0Y" secondAttribute="top" constant="8" id="sK1-ud-Jxu"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1s-ms-2Ln" userLabel="PTT View">
+                                <rect key="frame" x="884" y="628" width="132" height="132"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_ptt_normal.png" translatesAutoresizingMaskIntoConstraints="NO" id="g5t-fC-ulo">
+                                        <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVv-CM-REx">
+                                        <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
+                                        <connections>
+                                            <action selector="pttButtonPressed:" destination="n8W-gL-WNz" eventType="touchUpInside" id="X3i-Ct-iLX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="wVv-CM-REx" firstAttribute="leading" secondItem="Z1s-ms-2Ln" secondAttribute="leading" id="J21-Nb-ptJ"/>
+                                    <constraint firstAttribute="height" constant="132" id="NpW-ca-gXG"/>
+                                    <constraint firstAttribute="bottom" secondItem="wVv-CM-REx" secondAttribute="bottom" id="RE3-nl-Pde"/>
+                                    <constraint firstItem="g5t-fC-ulo" firstAttribute="leading" secondItem="Z1s-ms-2Ln" secondAttribute="leading" id="VYe-YK-zFM"/>
+                                    <constraint firstAttribute="bottom" secondItem="g5t-fC-ulo" secondAttribute="bottom" id="XaK-vp-KEJ"/>
+                                    <constraint firstAttribute="width" constant="132" id="dOl-Qe-c2W"/>
+                                    <constraint firstItem="g5t-fC-ulo" firstAttribute="top" secondItem="Z1s-ms-2Ln" secondAttribute="top" id="moz-Ww-VGs"/>
+                                    <constraint firstItem="wVv-CM-REx" firstAttribute="top" secondItem="Z1s-ms-2Ln" secondAttribute="top" id="rMD-xF-E7C"/>
+                                    <constraint firstAttribute="trailing" secondItem="wVv-CM-REx" secondAttribute="trailing" id="xgk-e3-9Am"/>
+                                    <constraint firstAttribute="trailing" secondItem="g5t-fC-ulo" secondAttribute="trailing" id="zI4-4v-FHu"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMx-xu-V2f" userLabel="Chat View">
+                                <rect key="frame" x="804" y="688" width="72" height="72"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_chat_normal.png" translatesAutoresizingMaskIntoConstraints="NO" id="Txi-ZR-PBb">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5r1-Lm-dvT">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
+                                        <connections>
+                                            <action selector="chatButtonPressed:" destination="n8W-gL-WNz" eventType="touchUpInside" id="HFp-Qq-7YP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Txi-ZR-PBb" secondAttribute="bottom" id="E4V-sW-dfQ"/>
+                                    <constraint firstAttribute="width" constant="72" id="JBb-o4-2cW"/>
+                                    <constraint firstAttribute="height" constant="72" id="QUd-y8-qaR"/>
+                                    <constraint firstAttribute="trailing" secondItem="5r1-Lm-dvT" secondAttribute="trailing" id="ZNF-mL-OfC"/>
+                                    <constraint firstItem="Txi-ZR-PBb" firstAttribute="top" secondItem="aMx-xu-V2f" secondAttribute="top" id="b95-VO-rLM"/>
+                                    <constraint firstItem="5r1-Lm-dvT" firstAttribute="top" secondItem="aMx-xu-V2f" secondAttribute="top" id="daA-lo-hx8"/>
+                                    <constraint firstItem="5r1-Lm-dvT" firstAttribute="leading" secondItem="aMx-xu-V2f" secondAttribute="leading" id="khS-QY-KeS"/>
+                                    <constraint firstItem="Txi-ZR-PBb" firstAttribute="leading" secondItem="aMx-xu-V2f" secondAttribute="leading" id="mMT-uc-wJe"/>
+                                    <constraint firstAttribute="bottom" secondItem="5r1-Lm-dvT" secondAttribute="bottom" id="tOc-Ay-fgh"/>
+                                    <constraint firstAttribute="trailing" secondItem="Txi-ZR-PBb" secondAttribute="trailing" id="yYl-pq-f27"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="w6w-mF-UXH" firstAttribute="trailing" secondItem="AwY-9C-mib" secondAttribute="trailing" id="6RO-nm-9pk"/>
+                            <constraint firstItem="Z1s-ms-2Ln" firstAttribute="leading" secondItem="aMx-xu-V2f" secondAttribute="trailing" constant="8" id="8TX-JE-nhJ"/>
+                            <constraint firstItem="w6w-mF-UXH" firstAttribute="trailing" secondItem="Z1s-ms-2Ln" secondAttribute="trailing" constant="8" id="9fZ-FS-tOH"/>
                             <constraint firstItem="w6w-mF-UXH" firstAttribute="bottom" secondItem="7Nw-pH-S0Y" secondAttribute="bottom" id="OQk-GE-GLT"/>
                             <constraint firstItem="7Nw-pH-S0Y" firstAttribute="top" secondItem="AwY-9C-mib" secondAttribute="bottom" id="PzS-Ly-HwF"/>
                             <constraint firstItem="w6w-mF-UXH" firstAttribute="trailing" secondItem="7Nw-pH-S0Y" secondAttribute="trailing" id="Qa6-ci-33j"/>
+                            <constraint firstItem="w6w-mF-UXH" firstAttribute="bottom" secondItem="aMx-xu-V2f" secondAttribute="bottom" constant="8" id="is4-eu-nsU"/>
                             <constraint firstItem="AwY-9C-mib" firstAttribute="leading" secondItem="w6w-mF-UXH" secondAttribute="leading" id="jdY-Nf-88r"/>
                             <constraint firstItem="7Nw-pH-S0Y" firstAttribute="leading" secondItem="w6w-mF-UXH" secondAttribute="leading" id="mzf-Kg-bB8"/>
+                            <constraint firstItem="w6w-mF-UXH" firstAttribute="bottom" secondItem="Z1s-ms-2Ln" secondAttribute="bottom" constant="8" id="r33-rk-RMJ"/>
                             <constraint firstItem="AwY-9C-mib" firstAttribute="top" secondItem="w6w-mF-UXH" secondAttribute="top" id="xd5-GV-iSU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="w6w-mF-UXH"/>
                     </view>
                     <connections>
+                        <outlet property="chatButtonImage" destination="Txi-ZR-PBb" id="Q3u-Rh-zYE"/>
                         <outlet property="collectionView" destination="DbG-Kc-rgj" id="3fv-mZ-Jju"/>
                         <outlet property="groupNameLabel" destination="Ou7-4G-B4Y" id="gin-TS-Zhz"/>
                         <outlet property="monitorImage" destination="EoZ-Zh-n0Q" id="d4E-ha-Per"/>
+                        <outlet property="pttButtonImage" destination="g5t-fC-ulo" id="2hy-6V-Yda"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sNB-wh-HHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -377,8 +437,10 @@
     </scenes>
     <resources>
         <image name="bg_profile.png" width="240" height="64"/>
+        <image name="btn_chat_normal.png" width="72" height="72"/>
         <image name="btn_group_set.png" width="45" height="45"/>
         <image name="btn_member_reset.png" width="31" height="30"/>
+        <image name="btn_ptt_normal.png" width="132" height="132"/>
         <image name="icon_search.png" width="24" height="24"/>
         <image name="icon_titile_notify_on.png" width="24" height="25"/>
     </resources>

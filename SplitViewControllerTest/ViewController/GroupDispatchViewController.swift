@@ -28,9 +28,6 @@ class GroupDispatchViewController: UIViewController {
     fileprivate var collectionViewDelegate: GroupDispatchViewCollectionViewDelegate?
     
     // Original Test data
-    fileprivate var groups = [String]()
-    fileprivate var groupsDesc = [String]()
-    fileprivate var groupsCount = [Int]()
     fileprivate var groupsVo = [GroupVo]()
     
     var dropSelectedGroupObserver: NSObjectProtocol?

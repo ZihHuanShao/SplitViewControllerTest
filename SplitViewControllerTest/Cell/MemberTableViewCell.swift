@@ -56,6 +56,27 @@ extension MemberTableViewCell {
         userName.text = name
     }
     
+    func setOnlineState(type: OnlineType) {
+        switch type {
+            
+        case .AVAILABLE:
+            setOnlineStatusImage(name: "icon_status_online")
+            setOnlineDesc(desc: "有空")
+            
+        case .BUSY:
+            setOnlineStatusImage(name: "icon_status_busy")
+            setOnlineDesc(desc: "忙碌")
+            
+        case .NO_DISTURB:
+            setOnlineStatusImage(name: "icon_status_nodisturbing")
+            setOnlineDesc(desc: "勿擾")
+            
+        case .OFFLINE:
+            setOnlineStatusImage(name: "icon_status_offline")
+            setOnlineDesc(desc: "離線")
+        }
+    }
+    
     func setOnlineStatusImage(name: String) {
         if let image = UIImage(named: name) {
             onlineStatusImage.image = image
