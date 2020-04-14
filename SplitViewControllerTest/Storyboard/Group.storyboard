@@ -142,8 +142,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVv-CM-REx">
                                         <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
                                         <connections>
-                                            <action selector="pttButtonPressed:" destination="n8W-gL-WNz" eventType="touchUpInside" id="X3i-Ct-iLX"/>
-                                            <action selector="pttButtonPressedTouchDown:" destination="n8W-gL-WNz" eventType="touchDown" id="12e-kN-hbh"/>
+                                            <action selector="pttButtonTouchDown:" destination="n8W-gL-WNz" eventType="touchDown" id="zQJ-vJ-3Gt"/>
+                                            <action selector="pttButtonTouchDragExit:" destination="n8W-gL-WNz" eventType="touchDragExit" id="Ygc-JE-xHF"/>
+                                            <action selector="pttButtonTouchUpInside:" destination="n8W-gL-WNz" eventType="touchUpInside" id="j3y-fi-PzZ"/>
                                         </connections>
                                     </button>
                                 </subviews>

@@ -33,6 +33,7 @@ class MasterViewController: UIViewController {
     // Dispatch Button View Field
     @IBOutlet weak var dispatchTitleLabel: UILabel!
     @IBOutlet weak var dispatchView: UIView!
+    @IBOutlet weak var dispatchImage: UIImageView!
     
     
     // MARK: - Properties
@@ -93,15 +94,20 @@ class MasterViewController: UIViewController {
         
     }
     
+    
     @IBAction func dispatchButtonTouchDown(_ sender: UIButton) {
-        print("dispatchButtonTouchDown pressed")
-        
-        sender.setBackgroundImage(UIImage(named: "btn_contact_pressed"), for: .normal)
+        print("dispatchButtonTouchDown")
+        dispatchImage.image = UIImage(named: "btn_contact_pressed")
+    }
+    
+    @IBAction func dispatchButtonTouchDragExit(_ sender: UIButton) {
+        print("dispatchButtonDragExit")
+        dispatchImage.image = UIImage(named: "btn_contact_normal")
     }
     
     @IBAction func dispatchButtonTouchUpInside(_ sender: UIButton) {
-        print("dispatchButtonTouchUpInside pressed")
-        sender.setBackgroundImage(UIImage(named: "btn_contact_normal"), for: .normal)
+        print("dispatchButtonTouchUpInside")
+        dispatchImage.image = UIImage(named: "btn_contact_normal")
         
         // wait a moment before taking the screenshot
         let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showGroupDispatchDelayed), userInfo: nil, repeats: false)

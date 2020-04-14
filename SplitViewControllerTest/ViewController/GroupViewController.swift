@@ -41,13 +41,18 @@ class GroupViewController: UIViewController {
     
 
     
-    @IBAction func pttButtonPressedTouchDown(_ sender: UIButton) {
+    @IBAction func pttButtonTouchDown(_ sender: UIButton) {
         print("pttButtonPressedTouchDown")
         pttButtonAnimationImage.image = UIImage.animatedImage(with: PTT_ANIMATION_IMAGES, duration: 1)
         pttButtonAnimationImage.contentMode = .scaleAspectFit
     }
+    @IBAction func pttButtonTouchDragExit(_ sender: UIButton) {
+        print("pttButtonTouchDragExit")
+        pttButtonAnimationImage.image = nil
+        pttButtonAnimationImage.animationImages = nil
+    }
     
-    @IBAction func pttButtonPressed(_ sender: UIButton) {
+    @IBAction func pttButtonTouchUpInside(_ sender: UIButton) {
         print("pttButtonPressed")
         pttButtonAnimationImage.image = nil
         pttButtonAnimationImage.animationImages = nil

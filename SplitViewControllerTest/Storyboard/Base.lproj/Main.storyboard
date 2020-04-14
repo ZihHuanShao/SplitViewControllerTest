@@ -433,13 +433,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2NP-mh-ilh" userLabel="Dispatch Button View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2NP-mh-ilh" userLabel="Dispatch View">
                                 <rect key="frame" x="45" y="720" width="230" height="40"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_contact_normal.png" translatesAutoresizingMaskIntoConstraints="NO" id="AVV-Lm-84E">
+                                        <rect key="frame" x="0.0" y="0.0" width="230" height="40"/>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPa-ap-c2H">
                                         <rect key="frame" x="0.0" y="0.0" width="230" height="40"/>
                                         <connections>
                                             <action selector="dispatchButtonTouchDown:" destination="dnk-cw-6M6" eventType="touchDown" id="087-Ge-3FF"/>
+                                            <action selector="dispatchButtonTouchDragExit:" destination="dnk-cw-6M6" eventType="touchDragExit" id="BAI-nf-uWB"/>
                                             <action selector="dispatchButtonTouchUpInside:" destination="dnk-cw-6M6" eventType="touchUpInside" id="ff8-QB-ez7"/>
                                         </connections>
                                     </button>
@@ -453,16 +457,20 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.16045263409999999" green="0.60003882649999996" blue="0.748924017" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="pPa-ap-c2H" secondAttribute="trailing" id="1ME-hD-GIJ"/>
                                     <constraint firstAttribute="height" constant="40" id="2SP-xI-TDK"/>
                                     <constraint firstItem="dzr-xX-tge" firstAttribute="centerY" secondItem="2NP-mh-ilh" secondAttribute="centerY" id="Lmm-5x-dgb"/>
+                                    <constraint firstAttribute="bottom" secondItem="AVV-Lm-84E" secondAttribute="bottom" id="UEu-QP-2wc"/>
                                     <constraint firstAttribute="width" constant="230" id="cbA-MJ-tmd"/>
+                                    <constraint firstItem="AVV-Lm-84E" firstAttribute="leading" secondItem="2NP-mh-ilh" secondAttribute="leading" id="fhA-Dw-1HW"/>
+                                    <constraint firstAttribute="trailing" secondItem="AVV-Lm-84E" secondAttribute="trailing" id="h8b-cf-zxn"/>
                                     <constraint firstItem="pPa-ap-c2H" firstAttribute="leading" secondItem="2NP-mh-ilh" secondAttribute="leading" id="o06-g1-qxG"/>
                                     <constraint firstAttribute="bottom" secondItem="pPa-ap-c2H" secondAttribute="bottom" id="sbR-xk-hhx"/>
                                     <constraint firstItem="dzr-xX-tge" firstAttribute="centerX" secondItem="2NP-mh-ilh" secondAttribute="centerX" id="t4Z-Pm-qp1"/>
                                     <constraint firstItem="pPa-ap-c2H" firstAttribute="top" secondItem="2NP-mh-ilh" secondAttribute="top" id="ufd-n4-Vj8"/>
+                                    <constraint firstItem="AVV-Lm-84E" firstAttribute="top" secondItem="2NP-mh-ilh" secondAttribute="top" id="wYC-tO-Plh"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -488,6 +496,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="IR9-cT-YHz"/>
                     <connections>
+                        <outlet property="dispatchImage" destination="AVV-Lm-84E" id="2V3-8D-IP7"/>
                         <outlet property="dispatchTitleLabel" destination="dzr-xX-tge" id="S6Q-IU-qIo"/>
                         <outlet property="dispatchView" destination="2NP-mh-ilh" id="5Pa-9b-K6h"/>
                         <outlet property="dispatcherImage" destination="Yy6-B3-muo" id="jcs-nb-yA9"/>
@@ -529,6 +538,7 @@
         <image name="btn_contact_creategroup.png" width="40" height="32"/>
         <image name="btn_contact_group_normal.png" width="24" height="24"/>
         <image name="btn_contact_member_normal.png" width="24" height="24"/>
+        <image name="btn_contact_normal.png" width="230" height="40"/>
         <image name="btn_profile_set.png" width="64" height="64"/>
         <image name="icon_search.png" width="24" height="24"/>
     </resources>
