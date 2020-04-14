@@ -39,23 +39,19 @@ class GroupViewController: UIViewController {
         print("groupSettingButtonPressed")
     }
     
-
-    
     @IBAction func pttButtonTouchDown(_ sender: UIButton) {
         print("pttButtonPressedTouchDown")
-        pttButtonAnimationImage.image = UIImage.animatedImage(with: PTT_ANIMATION_IMAGES, duration: 1)
-        pttButtonAnimationImage.contentMode = .scaleAspectFit
+        disablePttAnimation()
     }
+    
     @IBAction func pttButtonTouchDragExit(_ sender: UIButton) {
         print("pttButtonTouchDragExit")
-        pttButtonAnimationImage.image = nil
-        pttButtonAnimationImage.animationImages = nil
+        disablePttAnimation()
     }
     
     @IBAction func pttButtonTouchUpInside(_ sender: UIButton) {
         print("pttButtonPressed")
-        pttButtonAnimationImage.image = nil
-        pttButtonAnimationImage.animationImages = nil
+        enablePttAnimation()
     }
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
@@ -76,21 +72,28 @@ extension GroupViewController {
 extension GroupViewController {
     private func updateUI() {
         
-        
-        
         guard let gVo = groupVo else {
             return
         }
         
         groupNameLabel.text = gVo.name
         (gVo.notifyState == true) ? enableMonitor() : disableMonitor()
-        
 
         collectionViewDelegate = GroupCollectionoViewDelegate(groupViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: GROUP_COLLECTION_VIEW_CELL, cellId: GROUP_COLLECTION_VIEW_CELL)
         collectionViewDelegate?.setGroupNumber(gVo.count ?? 0)
         
         collectionViewDelegate?.reloadUI()
+    }
+    
+    private func enablePttAnimation() {
+        pttButtonAnimationImage.image = UIImage.animatedImage(with: PTT_ANIMATION_IMAGES, duration: 1)
+        pttButtonAnimationImage.contentMode = .scaleAspectFit
+    }
+    
+    private func disablePttAnimation() {
+        pttButtonAnimationImage.image = nil
+        pttButtonAnimationImage.animationImages = nil
     }
     
     private func enableMonitor() {

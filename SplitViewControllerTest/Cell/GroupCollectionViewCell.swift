@@ -21,7 +21,6 @@ class GroupCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
 
 }
@@ -29,6 +28,23 @@ class GroupCollectionViewCell: UICollectionViewCell {
 // MARK: - Public Methods
 
 extension GroupCollectionViewCell {
+
+}
+
+// MARK: - Public Methods
+
+extension GroupCollectionViewCell {
+    
+    func enableSoundWaveAnimation() {
+        soundWaveImage.image = UIImage.animatedImage(with: PTT_SOUND_WAVE_ANIMATION_IMAGES, duration: 1)
+        soundWaveImage.contentMode = .scaleAspectFit
+    }
+    
+    func disableSoundWaveAnimation() {
+        soundWaveImage.image = nil
+        soundWaveImage.animationImages = nil
+    }
+    
     func setMemberImage(name: String) {
         if let image = UIImage(named: name) {
             memberImage.image = image

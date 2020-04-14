@@ -26,6 +26,11 @@ let PTT_ANIMATION_IMAGES: [UIImage] = [UIImage(named: "bg_ptt_animation1")!,
                                        UIImage(named: "bg_ptt_animation8")!,
                                        UIImage(named: "bg_ptt_animation9")!]
 
+// 接收PTT聲波動畫
+let PTT_SOUND_WAVE_ANIMATION_IMAGES: [UIImage] = [UIImage(named: "icon_voice_animation1")!,
+                                                  UIImage(named: "icon_voice_animation2")!,
+                                                  UIImage(named: "icon_voice_animation3")!,
+                                                  UIImage(named: "icon_voice_animation4")!]
 
 // 聯絡人資訊
 let MEMBER_PROFILE_TITLES = ["帳號", "SIP號碼", "國家", "電子信箱"]

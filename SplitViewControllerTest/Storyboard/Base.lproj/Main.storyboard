@@ -416,7 +416,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Ed-h1-9BM">
-                                <rect key="frame" x="0.0" y="176" width="320" height="592"/>
+                                <rect key="frame" x="0.0" y="176" width="320" height="544"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="UJv-Ka-aMB">
@@ -480,12 +480,12 @@
                             <constraint firstItem="ReM-lW-hgi" firstAttribute="top" secondItem="Qfb-Wp-JG4" secondAttribute="top" id="9SZ-8s-fu7"/>
                             <constraint firstItem="RYH-6w-ykx" firstAttribute="top" secondItem="rma-eU-785" secondAttribute="bottom" id="AdK-eF-d1v"/>
                             <constraint firstItem="RYH-6w-ykx" firstAttribute="leading" secondItem="Qfb-Wp-JG4" secondAttribute="leading" id="D2B-8j-v1y"/>
-                            <constraint firstAttribute="bottom" secondItem="5Ed-h1-9BM" secondAttribute="bottom" id="EIB-V1-gkF"/>
                             <constraint firstItem="2NP-mh-ilh" firstAttribute="centerX" secondItem="mLX-wI-FHT" secondAttribute="centerX" id="EQZ-af-8vi"/>
                             <constraint firstItem="Qfb-Wp-JG4" firstAttribute="trailing" secondItem="rma-eU-785" secondAttribute="trailing" id="FrC-wt-ePY"/>
                             <constraint firstItem="Qfb-Wp-JG4" firstAttribute="trailing" secondItem="5Ed-h1-9BM" secondAttribute="trailing" id="JxS-oB-lvJ"/>
                             <constraint firstItem="5Ed-h1-9BM" firstAttribute="leading" secondItem="Qfb-Wp-JG4" secondAttribute="leading" id="SUP-hb-5du"/>
                             <constraint firstItem="rma-eU-785" firstAttribute="top" secondItem="ReM-lW-hgi" secondAttribute="bottom" id="Zgg-Qf-hg6"/>
+                            <constraint firstItem="2NP-mh-ilh" firstAttribute="top" secondItem="5Ed-h1-9BM" secondAttribute="bottom" id="bN4-IU-XQq"/>
                             <constraint firstItem="Qfb-Wp-JG4" firstAttribute="bottom" secondItem="2NP-mh-ilh" secondAttribute="bottom" constant="8" id="ewI-hE-S5Z"/>
                             <constraint firstItem="rma-eU-785" firstAttribute="leading" secondItem="Qfb-Wp-JG4" secondAttribute="leading" id="g5e-E4-d6B"/>
                             <constraint firstItem="5Ed-h1-9BM" firstAttribute="top" secondItem="RYH-6w-ykx" secondAttribute="bottom" id="k4U-Fp-xWr"/>
@@ -513,7 +513,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yc4-NU-99x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="648" y="-639"/>
+            <point key="canvasLocation" x="647.4609375" y="-639.0625"/>
         </scene>
         <!--Dispatch Board Split View Controller-->
         <scene sceneID="0nv-Hc-u3D">
