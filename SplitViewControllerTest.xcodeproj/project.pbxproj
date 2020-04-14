@@ -229,7 +229,6 @@
 				F20CCF002429F00800048BA3 /* Main.storyboard */,
 				D0E23596243C20E70009506F /* Member.storyboard */,
 				D0E23594243C20810009506F /* Group.storyboard */,
-				F20CCF052429F00900048BA3 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -265,6 +264,7 @@
 				F20CCEFC2429F00800048BA3 /* AppDelegate.swift */,
 				F20CCF032429F00900048BA3 /* Assets.xcassets */,
 				F20CCF082429F00900048BA3 /* Info.plist */,
+				F20CCF052429F00900048BA3 /* LaunchScreen.storyboard */,
 			);
 			path = SplitViewControllerTest;
 			sourceTree = "<group>";
