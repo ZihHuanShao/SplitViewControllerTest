@@ -72,7 +72,7 @@ let TAB_UNSELECTED_TITLE_COLOR = 0x9F9A94 // 未選文字色碼
 enum TabType: Int {
     case GROUP  = 0
     case MEMBER = 1
-    case NONE    = 2
+    case NONE   = 2
 }
 
 enum OnlineType: Int {
@@ -87,6 +87,11 @@ enum MemberProfileType: CaseIterable {
     case SIP_NUMBER
     case COUNTRY
     case EMAIL
+}
+
+enum ButtonPressType: Int {
+    case PRESSED = 0
+    case AWAY    = 1
 }
 
 // struct

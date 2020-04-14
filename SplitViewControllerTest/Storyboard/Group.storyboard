@@ -173,7 +173,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5r1-Lm-dvT">
                                         <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
                                         <connections>
-                                            <action selector="chatButtonPressed:" destination="n8W-gL-WNz" eventType="touchUpInside" id="HFp-Qq-7YP"/>
+                                            <action selector="chatButtonTouchDown:" destination="n8W-gL-WNz" eventType="touchDown" id="ZVP-EC-cAg"/>
+                                            <action selector="chatButtonTouchDragExit:" destination="n8W-gL-WNz" eventType="touchDragExit" id="F0t-Di-4Ok"/>
+                                            <action selector="chatButtonTouchUpInside:" destination="n8W-gL-WNz" eventType="touchUpInside" id="77l-CR-67u"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -236,8 +238,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="512" height="56"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nn-M7-Xea">
-                                        <rect key="frame" x="465" y="13" width="31" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <rect key="frame" x="461" y="11.5" width="35" height="33"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="完成">
                                             <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         </state>
@@ -246,8 +248,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWw-Rx-aed">
-                                        <rect key="frame" x="16" y="13" width="31" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <rect key="frame" x="16" y="11.5" width="35" height="33"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="取消">
                                             <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         </state>

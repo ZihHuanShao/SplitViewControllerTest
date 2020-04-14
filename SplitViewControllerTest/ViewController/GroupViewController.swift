@@ -39,25 +39,38 @@ class GroupViewController: UIViewController {
         print("groupSettingButtonPressed")
     }
     
+    //
+    // pttButton
+    //
+    
     @IBAction func pttButtonTouchDown(_ sender: UIButton) {
-        print("pttButtonPressedTouchDown")
-        disablePttAnimation()
+        updatePttButtonImage(type: .PRESSED)
     }
     
     @IBAction func pttButtonTouchDragExit(_ sender: UIButton) {
-        print("pttButtonTouchDragExit")
-        disablePttAnimation()
+        updatePttButtonImage(type: .AWAY)
     }
     
     @IBAction func pttButtonTouchUpInside(_ sender: UIButton) {
-        print("pttButtonPressed")
-        enablePttAnimation()
+        updatePttButtonImage(type: .AWAY)
     }
     
-    @IBAction func chatButtonPressed(_ sender: UIButton) {
-        print("chatButtonPressed")
-        
+    //
+    // chatButton
+    //
+    
+    @IBAction func chatButtonTouchDown(_ sender: UIButton) {
+        updateChatButtonImage(type: .PRESSED)
     }
+    
+    @IBAction func chatButtonTouchDragExit(_ sender: UIButton) {
+        updateChatButtonImage(type: .AWAY)
+    }
+    
+    @IBAction func chatButtonTouchUpInside(_ sender: UIButton) {
+        updateChatButtonImage(type: .AWAY)
+    }
+    
     
 }
 
@@ -83,34 +96,23 @@ extension GroupViewController {
         collectionViewDelegate?.registerCell(cellName: GROUP_COLLECTION_VIEW_CELL, cellId: GROUP_COLLECTION_VIEW_CELL)
         
         
-        // group共有幾個member, 就產生幾個cell
+        // group有幾個member, 就產生幾個cell
         collectionViewDelegate?.setGroupMembersCount(gVo.count ?? 0)
         
         var count = gVo.count ?? 0
         if count > 0 {
             membersVo = [MemberVo]()
             while (count > 0) {
-                membersVo?.append(MemberVo.init(name: String(count * 10000)))
+                membersVo?.append(MemberVo.init(name: String(count)))
                 count -= 1
             }
         }
-        
-        
+                
         if let _membersVo = membersVo {
             collectionViewDelegate?.updateMembersVo(_membersVo)
         }
         
         collectionViewDelegate?.reloadUI()
-    }
-    
-    private func enablePttAnimation() {
-        pttButtonAnimationImage.image = UIImage.animatedImage(with: PTT_ANIMATION_IMAGES, duration: 1)
-        pttButtonAnimationImage.contentMode = .scaleAspectFit
-    }
-    
-    private func disablePttAnimation() {
-        pttButtonAnimationImage.image = nil
-        pttButtonAnimationImage.animationImages = nil
     }
     
     private func enableMonitor() {
@@ -119,5 +121,29 @@ extension GroupViewController {
     
     private func disableMonitor() {
         monitorImage.image = UIImage(named: "icon_titile_notify_off")
+    }
+    
+    private func updatePttButtonImage(type: ButtonPressType) {
+        switch type {
+        case .PRESSED:
+            pttButtonImage.image = UIImage(named: "btn_ptt_pressed")
+            pttButtonAnimationImage.image = UIImage.animatedImage(with: PTT_ANIMATION_IMAGES, duration: 1)
+            pttButtonAnimationImage.contentMode = .scaleAspectFit
+            
+        case .AWAY:
+            pttButtonImage.image = UIImage(named: "btn_ptt_normal")
+            pttButtonAnimationImage.image = nil
+            pttButtonAnimationImage.animationImages = nil
+        }
+    }
+    
+    private func updateChatButtonImage(type: ButtonPressType) {
+        switch type {
+        case .PRESSED:
+            chatButtonImage.image = UIImage(named: "btn_chat_pressed")
+            
+        case .AWAY:
+            chatButtonImage.image = UIImage(named: "btn_chat_normal")
+        }
     }
 }
