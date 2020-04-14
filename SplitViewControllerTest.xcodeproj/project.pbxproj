@@ -11,6 +11,10 @@
 		D06920602445A104006E65D4 /* bg_listbox_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = D069205D2445A104006E65D4 /* bg_listbox_bottom.png */; };
 		D06920612445A104006E65D4 /* bg_listbox_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = D069205E2445A104006E65D4 /* bg_listbox_middle.png */; };
 		D06920622445A104006E65D4 /* bg_listbox_top.png in Resources */ = {isa = PBXBuildFile; fileRef = D069205F2445A104006E65D4 /* bg_listbox_top.png */; };
+		D06920662445AB4C006E65D4 /* icon_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = D06920632445AB4C006E65D4 /* icon_camera.png */; };
+		D06920672445AB4C006E65D4 /* sticker_contact.png in Resources */ = {isa = PBXBuildFile; fileRef = D06920642445AB4C006E65D4 /* sticker_contact.png */; };
+		D06920682445AB4C006E65D4 /* sticker_group.png in Resources */ = {isa = PBXBuildFile; fileRef = D06920652445AB4C006E65D4 /* sticker_group.png */; };
+		D069206A2445B289006E65D4 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06920692445B289006E65D4 /* CreateGroupViewController.swift */; };
 		D06DEECF244012960056A7E7 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DEECE244012960056A7E7 /* TestCase.swift */; };
 		D06DEED124405FE70056A7E7 /* UserVo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DEED024405FE70056A7E7 /* UserVo.swift */; };
 		D06E35B8243DC00C00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E35B7243DC00B00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift */; };
@@ -113,6 +117,10 @@
 		D069205D2445A104006E65D4 /* bg_listbox_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listbox_bottom.png; sourceTree = "<group>"; };
 		D069205E2445A104006E65D4 /* bg_listbox_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listbox_middle.png; sourceTree = "<group>"; };
 		D069205F2445A104006E65D4 /* bg_listbox_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listbox_top.png; sourceTree = "<group>"; };
+		D06920632445AB4C006E65D4 /* icon_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_camera.png; sourceTree = "<group>"; };
+		D06920642445AB4C006E65D4 /* sticker_contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sticker_contact.png; sourceTree = "<group>"; };
+		D06920652445AB4C006E65D4 /* sticker_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sticker_group.png; sourceTree = "<group>"; };
+		D06920692445B289006E65D4 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		D06DEECE244012960056A7E7 /* TestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase.swift; sourceTree = "<group>"; };
 		D06DEED024405FE70056A7E7 /* UserVo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVo.swift; sourceTree = "<group>"; };
 		D06E35B7243DC00B00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchViewCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -273,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */,
+				D06920692445B289006E65D4 /* CreateGroupViewController.swift */,
 				F21E21CF243186C8001AE003 /* GroupViewController.swift */,
 				F23C0DE92432DC3700DD7A48 /* MemberViewController.swift */,
 				F21E21FD2431F1B2001AE003 /* Delegate */,
@@ -342,6 +351,9 @@
 		F261B467242CAB1300482992 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D06920632445AB4C006E65D4 /* icon_camera.png */,
+				D06920642445AB4C006E65D4 /* sticker_contact.png */,
+				D06920652445AB4C006E65D4 /* sticker_group.png */,
 				D069205D2445A104006E65D4 /* bg_listbox_bottom.png */,
 				D069205E2445A104006E65D4 /* bg_listbox_middle.png */,
 				D069205F2445A104006E65D4 /* bg_listbox_top.png */,
@@ -524,9 +536,11 @@
 				D0E23661243C767B0009506F /* btn_menu_map_normal.png in Resources */,
 				D0E23667243C767B0009506F /* icon_voice_animation1.png in Resources */,
 				D0E23597243C20E70009506F /* Member.storyboard in Resources */,
+				D06920672445AB4C006E65D4 /* sticker_contact.png in Resources */,
 				D0E2365B243C767B0009506F /* btn_chat_add.png in Resources */,
 				D0E23654243C767B0009506F /* btn_video_normal.png in Resources */,
 				D0E23653243C767B0009506F /* btn_contact_member_normal.png in Resources */,
+				D06920662445AB4C006E65D4 /* icon_camera.png in Resources */,
 				D0E2364A243C767B0009506F /* icon_voice_pause.png in Resources */,
 				D0E2366C243C767B0009506F /* bg_ptt_animation6.png in Resources */,
 				D0E23675243C767B0009506F /* btn_contact_group_normal.png in Resources */,
@@ -541,6 +555,7 @@
 				D0E2366F243C767B0009506F /* btn_sip_normal.png in Resources */,
 				D0E23665243C767B0009506F /* btn_menu_ptt_selected.png in Resources */,
 				D0E23656243C767B0009506F /* icon_voice_animation3.png in Resources */,
+				D06920682445AB4C006E65D4 /* sticker_group.png in Resources */,
 				D0E2367A243C767B0009506F /* icon_status_online.png in Resources */,
 				D0E2365F243C767B0009506F /* btn_group_set.png in Resources */,
 			);
@@ -563,6 +578,7 @@
 				F20CCF332429FC8000048BA3 /* DetailViewController.swift in Sources */,
 				F20CCF312429F61200048BA3 /* MasterViewController.swift in Sources */,
 				D0E23684243C7E760009506F /* GroupDispatchViewTableViewDelegate.swift in Sources */,
+				D069206A2445B289006E65D4 /* CreateGroupViewController.swift in Sources */,
 				D069205024459868006E65D4 /* Strings.swift in Sources */,
 				F23C0DEE2433139600DD7A48 /* MemberViewTableViewDelegate.swift in Sources */,
 				D06E35B8243DC00C00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift in Sources */,

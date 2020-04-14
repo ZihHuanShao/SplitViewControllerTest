@@ -428,7 +428,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <segue destination="biV-Bj-S4I" kind="showDetail" identifier="showDetail" id="TJk-l3-ZTk"/>
+                                            <segue destination="biV-Bj-S4I" kind="showDetail" identifier="showDetailViewController" id="TJk-l3-ZTk"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

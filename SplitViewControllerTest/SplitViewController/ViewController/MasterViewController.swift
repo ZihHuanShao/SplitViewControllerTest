@@ -37,7 +37,8 @@ class MasterViewController: UIViewController {
     
     
     // MARK: - Properties
-
+    
+    fileprivate var detailVCType = ShowDetailViewControllerType.NONE
     fileprivate var tabSelected = TabType.NONE
     fileprivate var tableViewDelegate: MasterViewTableViewDelegate?
     
@@ -90,6 +91,7 @@ class MasterViewController: UIViewController {
     
     @IBAction func createGroupButtonPressed(_ sender: UIButton) {
         print("createGroupButtonPressed pressed")
+        
     }
     
     
@@ -116,7 +118,7 @@ class MasterViewController: UIViewController {
     // 因此目前做法: 定義一protocol用來觸發prepareforsegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("prepareforsegue is called")
-        if segue.identifier == "showDetail" {
+        if segue.identifier == SHOW_DETAIL_VIEW_CONTROLLER {
             let dVC = segue.destination as? DetailViewController
             dVC?.setTabSelected(type: tabSelected)
             
@@ -288,7 +290,7 @@ extension MasterViewController {
             tableViewDelegate?.updateGroup(group)
             tableViewDelegate?.reloadUI()
             
-            performSegue(withIdentifier: "showDetail", sender: rowIndex)
+            performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: rowIndex)
         }
         
     }
@@ -321,6 +323,6 @@ extension MasterViewController: UITextFieldDelegate {
 
 extension MasterViewController: MasterViewTableViewExtendDelegate {
     func activateSegue() {
-        performSegue(withIdentifier: "showDetail", sender: self)
+        performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: self)
     }
 }

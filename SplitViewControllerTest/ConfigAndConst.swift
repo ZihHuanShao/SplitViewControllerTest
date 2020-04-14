@@ -38,6 +38,9 @@ let MEMBER_PROFILE_TITLES = [str_memberProfile_userId,
                              str_memberProfile_country,
                              str_memberProfile_email]
 
+// Segue
+let SHOW_DETAIL_VIEW_CONTROLLER = "showDetailViewController"
+
 // Cell
 let GROUP_TABLE_VIEW_CELL  = "GroupTableViewCell"  // nib name & cell name (the same)
 let MEMBER_TABLE_VIEW_CELL = "MemberTableViewCell" // nib name & cell name (the same)
@@ -72,6 +75,14 @@ let TAB_UNSELECTED_TITLE_COLOR = 0x9F9A94 // 未選文字色碼
 
 
 // enum
+enum ShowDetailViewControllerType: Int {
+    case TAB_GROUP_SELECT  = 0
+    case TAB_MEMBER_SELECT = 1
+    case TAB_GROUP_CREATE_GROUP = 2
+    
+    case NONE = 99
+}
+
 enum TabType: Int {
     case GROUP  = 0
     case MEMBER = 1

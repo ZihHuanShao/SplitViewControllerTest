@@ -108,7 +108,9 @@ extension GroupCollectionoViewDelegate: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension GroupCollectionoViewDelegate: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(membersVo[indexPath.row].name)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

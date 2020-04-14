@@ -21,3 +21,4 @@ let str_memberProfile_sipId   = "SIP號碼"
 let str_memberProfile_country = "國家"
 let str_memberProfile_email   = "電子信箱"
 
+let str_createGroup_finish = "完成"

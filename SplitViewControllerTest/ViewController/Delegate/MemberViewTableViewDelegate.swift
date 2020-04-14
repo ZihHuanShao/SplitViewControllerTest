@@ -71,7 +71,7 @@ extension MemberViewTableViewDelegate: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch MemberProfileType.allCases[indexPath.row] {    
+        switch MemberProfileType.allCases[indexPath.row] {
         case .USER_ID:      return 60
         case .SIP_NUMBER:   return 58
         case .COUNTRY:      return 58
