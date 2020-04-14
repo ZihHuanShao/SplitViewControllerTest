@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,36 +31,42 @@
                                 <rect key="frame" x="4" y="0.0" width="176" height="70"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbV-7G-X72" userLabel="Left View">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="70"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Or0-qT-jCl">
-                                                <rect key="frame" x="8" y="7" width="56" height="56"/>
+                                                <rect key="frame" x="4" y="11" width="48" height="48"/>
                                                 <color key="backgroundColor" red="0.79208946229999999" green="0.79220157859999996" blue="0.79205411670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="56" id="iqz-8Q-igr"/>
-                                                    <constraint firstAttribute="height" constant="56" id="xiG-7i-LDi"/>
+                                                    <constraint firstAttribute="width" constant="48" id="iqz-8Q-igr"/>
+                                                    <constraint firstAttribute="height" constant="48" id="xiG-7i-LDi"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="72" id="WDf-oM-SbA"/>
+                                            <constraint firstAttribute="width" constant="56" id="WDf-oM-SbA"/>
                                             <constraint firstItem="Or0-qT-jCl" firstAttribute="centerY" secondItem="nbV-7G-X72" secondAttribute="centerY" id="fa5-Gv-Hbf"/>
                                             <constraint firstItem="Or0-qT-jCl" firstAttribute="centerX" secondItem="nbV-7G-X72" secondAttribute="centerX" id="q9Z-8s-nCN"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCr-fh-Fkj" userLabel="Right View">
-                                        <rect key="frame" x="72" y="0.0" width="104" height="70"/>
+                                        <rect key="frame" x="56" y="0.0" width="120" height="70"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mV-Pz-dew">
+                                                <rect key="frame" x="8" y="1.5" width="89" height="33.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hvw-TY-GGZ" userLabel="SeparatorLine">
-                                                <rect key="frame" x="0.0" y="35" width="104" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="35" width="120" height="0.0"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="1WY-TZ-HOU"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ka-YN-TSc" userLabel="Sound View">
-                                                <rect key="frame" x="0.0" y="35" width="104" height="35"/>
+                                                <rect key="frame" x="0.0" y="35" width="120" height="35"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_voice_animation1.png" translatesAutoresizingMaskIntoConstraints="NO" id="s6y-3l-vl3">
                                                         <rect key="frame" x="8" y="10.5" width="89" height="14"/>
@@ -78,12 +82,6 @@
                                                     <constraint firstItem="s6y-3l-vl3" firstAttribute="leading" secondItem="0ka-YN-TSc" secondAttribute="leading" constant="8" id="Ncr-rN-hWm"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mV-Pz-dew">
-                                                <rect key="frame" x="8" y="18" width="89" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>

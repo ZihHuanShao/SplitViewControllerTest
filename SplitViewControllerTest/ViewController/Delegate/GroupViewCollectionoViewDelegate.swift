@@ -9,13 +9,23 @@
 import Foundation
 import UIKit
 
+private class CellData {
+    var memberVo: MemberVo?
+    
+    init(_ memberVo: MemberVo) {
+        self.memberVo = memberVo
+    }
+}
+
 class GroupCollectionoViewDelegate: NSObject {
     
     // MARK: - Properties
     
     fileprivate weak var viewController: GroupViewController?
     fileprivate weak var collectionView: UICollectionView?
-    fileprivate var number = Int()
+    fileprivate var membersCount: Int?
+    fileprivate var membersVo = [MemberVo]()
+    fileprivate var cellsData = [CellData]()
     
     // MARK: - initializer
     
@@ -29,11 +39,27 @@ class GroupCollectionoViewDelegate: NSObject {
     
 }
 
+// MARK: - Private Methods
+
+extension GroupCollectionoViewDelegate {
+    private func reloadCellData() {
+        cellsData.removeAll()
+        
+        for memberVo in membersVo {
+            cellsData.append(CellData(memberVo))
+        }
+    }
+}
+
 // MARK: - Public Methods
 
 extension GroupCollectionoViewDelegate {
-    func setGroupNumber(_ num: Int) {
-        number = num
+    func updateMembersVo(_ membersVo: [MemberVo]) {
+        self.membersVo = membersVo
+    }
+    
+    func setGroupMembersCount(_ count: Int) {
+        membersCount = count
     }
     
     func registerCell(cellName: String, cellId: String) {
@@ -44,6 +70,7 @@ extension GroupCollectionoViewDelegate {
     }
     
     func reloadUI() {
+        reloadCellData()
         collectionView?.reloadData()
     }
 }
@@ -52,12 +79,26 @@ extension GroupCollectionoViewDelegate {
 
 extension GroupCollectionoViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return number
-//        return 16
+        return membersCount ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GROUP_COLLECTION_VIEW_CELL, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GROUP_COLLECTION_VIEW_CELL, for: indexPath) as! GroupCollectionViewCell
+        
+        guard let memberVo = cellsData[indexPath.row].memberVo else {
+            return cell
+        }
+        
+        cell.setMemberName(name: memberVo.name ?? "")
+        cell.setMemberImage(name: memberVo.imageName ?? "")
+        
+        switch memberVo.onlineState {
+        case .AVAILABLE:    cell.setOnlineState(type: .AVAILABLE)
+        case .BUSY:         cell.setOnlineState(type: .BUSY)
+        case .NO_DISTURB:   cell.setOnlineState(type: .NO_DISTURB)
+        case .OFFLINE:      cell.setOnlineState(type: .OFFLINE)
+        }
+
         return cell
     }
     

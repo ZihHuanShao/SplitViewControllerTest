@@ -21,14 +21,19 @@ class GroupCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        updateUI()
     }
 
 }
 
-// MARK: - Public Methods
+// MARK: - Private Methods
 
 extension GroupCollectionViewCell {
-
+    private func updateUI() {
+        memberImage.layer.cornerRadius = memberImage.frame.size.width / 2
+        memberImage.clipsToBounds      = true
+        memberImage.backgroundColor    = .lightGray
+    }
 }
 
 // MARK: - Public Methods
@@ -65,6 +70,23 @@ extension GroupCollectionViewCell {
     func setOnlineStatusImage(name: String) {
         if let image = UIImage(named: name) {
             onlineStatusImage.image = image
+        }
+    }
+    
+    func setOnlineState(type: OnlineType) {
+        switch type {
+            
+        case .AVAILABLE:
+            setOnlineStatusImage(name: "icon_status_online")
+            
+        case .BUSY:
+            setOnlineStatusImage(name: "icon_status_busy")
+            
+        case .NO_DISTURB:
+            setOnlineStatusImage(name: "icon_status_nodisturbing")
+            
+        case .OFFLINE:
+            setOnlineStatusImage(name: "icon_status_offline")
         }
     }
     

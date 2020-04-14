@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class GroupVo {
     var name: String?
@@ -36,6 +37,8 @@ class MemberVo {
     var onlineState = OnlineType.OFFLINE
     var isSelected = Bool()
     
+    
+    
     init(name: String?, imageName: String?, userId: String?, sipId: String?, country: String?, email: String?, onlineState: OnlineType, isSelected: Bool) {
         self.name = name
         self.imageName = imageName
@@ -46,6 +49,13 @@ class MemberVo {
         self.onlineState = onlineState
         self.isSelected = isSelected
     }
+    
+    convenience init(name: String?) {
+        print("convenience")
+        self.init(name: name, imageName: "", userId: "", sipId: "", country: "", email: "", onlineState: OnlineType.OFFLINE, isSelected: false)
+    }
+    
+    
 }
 
 

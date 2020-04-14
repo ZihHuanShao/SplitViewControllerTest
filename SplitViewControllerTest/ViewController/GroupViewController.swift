@@ -22,7 +22,7 @@ class GroupViewController: UIViewController {
     // MARK: - Properties
     
     fileprivate var groupVo: GroupVo?
-    
+    fileprivate var membersVo: [MemberVo]?
     fileprivate var collectionViewDelegate: GroupCollectionoViewDelegate?
     
     // MARK: - Life Cycle
@@ -81,7 +81,24 @@ extension GroupViewController {
 
         collectionViewDelegate = GroupCollectionoViewDelegate(groupViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: GROUP_COLLECTION_VIEW_CELL, cellId: GROUP_COLLECTION_VIEW_CELL)
-        collectionViewDelegate?.setGroupNumber(gVo.count ?? 0)
+        
+        
+        // group共有幾個member, 就產生幾個cell
+        collectionViewDelegate?.setGroupMembersCount(gVo.count ?? 0)
+        
+        var count = gVo.count ?? 0
+        if count > 0 {
+            membersVo = [MemberVo]()
+            while (count > 0) {
+                membersVo?.append(MemberVo.init(name: String(count * 10000)))
+                count -= 1
+            }
+        }
+        
+        
+        if let _membersVo = membersVo {
+            collectionViewDelegate?.updateMembersVo(_membersVo)
+        }
         
         collectionViewDelegate?.reloadUI()
     }
