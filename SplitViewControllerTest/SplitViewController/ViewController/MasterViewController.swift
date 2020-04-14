@@ -38,7 +38,7 @@ class MasterViewController: UIViewController {
     
     // MARK: - Properties
     
-    fileprivate var detailVCType = ShowDetailViewControllerType.NONE
+    fileprivate var tapType = ShowDetailViewControllerType.NONE
     fileprivate var tabSelected = TabType.NONE
     fileprivate var tableViewDelegate: MasterViewTableViewDelegate?
     
@@ -91,7 +91,8 @@ class MasterViewController: UIViewController {
     
     @IBAction func createGroupButtonPressed(_ sender: UIButton) {
         print("createGroupButtonPressed pressed")
-        
+        tapType = .TAB_GROUP_CREATE_GROUP
+        performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: self)
     }
     
     
@@ -120,7 +121,7 @@ class MasterViewController: UIViewController {
         print("prepareforsegue is called")
         if segue.identifier == SHOW_DETAIL_VIEW_CONTROLLER {
             let dVC = segue.destination as? DetailViewController
-            dVC?.setTabSelected(type: tabSelected)
+            dVC?.setTabSelected(type: tapType)
             
             var rowIndex = Int()
             
@@ -129,17 +130,21 @@ class MasterViewController: UIViewController {
                 rowIndex = index
             }
             // 點擊tableViewCell直接取得row index
-            else {
-                rowIndex = tableView.indexPathForSelectedRow!.row
+            else if let index = tableView.indexPathForSelectedRow?.row {
+                rowIndex = index
             }
             
-            switch tabSelected {
+            
+            switch tapType {
                 
-            case .GROUP:
+            case .TAB_GROUP_SELECT:
                 dVC?.updateGroup(groupsVo[rowIndex])
                 
-            case .MEMBER:
+            case .TAB_MEMBER_SELECT:
                 dVC?.updateMember(membersVo[rowIndex])
+                
+            case .TAB_GROUP_CREATE_GROUP:
+                break
                 
             case .NONE:
                 break
@@ -221,7 +226,7 @@ extension MasterViewController {
     }
     
     private func tabLeftContentButtonPressedHandler() {
-        tabSelected = .GROUP
+        tapType = .TAB_GROUP_SELECT
         
         // update UI
         tabLeftIcon.image = UIImage(named: "btn_contact_group_selected")
@@ -241,7 +246,7 @@ extension MasterViewController {
     }
     
     private func tabRightContentButtonPressedHandler() {
-        tabSelected = .MEMBER
+        tapType = .TAB_MEMBER_SELECT
         
         // update UI
         tabLeftIcon.image = UIImage(named: "btn_contact_group_normal")

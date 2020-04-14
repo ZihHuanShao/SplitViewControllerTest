@@ -14,8 +14,8 @@ class CreateGroupViewController: UIViewController {
     
     // Finish Button Field
     @IBOutlet weak var createGroupTitleLabel: UILabel!
-    @IBOutlet weak var createGroupImage: UIImageView!
-    @IBOutlet weak var createGroupButton: UIButton!
+    @IBOutlet weak var finishImage: UIImageView!
+    @IBOutlet weak var finishButton: UIButton!
     
     // Group Image Field
     @IBOutlet weak var groupImage: UIImageView!
@@ -65,22 +65,22 @@ class CreateGroupViewController: UIViewController {
 
 extension CreateGroupViewController {
     private func updateUI() {
-        createGroupImage.layer.cornerRadius = createGroupImage.frame.size.width / 2
-        createGroupImage.clipsToBounds      = true
+        groupImage.layer.cornerRadius = groupImage.frame.size.width / 2
+        groupImage.clipsToBounds      = true
         
-        createGroupButton.setTitle(str_createGroup_finish, for: .normal)
+        finishButton.setTitle(str_createGroup_finish, for: .normal)
     }
     
     private func updatefinishButtonImage(type: ButtonPressType) {
         switch type {
         case .PRESSED:
-            createGroupImage.image = UIImage(named: "btn_contact_pressed")
-            createGroupImage.contentMode = .scaleAspectFill
+            finishImage.image = UIImage(named: "btn_contact_pressed")
+            finishImage.contentMode = .scaleAspectFill
             
             
         case .AWAY:
-            createGroupImage.image = UIImage(named: "btn_contact_normal")
-            createGroupImage.contentMode = .scaleAspectFill
+            finishImage.image = UIImage(named: "btn_contact_normal")
+            finishImage.contentMode = .scaleAspectFill
         }
     }
 }

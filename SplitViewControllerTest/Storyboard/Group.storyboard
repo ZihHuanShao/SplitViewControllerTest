@@ -239,8 +239,8 @@
                                         <rect key="frame" x="8" y="8" width="1008" height="39"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增群組" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kw0-O2-adW">
-                                                <rect key="frame" x="0.0" y="5" width="98" height="29"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <rect key="frame" x="0.0" y="6.5" width="89.5" height="26.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -307,23 +307,23 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r45-nT-vVz" userLabel="Middle View">
-                                <rect key="frame" x="0.0" y="56" width="1024" height="152"/>
+                                <rect key="frame" x="0.0" y="56" width="1024" height="128"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWo-QV-ypo" userLabel="Middle Content View">
-                                        <rect key="frame" x="16" y="16" width="992" height="120"/>
+                                        <rect key="frame" x="16" y="16" width="992" height="96"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NEy-WH-b4A" userLabel="Left View">
-                                                <rect key="frame" x="0.0" y="0.0" width="152" height="120"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="152" height="96"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sticker_group.png" translatesAutoresizingMaskIntoConstraints="NO" id="TCA-me-lWs">
-                                                        <rect key="frame" x="16" y="0.0" width="120" height="120"/>
+                                                        <rect key="frame" x="24" y="-4" width="104" height="104"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="120" id="Cak-yh-khp"/>
-                                                            <constraint firstAttribute="height" constant="120" id="bZU-Hg-geH"/>
+                                                            <constraint firstAttribute="width" constant="104" id="Cak-yh-khp"/>
+                                                            <constraint firstAttribute="height" constant="104" id="bZU-Hg-geH"/>
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmc-Wh-5O6" userLabel="Edit Image View">
-                                                        <rect key="frame" x="48" y="92" width="56" height="20"/>
+                                                        <rect key="frame" x="48" y="72" width="56" height="20"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_camera.png" translatesAutoresizingMaskIntoConstraints="NO" id="3HS-fT-REf">
                                                                 <rect key="frame" x="0.0" y="3" width="18" height="14"/>
@@ -370,24 +370,24 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qi-cL-5hd" userLabel="Right View">
-                                                <rect key="frame" x="152" y="0.0" width="840" height="120"/>
+                                                <rect key="frame" x="152" y="0.0" width="840" height="96"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UuT-4A-oFD" userLabel="Group Name View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="840" height="60"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="840" height="48"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名稱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5w-DO-Yn1">
-                                                                <rect key="frame" x="16" y="18" width="41" height="24"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <rect key="frame" x="16" y="13.5" width="37" height="21.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入群組名稱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B5C-bN-TQZ">
-                                                                <rect key="frame" x="73" y="8" width="751" height="44"/>
+                                                                <rect key="frame" x="69" y="8" width="755" height="32"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="B5C-bN-TQZ" secondAttribute="bottom" constant="8" id="0re-ad-pYW"/>
                                                             <constraint firstItem="B5C-bN-TQZ" firstAttribute="top" secondItem="UuT-4A-oFD" secondAttribute="top" constant="8" id="Ed4-UO-bJs"/>
@@ -399,28 +399,28 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umO-LO-Bb5" userLabel="SeparatorLine">
-                                                        <rect key="frame" x="0.0" y="60" width="840" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="48" width="840" height="0.0"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" id="AaU-ca-sEA"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckw-Wd-VMM" userLabel="Group Desc View">
-                                                        <rect key="frame" x="0.0" y="60" width="840" height="60"/>
+                                                        <rect key="frame" x="0.0" y="48" width="840" height="48"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="描述" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fL4-Wl-JQh">
-                                                                <rect key="frame" x="16" y="18" width="41" height="24"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <rect key="frame" x="16" y="13.5" width="37" height="21.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入群組名稱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oV4-eM-gt7">
-                                                                <rect key="frame" x="73" y="8" width="751" height="44"/>
+                                                                <rect key="frame" x="69" y="8" width="755" height="32"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="fL4-Wl-JQh" firstAttribute="leading" secondItem="ckw-Wd-VMM" secondAttribute="leading" constant="16" id="4D0-sh-Z1Y"/>
                                                             <constraint firstItem="oV4-eM-gt7" firstAttribute="centerY" secondItem="ckw-Wd-VMM" secondAttribute="centerY" id="94r-tf-x8H"/>
@@ -462,7 +462,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="152" id="0sq-pG-4G6"/>
+                                    <constraint firstAttribute="height" constant="128" id="0sq-pG-4G6"/>
                                     <constraint firstAttribute="trailing" secondItem="hWo-QV-ypo" secondAttribute="trailing" constant="16" id="JaY-r3-pC7"/>
                                     <constraint firstAttribute="bottom" secondItem="hWo-QV-ypo" secondAttribute="bottom" constant="16" id="keC-uE-uf3"/>
                                     <constraint firstItem="hWo-QV-ypo" firstAttribute="top" secondItem="r45-nT-vVz" secondAttribute="top" constant="16" id="uA8-Xv-YH9"/>
@@ -482,9 +482,9 @@
                         <viewLayoutGuide key="safeArea" id="mgv-oc-Kn8"/>
                     </view>
                     <connections>
-                        <outlet property="createGroupButton" destination="94W-1D-3KM" id="X5o-6k-wvb"/>
-                        <outlet property="createGroupImage" destination="2Dm-dn-KsI" id="EZQ-ZH-8xx"/>
                         <outlet property="createGroupTitleLabel" destination="Kw0-O2-adW" id="hjk-i2-uch"/>
+                        <outlet property="finishButton" destination="94W-1D-3KM" id="TcK-yF-Vqf"/>
+                        <outlet property="finishImage" destination="2Dm-dn-KsI" id="5J6-9g-AtN"/>
                         <outlet property="groupDescLabel" destination="fL4-Wl-JQh" id="amE-qS-B0f"/>
                         <outlet property="groupDescTextField" destination="oV4-eM-gt7" id="C8u-pi-pNi"/>
                         <outlet property="groupImage" destination="TCA-me-lWs" id="EMU-MV-x4j"/>

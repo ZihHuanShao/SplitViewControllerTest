@@ -17,7 +17,7 @@ class DetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    fileprivate var tabSelected = TabType.NONE
+    fileprivate var tapType = ShowDetailViewControllerType.NONE
     fileprivate var groupVo:  GroupVo?
     fileprivate var memberVo: MemberVo?
     fileprivate var mainMenuIconsVo = [MainMenuIconVo]()
@@ -36,9 +36,9 @@ class DetailViewController: UIViewController {
         collectionViewDelegate?.updateMainMenuIcons(mainMenuIconsVo: mainMenuIconsVo)
         collectionViewDelegate?.reloadUI()
         
-        switch tabSelected {
+        switch tapType {
             
-        case .GROUP:
+        case .TAB_GROUP_SELECT:
             let groupViewController = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
             
             if let _groupVo = groupVo {
@@ -48,7 +48,7 @@ class DetailViewController: UIViewController {
             setChildView(viewController: groupViewController)
             
         
-        case .MEMBER:
+        case .TAB_MEMBER_SELECT:
             let memberViewController = UIStoryboard(name: STORYBOARD_NAME_MEMBER, bundle: nil).instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
             
             if let _memberVo = memberVo {
@@ -57,6 +57,11 @@ class DetailViewController: UIViewController {
             
             setChildView(viewController: memberViewController)
         
+        case .TAB_GROUP_CREATE_GROUP:
+            let createGroupViewController = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
+            
+            setChildView(viewController: createGroupViewController)
+            
         case .NONE:
             break
         }
@@ -74,8 +79,8 @@ extension DetailViewController {
         self.memberVo = memberVo
     }
     
-    func setTabSelected(type: TabType) {
-        tabSelected = type
+    func setTabSelected(type: ShowDetailViewControllerType) {
+        tapType = type
     }
 }
 
@@ -102,9 +107,9 @@ extension DetailViewController {
     }
     
     private func setChildView(viewController: UIViewController) {
-        switch tabSelected {
+        switch tapType {
             
-        case .GROUP:
+        case .TAB_GROUP_SELECT:
             let groupViewController = viewController as! GroupViewController
             self.addChild(groupViewController)
             groupViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
@@ -112,13 +117,22 @@ extension DetailViewController {
             
             groupViewController.didMove(toParent: self)
             
-        case .MEMBER:
+        case .TAB_MEMBER_SELECT:
             let memberViewController = viewController as! MemberViewController
             self.addChild(memberViewController)
             memberViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
             self.containerView.addSubview(memberViewController.view)
             
             memberViewController.didMove(toParent: self)
+        
+        case .TAB_GROUP_CREATE_GROUP:
+            let createGroupViewController = viewController as! CreateGroupViewController
+            self.addChild(createGroupViewController)
+            createGroupViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+            self.containerView.addSubview(createGroupViewController.view)
+            
+            createGroupViewController.didMove(toParent: self)
+            break
             
         case .NONE:
             break
