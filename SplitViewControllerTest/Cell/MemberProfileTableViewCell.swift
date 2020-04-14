@@ -12,6 +12,7 @@ class MemberProfileTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlet
     
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var profileTitleLabel: UILabel!
     @IBOutlet weak var profileDescLabel: UILabel!
     
@@ -36,18 +37,22 @@ extension MemberProfileTableViewCell {
         switch type {
       
         case .USER_ID:
+            backgroundImage.image = UIImage(named: "bg_listbox_top")
             profileTitleLabel.text = MEMBER_PROFILE_TITLES[0]
             profileDescLabel.text  = memberVo.userId
             
         case .SIP_NUMBER:
+            backgroundImage.image = UIImage(named: "bg_listbox_middle")
             profileTitleLabel.text = MEMBER_PROFILE_TITLES[1]
             profileDescLabel.text  = memberVo.sipId
             
         case .COUNTRY:
+            backgroundImage.image = UIImage(named: "bg_listbox_middle")
             profileTitleLabel.text = MEMBER_PROFILE_TITLES[2]
             profileDescLabel.text  = memberVo.country
             
         case .EMAIL:
+            backgroundImage.image = UIImage(named: "bg_listbox_bottom")
             profileTitleLabel.text = MEMBER_PROFILE_TITLES[3]
             profileDescLabel.text  = memberVo.email
             

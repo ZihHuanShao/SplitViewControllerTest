@@ -33,7 +33,10 @@ let PTT_SOUND_WAVE_ANIMATION_IMAGES: [UIImage] = [UIImage(named: "icon_voice_ani
                                                   UIImage(named: "icon_voice_animation4")!]
 
 // 聯絡人資訊
-let MEMBER_PROFILE_TITLES = ["帳號", "SIP號碼", "國家", "電子信箱"]
+let MEMBER_PROFILE_TITLES = [str_memberProfile_userId,
+                             str_memberProfile_sipId,
+                             str_memberProfile_country,
+                             str_memberProfile_email]
 
 // Cell
 let GROUP_TABLE_VIEW_CELL  = "GroupTableViewCell"  // nib name & cell name (the same)

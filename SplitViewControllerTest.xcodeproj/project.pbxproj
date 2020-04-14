@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D069205024459868006E65D4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069204F24459868006E65D4 /* Strings.swift */; };
+		D06920602445A104006E65D4 /* bg_listbox_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = D069205D2445A104006E65D4 /* bg_listbox_bottom.png */; };
+		D06920612445A104006E65D4 /* bg_listbox_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = D069205E2445A104006E65D4 /* bg_listbox_middle.png */; };
+		D06920622445A104006E65D4 /* bg_listbox_top.png in Resources */ = {isa = PBXBuildFile; fileRef = D069205F2445A104006E65D4 /* bg_listbox_top.png */; };
 		D06DEECF244012960056A7E7 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DEECE244012960056A7E7 /* TestCase.swift */; };
 		D06DEED124405FE70056A7E7 /* UserVo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DEED024405FE70056A7E7 /* UserVo.swift */; };
 		D06E35B8243DC00C00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E35B7243DC00B00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift */; };
@@ -105,6 +109,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D069204F24459868006E65D4 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		D069205D2445A104006E65D4 /* bg_listbox_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listbox_bottom.png; sourceTree = "<group>"; };
+		D069205E2445A104006E65D4 /* bg_listbox_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listbox_middle.png; sourceTree = "<group>"; };
+		D069205F2445A104006E65D4 /* bg_listbox_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listbox_top.png; sourceTree = "<group>"; };
 		D06DEECE244012960056A7E7 /* TestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase.swift; sourceTree = "<group>"; };
 		D06DEED024405FE70056A7E7 /* UserVo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVo.swift; sourceTree = "<group>"; };
 		D06E35B7243DC00B00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchViewCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -253,6 +261,7 @@
 				F22F8B4E242D9B7F00CB08D5 /* ConfigAndConst.swift */,
 				D06DEED024405FE70056A7E7 /* UserVo.swift */,
 				D06DEECE244012960056A7E7 /* TestCase.swift */,
+				D069204F24459868006E65D4 /* Strings.swift */,
 				F20CCEFC2429F00800048BA3 /* AppDelegate.swift */,
 				F20CCF032429F00900048BA3 /* Assets.xcassets */,
 				F20CCF082429F00900048BA3 /* Info.plist */,
@@ -333,6 +342,9 @@
 		F261B467242CAB1300482992 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D069205D2445A104006E65D4 /* bg_listbox_bottom.png */,
+				D069205E2445A104006E65D4 /* bg_listbox_middle.png */,
+				D069205F2445A104006E65D4 /* bg_listbox_top.png */,
 				D06E35BD243DD1ED00E33C44 /* icon_member_delete.png */,
 				D0E23623243C76770009506F /* bg_menu.png */,
 				D0E23631243C76780009506F /* bg_profile.png */,
@@ -465,6 +477,7 @@
 				F20CCF072429F00900048BA3 /* LaunchScreen.storyboard in Resources */,
 				D0E23668243C767B0009506F /* btn_ptt_pressed.png in Resources */,
 				D0E23666243C767B0009506F /* icon_voice_animation2.png in Resources */,
+				D06920612445A104006E65D4 /* bg_listbox_middle.png in Resources */,
 				D0E23663243C767B0009506F /* icon_titile_notify_off.png in Resources */,
 				D0E2367E243C767B0009506F /* btn_profile_set.png in Resources */,
 				F23C0DF22433155600DD7A48 /* MemberProfileTableViewCell.xib in Resources */,
@@ -479,6 +492,7 @@
 				D0E23649243C767B0009506F /* bg_ptt_animation3.png in Resources */,
 				D0E2367B243C767B0009506F /* btn_contact_group_selected.png in Resources */,
 				D0E2365A243C767B0009506F /* btn_menu_video_selected.png in Resources */,
+				D06920602445A104006E65D4 /* bg_listbox_bottom.png in Resources */,
 				D0E23651243C767B0009506F /* btn_chat_pressed.png in Resources */,
 				D0E23673243C767B0009506F /* bg_ptt_animation4.png in Resources */,
 				F20CCF042429F00900048BA3 /* Assets.xcassets in Resources */,
@@ -502,6 +516,7 @@
 				D0E2364F243C767B0009506F /* icon_status_offline.png in Resources */,
 				D0E23652243C767B0009506F /* icon_group_notify_on.png in Resources */,
 				D0E23659243C767B0009506F /* icon_search.png in Resources */,
+				D06920622445A104006E65D4 /* bg_listbox_top.png in Resources */,
 				D0E2366B243C767B0009506F /* bg_profile.png in Resources */,
 				D06E35BC243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib in Resources */,
 				D0E23669243C767B0009506F /* icon_contact_groupmember.png in Resources */,
@@ -548,6 +563,7 @@
 				F20CCF332429FC8000048BA3 /* DetailViewController.swift in Sources */,
 				F20CCF312429F61200048BA3 /* MasterViewController.swift in Sources */,
 				D0E23684243C7E760009506F /* GroupDispatchViewTableViewDelegate.swift in Sources */,
+				D069205024459868006E65D4 /* Strings.swift in Sources */,
 				F23C0DEE2433139600DD7A48 /* MemberViewTableViewDelegate.swift in Sources */,
 				D06E35B8243DC00C00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift in Sources */,
 				F21E21D0243186C8001AE003 /* GroupViewController.swift in Sources */,

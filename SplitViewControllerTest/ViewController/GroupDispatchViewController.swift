@@ -118,8 +118,8 @@ extension GroupDispatchViewController {
     
     private func updateUI() {
         
-        cancelButtonView.setTitle("取消", for: .normal)
-        finishButtonView.setTitle("完成", for: .normal)
+        cancelButtonView.setTitle(str_groupDispatch_cancel, for: .normal)
+        finishButtonView.setTitle(str_groupDispatch_finish, for: .normal)
         
         //
         // TableView

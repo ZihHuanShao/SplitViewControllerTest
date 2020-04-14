@@ -201,15 +201,15 @@ extension MasterViewController {
         //dispatcherName.text = ""
         
         // TabView Filed
-        tabLeftTitle.text  = "群組"
-        tabRightTitle.text = "聯絡人"
+        tabLeftTitle.text  = str_contactTab_group
+        tabRightTitle.text = str_contactTab_member
         tabBottomLeftLine.backgroundColor = UIColorFromRGB(rgbValue: UInt(TAB_BOTTOM_LINE_COLOR))
         tabBottomRightLine.backgroundColor = UIColorFromRGB(rgbValue: UInt(TAB_BOTTOM_LINE_COLOR))
         tabBottomLeftLine.isHidden  = true
         tabBottomRightLine.isHidden = true
         
         // CreateGroupView Field
-        dispatchTitleLabel.text = "群組調度"
+        dispatchTitleLabel.text = str_contactTab_group_dispatch
     }
     
     private func updateGesture() {
