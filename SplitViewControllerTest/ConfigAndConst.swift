@@ -7,12 +7,25 @@
 //
 
 import Foundation
+import UIKit
 
 // MainMenuIcon [點擊時的圖,未點擊時的圖]
 let MAIN_MENU_ICON_PTT     = ["btn_menu_ptt_selected", "btn_menu_ptt_normal"]
 let MAIN_MENU_ICON_MAP     = ["btn_menu_map_selected", "btn_menu_map_normal"]
 let MAIN_MENU_ICON_VIDEO   = ["btn_menu_video_selected", "btn_menu_video_normal"]
 let MAIN_MENU_ICON_HISTORY = ["btn_menu_history_selected", "btn_menu_history_normal"]
+
+// PTT動畫
+let PTT_ANIMATION_IMAGES: [UIImage] = [UIImage(named: "bg_ptt_animation1")!,
+                                       UIImage(named: "bg_ptt_animation2")!,
+                                       UIImage(named: "bg_ptt_animation3")!,
+                                       UIImage(named: "bg_ptt_animation4")!,
+                                       UIImage(named: "bg_ptt_animation5")!,
+                                       UIImage(named: "bg_ptt_animation6")!,
+                                       UIImage(named: "bg_ptt_animation7")!,
+                                       UIImage(named: "bg_ptt_animation8")!,
+                                       UIImage(named: "bg_ptt_animation9")!]
+
 
 // 聯絡人資訊
 let MEMBER_PROFILE_TITLES = ["帳號", "SIP號碼", "國家", "電子信箱"]

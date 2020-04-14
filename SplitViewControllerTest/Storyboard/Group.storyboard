@@ -129,6 +129,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1s-ms-2Ln" userLabel="PTT View">
                                 <rect key="frame" x="884" y="628" width="132" height="132"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IZ7-qH-KnT">
+                                        <rect key="frame" x="-59" y="-59" width="250" height="250"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="250" id="O86-0a-uDA"/>
+                                            <constraint firstAttribute="width" constant="250" id="dby-Ck-x67"/>
+                                        </constraints>
+                                    </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_ptt_normal.png" translatesAutoresizingMaskIntoConstraints="NO" id="g5t-fC-ulo">
                                         <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
                                     </imageView>
@@ -136,16 +143,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
                                         <connections>
                                             <action selector="pttButtonPressed:" destination="n8W-gL-WNz" eventType="touchUpInside" id="X3i-Ct-iLX"/>
+                                            <action selector="pttButtonPressedTouchDown:" destination="n8W-gL-WNz" eventType="touchDown" id="12e-kN-hbh"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="IZ7-qH-KnT" firstAttribute="centerX" secondItem="Z1s-ms-2Ln" secondAttribute="centerX" id="4AT-no-Jrk"/>
                                     <constraint firstItem="wVv-CM-REx" firstAttribute="leading" secondItem="Z1s-ms-2Ln" secondAttribute="leading" id="J21-Nb-ptJ"/>
                                     <constraint firstAttribute="height" constant="132" id="NpW-ca-gXG"/>
                                     <constraint firstAttribute="bottom" secondItem="wVv-CM-REx" secondAttribute="bottom" id="RE3-nl-Pde"/>
                                     <constraint firstItem="g5t-fC-ulo" firstAttribute="leading" secondItem="Z1s-ms-2Ln" secondAttribute="leading" id="VYe-YK-zFM"/>
                                     <constraint firstAttribute="bottom" secondItem="g5t-fC-ulo" secondAttribute="bottom" id="XaK-vp-KEJ"/>
+                                    <constraint firstItem="IZ7-qH-KnT" firstAttribute="centerY" secondItem="Z1s-ms-2Ln" secondAttribute="centerY" id="dHI-si-HTD"/>
                                     <constraint firstAttribute="width" constant="132" id="dOl-Qe-c2W"/>
                                     <constraint firstItem="g5t-fC-ulo" firstAttribute="top" secondItem="Z1s-ms-2Ln" secondAttribute="top" id="moz-Ww-VGs"/>
                                     <constraint firstItem="wVv-CM-REx" firstAttribute="top" secondItem="Z1s-ms-2Ln" secondAttribute="top" id="rMD-xF-E7C"/>
@@ -202,6 +212,7 @@
                         <outlet property="collectionView" destination="DbG-Kc-rgj" id="3fv-mZ-Jju"/>
                         <outlet property="groupNameLabel" destination="Ou7-4G-B4Y" id="gin-TS-Zhz"/>
                         <outlet property="monitorImage" destination="EoZ-Zh-n0Q" id="d4E-ha-Per"/>
+                        <outlet property="pttButtonAnimationImage" destination="IZ7-qH-KnT" id="U32-8w-l4b"/>
                         <outlet property="pttButtonImage" destination="g5t-fC-ulo" id="2hy-6V-Yda"/>
                     </connections>
                 </viewController>

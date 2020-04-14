@@ -17,6 +17,7 @@ class GroupViewController: UIViewController {
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var pttButtonImage: UIImageView!
     @IBOutlet weak var chatButtonImage: UIImageView!
+    @IBOutlet weak var pttButtonAnimationImage: UIImageView!
     
     // MARK: - Properties
     
@@ -38,12 +39,23 @@ class GroupViewController: UIViewController {
         print("groupSettingButtonPressed")
     }
     
+
+    
+    @IBAction func pttButtonPressedTouchDown(_ sender: UIButton) {
+        print("pttButtonPressedTouchDown")
+        pttButtonAnimationImage.image = UIImage.animatedImage(with: PTT_ANIMATION_IMAGES, duration: 1)
+        pttButtonAnimationImage.contentMode = .scaleAspectFit
+    }
+    
     @IBAction func pttButtonPressed(_ sender: UIButton) {
         print("pttButtonPressed")
+        pttButtonAnimationImage.image = nil
+        pttButtonAnimationImage.animationImages = nil
     }
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
         print("chatButtonPressed")
+        
     }
     
 }
@@ -58,6 +70,8 @@ extension GroupViewController {
 // MARK: - Private Methods
 extension GroupViewController {
     private func updateUI() {
+        
+        
         
         guard let gVo = groupVo else {
             return
