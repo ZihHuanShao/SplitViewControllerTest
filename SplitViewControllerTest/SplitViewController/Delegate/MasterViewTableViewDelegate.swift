@@ -53,9 +53,7 @@ class MasterViewTableViewDelegate: NSObject {
         tableView.dataSource = self
         tableView.delegate = self
         tableViewExtendDelegate = self.viewController
-        tabType = type
-        
-        
+        tabType = type   
     }
     
     deinit {
@@ -249,13 +247,19 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
 extension MasterViewTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // trigger seque to display UI
-        tableViewExtendDelegate?.activateSegue()
-        
         print("didSelectRowAt: \(indexPath.row)")
         
         switch tabType {
-        case .GROUP, .MEMBER:
+        case .GROUP:
+            // trigger seque to display UI
+            tableViewExtendDelegate?.activateSegue(tapType: .TAB_GROUP_SELECT)
+            
+            setColorBar(rowIndex: indexPath.row)
+            
+        case .MEMBER:
+            // trigger seque to display UI
+            tableViewExtendDelegate?.activateSegue(tapType: .TAB_MEMBER_SELECT)
+            
             setColorBar(rowIndex: indexPath.row)
             
         case .NONE:
@@ -270,5 +274,5 @@ extension MasterViewTableViewDelegate: UITableViewDelegate {
 // MARK: - Protocol
 
 protocol MasterViewTableViewExtendDelegate: NSObject {
-    func activateSegue()
+    func activateSegue(tapType: ShowDetailViewControllerType)
 }

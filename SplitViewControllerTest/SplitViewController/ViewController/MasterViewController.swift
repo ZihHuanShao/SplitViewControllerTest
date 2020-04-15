@@ -26,6 +26,9 @@ class MasterViewController: UIViewController {
     
     // SearchView Filed
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var createGroupoView: UIView!
+    @IBOutlet weak var createGroupWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var createGroupTrailingConstraint: NSLayoutConstraint!
     
     // TableView Field
     @IBOutlet weak var tableView: UITableView!
@@ -237,6 +240,9 @@ extension MasterViewController {
         tapType = .TAB_GROUP_SELECT
         
         // update UI
+        createGroupWidthConstraint.constant = 40
+        createGroupTrailingConstraint.constant = 8
+        createGroupoView.isHidden = false
         tabLeftIcon.image = UIImage(named: "btn_contact_group_selected")
         tabRightIcon.image = UIImage(named: "btn_contact_member_normal")
         tabLeftTitle.textColor  = UIColorFromRGB(rgbValue: UInt(TAB_SELECTED_TITLE_COLOR))
@@ -257,6 +263,9 @@ extension MasterViewController {
         tapType = .TAB_MEMBER_SELECT
         
         // update UI
+        createGroupWidthConstraint.constant = 0
+        createGroupTrailingConstraint.constant = 0
+        createGroupoView.isHidden = true
         tabLeftIcon.image = UIImage(named: "btn_contact_group_normal")
         tabRightIcon.image = UIImage(named: "btn_contact_member_selected")
         tabLeftTitle.textColor  = UIColorFromRGB(rgbValue: UInt(TAB_UNSELECTED_TITLE_COLOR))
@@ -335,7 +344,8 @@ extension MasterViewController: UITextFieldDelegate {
 // MARK: - MasterViewTableViewExtendDelegate
 
 extension MasterViewController: MasterViewTableViewExtendDelegate {
-    func activateSegue() {
+    func activateSegue(tapType: ShowDetailViewControllerType) {
+        self.tapType = tapType
         performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: self)
     }
 }

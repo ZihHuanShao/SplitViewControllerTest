@@ -99,7 +99,14 @@ class CreateGroupViewController: UIViewController {
 
 extension CreateGroupViewController {
     private func updateDataSource() {
-        
+        setTextFieldDataSource()
+        updateGesture()
+    }
+    
+    private func updateGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
+        tap.cancelsTouchesInView = false // 可以避免在view上加手勢, 點擊cell無法被trigger
+        self.view.addGestureRecognizer(tap)
     }
     
     private func updateUI() {
@@ -133,12 +140,12 @@ extension CreateGroupViewController {
         switch type {
         case .PRESSED:
             finishImage.image = UIImage(named: "btn_contact_pressed")
-            finishImage.contentMode = .scaleAspectFill
+            finishImage.contentMode = .scaleToFill
             
             
         case .AWAY:
             finishImage.image = UIImage(named: "btn_contact_normal")
-            finishImage.contentMode = .scaleAspectFill
+            finishImage.contentMode = .scaleToFill
         }
     }
     
@@ -146,12 +153,29 @@ extension CreateGroupViewController {
         switch type {
         case .PRESSED:
             createMemberImage.image = UIImage(named: "btn_contact_pressed")
-            createMemberImage.contentMode = .scaleAspectFill
+            createMemberImage.contentMode = .scaleToFill
             
             
         case .AWAY:
             createMemberImage.image = UIImage(named: "btn_contact_normal")
-            createMemberImage.contentMode = .scaleAspectFill
+            createMemberImage.contentMode = .scaleToFill
         }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension CreateGroupViewController: UITextFieldDelegate {
+    func setTextFieldDataSource() {
+        groupNameTextField.delegate = self
+        groupDescTextField.delegate = self
+    }
+}
+
+// MARK: - Event Methods
+
+extension CreateGroupViewController {
+    @objc func dismissKeyBoard() {
+        self.view.endEditing(true)
     }
 }

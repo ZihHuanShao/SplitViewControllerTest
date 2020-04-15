@@ -496,6 +496,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="IR9-cT-YHz"/>
                     <connections>
+                        <outlet property="createGroupTrailingConstraint" destination="JUq-G2-gRq" id="nkY-Fs-f81"/>
+                        <outlet property="createGroupWidthConstraint" destination="pAm-lK-1OE" id="z0b-un-uV8"/>
+                        <outlet property="createGroupoView" destination="z7K-gY-ydU" id="ojg-jM-ulE"/>
                         <outlet property="dispatchImage" destination="AVV-Lm-84E" id="2V3-8D-IP7"/>
                         <outlet property="dispatchTitleLabel" destination="dzr-xX-tge" id="S6Q-IU-qIo"/>
                         <outlet property="dispatchView" destination="2NP-mh-ilh" id="5Pa-9b-K6h"/>
