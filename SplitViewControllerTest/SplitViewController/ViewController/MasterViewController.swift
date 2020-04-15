@@ -81,6 +81,10 @@ class MasterViewController: UIViewController {
         print("dispatcherSetting pressed")
     }
     
+    //
+    // tabLeftContentButton
+    //
+    
     @IBAction func tabLeftContentButtonPressed(_ sender: UIButton) {
         tabLeftContentButtonPressedHandler()
     }
@@ -96,16 +100,20 @@ class MasterViewController: UIViewController {
     }
     
     
-    @IBAction func dispatchButtonTouchDown(_ sender: UIButton) {
-        updateDispatchButtonImage(type: .PRESSED)
+    //
+    // GroupDispatchButton
+    //
+    
+    @IBAction func groupDispatchButtonTouchDown(_ sender: UIButton) {
+        updateGroupDispatchImage(type: .PRESSED)
     }
     
-    @IBAction func dispatchButtonTouchDragExit(_ sender: UIButton) {
-        updateDispatchButtonImage(type: .AWAY)
+    @IBAction func groupDispatchButtonTouchDragExit(_ sender: UIButton) {
+        updateGroupDispatchImage(type: .AWAY)
     }
     
-    @IBAction func dispatchButtonTouchUpInside(_ sender: UIButton) {
-        updateDispatchButtonImage(type: .AWAY)
+    @IBAction func groupDispatchButtonTouchUpInside(_ sender: UIButton) {
+        updateGroupDispatchImage(type: .AWAY)
         
         // wait a moment before taking the screenshot
         let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showGroupDispatchDelayed), userInfo: nil, repeats: false)
@@ -274,7 +282,7 @@ extension MasterViewController {
         )
     }
     
-    private func updateDispatchButtonImage(type: ButtonPressType) {
+    private func updateGroupDispatchImage(type: ButtonPressType) {
         switch type {
         case .PRESSED:
             dispatchImage.image = UIImage(named: "btn_contact_pressed")
