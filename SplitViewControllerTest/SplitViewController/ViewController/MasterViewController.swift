@@ -105,15 +105,15 @@ class MasterViewController: UIViewController {
     //
     
     @IBAction func groupDispatchButtonTouchDown(_ sender: UIButton) {
-        updateGroupDispatchImage(type: .PRESSED)
+        updateGroupDispatchButtonImage(type: .PRESSED)
     }
     
     @IBAction func groupDispatchButtonTouchDragExit(_ sender: UIButton) {
-        updateGroupDispatchImage(type: .AWAY)
+        updateGroupDispatchButtonImage(type: .AWAY)
     }
     
     @IBAction func groupDispatchButtonTouchUpInside(_ sender: UIButton) {
-        updateGroupDispatchImage(type: .AWAY)
+        updateGroupDispatchButtonImage(type: .AWAY)
         
         // wait a moment before taking the screenshot
         let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showGroupDispatchDelayed), userInfo: nil, repeats: false)
@@ -282,7 +282,7 @@ extension MasterViewController {
         )
     }
     
-    private func updateGroupDispatchImage(type: ButtonPressType) {
+    private func updateGroupDispatchButtonImage(type: ButtonPressType) {
         switch type {
         case .PRESSED:
             dispatchImage.image = UIImage(named: "btn_contact_pressed")

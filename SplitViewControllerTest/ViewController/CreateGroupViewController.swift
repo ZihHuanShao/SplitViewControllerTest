@@ -55,6 +55,10 @@ class CreateGroupViewController: UIViewController {
         updatefinishButtonImage(type: .AWAY)
     }
     
+    //
+    // editGroupImageButton
+    //
+    
     @IBAction func editGroupImageButtonPressed(_ sender: UIButton) {
     }
 
