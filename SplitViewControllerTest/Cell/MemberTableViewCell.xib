@@ -23,9 +23,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3y-B0-FuO" userLabel="Left View">
                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9us-pt-8dw">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sticker_contact.png" translatesAutoresizingMaskIntoConstraints="NO" id="9us-pt-8dw">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                        <color key="backgroundColor" red="0.79208946229999999" green="0.79220157859999996" blue="0.79205411670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -153,5 +153,6 @@
     </objects>
     <resources>
         <image name="icon_status_offline.png" width="10" height="10"/>
+        <image name="sticker_contact.png" width="240" height="240"/>
     </resources>
 </document>

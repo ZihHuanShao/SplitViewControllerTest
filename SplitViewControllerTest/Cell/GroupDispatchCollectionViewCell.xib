@@ -23,7 +23,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1SK-B0-Mbh" userLabel="Top View">
                                 <rect key="frame" x="20" y="4" width="40" height="40"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cz3-2m-gmM">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sticker_group.png" translatesAutoresizingMaskIntoConstraints="NO" id="cz3-2m-gmM">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                     </imageView>
                                 </subviews>
@@ -100,5 +100,6 @@
     </objects>
     <resources>
         <image name="icon_member_delete.png" width="18" height="18"/>
+        <image name="sticker_group.png" width="240" height="240"/>
     </resources>
 </document>

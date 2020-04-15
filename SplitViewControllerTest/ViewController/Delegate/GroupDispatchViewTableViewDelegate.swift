@@ -52,6 +52,7 @@ extension GroupDispatchViewTableViewDelegate {
 
     }
 }
+
 // MARK: - Public Methods
 
 extension GroupDispatchViewTableViewDelegate {

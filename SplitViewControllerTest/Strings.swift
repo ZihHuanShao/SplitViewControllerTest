@@ -19,6 +19,10 @@ let str_contactTab_group_dispatch = "群組調度"
 let str_groupDispatch_cancel = "取消"
 let str_groupDispatch_finish = "完成"
 
+// AddMemberViewController
+let str_addMember_cancel = "取消"
+let str_addMember_finish = "完成"
+
 
 // MemberProfileViewController
 let str_memberProfile_userId  = "帳號"

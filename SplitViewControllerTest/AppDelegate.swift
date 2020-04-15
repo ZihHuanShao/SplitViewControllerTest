@@ -80,7 +80,7 @@ extension AppDelegate {
         
         // grab the overlay controller
         let storyboard = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil)
-        let groupDispatchViewController = storyboard.instantiateViewController(withIdentifier: "Overlay") as! GroupDispatchViewController
+        let groupDispatchViewController = storyboard.instantiateViewController(withIdentifier: GROUP_DISPATCH_VIEW_CONTROLLER) as! GroupDispatchViewController
         
         groupDispatchViewController.updateGroupsVo(groupsVo)
 
@@ -94,6 +94,34 @@ extension AppDelegate {
         
         // present the overlay
         underlay.present(groupDispatchViewController, animated: true, completion: nil)
+    }
+    
+    func showAddMember(membersVo: [MemberVo]) {
+         // grab a screenshot
+         let screenshot = grabScreenshot()
+
+         
+         // create a new view controller with it
+         let underlay = UIViewController.init()
+         let background = UIImageView.init(image: screenshot)
+         underlay.view = background
+         
+         // grab the overlay controller
+         let storyboard = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil)
+         let addMemberViewController = storyboard.instantiateViewController(withIdentifier: ADD_MEMBER_VIEW_CONTROLLER) as! AddMemberViewController
+         
+         addMemberViewController.updateMembersVo(membersVo)
+
+         addMemberViewController.modalPresentationStyle = .formSheet
+         
+         // swap the split view
+         
+         splitView = window?.rootViewController as? UISplitViewController
+         window?.rootViewController = underlay
+        
+         
+         // present the overlay
+         underlay.present(addMemberViewController, animated: true, completion: nil)
     }
     
     func dismissOverlay() {

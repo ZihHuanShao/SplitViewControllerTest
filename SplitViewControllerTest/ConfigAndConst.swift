@@ -38,6 +38,10 @@ let MEMBER_PROFILE_TITLES = [str_memberProfile_userId,
                              str_memberProfile_country,
                              str_memberProfile_email]
 
+// Storyboard(ViewController) ID
+let ADD_MEMBER_VIEW_CONTROLLER = "AddMemberViewController"
+let GROUP_DISPATCH_VIEW_CONTROLLER = "GroupDispatchViewController"
+
 // Segue
 let SHOW_DETAIL_VIEW_CONTROLLER = "showDetailViewController"
 
@@ -50,6 +54,8 @@ let MEMBER_PROFILE_TABLE_VIEW_CELL = "MemberProfileTableViewCell"
 let GROUP_DISPATCH_TABLE_VIEW_CELL = "GroupDispatchTableViewCell"
 let GROUP_DISPATCH_COLLECTION_VIEW_CELL = "GroupDispatchCollectionViewCell"
 let CREATE_GROUP_TABLE_VIEW_CELL = "createGroupTableViewCell"
+let ADD_MEMBER_TABLE_VIEW_CELL = "AddMemberTableViewCell"
+let ADD_MEMBER_COLLECTION_VIEW_CELL = "AddMemberCollectionViewCell"
 
 // Storyboard
 let STORYBOARD_NAME_MAIN   = "Main"
@@ -63,10 +69,13 @@ let SPLIT_VIEW_CONTROLLER_HEIGHT       = "splitViewControllerHeight"
 
 // Notification
 let DROP_SELECTED_GROUP_TABLE_CELL_NOTIFY_KEY = NSNotification.Name(rawValue: "dropSelectedGroupTableCellNotifyKey")
+let DROP_SELECTED_MEMBER_TABLE_CELL_NOTIFY_KEY = NSNotification.Name(rawValue: "dropSelectedMemberTableCellNotifyKey")
 let CHANGE_MONITOR_NOTIFY_KEY = NSNotification.Name(rawValue: "changeMonitorNotifyKey")
+
 
 // Notification userInfo
 let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
+let DROP_SELECTED_Member_TABLE_CELL_USER_KEY = "dropSelectedMemberTableCellUserKey"
 let CHANGE_MONITOR_USER_KEY = "changeMonitorUserKey"
 
 // 通訊錄Tab

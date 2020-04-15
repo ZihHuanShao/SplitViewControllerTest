@@ -18,7 +18,7 @@ class GroupDispatchCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     
     // Tableview的group列表中, 存放cell的row index值
-    fileprivate var tableRowIndex = Int()
+    fileprivate var tableRowIndex: Int?
     
     // MARK: - Life Cycle
     
@@ -35,7 +35,10 @@ class GroupDispatchCollectionViewCell: UICollectionViewCell {
     
     @IBAction func dropoutButtonPressed(_ sender: UIButton) {
         print("dropoutButtonPressed")
-        NotificationCenter.default.post(name: DROP_SELECTED_GROUP_TABLE_CELL_NOTIFY_KEY, object: self, userInfo: [DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY: tableRowIndex])
+        if let _tableRowIndex = tableRowIndex {
+           NotificationCenter.default.post(name: DROP_SELECTED_GROUP_TABLE_CELL_NOTIFY_KEY, object: self, userInfo: [DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY: _tableRowIndex])
+        }
+        
     }
     
 }

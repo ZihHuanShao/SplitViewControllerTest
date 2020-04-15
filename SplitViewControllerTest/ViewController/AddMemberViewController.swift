@@ -1,14 +1,14 @@
 //
-//  GroupDispatchViewController.swift
+//  AddMemberViewController.swift
 //  SplitViewControllerTest
 //
-//  Created by kokome maxkit on 2020/4/7.
+//  Created by kokome maxkit on 2020/4/15.
 //  Copyright © 2020 fredshao. All rights reserved.
 //
 
 import UIKit
 
-class GroupDispatchViewController: UIViewController {
+class AddMemberViewController: UIViewController {
 
     // MARK: - IBOutlet
     
@@ -21,15 +21,15 @@ class GroupDispatchViewController: UIViewController {
     // MARK: - Properties
     
     // tableview
-    fileprivate var tableViewDelegate: GroupDispatchViewTableViewDelegate?
+    fileprivate var tableViewDelegate: AddMemberViewTableViewDelegate?
     
     // collectionview
-    fileprivate var collectionViewDelegate: GroupDispatchViewCollectionViewDelegate?
+    fileprivate var collectionViewDelegate: AddMemberViewCollectionViewDelegate?
     
     // Original Test data
-    fileprivate var groupsVo = [GroupVo]()
+    fileprivate var membersVo = [MemberVo]()
     
-    var dropSelectedGroupObserver: NSObjectProtocol?
+    var dropSelectedMemberObserver: NSObjectProtocol?
     
     // MARK: - Life Cycle
     
@@ -39,8 +39,9 @@ class GroupDispatchViewController: UIViewController {
         updateGesture()
         updateNotificationCenter()
         updateUI()
+    
     }
-        
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         updateSelfViewSize()
@@ -48,7 +49,7 @@ class GroupDispatchViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        NotificationCenter.default.removeObserver(dropSelectedGroupObserver!)
+        NotificationCenter.default.removeObserver(dropSelectedMemberObserver!)
     }
     
     // MARK: - Actions
@@ -65,39 +66,36 @@ class GroupDispatchViewController: UIViewController {
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         print("resetButtonPressed")
-        collectionViewDelegate?.resetSelectGroups()
+        collectionViewDelegate?.resetSelectMembers()
         collectionViewDelegate?.reloadUI()
         
-        tableViewDelegate?.resetGroups()
+        tableViewDelegate?.resetMembers()
         tableViewDelegate?.reloadUI()
     }
-    
 }
 
 // MARK: - UITextFieldDelegate
 
-extension GroupDispatchViewController: UITextFieldDelegate {
+extension AddMemberViewController: UITextFieldDelegate {
     func setSearchTextFieldDataSource() {
         searchTextField.delegate = self
     }
 }
 
-
-
 // MARK: - Public Methods
 
-extension GroupDispatchViewController {
-    func updateGroupsVo(_ groupsVo: [GroupVo]) {
-        self.groupsVo = groupsVo
+extension AddMemberViewController {
+    func updateMembersVo(_ membersVo: [MemberVo]) {
+        self.membersVo = membersVo
     }
 }
 
 // MARK: - Private Methods
 
-extension GroupDispatchViewController {
+extension AddMemberViewController {
     
     private func updateNotificationCenter() {
-        dropSelectedGroupObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_GROUP_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedGroup)
+        dropSelectedMemberObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_MEMBER_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedMember)
     }
     
     private func updateSelfViewSize() {
@@ -117,17 +115,17 @@ extension GroupDispatchViewController {
     
     private func updateUI() {
         
-        cancelButtonView.setTitle(str_groupDispatch_cancel, for: .normal)
-        finishButtonView.setTitle(str_groupDispatch_finish, for: .normal)
+        cancelButtonView.setTitle(str_addMember_cancel, for: .normal)
+        finishButtonView.setTitle(str_addMember_finish, for: .normal)
         
         //
         // TableView
         //
         
-        tableViewDelegate = GroupDispatchViewTableViewDelegate(groupDispatchViewController: self, tableView: tableView)
-        tableViewDelegate?.registerCell(cellName: GROUP_DISPATCH_TABLE_VIEW_CELL, cellId: GROUP_DISPATCH_TABLE_VIEW_CELL)
+        tableViewDelegate = AddMemberViewTableViewDelegate(addMemberViewController: self, tableView: tableView)
+        tableViewDelegate?.registerCell(cellName: ADD_MEMBER_TABLE_VIEW_CELL, cellId: ADD_MEMBER_TABLE_VIEW_CELL)
         
-        tableViewDelegate?.updateGroupsVo(groupsVo)
+        tableViewDelegate?.updateMembersVo(membersVo)
         
         tableViewDelegate?.reloadUI()
         
@@ -135,8 +133,8 @@ extension GroupDispatchViewController {
         // CollectionView
         //
         
-        collectionViewDelegate = GroupDispatchViewCollectionViewDelegate(groupDispatchViewController: self, collectionView: collectionView)
-        collectionViewDelegate?.registerCell(cellName: GROUP_DISPATCH_COLLECTION_VIEW_CELL, cellId: GROUP_DISPATCH_COLLECTION_VIEW_CELL)
+        collectionViewDelegate = AddMemberViewCollectionViewDelegate(addMemberViewController: self, collectionView: collectionView)
+        collectionViewDelegate?.registerCell(cellName: ADD_MEMBER_COLLECTION_VIEW_CELL, cellId: ADD_MEMBER_COLLECTION_VIEW_CELL)
         
         collectionViewDelegate?.reloadUI()
     }
@@ -152,9 +150,10 @@ extension GroupDispatchViewController {
     }
 }
 
+
 // MARK: - Event Methods
 
-extension GroupDispatchViewController {
+extension AddMemberViewController {
     @objc func dismissKeyBoard() {
         self.view.endEditing(true)
     }
@@ -162,26 +161,25 @@ extension GroupDispatchViewController {
 
 // MARK: - Notification Methods
 
-extension GroupDispatchViewController {
-    func dropSelectedGroup(notification: Notification) -> Void {
-        if let rowIndex = notification.userInfo?[DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY] as? Int {
+extension AddMemberViewController {
+    func dropSelectedMember(notification: Notification) -> Void {
+        if let rowIndex = notification.userInfo?[DROP_SELECTED_Member_TABLE_CELL_USER_KEY] as? Int {
             
-            tableViewDelegate?.deselectGroup(rowIndex: rowIndex)
+            tableViewDelegate?.deselectMember(rowIndex: rowIndex)
             tableViewDelegate?.reloadUI()
             
-            collectionViewDelegate?.removeSelectedGroup(tableRowIndex: rowIndex)
+            collectionViewDelegate?.removeSelectedMember(tableRowIndex: rowIndex)
             collectionViewDelegate?.reloadUI()
         }
         
     }
 }
 
+// MARK: - AddMemberTableViewExtendDelegate
 
-// MARK: - GroupDispatchTableViewExtendDelegate
-
-extension GroupDispatchViewController: GroupDispatchTableViewExtendDelegate {
-    func pickupGroup(tableRowIndex: Int, selectedGroupVo: GroupVo) {
-        collectionViewDelegate?.appendSelectedGroup(tableRowIndex: tableRowIndex, selectedGroupVo)
+extension AddMemberViewController: AddMemberTableViewExtendDelegate {
+    func pickupMember(tableRowIndex: Int, selectedMemberVo: MemberVo) {
+        collectionViewDelegate?.appendSelectedMember(tableRowIndex: tableRowIndex, selectedMemberVo)
         collectionViewDelegate?.reloadUI()
     }
 }

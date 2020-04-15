@@ -37,6 +37,9 @@ class CreateGroupViewController: UIViewController {
     
     // MARK: - Properties
     
+    // 所有成員清單
+    fileprivate var membersVo = [MemberVo]()
+    
     // tableview
     fileprivate var tableViewDelegate: CreateGroupViewTableViewDelegate?
     
@@ -45,6 +48,7 @@ class CreateGroupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        reloadTestData()
         updateDataSource()
     }
     
@@ -91,6 +95,9 @@ class CreateGroupViewController: UIViewController {
     
     @IBAction func createMemberButtonTouchUpInside(_ sender: UIButton) {
         updateCreateMemberButtonImage(type: .AWAY)
+        
+        // wait a moment before taking the screenshot
+        let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showGroupDispatchDelayed), userInfo: nil, repeats: false)
     }
 
 }
@@ -101,6 +108,23 @@ extension CreateGroupViewController {
     private func updateDataSource() {
         setTextFieldDataSource()
         updateGesture()
+    }
+    
+    private func reloadTestData() {
+        for member in TEST_MEMBERS {
+            membersVo.append(
+                MemberVo(
+                    name: member.name,
+                    imageName: member.imageName,
+                    userId: member.userId,
+                    sipId: member.sipId,
+                    country: member.country,
+                    email: member.email,
+                    onlineState: member.onlineState,
+                    isSelected: member.isSelected
+                )
+            )
+        }
     }
     
     private func updateGesture() {
@@ -177,5 +201,10 @@ extension CreateGroupViewController: UITextFieldDelegate {
 extension CreateGroupViewController {
     @objc func dismissKeyBoard() {
         self.view.endEditing(true)
+    }
+    
+    @objc func showGroupDispatchDelayed() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.showAddMember(membersVo: membersVo)
     }
 }

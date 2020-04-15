@@ -51,7 +51,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FCc-8a-yRa" userLabel="Group Content View">
                                 <rect key="frame" x="8" y="8" width="264" height="40"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S23-mw-3D3">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sticker_group.png" translatesAutoresizingMaskIntoConstraints="NO" id="S23-mw-3D3">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="4fK-Dv-HVN"/>
@@ -175,5 +175,6 @@
     <resources>
         <image name="icon_contact_groupmember.png" width="14" height="17"/>
         <image name="icon_unselected.png" width="20" height="22"/>
+        <image name="sticker_group.png" width="240" height="240"/>
     </resources>
 </document>

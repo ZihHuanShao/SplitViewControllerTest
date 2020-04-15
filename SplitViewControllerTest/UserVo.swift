@@ -82,3 +82,12 @@ class SelectedGroupVo {
     }
 }
 
+class SelectedMemberVo {
+    var tableRowIndex: Int?
+    var memberVo: MemberVo?
+    
+    init(tableRowIndex: Int?, memberVo: MemberVo?) {
+        self.tableRowIndex = tableRowIndex
+        self.memberVo = memberVo
+    }
+}

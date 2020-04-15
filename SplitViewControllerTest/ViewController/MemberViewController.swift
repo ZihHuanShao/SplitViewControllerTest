@@ -126,7 +126,7 @@ extension MemberViewController {
         }
         
         memberNameLabel.text = mVo.name
-        memberImage.image = UIImage(named: mVo.imageName ?? "")
+        memberImage.image = UIImage(named: mVo.imageName ?? "sticker_contact.png")
         
         tableViewDelegate = MemberViewTableViewDelegate(memberViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: MEMBER_PROFILE_TABLE_VIEW_CELL, cellId: MEMBER_PROFILE_TABLE_VIEW_CELL)

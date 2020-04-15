@@ -152,41 +152,66 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1J-Ke-PHP" userLabel="Title Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yy6-B3-muo">
-                                                <rect key="frame" x="0.0" y="8" width="48" height="48"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="llW-af-dpW" userLabel="Dispatcher View">
+                                                <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yy6-B3-muo">
+                                                        <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="48" id="GKd-RP-6sR"/>
+                                                            <constraint firstAttribute="height" constant="48" id="rbs-yH-BgA"/>
+                                                        </constraints>
+                                                        <state key="normal" image="sticker_contact.png"/>
+                                                    </button>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="48" id="GKd-RP-6sR"/>
-                                                    <constraint firstAttribute="height" constant="48" id="rbs-yH-BgA"/>
+                                                    <constraint firstItem="Yy6-B3-muo" firstAttribute="centerX" secondItem="llW-af-dpW" secondAttribute="centerX" id="Gmq-qV-Uz8"/>
+                                                    <constraint firstAttribute="height" constant="64" id="K7n-ZP-SXO"/>
+                                                    <constraint firstItem="Yy6-B3-muo" firstAttribute="centerY" secondItem="llW-af-dpW" secondAttribute="centerY" id="jWP-4F-sHU"/>
+                                                    <constraint firstAttribute="width" constant="64" id="t8V-G5-tgd"/>
                                                 </constraints>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMb-IN-81j" userLabel="Dispatcher Setting Button">
-                                                <rect key="frame" x="256" y="0.0" width="64" height="64"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="64" id="7di-FU-Cch"/>
-                                                    <constraint firstAttribute="height" constant="64" id="fn9-0n-o93"/>
-                                                </constraints>
-                                                <state key="normal" image="btn_profile_set.png"/>
-                                                <connections>
-                                                    <action selector="dispatcherSetting:" destination="dnk-cw-6M6" eventType="touchUpInside" id="etv-Nb-zaM"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="調度員ABCDEFGHIJKLMNOPQRSTUVWXYZ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENF-B6-qAm">
-                                                <rect key="frame" x="52" y="13" width="200" height="38.5"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="調度員MAXKIT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENF-B6-qAm">
+                                                <rect key="frame" x="72" y="22.5" width="176" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dov-Wg-M0a" userLabel="Dispatcher Setting View">
+                                                <rect key="frame" x="256" y="0.0" width="64" height="64"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMb-IN-81j" userLabel="Dispatcher Setting Button">
+                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                        <state key="normal" image="btn_profile_set.png"/>
+                                                        <connections>
+                                                            <action selector="dispatcherSetting:" destination="dnk-cw-6M6" eventType="touchUpInside" id="etv-Nb-zaM"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="ZMb-IN-81j" firstAttribute="leading" secondItem="dov-Wg-M0a" secondAttribute="leading" id="Cao-7C-fjD"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ZMb-IN-81j" secondAttribute="trailing" id="PPh-0a-A6T"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ZMb-IN-81j" secondAttribute="bottom" id="gvq-ss-6sV"/>
+                                                    <constraint firstAttribute="height" constant="64" id="rFQ-E0-Ath"/>
+                                                    <constraint firstAttribute="width" constant="64" id="rmm-ov-lvN"/>
+                                                    <constraint firstItem="ZMb-IN-81j" firstAttribute="top" secondItem="dov-Wg-M0a" secondAttribute="top" id="yEc-49-oW1"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="Yy6-B3-muo" firstAttribute="leading" secondItem="Q1J-Ke-PHP" secondAttribute="leading" id="6eF-oh-mCV"/>
-                                            <constraint firstItem="Yy6-B3-muo" firstAttribute="centerY" secondItem="Q1J-Ke-PHP" secondAttribute="centerY" id="6p4-QF-zfM"/>
-                                            <constraint firstAttribute="trailing" secondItem="ZMb-IN-81j" secondAttribute="trailing" id="D1O-np-91e"/>
+                                            <constraint firstItem="llW-af-dpW" firstAttribute="leading" secondItem="Q1J-Ke-PHP" secondAttribute="leading" id="3zd-bd-9F6"/>
+                                            <constraint firstAttribute="bottom" secondItem="dov-Wg-M0a" secondAttribute="bottom" id="Dh2-7g-2Xh"/>
                                             <constraint firstItem="ENF-B6-qAm" firstAttribute="centerY" secondItem="Q1J-Ke-PHP" secondAttribute="centerY" id="GEQ-6O-oGD"/>
-                                            <constraint firstItem="ZMb-IN-81j" firstAttribute="centerY" secondItem="Q1J-Ke-PHP" secondAttribute="centerY" id="PFo-Hv-6oZ"/>
-                                            <constraint firstItem="ENF-B6-qAm" firstAttribute="leading" secondItem="Yy6-B3-muo" secondAttribute="trailing" constant="4" id="kLM-WK-lMT"/>
-                                            <constraint firstItem="ZMb-IN-81j" firstAttribute="leading" secondItem="ENF-B6-qAm" secondAttribute="trailing" constant="4" id="uma-J5-u0U"/>
+                                            <constraint firstItem="dov-Wg-M0a" firstAttribute="leading" secondItem="ENF-B6-qAm" secondAttribute="trailing" constant="8" id="GWb-nr-EBV"/>
+                                            <constraint firstAttribute="trailing" secondItem="dov-Wg-M0a" secondAttribute="trailing" id="Gmg-LH-doZ"/>
+                                            <constraint firstItem="ENF-B6-qAm" firstAttribute="leading" secondItem="llW-af-dpW" secondAttribute="trailing" constant="8" id="fqS-Ce-Yx3"/>
+                                            <constraint firstAttribute="bottom" secondItem="llW-af-dpW" secondAttribute="bottom" id="uCa-fa-EtA"/>
+                                            <constraint firstItem="dov-Wg-M0a" firstAttribute="top" secondItem="Q1J-Ke-PHP" secondAttribute="top" id="xUE-29-CfX"/>
+                                            <constraint firstItem="llW-af-dpW" firstAttribute="top" secondItem="Q1J-Ke-PHP" secondAttribute="top" id="ynE-da-Xu4"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -544,5 +569,6 @@
         <image name="btn_contact_normal.png" width="230" height="40"/>
         <image name="btn_profile_set.png" width="64" height="64"/>
         <image name="icon_search.png" width="24" height="24"/>
+        <image name="sticker_contact.png" width="240" height="240"/>
     </resources>
 </document>
