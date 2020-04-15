@@ -33,6 +33,7 @@
 		D070DEC42446F3F2008466E6 /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070DEC32446F3F2008466E6 /* AddMemberViewController.swift */; };
 		D070DEC62446F916008466E6 /* AddMemberViewTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070DEC52446F916008466E6 /* AddMemberViewTableViewDelegate.swift */; };
 		D070DEC82446F929008466E6 /* AddMemberViewCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070DEC72446F929008466E6 /* AddMemberViewCollectionViewDelegate.swift */; };
+		D070DECA24471046008466E6 /* GlobalVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070DEC924471046008466E6 /* GlobalVars.swift */; };
 		D0E23595243C20810009506F /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23594243C20810009506F /* Group.storyboard */; };
 		D0E23597243C20E70009506F /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23596243C20E70009506F /* Member.storyboard */; };
 		D0E2359A243C4DD50009506F /* GroupDispatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */; };
@@ -151,6 +152,7 @@
 		D070DEC32446F3F2008466E6 /* AddMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
 		D070DEC52446F916008466E6 /* AddMemberViewTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberViewTableViewDelegate.swift; sourceTree = "<group>"; };
 		D070DEC72446F929008466E6 /* AddMemberViewCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberViewCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		D070DEC924471046008466E6 /* GlobalVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVars.swift; sourceTree = "<group>"; };
 		D0E23594243C20810009506F /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		D0E23596243C20E70009506F /* Member.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
 		D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchViewController.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				F261B467242CAB1300482992 /* Images */,
 				F22F8B4E242D9B7F00CB08D5 /* ConfigAndConst.swift */,
 				D06DEED024405FE70056A7E7 /* UserVo.swift */,
+				D070DEC924471046008466E6 /* GlobalVars.swift */,
 				D06DEECE244012960056A7E7 /* TestCase.swift */,
 				D069204F24459868006E65D4 /* Strings.swift */,
 				F20CCEFC2429F00800048BA3 /* AppDelegate.swift */,
@@ -610,6 +613,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D070DEC62446F916008466E6 /* AddMemberViewTableViewDelegate.swift in Sources */,
+				D070DECA24471046008466E6 /* GlobalVars.swift in Sources */,
 				D0E23687243C818C0009506F /* GroupDispatchTableViewCell.swift in Sources */,
 				D070DEC82446F929008466E6 /* AddMemberViewCollectionViewDelegate.swift in Sources */,
 				D0E2359A243C4DD50009506F /* GroupDispatchViewController.swift in Sources */,

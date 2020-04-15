@@ -96,8 +96,13 @@ class CreateGroupViewController: UIViewController {
     @IBAction func createMemberButtonTouchUpInside(_ sender: UIButton) {
         updateCreateMemberButtonImage(type: .AWAY)
         
-        // wait a moment before taking the screenshot
-        let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showGroupDispatchDelayed), userInfo: nil, repeats: false)
+        if !gVar.isHoldFormSheetView {
+            gVar.isHoldFormSheetView = true
+            
+            // wait a moment before taking the screenshot
+            let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showGroupDispatchDelayed), userInfo: nil, repeats: false)
+        }
+        
     }
 
 }
