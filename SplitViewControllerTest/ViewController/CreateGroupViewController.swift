@@ -34,10 +34,18 @@ class CreateGroupViewController: UIViewController {
     @IBOutlet weak var createMemberImage: UIImageView!
     @IBOutlet weak var createMemberButton: UIButton!
     
+    
+    // MARK: - Properties
+    
+    // tableview
+    fileprivate var tableViewDelegate: CreateGroupViewTableViewDelegate?
+    
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateDataSource()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +98,10 @@ class CreateGroupViewController: UIViewController {
 // MARK: - Private Methods
 
 extension CreateGroupViewController {
+    private func updateDataSource() {
+        
+    }
+    
     private func updateUI() {
         groupImage.layer.cornerRadius = groupImage.frame.size.width / 2
         groupImage.clipsToBounds      = true
@@ -103,6 +115,18 @@ extension CreateGroupViewController {
         
         finishButton.setTitle(str_createGroup_finish, for: .normal)
         createMemberButton.setTitle(str_createGroup_createMember, for: .normal)
+        
+        //
+        // TableView
+        //
+        
+        tableViewDelegate = CreateGroupViewTableViewDelegate(createGroupViewController: self, tableView: tableView)
+        tableViewDelegate?.registerCell(cellName: CREATE_GROUP_TABLE_VIEW_CELL, cellId: CREATE_GROUP_TABLE_VIEW_CELL)
+        
+        // todo: update selected membersVo
+        
+        tableViewDelegate?.reloadUI()
+        
     }
     
     private func updatefinishButtonImage(type: ButtonPressType) {

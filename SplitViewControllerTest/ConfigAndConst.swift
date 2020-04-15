@@ -49,6 +49,7 @@ let GROUP_COLLECTION_VIEW_CELL = "GroupCollectionViewCell"
 let MEMBER_PROFILE_TABLE_VIEW_CELL = "MemberProfileTableViewCell"
 let GROUP_DISPATCH_TABLE_VIEW_CELL = "GroupDispatchTableViewCell"
 let GROUP_DISPATCH_COLLECTION_VIEW_CELL = "GroupDispatchCollectionViewCell"
+let CREATE_GROUP_TABLE_VIEW_CELL = "createGroupTableViewCell"
 
 // Storyboard
 let STORYBOARD_NAME_MAIN   = "Main"

@@ -23,6 +23,9 @@
 		D06E35BE243DD1ED00E33C44 /* icon_member_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D06E35BD243DD1ED00E33C44 /* icon_member_delete.png */; };
 		D070DEB32446A2CB008466E6 /* bg_title.png in Resources */ = {isa = PBXBuildFile; fileRef = D070DEB12446A2CA008466E6 /* bg_title.png */; };
 		D070DEB42446A2CB008466E6 /* bg_content.png in Resources */ = {isa = PBXBuildFile; fileRef = D070DEB22446A2CA008466E6 /* bg_content.png */; };
+		D070DEB62446D8A4008466E6 /* CreateGroupViewTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070DEB52446D8A4008466E6 /* CreateGroupViewTableViewDelegate.swift */; };
+		D070DEB92446DC5E008466E6 /* CreateGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070DEB72446DC5E008466E6 /* CreateGroupTableViewCell.swift */; };
+		D070DEBA2446DC5E008466E6 /* CreateGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D070DEB82446DC5E008466E6 /* CreateGroupTableViewCell.xib */; };
 		D0E23595243C20810009506F /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23594243C20810009506F /* Group.storyboard */; };
 		D0E23597243C20E70009506F /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23596243C20E70009506F /* Member.storyboard */; };
 		D0E2359A243C4DD50009506F /* GroupDispatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */; };
@@ -131,6 +134,9 @@
 		D06E35BD243DD1ED00E33C44 /* icon_member_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_member_delete.png; sourceTree = "<group>"; };
 		D070DEB12446A2CA008466E6 /* bg_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_title.png; sourceTree = "<group>"; };
 		D070DEB22446A2CA008466E6 /* bg_content.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_content.png; sourceTree = "<group>"; };
+		D070DEB52446D8A4008466E6 /* CreateGroupViewTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewTableViewDelegate.swift; sourceTree = "<group>"; };
+		D070DEB72446DC5E008466E6 /* CreateGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupTableViewCell.swift; sourceTree = "<group>"; };
+		D070DEB82446DC5E008466E6 /* CreateGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateGroupTableViewCell.xib; sourceTree = "<group>"; };
 		D0E23594243C20810009506F /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		D0E23596243C20E70009506F /* Member.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
 		D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchViewController.swift; sourceTree = "<group>"; };
@@ -284,8 +290,8 @@
 		F21E21F92431F123001AE003 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */,
 				D06920692445B289006E65D4 /* CreateGroupViewController.swift */,
+				D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */,
 				F21E21CF243186C8001AE003 /* GroupViewController.swift */,
 				F23C0DE92432DC3700DD7A48 /* MemberViewController.swift */,
 				F21E21FD2431F1B2001AE003 /* Delegate */,
@@ -324,8 +330,9 @@
 		F21E21FD2431F1B2001AE003 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				D0E23683243C7E760009506F /* GroupDispatchViewTableViewDelegate.swift */,
+				D070DEB52446D8A4008466E6 /* CreateGroupViewTableViewDelegate.swift */,
 				D06E35B7243DC00B00E33C44 /* GroupDispatchViewCollectionViewDelegate.swift */,
+				D0E23683243C7E760009506F /* GroupDispatchViewTableViewDelegate.swift */,
 				F21E21F62431CA4F001AE003 /* GroupViewCollectionoViewDelegate.swift */,
 				F23C0DED2433139600DD7A48 /* MemberViewTableViewDelegate.swift */,
 			);
@@ -336,6 +343,8 @@
 			isa = PBXGroup;
 			children = (
 				F22F8B50242DABDB00CB08D5 /* MainMenuCollectionViewCell.swift */,
+				D070DEB72446DC5E008466E6 /* CreateGroupTableViewCell.swift */,
+				D070DEB82446DC5E008466E6 /* CreateGroupTableViewCell.xib */,
 				F2508001242B51AB003DBE79 /* GroupTableViewCell.swift */,
 				F2508002242B51AB003DBE79 /* GroupTableViewCell.xib */,
 				F261B461242C9FD800482992 /* MemberTableViewCell.swift */,
@@ -514,6 +523,7 @@
 				D06920602445A104006E65D4 /* bg_listbox_bottom.png in Resources */,
 				D0E23651243C767B0009506F /* btn_chat_pressed.png in Resources */,
 				D0E23673243C767B0009506F /* bg_ptt_animation4.png in Resources */,
+				D070DEBA2446DC5E008466E6 /* CreateGroupTableViewCell.xib in Resources */,
 				F20CCF042429F00900048BA3 /* Assets.xcassets in Resources */,
 				D0E2367D243C767B0009506F /* btn_add_pressed.png in Resources */,
 				D0E2367C243C767B0009506F /* btn_menu_map_selected.png in Resources */,
@@ -597,8 +607,10 @@
 				F261B463242C9FD800482992 /* MemberTableViewCell.swift in Sources */,
 				F20CCF35242A02D500048BA3 /* MasterViewTableViewDelegate.swift in Sources */,
 				D06DEECF244012960056A7E7 /* TestCase.swift in Sources */,
+				D070DEB92446DC5E008466E6 /* CreateGroupTableViewCell.swift in Sources */,
 				F22F8B4F242D9B7F00CB08D5 /* ConfigAndConst.swift in Sources */,
 				F23C0DF12433155600DD7A48 /* MemberProfileTableViewCell.swift in Sources */,
+				D070DEB62446D8A4008466E6 /* CreateGroupViewTableViewDelegate.swift in Sources */,
 				F2508003242B51AB003DBE79 /* GroupTableViewCell.swift in Sources */,
 				D06E35BB243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift in Sources */,
 			);
