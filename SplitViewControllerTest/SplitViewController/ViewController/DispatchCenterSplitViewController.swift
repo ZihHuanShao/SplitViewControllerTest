@@ -41,11 +41,11 @@ class DispatchBoardSplitViewController: UISplitViewController {
             detailViewController.view.frame = detailViewFrame
             
             // 將畫面的height及通訊錄跟主畫面的width存起來(根據不同iPad尺寸有所不同)
-            // 通訊錄width
+            // iPad Master width
             UserDefaults.standard.set(masterViewController.view.frame.size.width, forKey: SPLIT_MASTER_VIEW_CONTROLLER_WIDTH)
-            // 主畫面width
+            // iPad Detail width
             UserDefaults.standard.set(detailViewController.view.frame.size.width, forKey: SPLIT_DETAIL_VIEW_CONTROLLER_WIDTH)
-            // height
+            // iPad height
             UserDefaults.standard.set(masterViewController.view.frame.size.height, forKey: SPLIT_VIEW_CONTROLLER_HEIGHT)
             
             masterViewController.view.setNeedsLayout()

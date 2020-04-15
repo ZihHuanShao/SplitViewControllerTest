@@ -8,17 +8,30 @@
 
 import Foundation
 
+// MasterViewController
 let str_contactTab_group  = "群組"
 let str_contactTab_member = "聯絡人"
 
 let str_contactTab_group_dispatch = "群組調度"
 
+
+// GroupDispatchViewController
 let str_groupDispatch_cancel = "取消"
 let str_groupDispatch_finish = "完成"
 
+
+// MemberProfileViewController
 let str_memberProfile_userId  = "帳號"
 let str_memberProfile_sipId   = "SIP號碼"
 let str_memberProfile_country = "國家"
 let str_memberProfile_email   = "電子信箱"
 
+// CreateGroupViewController
 let str_createGroup_finish = "完成"
+let str_createGroup_createGroup = "新增群組"
+let str_createGroup_groupName = "名稱"
+let str_createGroup_groupName_placeholder = "請輸入群組名稱"
+let str_createGroup_groupDesc = "描述"
+let str_createGroup_groupDesc_placeholder = "請輸入群組描述"
+let str_createGroup_groupMember = "群組成員"
+let str_createGroup_createMember = "新增成員"

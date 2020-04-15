@@ -38,21 +38,25 @@ extension MemberProfileTableViewCell {
       
         case .USER_ID:
             backgroundImage.image = UIImage(named: "bg_listbox_top")
+            backgroundImage.contentMode = .scaleAspectFit
             profileTitleLabel.text = MEMBER_PROFILE_TITLES[0]
             profileDescLabel.text  = memberVo.userId
             
         case .SIP_NUMBER:
             backgroundImage.image = UIImage(named: "bg_listbox_middle")
+            backgroundImage.contentMode = .scaleAspectFit
             profileTitleLabel.text = MEMBER_PROFILE_TITLES[1]
             profileDescLabel.text  = memberVo.sipId
             
         case .COUNTRY:
             backgroundImage.image = UIImage(named: "bg_listbox_middle")
+            backgroundImage.contentMode = .scaleAspectFit
             profileTitleLabel.text = MEMBER_PROFILE_TITLES[2]
             profileDescLabel.text  = memberVo.country
             
         case .EMAIL:
             backgroundImage.image = UIImage(named: "bg_listbox_bottom")
+            backgroundImage.contentMode = .scaleAspectFit
             profileTitleLabel.text = MEMBER_PROFILE_TITLES[3]
             profileDescLabel.text  = memberVo.email
             

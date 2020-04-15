@@ -26,6 +26,13 @@ class CreateGroupViewController: UIViewController {
     @IBOutlet weak var groupDescLabel: UILabel!
     @IBOutlet weak var groupDescTextField: UITextField!
     
+    // Group Members Field
+    @IBOutlet weak var GroupMemberTitleLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
+    // CreateMember Button Field
+    @IBOutlet weak var createMemberImage: UIImageView!
+    @IBOutlet weak var createMemberButton: UIButton!
     
     // MARK: - Life Cycle
     
@@ -40,7 +47,7 @@ class CreateGroupViewController: UIViewController {
     // MARK: - Actions
     
     //
-    // chatButton
+    // finishButton
     //
     
     @IBAction func finishButtonTouchDown(_ sender: UIButton) {
@@ -62,6 +69,21 @@ class CreateGroupViewController: UIViewController {
     @IBAction func editGroupImageButtonPressed(_ sender: UIButton) {
     }
 
+    //
+    // createMemberButton
+    //
+    
+    @IBAction func createMemberButtonTouchDown(_ sender: UIButton) {
+        updateCreateMemberButtonImage(type: .PRESSED)
+    }
+    
+    @IBAction func createMemberButtonTouchDragExit(_ sender: UIButton) {
+        updateCreateMemberButtonImage(type: .AWAY)
+    }
+    
+    @IBAction func createMemberButtonTouchUpInside(_ sender: UIButton) {
+        updateCreateMemberButtonImage(type: .AWAY)
+    }
 
 }
 
@@ -72,7 +94,15 @@ extension CreateGroupViewController {
         groupImage.layer.cornerRadius = groupImage.frame.size.width / 2
         groupImage.clipsToBounds      = true
         
+        createGroupTitleLabel.text = str_createGroup_createGroup
+        groupNameLabel.text = str_createGroup_groupName
+        groupDescLabel.text = str_createGroup_groupDesc
+        groupNameTextField.placeholder = str_createGroup_groupName_placeholder
+        groupDescTextField.placeholder = str_createGroup_groupDesc_placeholder
+        GroupMemberTitleLabel.text = str_createGroup_groupMember
+        
         finishButton.setTitle(str_createGroup_finish, for: .normal)
+        createMemberButton.setTitle(str_createGroup_createMember, for: .normal)
     }
     
     private func updatefinishButtonImage(type: ButtonPressType) {
@@ -85,6 +115,19 @@ extension CreateGroupViewController {
         case .AWAY:
             finishImage.image = UIImage(named: "btn_contact_normal")
             finishImage.contentMode = .scaleAspectFill
+        }
+    }
+    
+    private func updateCreateMemberButtonImage(type: ButtonPressType) {
+        switch type {
+        case .PRESSED:
+            createMemberImage.image = UIImage(named: "btn_contact_pressed")
+            createMemberImage.contentMode = .scaleAspectFill
+            
+            
+        case .AWAY:
+            createMemberImage.image = UIImage(named: "btn_contact_normal")
+            createMemberImage.contentMode = .scaleAspectFill
         }
     }
 }
