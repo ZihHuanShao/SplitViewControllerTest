@@ -126,10 +126,7 @@ extension GroupDispatchViewController {
         
         tableViewDelegate = GroupDispatchViewTableViewDelegate(groupDispatchViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: GROUP_DISPATCH_TABLE_VIEW_CELL, cellId: GROUP_DISPATCH_TABLE_VIEW_CELL)
-        
         tableViewDelegate?.updateGroupsVo(groupsVo)
-        
-        tableViewDelegate?.reloadUI()
         
         //
         // CollectionView
@@ -138,11 +135,19 @@ extension GroupDispatchViewController {
         collectionViewDelegate = GroupDispatchViewCollectionViewDelegate(groupDispatchViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: GROUP_DISPATCH_COLLECTION_VIEW_CELL, cellId: GROUP_DISPATCH_COLLECTION_VIEW_CELL)
         
+        
+        resetData()
+        tableViewDelegate?.reloadUI()
         collectionViewDelegate?.reloadUI()
     }
     
     private func updateDataSource() {
         setSearchTextFieldDataSource()
+    }
+    
+    private func resetData() {
+        collectionViewDelegate?.resetSelectGroups()
+        tableViewDelegate?.resetGroups()
     }
     
     private func updateGesture() {

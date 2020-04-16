@@ -66,11 +66,7 @@ class AddMemberViewController: UIViewController {
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         print("resetButtonPressed")
-        collectionViewDelegate?.resetSelectMembers()
-        collectionViewDelegate?.reloadUI()
-        
-        tableViewDelegate?.resetMembers()
-        tableViewDelegate?.reloadUI()
+
     }
 }
 
@@ -126,8 +122,7 @@ extension AddMemberViewController {
         tableViewDelegate?.registerCell(cellName: ADD_MEMBER_TABLE_VIEW_CELL, cellId: ADD_MEMBER_TABLE_VIEW_CELL)
         
         tableViewDelegate?.updateMembersVo(membersVo)
-        
-        tableViewDelegate?.reloadUI()
+
         
         //
         // CollectionView
@@ -136,7 +131,14 @@ extension AddMemberViewController {
         collectionViewDelegate = AddMemberViewCollectionViewDelegate(addMemberViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: ADD_MEMBER_COLLECTION_VIEW_CELL, cellId: ADD_MEMBER_COLLECTION_VIEW_CELL)
         
+        resetData()
         collectionViewDelegate?.reloadUI()
+        tableViewDelegate?.reloadUI()
+    }
+    
+    private func resetData() {
+        collectionViewDelegate?.resetSelectMembers()
+        tableViewDelegate?.resetMembers()
     }
     
     private func updateDataSource() {
@@ -170,8 +172,7 @@ extension AddMemberViewController {
             
             collectionViewDelegate?.removeSelectedMember(tableRowIndex: rowIndex)
             collectionViewDelegate?.reloadUI()
-        }
-        
+        }   
     }
 }
 
