@@ -191,7 +191,7 @@ extension MasterViewController {
                     count: group.count,
                     imageName: group.imageName,
                     desc: group.desc,
-                    notifyState: group.notifyState,
+                    monitorState: group.monitorState,
                     isSelected: group.isSelected
                 )
             )
@@ -312,13 +312,15 @@ extension MasterViewController {
 
 extension MasterViewController {
     func changeMonitor(notification: Notification) -> Void {
-        if let rowIndex = notification.userInfo?[CHANGE_MONITOR_USER_KEY] as? Int {
-            let group = groupsVo[rowIndex]
-            group.notifyState = !(group.notifyState)
-            tableViewDelegate?.updateGroup(group)
+        if let tableRowIndex = notification.userInfo?[CHANGE_MONITOR_USER_KEY] as? Int {
+            let groupVo = groupsVo[tableRowIndex]
+            groupVo.monitorState = !(groupVo.monitorState)
+            groupVo.isSelected = true
+            
+            tableViewDelegate?.updateGroup(groupVo, tableRowIndex)
             tableViewDelegate?.reloadUI()
             
-            performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: rowIndex)
+            performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: tableRowIndex)
         }
         
     }

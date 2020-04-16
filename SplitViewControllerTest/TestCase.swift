@@ -9,22 +9,22 @@
 import Foundation
 
 //
-// 群組 (name, imageName, count, desc, notifyState, isSelected)
+// 群組 (name, imageName, count, desc, monitorState, isSelected)
 //
 
 let TEST_GROUPS: [GroupInfo] =
-    [GroupInfo(name: "Martin Group", count: 6, imageName: nil, desc: "Martin Group", notifyState: false, isSelected: false),
-     GroupInfo(name: "Charley Group", count: 35, imageName: nil, desc: "Charley Group", notifyState: false, isSelected: false),
-     GroupInfo(name: "Fred Group", count: 18, imageName: nil, desc: "Fred Group", notifyState: false, isSelected: false),
-     GroupInfo(name: "May Group", count: 26, imageName: nil, desc: "May Group", notifyState: false, isSelected: false),
-     GroupInfo(name: "Michael Group", count: 50, imageName: nil, desc: "Michael Group", notifyState: false, isSelected: false),
-     GroupInfo(name: "Maxkit Group", count: 40, imageName: nil, desc: "Maxkit Group", notifyState: false, isSelected: false),
-     GroupInfo(name: "Test Group 001", count: 17, imageName: nil, desc: "Test Group 001", notifyState: false, isSelected: false),
-     GroupInfo(name: "Test Group 002", count: 63, imageName: nil, desc: "Test Group 002", notifyState: false, isSelected: false),
-     GroupInfo(name: "Test Group 003", count: 38, imageName: nil, desc: "Test Group 003", notifyState: false, isSelected: false),
-     GroupInfo(name: "Test Group 004", count: 27, imageName: nil, desc: "Test Group 004", notifyState: false, isSelected: false),
-     GroupInfo(name: "Test Group 005", count: 47, imageName: nil, desc: "Test Group 005", notifyState: false, isSelected: false),
-     GroupInfo(name: "Test Group 006", count: 21, imageName: nil, desc: "Test Group 006", notifyState: false, isSelected: false)]
+    [GroupInfo(name: "Martin Group", count: 6, imageName: nil, desc: "Martin Group", monitorState: false, isSelected: false),
+     GroupInfo(name: "Charley Group", count: 35, imageName: nil, desc: "Charley Group", monitorState: false, isSelected: false),
+     GroupInfo(name: "Fred Group", count: 18, imageName: nil, desc: "Fred Group", monitorState: false, isSelected: false),
+     GroupInfo(name: "May Group", count: 26, imageName: nil, desc: "May Group", monitorState: false, isSelected: false),
+     GroupInfo(name: "Michael Group", count: 50, imageName: nil, desc: "Michael Group", monitorState: false, isSelected: false),
+     GroupInfo(name: "Maxkit Group", count: 40, imageName: nil, desc: "Maxkit Group", monitorState: false, isSelected: false),
+     GroupInfo(name: "Test Group 001", count: 17, imageName: nil, desc: "Test Group 001", monitorState: false, isSelected: false),
+     GroupInfo(name: "Test Group 002", count: 63, imageName: nil, desc: "Test Group 002", monitorState: false, isSelected: false),
+     GroupInfo(name: "Test Group 003", count: 38, imageName: nil, desc: "Test Group 003", monitorState: false, isSelected: false),
+     GroupInfo(name: "Test Group 004", count: 27, imageName: nil, desc: "Test Group 004", monitorState: false, isSelected: false),
+     GroupInfo(name: "Test Group 005", count: 47, imageName: nil, desc: "Test Group 005", monitorState: false, isSelected: false),
+     GroupInfo(name: "Test Group 006", count: 21, imageName: nil, desc: "Test Group 006", monitorState: false, isSelected: false)]
 
 //
 // 聯絡人 (name, imageName, userId, sipId, country, email, onlineState, isSelected)

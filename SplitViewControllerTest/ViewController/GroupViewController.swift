@@ -90,7 +90,7 @@ extension GroupViewController {
         }
         
         groupNameLabel.text = gVo.name
-        (gVo.notifyState == true) ? enableMonitor() : disableMonitor()
+        (gVo.monitorState == true) ? enableMonitor() : disableMonitor()
 
         collectionViewDelegate = GroupCollectionoViewDelegate(groupViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: GROUP_COLLECTION_VIEW_CELL, cellId: GROUP_COLLECTION_VIEW_CELL)

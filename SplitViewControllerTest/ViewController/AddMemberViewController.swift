@@ -61,12 +61,18 @@ class AddMemberViewController: UIViewController {
     
     @IBAction func finishButtonPressed(_ sender: UIButton) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.dismissOverlay()
+        
+        let selectedMembersVo = collectionViewDelegate?.getSelectedMembers()
+        appDelegate?.dismissOverlay(selectedMembersVo)
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         print("resetButtonPressed")
-
+        tableViewDelegate?.resetMembers()
+        tableViewDelegate?.reloadUI()
+        
+        collectionViewDelegate?.resetSelectMembers()
+        collectionViewDelegate?.reloadUI()
     }
 }
 
@@ -131,14 +137,12 @@ extension AddMemberViewController {
         collectionViewDelegate = AddMemberViewCollectionViewDelegate(addMemberViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: ADD_MEMBER_COLLECTION_VIEW_CELL, cellId: ADD_MEMBER_COLLECTION_VIEW_CELL)
         
-        resetData()
-        collectionViewDelegate?.reloadUI()
-        tableViewDelegate?.reloadUI()
-    }
-    
-    private func resetData() {
-        collectionViewDelegate?.resetSelectMembers()
+        
         tableViewDelegate?.resetMembers()
+        tableViewDelegate?.reloadUI()
+        
+        collectionViewDelegate?.resetSelectMembers()
+        collectionViewDelegate?.reloadUI()
     }
     
     private func updateDataSource() {
@@ -168,11 +172,11 @@ extension AddMemberViewController {
         if let rowIndex = notification.userInfo?[DROP_SELECTED_Member_TABLE_CELL_USER_KEY] as? Int {
             
             tableViewDelegate?.deselectMember(rowIndex: rowIndex)
-            tableViewDelegate?.reloadUI()
-            
             collectionViewDelegate?.removeSelectedMember(tableRowIndex: rowIndex)
+            
+            tableViewDelegate?.reloadUI()
             collectionViewDelegate?.reloadUI()
-        }   
+        }
     }
 }
 

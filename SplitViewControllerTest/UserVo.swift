@@ -14,15 +14,15 @@ class GroupVo {
     var count: Int?
     var imageName: String?
     var desc: String?
-    var notifyState = Bool()
+    var monitorState = Bool()
     var isSelected = Bool()
     
-    init(name: String?, count: Int?, imageName: String?, desc: String?, notifyState: Bool, isSelected: Bool) {
+    init(name: String?, count: Int?, imageName: String?, desc: String?, monitorState: Bool, isSelected: Bool) {
         self.name = name
         self.count = count
         self.imageName = imageName
         self.desc = desc
-        self.notifyState = notifyState
+        self.monitorState = monitorState
         self.isSelected = isSelected
     }
 }
@@ -51,7 +51,6 @@ class MemberVo {
     }
     
     convenience init(name: String?) {
-        print("convenience")
         self.init(name: name, imageName: "", userId: "", sipId: "", country: "", email: "", onlineState: OnlineType.OFFLINE, isSelected: false)
     }
     

@@ -67,8 +67,8 @@ extension AddMemberViewCollectionViewDelegate {
         var isPickedup = false
         var collectionRowIndex = Int()
         
-        for (index, member) in selectedMembers.enumerated() {
-            if member.tableRowIndex == tableRowIndex {
+        for (index, selectedMember) in selectedMembers.enumerated() {
+            if selectedMember.tableRowIndex == tableRowIndex {
                 // 已經被挑選了
                 isPickedup = true
                 collectionRowIndex = index
@@ -76,8 +76,12 @@ extension AddMemberViewCollectionViewDelegate {
         }
         
         if isPickedup {
+            // 移除已挑選的成員
+            selectedMemberVo.isSelected = false
             selectedMembers.remove(at: collectionRowIndex)
         } else {
+            // 加入已挑選的成員
+            selectedMemberVo.isSelected = true
             selectedMembers.append(SelectedMemberVo(tableRowIndex: tableRowIndex, memberVo: selectedMemberVo))
         }
         
@@ -98,6 +102,18 @@ extension AddMemberViewCollectionViewDelegate {
     
     func resetSelectMembers() {
         selectedMembers.removeAll()
+    }
+    
+    func getSelectedMembers() -> [MemberVo] {
+        var selectedMembersVo = [MemberVo]()
+        
+        for selectedMember in selectedMembers {
+            if let memberVo = selectedMember.memberVo {
+                selectedMembersVo.append(memberVo)
+            }
+        }
+        
+        return selectedMembersVo
     }
     
     func registerCell(cellName: String, cellId: String) {

@@ -124,6 +124,21 @@ extension AppDelegate {
         }
     }
     
+    func dismissOverlay(_ withMembersVo: [MemberVo]?) {
+        // dismiss the overlay
+        window?.rootViewController?.dismiss(animated: true, completion: {
+            
+            self.window?.rootViewController = self.splitView
+            gVar.isHoldFormSheetView = false
+            
+            if let membersVo = withMembersVo {
+                NotificationCenter.default.post(name: SELECTED_MEMBERS_RELOADED_NOTIFY_KEY, object: self, userInfo: [SELECTED_MEMBERS_RELOADED_USER_KEY: membersVo])
+            }
+            
+        })
+        
+    }
+    
     func dismissOverlay() {
         
         // dismiss the overlay

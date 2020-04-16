@@ -136,19 +136,17 @@ extension GroupDispatchViewController {
         collectionViewDelegate?.registerCell(cellName: GROUP_DISPATCH_COLLECTION_VIEW_CELL, cellId: GROUP_DISPATCH_COLLECTION_VIEW_CELL)
         
         
-        resetData()
+        tableViewDelegate?.resetGroups()
         tableViewDelegate?.reloadUI()
+        
         collectionViewDelegate?.reloadUI()
+        collectionViewDelegate?.resetSelectGroups()
     }
     
     private func updateDataSource() {
         setSearchTextFieldDataSource()
     }
     
-    private func resetData() {
-        collectionViewDelegate?.resetSelectGroups()
-        tableViewDelegate?.resetGroups()
-    }
     
     private func updateGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))

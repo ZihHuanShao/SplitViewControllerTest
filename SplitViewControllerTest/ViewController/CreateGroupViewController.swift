@@ -43,6 +43,7 @@ class CreateGroupViewController: UIViewController {
     // tableview
     fileprivate var tableViewDelegate: CreateGroupViewTableViewDelegate?
     
+    var selectedMembersReloadedObserver: NSObjectProtocol?
     
     // MARK: - Life Cycle
     
@@ -50,6 +51,7 @@ class CreateGroupViewController: UIViewController {
         super.viewDidLoad()
         reloadTestData()
         updateDataSource()
+        updateNotificationCenter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +112,11 @@ class CreateGroupViewController: UIViewController {
 // MARK: - Private Methods
 
 extension CreateGroupViewController {
+    
+    private func updateNotificationCenter() {
+        selectedMembersReloadedObserver = NotificationCenter.default.addObserver(forName: SELECTED_MEMBERS_RELOADED_NOTIFY_KEY, object: nil, queue: nil, using: selectedMembersReloaded)
+    }
+    
     private func updateDataSource() {
         setTextFieldDataSource()
         updateGesture()
@@ -158,8 +165,6 @@ extension CreateGroupViewController {
         
         tableViewDelegate = CreateGroupViewTableViewDelegate(createGroupViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: CREATE_GROUP_TABLE_VIEW_CELL, cellId: CREATE_GROUP_TABLE_VIEW_CELL)
-        
-        // todo: update selected membersVo
         
         tableViewDelegate?.reloadUI()
         
@@ -211,5 +216,19 @@ extension CreateGroupViewController {
     @objc func showGroupDispatchDelayed() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.showAddMember(membersVo: membersVo)
+    }
+}
+
+// MARK: - Notification Methods
+
+extension CreateGroupViewController {
+    func selectedMembersReloaded(notification: Notification) -> Void {
+        if let selectedMembersVo = notification.userInfo?[SELECTED_MEMBERS_RELOADED_USER_KEY] as? [MemberVo] {
+            
+            tableViewDelegate?.updateMembersVo(selectedMembersVo)
+            tableViewDelegate?.reloadUI()
+            
+        }
+        
     }
 }

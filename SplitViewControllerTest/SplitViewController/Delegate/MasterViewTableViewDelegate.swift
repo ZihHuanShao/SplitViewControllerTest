@@ -133,16 +133,23 @@ extension MasterViewTableViewDelegate {
         self.membersVo = membersVo
     }
     
+    // 觸發時機: 點擊某個group的Monitor button
     // 更新某個group資訊
-    func updateGroup(_ groupVo: GroupVo) {
-        for _groupVo in groupsVo {
-            if (_groupVo.name == groupVo.name) {
-                _groupVo.count = groupVo.count
-                _groupVo.desc = groupVo.desc
-                _groupVo.imageName = groupVo.imageName
-                _groupVo.notifyState = groupVo.notifyState
-                _groupVo.isSelected = groupVo.isSelected
+    func updateGroup(_ groupVo: GroupVo, _ tableRowIndex: Int) {
+        for gVo in groupsVo {
+            if (gVo.name == groupVo.name) {
+                gVo.count = groupVo.count
+                gVo.desc = groupVo.desc
+                gVo.imageName = groupVo.imageName
+                gVo.monitorState = groupVo.monitorState
+                gVo.isSelected = groupVo.isSelected
+                
+                preSelectedColorIndex = tableRowIndex
+            } else {
+                gVo.isSelected = false
             }
+            
+            
         }
     }
     
@@ -190,10 +197,16 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
             cell.setGroupMemberCount(groupCellData.groupVo?.count ?? 0)
             cell.setGroupDesc(desc: groupCellData.groupVo?.desc ?? "")
             cell.setGroupImage(name: groupCellData.groupVo?.imageName ?? "")
-            cell.setMonitorState(groupCellData.groupVo?.notifyState ?? false)
+//            cell.setMonitorState(groupCellData.groupVo?.monitorState ?? false)
             cell.setGroupCellRowIndex(indexPath.row)
             
-            (groupCellData.groupVo?.notifyState == true) ? cell.enableMonitor() : cell.disableMonitor()
+            if (groupCellData.groupVo?.monitorState == true) {
+                cell.setMonitorState(true)
+                cell.enableMonitor()
+            } else {
+                cell.setMonitorState(false)
+                cell.disableMonitor()
+            }
             
             (groupCellData.groupVo?.isSelected == true) ? cell.enableColor() : cell.disableColor()
        

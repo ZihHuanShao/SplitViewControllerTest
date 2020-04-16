@@ -494,30 +494,30 @@
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_content.png" translatesAutoresizingMaskIntoConstraints="NO" id="gf9-Ls-ovX">
                                                         <rect key="frame" x="0.0" y="0.0" width="711" height="464"/>
                                                     </imageView>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LvN-17-X4X">
-                                                        <rect key="frame" x="0.0" y="0.0" width="711" height="464"/>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LvN-17-X4X">
+                                                        <rect key="frame" x="1" y="1" width="709" height="462"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dPB-Xp-XDw">
-                                                                <rect key="frame" x="0.0" y="28" width="711" height="43.5"/>
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="56" id="dPB-Xp-XDw">
+                                                                <rect key="frame" x="0.0" y="28" width="709" height="56"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dPB-Xp-XDw" id="8uV-cJ-UB5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="711" height="43.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="709" height="56"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </tableViewCellContentView>
                                                             </tableViewCell>
                                                         </prototypes>
                                                     </tableView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="LvN-17-X4X" secondAttribute="bottom" id="4eA-2Y-beZ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="LvN-17-X4X" secondAttribute="bottom" constant="1" id="4eA-2Y-beZ"/>
                                                     <constraint firstAttribute="bottom" secondItem="gf9-Ls-ovX" secondAttribute="bottom" id="9tu-p3-5Vz"/>
-                                                    <constraint firstAttribute="trailing" secondItem="LvN-17-X4X" secondAttribute="trailing" id="HTh-zY-pW1"/>
-                                                    <constraint firstItem="LvN-17-X4X" firstAttribute="leading" secondItem="KNl-HU-mhu" secondAttribute="leading" id="XJk-uF-vlJ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="LvN-17-X4X" secondAttribute="trailing" constant="1" id="HTh-zY-pW1"/>
+                                                    <constraint firstItem="LvN-17-X4X" firstAttribute="leading" secondItem="KNl-HU-mhu" secondAttribute="leading" constant="1" id="XJk-uF-vlJ"/>
                                                     <constraint firstItem="gf9-Ls-ovX" firstAttribute="top" secondItem="KNl-HU-mhu" secondAttribute="top" id="iBS-0H-hjk"/>
                                                     <constraint firstAttribute="trailing" secondItem="gf9-Ls-ovX" secondAttribute="trailing" id="icg-Ae-ibY"/>
-                                                    <constraint firstItem="LvN-17-X4X" firstAttribute="top" secondItem="KNl-HU-mhu" secondAttribute="top" id="nRx-n6-ySr"/>
+                                                    <constraint firstItem="LvN-17-X4X" firstAttribute="top" secondItem="KNl-HU-mhu" secondAttribute="top" constant="1" id="nRx-n6-ySr"/>
                                                     <constraint firstItem="gf9-Ls-ovX" firstAttribute="leading" secondItem="KNl-HU-mhu" secondAttribute="leading" id="r2i-ex-d7k"/>
                                                 </constraints>
                                             </view>
