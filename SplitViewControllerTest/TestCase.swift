@@ -35,5 +35,10 @@ let TEST_MEMBERS: [MemberInfo] =
      MemberInfo(name: "Charley", imageName: nil, userId: "002", sipId: "2222", country: "Taiwan", email: "Charley@maxkit.com.tw", onlineState: .OFFLINE, isSelected: false),
      MemberInfo(name: "Fred", imageName: nil, userId: "003", sipId: "3333", country: "Taiwan", email: "Fred@maxkit.com.tw", onlineState: .BUSY, isSelected: false),
      MemberInfo(name: "Michael", imageName: nil, userId: "004", sipId: "4444", country: "Taiwan", email: "Michael@maxkit.com.tw", onlineState: .OFFLINE, isSelected: false),
-     MemberInfo(name: "MayMay", imageName: nil, userId: "005", sipId: "5555", country: "Taiwan", email: "MayMay@maxkit.com.tw", onlineState: .NO_DISTURB, isSelected: false)]
+     MemberInfo(name: "MayMay", imageName: nil, userId: "005", sipId: "5555", country: "Taiwan", email: "MayMay@maxkit.com.tw", onlineState: .NO_DISTURB, isSelected: false),
+     MemberInfo(name: "A001", imageName: nil, userId: "006", sipId: "6666", country: "Taiwan", email: "A001@maxkit.com.tw", onlineState: .NO_DISTURB, isSelected: false),
+     MemberInfo(name: "A002", imageName: nil, userId: "007", sipId: "7777", country: "Taiwan", email: "A002@maxkit.com.tw", onlineState: .AVAILABLE, isSelected: false),
+     MemberInfo(name: "A003", imageName: nil, userId: "008", sipId: "8888", country: "Taiwan", email: "A003@maxkit.com.tw", onlineState: .AVAILABLE, isSelected: false),
+     MemberInfo(name: "A004", imageName: nil, userId: "009", sipId: "9999", country: "Taiwan", email: "A004@maxkit.com.tw", onlineState: .NO_DISTURB, isSelected: false),
+     MemberInfo(name: "A005", imageName: nil, userId: "010", sipId: "10000", country: "Taiwan", email: "A005@maxkit.com.tw", onlineState: .BUSY, isSelected: false)]
     
