@@ -31,10 +31,20 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         reloadMainMenuData()
         
+        //
         // Main menu
+        //
+        
         collectionViewDelegate = DetailViewCollectionViewDelegate(detailViewController: self, collectionView: collectionView)
         collectionViewDelegate?.updateMainMenuIcons(mainMenuIconsVo: mainMenuIconsVo)
+        // show PTT menu color
+        collectionViewDelegate?.collectionView(collectionView, didSelectItemAt: IndexPath(row: 0, section: 0))
         collectionViewDelegate?.reloadUI()
+        
+        
+        //
+        // ContentView
+        //
         
         switch tapType {
             

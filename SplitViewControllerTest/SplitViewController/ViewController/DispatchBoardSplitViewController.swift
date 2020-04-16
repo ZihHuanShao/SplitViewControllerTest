@@ -28,6 +28,7 @@ class DispatchBoardSplitViewController: UISplitViewController {
         let detailViewController = self.viewControllers[1]
         
         if detailViewController.view.frame.origin.x > 0.0 {
+            
             // Adjust the width of the master view
             var masterViewFrame = masterViewController.view.frame
             let deltaX = masterViewFrame.size.width - kMasterViewWidth
@@ -40,7 +41,7 @@ class DispatchBoardSplitViewController: UISplitViewController {
             detailViewFrame.size.width += deltaX
             detailViewController.view.frame = detailViewFrame
             
-            // 將畫面的height及通訊錄跟主畫面的width存起來(根據不同iPad尺寸有所不同)
+            // [橫擺情況下] 將畫面的height及通訊錄跟主畫面的width存起來(根據不同iPad尺寸有所不同)
             // iPad Master width
             UserDefaults.standard.set(masterViewController.view.frame.size.width, forKey: SPLIT_MASTER_VIEW_CONTROLLER_WIDTH)
             // iPad Detail width
