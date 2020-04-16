@@ -133,9 +133,10 @@ extension MasterViewTableViewDelegate {
         self.membersVo = membersVo
     }
     
+    
     // 觸發時機: 點擊某個group的Monitor button
     // 更新某個group資訊
-    func updateGroup(_ groupVo: GroupVo, _ tableRowIndex: Int) {
+    func updateGroup(_ groupVo: GroupVo) {
         for gVo in groupsVo {
             if (gVo.name == groupVo.name) {
                 gVo.count = groupVo.count
@@ -143,13 +144,7 @@ extension MasterViewTableViewDelegate {
                 gVo.imageName = groupVo.imageName
                 gVo.monitorState = groupVo.monitorState
                 gVo.isSelected = groupVo.isSelected
-                
-                preSelectedColorIndex = tableRowIndex
-            } else {
-                gVo.isSelected = false
             }
-            
-            
         }
     }
     
@@ -266,13 +261,13 @@ extension MasterViewTableViewDelegate: UITableViewDelegate {
         case .GROUP:
             // trigger seque to display UI
             tableViewExtendDelegate?.activateSegue(tapType: .TAB_GROUP_SELECT)
-            
+            tableViewExtendDelegate?.setCurrentCellRowIndex(indexPath.row)
             setColorBar(rowIndex: indexPath.row)
             
         case .MEMBER:
             // trigger seque to display UI
             tableViewExtendDelegate?.activateSegue(tapType: .TAB_MEMBER_SELECT)
-            
+            tableViewExtendDelegate?.setCurrentCellRowIndex(indexPath.row)
             setColorBar(rowIndex: indexPath.row)
             
         case .NONE:
@@ -288,4 +283,5 @@ extension MasterViewTableViewDelegate: UITableViewDelegate {
 
 protocol MasterViewTableViewExtendDelegate: NSObject {
     func activateSegue(tapType: ShowDetailViewControllerType)
+    func setCurrentCellRowIndex(_ rowIndex: Int)
 }

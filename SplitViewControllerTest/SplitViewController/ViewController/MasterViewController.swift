@@ -52,6 +52,9 @@ class MasterViewController: UIViewController {
     
     var changeMonitorObserver: NSObjectProtocol?
 
+    // 目前tableview列表所點擊的cell的row index
+    var currentTableCellRowIndex: Int?
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -65,6 +68,9 @@ class MasterViewController: UIViewController {
         updateGesture()
         updateNotificationCenter()
         
+        // 預設顯示「群組」
+        tabLeftContentButtonPressed(UIButton())
+        tableViewDelegate?.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
     }
     
     
@@ -256,11 +262,17 @@ extension MasterViewController {
         tabBottomRightLine.isHidden = true
         groupDispatchView.isHidden = false
         
+        //
         // update tableView
+        //
+        
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .GROUP)
         tableViewDelegate?.registerCell(cellName: GROUP_TABLE_VIEW_CELL, cellId: GROUP_TABLE_VIEW_CELL)
         tableViewDelegate?.updateGroups(groupsVo)
+        
+        // 預設顯示第一筆
+        tableViewDelegate?.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         tableViewDelegate?.reloadUI()
     }
     
@@ -279,11 +291,17 @@ extension MasterViewController {
         tabBottomRightLine.isHidden = false
         groupDispatchView.isHidden = true
         
+        //
         // update tableView
+        //
+        
         tableViewDelegate = nil
         tableViewDelegate = MasterViewTableViewDelegate(masterViewController: self, tableView: tableView, type: .MEMBER)
         tableViewDelegate?.registerCell(cellName: MEMBER_TABLE_VIEW_CELL, cellId: MEMBER_TABLE_VIEW_CELL)
         tableViewDelegate?.updateMembers(membersVo)
+        
+        // 預設顯示第一筆
+        tableViewDelegate?.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         tableViewDelegate?.reloadUI()
     }
     
@@ -314,12 +332,17 @@ extension MasterViewController {
         if let tableRowIndex = notification.userInfo?[CHANGE_MONITOR_USER_KEY] as? Int {
             let groupVo = groupsVo[tableRowIndex]
             groupVo.monitorState = !(groupVo.monitorState)
-            groupVo.isSelected = true
-            
-            tableViewDelegate?.updateGroup(groupVo, tableRowIndex)
+
+            tableViewDelegate?.updateGroup(groupVo)
             tableViewDelegate?.reloadUI()
             
-            performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: tableRowIndex)
+            // 若點擊的監聽按鈕為當前cell的監聽按鈕, 則更新DetailViewController畫面
+            if let _currentTableCellRowIndex = currentTableCellRowIndex {
+                if _currentTableCellRowIndex == tableRowIndex {
+                    performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: tableRowIndex)
+                }
+            }
+           
         }
         
     }
@@ -354,5 +377,9 @@ extension MasterViewController: MasterViewTableViewExtendDelegate {
     func activateSegue(tapType: ShowDetailViewControllerType) {
         self.tapType = tapType
         performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: self)
+    }
+    
+    func setCurrentCellRowIndex(_ rowIndex: Int) {
+        currentTableCellRowIndex = rowIndex
     }
 }
