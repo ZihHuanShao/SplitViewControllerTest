@@ -114,7 +114,7 @@
 		F22F8B4F242D9B7F00CB08D5 /* ConfigAndConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8B4E242D9B7F00CB08D5 /* ConfigAndConst.swift */; };
 		F22F8B51242DABDB00CB08D5 /* MainMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8B50242DABDB00CB08D5 /* MainMenuCollectionViewCell.swift */; };
 		F22F8B53242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8B52242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift */; };
-		F22F8B5D242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8B5C242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift */; };
+		F22F8B5D242DDD5F00CB08D5 /* DispatchBoardSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F8B5C242DDD5F00CB08D5 /* DispatchBoardSplitViewController.swift */; };
 		F23C0DEA2432DC3700DD7A48 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C0DE92432DC3700DD7A48 /* MemberViewController.swift */; };
 		F23C0DEE2433139600DD7A48 /* MemberViewTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C0DED2433139600DD7A48 /* MemberViewTableViewDelegate.swift */; };
 		F23C0DF12433155600DD7A48 /* MemberProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C0DEF2433155600DD7A48 /* MemberProfileTableViewCell.swift */; };
@@ -235,7 +235,7 @@
 		F22F8B4E242D9B7F00CB08D5 /* ConfigAndConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigAndConst.swift; sourceTree = "<group>"; };
 		F22F8B50242DABDB00CB08D5 /* MainMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		F22F8B52242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCollectionViewDelegate.swift; sourceTree = "<group>"; };
-		F22F8B5C242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchCenterSplitViewController.swift; sourceTree = "<group>"; };
+		F22F8B5C242DDD5F00CB08D5 /* DispatchBoardSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchBoardSplitViewController.swift; sourceTree = "<group>"; };
 		F23C0DE92432DC3700DD7A48 /* MemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
 		F23C0DED2433139600DD7A48 /* MemberViewTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewTableViewDelegate.swift; sourceTree = "<group>"; };
 		F23C0DEF2433155600DD7A48 /* MemberProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -338,7 +338,7 @@
 		F21E21FC2431F193001AE003 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				F22F8B5C242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift */,
+				F22F8B5C242DDD5F00CB08D5 /* DispatchBoardSplitViewController.swift */,
 				F20CCF302429F61200048BA3 /* MasterViewController.swift */,
 				F20CCF322429FC7F00048BA3 /* DetailViewController.swift */,
 			);
@@ -622,7 +622,7 @@
 				F22F8B53242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift in Sources */,
 				F21E21F72431CA4F001AE003 /* GroupViewCollectionoViewDelegate.swift in Sources */,
 				D070DEC12446EF2A008466E6 /* AddMemberCollectionViewCell.swift in Sources */,
-				F22F8B5D242DDD5F00CB08D5 /* DispatchCenterSplitViewController.swift in Sources */,
+				F22F8B5D242DDD5F00CB08D5 /* DispatchBoardSplitViewController.swift in Sources */,
 				F20CCF332429FC8000048BA3 /* DetailViewController.swift in Sources */,
 				F20CCF312429F61200048BA3 /* MasterViewController.swift in Sources */,
 				D0E23684243C7E760009506F /* GroupDispatchViewTableViewDelegate.swift in Sources */,
