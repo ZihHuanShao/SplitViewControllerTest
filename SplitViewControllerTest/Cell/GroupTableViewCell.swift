@@ -61,7 +61,6 @@ extension GroupTableViewCell {
         
         groupImage.layer.cornerRadius = groupImage.frame.size.width / 2
         groupImage.clipsToBounds      = true
-        groupImage.backgroundColor    = .lightGray
     }
 }
 

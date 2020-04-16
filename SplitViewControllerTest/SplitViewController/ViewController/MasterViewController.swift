@@ -33,10 +33,10 @@ class MasterViewController: UIViewController {
     // TableView Field
     @IBOutlet weak var tableView: UITableView!
     
-    // Dispatch Button View Field
-    @IBOutlet weak var dispatchTitleLabel: UILabel!
-    @IBOutlet weak var dispatchView: UIView!
-    @IBOutlet weak var dispatchImage: UIImageView!
+    // Group Dispatch Field
+    @IBOutlet weak var groupDispatchTitleLabel: UILabel!
+    @IBOutlet weak var groupDispatchView: UIView!
+    @IBOutlet weak var groupDispatchImage: UIImageView!
     
     
     // MARK: - Properties
@@ -221,7 +221,6 @@ extension MasterViewController {
         // TitleView Field
         dispatcherImage.layer.cornerRadius = dispatcherImage.frame.size.width / 2
         dispatcherImage.clipsToBounds      = true
-        dispatcherImage.backgroundColor    = .lightGray
         //dispatcherName.text = ""
         
         // TabView Filed
@@ -233,7 +232,7 @@ extension MasterViewController {
         tabBottomRightLine.isHidden = true
         
         // CreateGroupView Field
-        dispatchTitleLabel.text = str_contactTab_group_dispatch
+        groupDispatchTitleLabel.text = str_contactTab_group_dispatch
     }
     
     private func updateGesture() {
@@ -255,7 +254,7 @@ extension MasterViewController {
         tabRightTitle.textColor = UIColorFromRGB(rgbValue: UInt(TAB_UNSELECTED_TITLE_COLOR))
         tabBottomLeftLine.isHidden  = false
         tabBottomRightLine.isHidden = true
-        dispatchView.isHidden = false
+        groupDispatchView.isHidden = false
         
         // update tableView
         tableViewDelegate = nil
@@ -278,7 +277,7 @@ extension MasterViewController {
         tabRightTitle.textColor = UIColorFromRGB(rgbValue: UInt(TAB_SELECTED_TITLE_COLOR))
         tabBottomLeftLine.isHidden  = true
         tabBottomRightLine.isHidden = false
-        dispatchView.isHidden = true
+        groupDispatchView.isHidden = true
         
         // update tableView
         tableViewDelegate = nil
@@ -300,10 +299,10 @@ extension MasterViewController {
     private func updateGroupDispatchButtonImage(type: ButtonPressType) {
         switch type {
         case .PRESSED:
-            dispatchImage.image = UIImage(named: "btn_contact_pressed")
+            groupDispatchImage.image = UIImage(named: "btn_contact_pressed")
             
         case .AWAY:
-            dispatchImage.image = UIImage(named: "btn_contact_normal")
+            groupDispatchImage.image = UIImage(named: "btn_contact_normal")
         }
     }
 }

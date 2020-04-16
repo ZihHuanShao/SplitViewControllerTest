@@ -32,7 +32,6 @@ extension GroupCollectionViewCell {
     private func updateUI() {
         memberImage.layer.cornerRadius = memberImage.frame.size.width / 2
         memberImage.clipsToBounds      = true
-        memberImage.backgroundColor    = .lightGray
     }
 }
 

@@ -7,32 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0FC5677D-CC17-4D8F-9109-E781258735B5"
+            uuid = "F2B493CF-E5A4-45B8-BD6A-2D2AE45C7717"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SplitViewControllerTest/SplitViewController/Delegate/MasterViewTableViewDelegate.swift"
+            filePath = "SplitViewControllerTest/SplitViewController/ViewController/MasterViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "setColorBar(rowIndex:)"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FFEB2FAA-EA88-4F7B-B24A-956F2CC08A3B"
+            uuid = "14E139C0-6BF4-43A9-8E70-F59ACB54A6C6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SplitViewControllerTest/SplitViewController/Delegate/MasterViewTableViewDelegate.swift"
+            filePath = "SplitViewControllerTest/SplitViewController/ViewController/MasterViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "setColorBar(rowIndex:)"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

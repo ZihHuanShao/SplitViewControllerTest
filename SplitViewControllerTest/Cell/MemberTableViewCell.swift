@@ -39,7 +39,6 @@ extension MemberTableViewCell {
         
         userImage.layer.cornerRadius = userImage.frame.size.width / 2
         userImage.clipsToBounds      = true
-        userImage.backgroundColor    = .lightGray
     }
 }
 

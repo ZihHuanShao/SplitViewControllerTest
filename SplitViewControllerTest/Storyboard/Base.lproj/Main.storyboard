@@ -524,11 +524,11 @@
                         <outlet property="createGroupTrailingConstraint" destination="JUq-G2-gRq" id="nkY-Fs-f81"/>
                         <outlet property="createGroupWidthConstraint" destination="pAm-lK-1OE" id="z0b-un-uV8"/>
                         <outlet property="createGroupoView" destination="z7K-gY-ydU" id="ojg-jM-ulE"/>
-                        <outlet property="dispatchImage" destination="AVV-Lm-84E" id="2V3-8D-IP7"/>
-                        <outlet property="dispatchTitleLabel" destination="dzr-xX-tge" id="S6Q-IU-qIo"/>
-                        <outlet property="dispatchView" destination="2NP-mh-ilh" id="5Pa-9b-K6h"/>
                         <outlet property="dispatcherImage" destination="Yy6-B3-muo" id="jcs-nb-yA9"/>
                         <outlet property="dispatcherName" destination="ENF-B6-qAm" id="f2D-bG-iy2"/>
+                        <outlet property="groupDispatchImage" destination="AVV-Lm-84E" id="xOl-zt-mda"/>
+                        <outlet property="groupDispatchTitleLabel" destination="dzr-xX-tge" id="Zjq-nr-YYM"/>
+                        <outlet property="groupDispatchView" destination="2NP-mh-ilh" id="j5b-Bm-60D"/>
                         <outlet property="searchTextField" destination="jHf-Tl-DAb" id="mpo-cR-klt"/>
                         <outlet property="tabBottomLeftLine" destination="xqk-Wn-f3U" id="eYK-Km-3TR"/>
                         <outlet property="tabBottomRightLine" destination="zeW-YW-5SM" id="Adf-Tz-UTy"/>
