@@ -50,6 +50,7 @@ class AddMemberViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         NotificationCenter.default.removeObserver(dropSelectedMemberObserver!)
+        print("removeObserver: dropSelectedMemberObserver")
     }
     
     // MARK: - Actions
@@ -63,7 +64,7 @@ class AddMemberViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         
         let selectedMembersVo = collectionViewDelegate?.getSelectedMembers()
-        appDelegate?.dismissOverlay(selectedMembersVo)
+        appDelegate?.dismissOverlayWithSelectedMembers(selectedMembersVo)
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
@@ -98,6 +99,7 @@ extension AddMemberViewController {
     
     private func updateNotificationCenter() {
         dropSelectedMemberObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_MEMBER_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedMember)
+        print("addObserver: dropSelectedMemberObserver")
     }
     
     private func updateSelfViewSize() {
@@ -112,7 +114,7 @@ extension AddMemberViewController {
         
         // 讓寬度固定為整個畫面寬度的1/2, 高度固定為整個畫面高度的3/4
         preferredContentSize = CGSize(width: CGFloat(fullWidth * 0.5), height: CGFloat(fullHeight * 0.75))
-        print("width = \(CGFloat(fullWidth * 0.5)), height = \(CGFloat(fullHeight * 0.75))")
+//        print("width = \(CGFloat(fullWidth * 0.5)), height = \(CGFloat(fullHeight * 0.75))")
     }
     
     private func updateUI() {

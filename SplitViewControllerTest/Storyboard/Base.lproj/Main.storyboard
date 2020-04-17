@@ -546,7 +546,7 @@
         <!--Dispatch Board Split View Controller-->
         <scene sceneID="0nv-Hc-u3D">
             <objects>
-                <splitViewController id="t5r-Lf-JyS" customClass="DispatchBoardSplitViewController" customModule="SplitViewControllerTest" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="DispatchBoardSplitViewController" id="t5r-Lf-JyS" customClass="DispatchBoardSplitViewController" customModule="SplitViewControllerTest" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="unq-0w-3Vu" kind="relationship" relationship="masterViewController" id="UzE-gr-s2T"/>
                         <segue destination="biV-Bj-S4I" kind="relationship" relationship="detailViewController" id="CNx-bi-bX1"/>
@@ -558,7 +558,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="TJk-l3-ZTk"/>
+        <segue reference="CNx-bi-bX1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bg_menu.png" width="784" height="64"/>

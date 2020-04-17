@@ -68,7 +68,7 @@ class MasterViewController: UIViewController {
         updateGesture()
         updateNotificationCenter()
         
-        // 預設顯示「群組」
+        // 預設顯示「群組」列表
         tabLeftContentButtonPressed(UIButton())
         tableViewDelegate?.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
     }
@@ -76,7 +76,7 @@ class MasterViewController: UIViewController {
     
     
     override func viewDidDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(changeMonitorObserver!)
+//        NotificationCenter.default.removeObserver(changeMonitorObserver!)
     }
     
     /*
@@ -105,7 +105,7 @@ class MasterViewController: UIViewController {
     }
     
     @IBAction func createGroupButtonPressed(_ sender: UIButton) {
-        print("createGroupButtonPressed pressed")
+//        print("createGroupButtonPressed pressed")
         tapType = .TAB_GROUP_CREATE_GROUP
         performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: self)
     }
@@ -130,7 +130,7 @@ class MasterViewController: UIViewController {
             gVar.isHoldFormSheetView = true
             
             // wait a moment before taking the screenshot
-            let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showGroupDispatchDelayed), userInfo: nil, repeats: false)
+            let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showGroupDispatchModalDelayed), userInfo: nil, repeats: false)
         }
     }
     
@@ -141,7 +141,7 @@ class MasterViewController: UIViewController {
     // Note: 使用custom cell時, prepareforsegue並不會被呼叫.
     // 因此目前做法: 定義一protocol用來觸發prepareforsegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepareforsegue is called")
+        
         if segue.identifier == SHOW_DETAIL_VIEW_CONTROLLER {
             let dVC = segue.destination as? DetailViewController
             dVC?.setTabSelected(type: tapType)
@@ -183,6 +183,7 @@ extension MasterViewController {
     
     private func updateNotificationCenter() {
         changeMonitorObserver = NotificationCenter.default.addObserver(forName: CHANGE_MONITOR_NOTIFY_KEY, object: nil, queue: nil, using: changeMonitor)
+        print("addObserver: changeMonitorObserver")
     }
     
     private func updateDataSource() {
@@ -356,9 +357,9 @@ extension MasterViewController {
         self.view.endEditing(true)
     }
     
-    @objc func showGroupDispatchDelayed() {
+    @objc func showGroupDispatchModalDelayed() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.showGroupDispatch(groupsVo: groupsVo)
+        appDelegate?.showGroupDispatchModal(groupsVo: groupsVo)
     }
 }
 

@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var splitView: DispatchBoardSplitViewController?
+    var originalSplitVC: DispatchBoardSplitViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -78,29 +78,31 @@ extension AppDelegate {
             presentVC = vc
         }
         
+        NotificationCenter.default.post(name: KEEP_ORIGINAL_SPLIT_VIEW_CONTROLLER_NOTIFY_KEY, object: nil, userInfo: nil)
+        
         // create a new view controller with it
         let underlayVC = UIViewController.init()
         
-        // grab a screenshot
+        // grab a screenshot and set to backgroundImage
         let backgroundImage = UIImageView.init(image: grabScreenshot())
-        
         underlayVC.view = backgroundImage
         
         // swap the split view
-        splitView = window?.rootViewController as? DispatchBoardSplitViewController
         window?.rootViewController = underlayVC
          
         // present the overlay
-        if let _presentVC = presentVC {
-            underlayVC.present(_presentVC, animated: true, completion: nil)
-        } else {
-            self.window?.rootViewController = self.splitView
+        if let vc = presentVC {
+            underlayVC.present(vc, animated: true, completion: nil)
+        }
+        // 避免presentVC為nil時的處理
+        else {
+            self.window?.rootViewController = self.originalSplitVC
         }
     }
 }
 
 extension AppDelegate {
-    func showGroupDispatch(groupsVo: [GroupVo]) {
+    func showGroupDispatchModal(groupsVo: [GroupVo]) {
         
         let storyboard = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil)
         let groupDispatchViewController = storyboard.instantiateViewController(withIdentifier: GROUP_DISPATCH_VIEW_CONTROLLER) as? GroupDispatchViewController
@@ -112,7 +114,7 @@ extension AppDelegate {
         showPresentView(viewController: groupDispatchViewController)
     }
     
-    func showAddMember(membersVo: [MemberVo]) {
+    func showAddMemberModal(membersVo: [MemberVo]) {
          
          let storyboard = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil)
          let addMemberViewController = storyboard.instantiateViewController(withIdentifier: ADD_MEMBER_VIEW_CONTROLLER) as? AddMemberViewController
@@ -124,26 +126,32 @@ extension AppDelegate {
          showPresentView(viewController: addMemberViewController)
     }
     
-    func dismissOverlay(_ withMembersVo: [MemberVo]?) {
+    func dismissOverlayWithSelectedMembers(_ membersVo: [MemberVo]?) {
         // dismiss the overlay
         window?.rootViewController?.dismiss(animated: true, completion: {
-            
-            self.window?.rootViewController = self.splitView
+            if let vc = self.originalSplitVC {
+                self.window?.rootViewController = vc
+            }
             gVar.isHoldFormSheetView = false
             
-            if let membersVo = withMembersVo {
-                NotificationCenter.default.post(name: SELECTED_MEMBERS_RELOADED_NOTIFY_KEY, object: self, userInfo: [SELECTED_MEMBERS_RELOADED_USER_KEY: membersVo])
+            // reload群組成員的tableview
+            if let _membersVo = membersVo {
+                NotificationCenter.default.post(name: SELECTED_MEMBERS_RELOADED_NOTIFY_KEY, object: self, userInfo: [SELECTED_MEMBERS_RELOADED_USER_KEY: _membersVo])
             }
-            
         })
     }
     
     func dismissOverlay() {
-        
         // dismiss the overlay
         window?.rootViewController?.dismiss(animated: true, completion: {
-            self.window?.rootViewController = self.splitView
+            if let vc = self.originalSplitVC {
+                self.window?.rootViewController = vc
+            }
             gVar.isHoldFormSheetView = false
         })
+    }
+    
+    func setOriginalSplitViewController(_ viewController: DispatchBoardSplitViewController) {
+        self.originalSplitVC = viewController
     }
 }

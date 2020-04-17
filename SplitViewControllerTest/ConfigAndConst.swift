@@ -72,12 +72,18 @@ let DROP_SELECTED_GROUP_TABLE_CELL_NOTIFY_KEY = NSNotification.Name(rawValue: "d
 let DROP_SELECTED_MEMBER_TABLE_CELL_NOTIFY_KEY = NSNotification.Name(rawValue: "dropSelectedMemberTableCellNotifyKey")
 let CHANGE_MONITOR_NOTIFY_KEY = NSNotification.Name(rawValue: "changeMonitorNotifyKey")
 let SELECTED_MEMBERS_RELOADED_NOTIFY_KEY = NSNotification.Name(rawValue: "selectedMembersReloadedNotifyKey")
+let UNDERLAY_PRESENT_NOTIFY_KEY = NSNotification.Name("underlayPresentNotifyKey")
+let UNDERLAY_DISMISS_NOTIFY_KEY = NSNotification.Name("underlayDismissNotifyKey")
+let KEEP_ORIGINAL_SPLIT_VIEW_CONTROLLER_NOTIFY_KEY = NSNotification.Name("keepOriginalSplitViewControllerNotifyKey")
 
 // Notification userInfo
 let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
 let DROP_SELECTED_Member_TABLE_CELL_USER_KEY = "dropSelectedMemberTableCellUserKey"
 let CHANGE_MONITOR_USER_KEY = "changeMonitorUserKey"
 let SELECTED_MEMBERS_RELOADED_USER_KEY = "selectedMembersReloadedUserKey"
+let UNDERLAY_PRESENT_USER_KEY = "underlayPresentUserKey"
+let UNDERLAY_DISMISS_USER_KEY = NSNotification.Name("underlayDismissUserKey")
+let KEEP_ORIGINAL_SPLIT_VIEW_CONTROLLER_USER_KEY = NSNotification.Name("keepOriginalSplitViewControllerUserKey")
 
 // 通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
@@ -143,4 +149,10 @@ struct MemberInfo {
 struct MainMenuIconInfo {
     var selectedIcon: String?
     var unselectedIcon: String?
+}
+
+struct UnderlayPresentInfo {
+    var backgroundImageView: UIImageView?
+    var window: UIWindow?
+    var groupsVo: [GroupVo]?
 }

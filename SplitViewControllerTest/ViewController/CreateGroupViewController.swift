@@ -74,6 +74,8 @@ class CreateGroupViewController: UIViewController {
     
     @IBAction func finishButtonTouchUpInside(_ sender: UIButton) {
         updatefinishButtonImage(type: .AWAY)
+        NotificationCenter.default.removeObserver(selectedMembersReloadedObserver!)
+        print("removeObserver: selectedMembersReloadedObserver")
     }
     
     //
@@ -102,7 +104,7 @@ class CreateGroupViewController: UIViewController {
             gVar.isHoldFormSheetView = true
             
             // wait a moment before taking the screenshot
-            let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showGroupDispatchDelayed), userInfo: nil, repeats: false)
+            let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showGroupDispatchModalDelayed), userInfo: nil, repeats: false)
         }
         
     }
@@ -115,6 +117,7 @@ extension CreateGroupViewController {
     
     private func updateNotificationCenter() {
         selectedMembersReloadedObserver = NotificationCenter.default.addObserver(forName: SELECTED_MEMBERS_RELOADED_NOTIFY_KEY, object: nil, queue: nil, using: selectedMembersReloaded)
+        print("addObserver: selectedMembersReloadedObserver")
     }
     
     private func updateDataSource() {
@@ -213,9 +216,9 @@ extension CreateGroupViewController {
         self.view.endEditing(true)
     }
     
-    @objc func showGroupDispatchDelayed() {
+    @objc func showGroupDispatchModalDelayed() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.showAddMember(membersVo: membersVo)
+        appDelegate?.showAddMemberModal(membersVo: membersVo)
     }
 }
 

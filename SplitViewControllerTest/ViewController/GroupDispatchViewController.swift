@@ -49,6 +49,7 @@ class GroupDispatchViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         NotificationCenter.default.removeObserver(dropSelectedGroupObserver!)
+        print("removeObserver: dropSelectedGroupObserver")
     }
     
     // MARK: - Actions
@@ -98,6 +99,7 @@ extension GroupDispatchViewController {
     
     private func updateNotificationCenter() {
         dropSelectedGroupObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_GROUP_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedGroup)
+        print("addObserver: dropSelectedGroupObserver")
     }
     
     private func updateSelfViewSize() {
@@ -112,7 +114,7 @@ extension GroupDispatchViewController {
         
         // 讓寬度固定為整個畫面寬度的1/2, 高度固定為整個畫面高度的3/4
         preferredContentSize = CGSize(width: CGFloat(fullWidth * 0.5), height: CGFloat(fullHeight * 0.75))
-        print("width = \(CGFloat(fullWidth * 0.5)), height = \(CGFloat(fullHeight * 0.75))")
+//        print("width = \(CGFloat(fullWidth * 0.5)), height = \(CGFloat(fullHeight * 0.75))")
     }
     
     private func updateUI() {

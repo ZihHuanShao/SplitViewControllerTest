@@ -10,10 +10,16 @@ import UIKit
 
 class DispatchBoardSplitViewController: UISplitViewController {
 
+    // MARK: - Properties
+    
+    var keepOriginalSplitViewControllerObserver: NSObjectProtocol?
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateNotificationCenter()
     }
     
     override func viewDidLayoutSubviews() {
@@ -65,4 +71,24 @@ class DispatchBoardSplitViewController: UISplitViewController {
     }
     */
 
+}
+
+extension DispatchBoardSplitViewController {
+
+    private func updateNotificationCenter() {
+        
+        keepOriginalSplitViewControllerObserver = NotificationCenter.default.addObserver(forName: KEEP_ORIGINAL_SPLIT_VIEW_CONTROLLER_NOTIFY_KEY, object: nil, queue: nil, using: keepOriginalSplitViewController)
+    
+        print("addObserver: keepOriginalSplitViewControllerObserver")
+    }
+}
+
+// MARK: - Notification Methods
+
+extension DispatchBoardSplitViewController {
+    
+    func keepOriginalSplitViewController(notification: Notification) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.setOriginalSplitViewController(self)
+    }
 }
