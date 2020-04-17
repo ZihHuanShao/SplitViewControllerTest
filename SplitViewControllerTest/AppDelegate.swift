@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var splitView: UISplitViewController?
+    var splitView: DispatchBoardSplitViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -50,20 +50,52 @@ extension AppDelegate {
         // create graphics context with screen size
         let screenRect = UIScreen.main.bounds
         UIGraphicsBeginImageContext(screenRect.size)
-        let ctx = UIGraphicsGetCurrentContext()
+        
+        let context = UIGraphicsGetCurrentContext()
         UIColor.black.set()
-        ctx?.fill(screenRect)
+        context?.fill(screenRect)
         
         // grab reference to our window
         let window = UIApplication.shared.keyWindow
         
         // transfer content into our context
-        window?.layer.render(in: ctx!)
+        window?.layer.render(in: context!)
+        
         let screengrab = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
         return screengrab
         
+    }
+    
+    private func showPresentView(viewController: UIViewController?) {
+        
+        var presentVC: UIViewController?
+        
+        if let vc = viewController as? AddMemberViewController {
+            presentVC = vc
+        } else if let vc = viewController as? GroupDispatchViewController {
+            presentVC = vc
+        }
+        
+        // create a new view controller with it
+        let underlayVC = UIViewController.init()
+        
+        // grab a screenshot
+        let backgroundImage = UIImageView.init(image: grabScreenshot())
+        
+        underlayVC.view = backgroundImage
+        
+        // swap the split view
+        splitView = window?.rootViewController as? DispatchBoardSplitViewController
+        window?.rootViewController = underlayVC
+         
+        // present the overlay
+        if let _presentVC = presentVC {
+            underlayVC.present(_presentVC, animated: true, completion: nil)
+        } else {
+            self.window?.rootViewController = self.splitView
+        }
     }
 }
 
@@ -78,8 +110,6 @@ extension AppDelegate {
         groupDispatchViewController?.modalPresentationStyle = .formSheet
         
         showPresentView(viewController: groupDispatchViewController)
-        
-
     }
     
     func showAddMember(membersVo: [MemberVo]) {
@@ -94,36 +124,6 @@ extension AppDelegate {
          showPresentView(viewController: addMemberViewController)
     }
     
-    func showPresentView(viewController: UIViewController?) {
-        
-        var presentViewController: UIViewController?
-        
-        if let vc = viewController as? AddMemberViewController {
-            presentViewController = vc
-        } else if let vc = viewController as? GroupDispatchViewController {
-            presentViewController = vc
-        }
-        
-        // grab a screenshot
-        let screenshot = grabScreenshot()
-
-        // create a new view controller with it
-        let underlay = UIViewController.init()
-        let background = UIImageView.init(image: screenshot)
-        underlay.view = background
-        
-        // swap the split view
-         splitView = window?.rootViewController as? UISplitViewController
-         window?.rootViewController = underlay
-         
-         // present the overlay
-        if let _presentViewController = presentViewController {
-            underlay.present(_presentViewController, animated: true, completion: nil)
-        } else {
-            self.window?.rootViewController = self.splitView
-        }
-    }
-    
     func dismissOverlay(_ withMembersVo: [MemberVo]?) {
         // dismiss the overlay
         window?.rootViewController?.dismiss(animated: true, completion: {
@@ -136,7 +136,6 @@ extension AppDelegate {
             }
             
         })
-        
     }
     
     func dismissOverlay() {

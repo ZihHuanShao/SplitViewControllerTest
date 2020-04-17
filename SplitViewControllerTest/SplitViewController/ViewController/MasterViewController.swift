@@ -59,7 +59,7 @@ class MasterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        splitViewController?.preferredDisplayMode = .allVisible
+        self.splitViewController?.preferredDisplayMode = .allVisible
         
         
         reloadTestData()
