@@ -185,6 +185,12 @@ extension MasterViewController {
             gVar.changeMonitorObserver = nil
             print("removeObserver: changeMonitorObserver")
         }
+        
+        if let _ = gVar.reloadGroupTableViewObserver {
+            NotificationCenter.default.removeObserver(gVar.reloadGroupTableViewObserver!)
+            gVar.reloadGroupTableViewObserver = nil
+            print("removeObserver: reloadGroupTableViewObserver")
+        }
     }
     
     private func addObserver() {
@@ -192,6 +198,13 @@ extension MasterViewController {
             gVar.changeMonitorObserver = NotificationCenter.default.addObserver(forName: CHANGE_MONITOR_NOTIFY_KEY, object: nil, queue: nil, using: changeMonitor)
             print("addObserver: changeMonitorObserver")
         }
+        
+        if gVar.reloadGroupTableViewObserver == nil {
+            gVar.reloadGroupTableViewObserver = NotificationCenter.default.addObserver(forName: RELOAD_GROUP_TABLE_VIEW_NOTIFY_KEY, object: nil, queue: nil, using: reloadGroupTableView)
+            print("addObserver: reloadGroupTableViewObserver")
+        }
+        
+        
     }
     
     private func updateDataSource() {
@@ -353,7 +366,10 @@ extension MasterViewController {
             }
            
         }
-        
+    }
+    
+    func reloadGroupTableView(notification: Notification) -> Void {
+        tableViewDelegate?.reloadUI()
     }
 }
 

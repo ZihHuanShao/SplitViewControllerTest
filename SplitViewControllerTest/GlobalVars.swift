@@ -32,4 +32,5 @@ class gVar {
     
     // MasterViewController
     static var changeMonitorObserver: NSObjectProtocol? = nil
+    static var reloadGroupTableViewObserver: NSObjectProtocol? = nil
 }

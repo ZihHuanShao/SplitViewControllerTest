@@ -134,7 +134,7 @@ extension AppDelegate {
             }
             gVar.isHoldFormSheetView = false
             
-            // reload群組成員的tableview
+            // reload建立群組中的群組成員tableview
             if let _membersVo = membersVo {
                 NotificationCenter.default.post(name: SELECTED_MEMBERS_RELOADED_NOTIFY_KEY, object: self, userInfo: [SELECTED_MEMBERS_RELOADED_USER_KEY: _membersVo])
             }
@@ -148,7 +148,11 @@ extension AppDelegate {
                 self.window?.rootViewController = vc
             }
             gVar.isHoldFormSheetView = false
+            
+            // reload群組列表的tableview
+            NotificationCenter.default.post(name: RELOAD_GROUP_TABLE_VIEW_NOTIFY_KEY, object: self, userInfo: nil)
         })
+        
     }
     
     func setOriginalSplitViewController(_ viewController: DispatchBoardSplitViewController) {
