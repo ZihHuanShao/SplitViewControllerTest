@@ -43,7 +43,7 @@ class DetailViewController: UIViewController {
         
         
         //
-        // ContentView
+        // ContainerView
         //
         
         switch tapType {
