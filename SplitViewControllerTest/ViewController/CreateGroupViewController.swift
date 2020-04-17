@@ -43,7 +43,7 @@ class CreateGroupViewController: UIViewController {
     // tableview
     fileprivate var tableViewDelegate: CreateGroupViewTableViewDelegate?
     
-    var selectedMembersReloadedObserver: NSObjectProtocol?
+    
     
     // MARK: - Life Cycle
     
@@ -51,7 +51,7 @@ class CreateGroupViewController: UIViewController {
         super.viewDidLoad()
         reloadTestData()
         updateDataSource()
-        updateNotificationCenter()
+        addObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,8 +74,7 @@ class CreateGroupViewController: UIViewController {
     
     @IBAction func finishButtonTouchUpInside(_ sender: UIButton) {
         updatefinishButtonImage(type: .AWAY)
-        NotificationCenter.default.removeObserver(selectedMembersReloadedObserver!)
-        print("removeObserver: selectedMembersReloadedObserver")
+        removeObserver()
     }
     
     //
@@ -115,9 +114,19 @@ class CreateGroupViewController: UIViewController {
 
 extension CreateGroupViewController {
     
-    private func updateNotificationCenter() {
-        selectedMembersReloadedObserver = NotificationCenter.default.addObserver(forName: SELECTED_MEMBERS_RELOADED_NOTIFY_KEY, object: nil, queue: nil, using: selectedMembersReloaded)
-        print("addObserver: selectedMembersReloadedObserver")
+    private func removeObserver() {
+        if let _ = gVar.selectedMembersReloadedObserver {
+            NotificationCenter.default.removeObserver(gVar.selectedMembersReloadedObserver!)
+            gVar.selectedMembersReloadedObserver = nil
+            print("removeObserver: selectedMembersReloadedObserver")
+        }
+    }
+    
+    private func addObserver() {
+        if gVar.selectedMembersReloadedObserver == nil {
+            gVar.selectedMembersReloadedObserver = NotificationCenter.default.addObserver(forName: SELECTED_MEMBERS_RELOADED_NOTIFY_KEY, object: nil, queue: nil, using: selectedMembersReloaded)
+            print("addObserver: selectedMembersReloadedObserver")
+        }
     }
     
     private func updateDataSource() {

@@ -49,8 +49,6 @@ class MasterViewController: UIViewController {
 
     fileprivate var groupsVo  = [GroupVo]()
     fileprivate var membersVo = [MemberVo]()
-    
-    var changeMonitorObserver: NSObjectProtocol?
 
     // 目前tableview列表所點擊的cell的row index
     var currentTableCellRowIndex: Int?
@@ -66,7 +64,7 @@ class MasterViewController: UIViewController {
         updateDataSource()
         updateUI()
         updateGesture()
-        updateNotificationCenter()
+        addObserver()
         
         // 預設顯示「群組」列表
         tabLeftContentButtonPressed(UIButton())
@@ -181,9 +179,19 @@ class MasterViewController: UIViewController {
 
 extension MasterViewController {
     
-    private func updateNotificationCenter() {
-        changeMonitorObserver = NotificationCenter.default.addObserver(forName: CHANGE_MONITOR_NOTIFY_KEY, object: nil, queue: nil, using: changeMonitor)
-        print("addObserver: changeMonitorObserver")
+    private func removeObserver() {
+        if let _ = gVar.changeMonitorObserver {
+            NotificationCenter.default.removeObserver(gVar.changeMonitorObserver!)
+            gVar.changeMonitorObserver = nil
+            print("removeObserver: changeMonitorObserver")
+        }
+    }
+    
+    private func addObserver() {
+        if gVar.changeMonitorObserver == nil {
+            gVar.changeMonitorObserver = NotificationCenter.default.addObserver(forName: CHANGE_MONITOR_NOTIFY_KEY, object: nil, queue: nil, using: changeMonitor)
+            print("addObserver: changeMonitorObserver")
+        }
     }
     
     private func updateDataSource() {

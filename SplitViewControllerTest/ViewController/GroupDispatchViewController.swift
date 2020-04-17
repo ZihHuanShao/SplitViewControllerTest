@@ -29,7 +29,6 @@ class GroupDispatchViewController: UIViewController {
     // Original Test data
     fileprivate var groupsVo = [GroupVo]()
     
-    var dropSelectedGroupObserver: NSObjectProtocol?
     
     // MARK: - Life Cycle
     
@@ -37,7 +36,7 @@ class GroupDispatchViewController: UIViewController {
         super.viewDidLoad()
         updateDataSource()
         updateGesture()
-        updateNotificationCenter()
+        addObserver()
         updateUI()
     }
         
@@ -48,8 +47,7 @@ class GroupDispatchViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        NotificationCenter.default.removeObserver(dropSelectedGroupObserver!)
-        print("removeObserver: dropSelectedGroupObserver")
+        removeObserver()
     }
     
     // MARK: - Actions
@@ -97,10 +95,21 @@ extension GroupDispatchViewController {
 
 extension GroupDispatchViewController {
     
-    private func updateNotificationCenter() {
-        dropSelectedGroupObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_GROUP_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedGroup)
-        print("addObserver: dropSelectedGroupObserver")
+    private func removeObserver() {
+        if let _ = gVar.dropSelectedGroupObserver {
+            NotificationCenter.default.removeObserver(gVar.dropSelectedGroupObserver!)
+            gVar.dropSelectedGroupObserver = nil
+            print("removeObserver: dropSelectedGroupObserver")
+        }
     }
+    
+    private func addObserver() {
+        if gVar.dropSelectedGroupObserver == nil {
+            gVar.dropSelectedGroupObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_GROUP_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedGroup)
+            print("addObserver: dropSelectedGroupObserver")
+        }
+    }
+    
     
     private func updateSelfViewSize() {
         //

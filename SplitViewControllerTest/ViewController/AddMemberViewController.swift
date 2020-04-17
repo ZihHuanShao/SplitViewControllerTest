@@ -29,15 +29,13 @@ class AddMemberViewController: UIViewController {
     // Original Test data
     fileprivate var membersVo = [MemberVo]()
     
-    var dropSelectedMemberObserver: NSObjectProtocol?
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateDataSource()
         updateGesture()
-        updateNotificationCenter()
+        addObserver()
         updateUI()
     
     }
@@ -49,8 +47,7 @@ class AddMemberViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        NotificationCenter.default.removeObserver(dropSelectedMemberObserver!)
-        print("removeObserver: dropSelectedMemberObserver")
+        removeObserver()
     }
     
     // MARK: - Actions
@@ -97,10 +94,21 @@ extension AddMemberViewController {
 
 extension AddMemberViewController {
     
-    private func updateNotificationCenter() {
-        dropSelectedMemberObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_MEMBER_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedMember)
-        print("addObserver: dropSelectedMemberObserver")
+    private func removeObserver() {
+        if let _ = gVar.dropSelectedMemberObserver {
+            NotificationCenter.default.removeObserver(gVar.dropSelectedMemberObserver!)
+            gVar.dropSelectedMemberObserver = nil
+            print("removeObserver: dropSelectedMemberObserver")
+        }
     }
+    
+    private func addObserver() {
+        if gVar.dropSelectedMemberObserver == nil {
+            gVar.dropSelectedMemberObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_MEMBER_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedMember)
+            print("addObserver: dropSelectedMemberObserver")
+        }
+    }
+    
     
     private func updateSelfViewSize() {
         //

@@ -40,7 +40,7 @@ class GroupTableViewCell: UITableViewCell {
     // MARK: - Actions
     
     @IBAction func monitorButtonPressed(_ sender: UIButton) {
-        print("monitorButtonPressed")
+//        print("monitorButtonPressed")
         
         if let state = monitorState {
             (state == true) ? disableMonitor() : enableMonitor()

@@ -255,7 +255,7 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
 extension MasterViewTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print("didSelectRowAt: \(indexPath.row)")
+//        print("didSelectRowAt: \(indexPath.row)")
         
         switch tabType {
         case .GROUP:
