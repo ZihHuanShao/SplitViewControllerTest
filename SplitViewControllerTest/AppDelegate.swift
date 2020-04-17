@@ -78,6 +78,7 @@ extension AppDelegate {
             presentVC = vc
         }
         
+        // 把目前畫面的VC存起來
         NotificationCenter.default.post(name: KEEP_ORIGINAL_SPLIT_VIEW_CONTROLLER_NOTIFY_KEY, object: nil, userInfo: nil)
         
         // create a new view controller with it
