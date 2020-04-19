@@ -105,6 +105,13 @@ extension DetailViewCollectionViewDelegate: UICollectionViewDelegate {
         setBackgroundColor(rowIndex: indexPath.row)
         
         preSelectedIconIndex = indexPath.row
+        
+        if indexPath.row == 1 {
+            NotificationCenter.default.post(name: SWITCH_MAIN_MENU_NOTIFY_KEY, object: self, userInfo: [SWITCH_MAIN_MENU_USER_KEY: true])
+        } else if indexPath.row == 2 {
+            NotificationCenter.default.post(name: SWITCH_MAIN_MENU_NOTIFY_KEY, object: self, userInfo: [SWITCH_MAIN_MENU_USER_KEY: false])
+        }
+        
         reloadUI()
     }
 }

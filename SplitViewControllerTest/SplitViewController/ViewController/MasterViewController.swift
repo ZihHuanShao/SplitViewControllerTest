@@ -15,7 +15,7 @@ class MasterViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     
     // MARK: - Properties
-    
+    var pttViewController: PttViewController?
     
     // MARK: - Life Cycle
     
@@ -23,15 +23,10 @@ class MasterViewController: UIViewController {
         super.viewDidLoad()
         self.splitViewController?.preferredDisplayMode = .allVisible
         
+        locatePttViewController()
         addObserver()
         
-        let pttViewController = UIStoryboard(name: STORYBOARD_NAME_MAIN, bundle: nil).instantiateViewController(withIdentifier: "PttViewController") as! PttViewController
-        
-        self.addChild(pttViewController)
-        pttViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-        self.containerView.addSubview(pttViewController.view)
-        
-        pttViewController.didMove(toParent: self)
+
     }
 }
 
@@ -40,22 +35,42 @@ class MasterViewController: UIViewController {
 extension MasterViewController {
     
     private func removeObserver() {
-//        if let _ = gVar.changeMonitorObserver {
-//            NotificationCenter.default.removeObserver(gVar.changeMonitorObserver!)
-//            gVar.changeMonitorObserver = nil
-//            print("removeObserver: changeMonitorObserver")
-//        }
-
+        if let _ = gVar.switchMainMenuObserver {
+            NotificationCenter.default.removeObserver(gVar.switchMainMenuObserver!)
+            gVar.switchMainMenuObserver = nil
+            print("removeObserver: switchMainMenuObserver")
+        }
     }
     
     private func addObserver() {
-//        if gVar.changeMonitorObserver == nil {
-//            gVar.changeMonitorObserver = NotificationCenter.default.addObserver(forName: CHANGE_MONITOR_NOTIFY_KEY, object: nil, queue: nil, using: changeMonitor)
-//            print("addObserver: changeMonitorObserver")
-//        }
+        if gVar.switchMainMenuObserver == nil {
+            gVar.switchMainMenuObserver = NotificationCenter.default.addObserver(forName: SWITCH_MAIN_MENU_NOTIFY_KEY, object: nil, queue: nil, using: switchMainMenu)
+            print("addObserver: switchMainMenuObserver")
+        }
+    }
+    
+    private func locatePttViewController() {
+        let pttViewController = UIStoryboard(name: STORYBOARD_NAME_MAIN, bundle: nil).instantiateViewController(withIdentifier: "PttViewController") as! PttViewController
         
-
+        containerView.subviews.forEach({ $0.removeFromSuperview() })
         
+        self.addChild(pttViewController)
+        pttViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+        self.containerView.addSubview(pttViewController.view)
+        
+        pttViewController.didMove(toParent: self)
+    }
+    
+    private func locateMapViewController() {
+        let mapViewController = UIStoryboard(name: STORYBOARD_NAME_MAIN, bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        
+        containerView.subviews.forEach({ $0.removeFromSuperview() })
+        
+        self.addChild(mapViewController)
+        mapViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+        self.containerView.addSubview(mapViewController.view)
+        
+        mapViewController.didMove(toParent: self)
     }
     
 }
@@ -64,9 +79,15 @@ extension MasterViewController {
 
 extension MasterViewController {
 
-//    func reloadGroupTableView(notification: Notification) -> Void {
-//        tableViewDelegate?.reloadUI()
-//    }
+    func switchMainMenu(notification: Notification) -> Void {
+        if let flag = notification.userInfo?[SWITCH_MAIN_MENU_USER_KEY] as? Bool {
+            if flag == true {
+                locateMapViewController()
+            } else {
+                locatePttViewController()
+            }
+        }
+    }
 }
 
 

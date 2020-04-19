@@ -18,6 +18,10 @@ class gVar {
     // Notification
     //
     
+    static var switchMainMenuObserver: NSObjectProtocol? = nil
+    
+    // [PttViewController]
+    
     // AddMemberViewController
     static var dropSelectedMemberObserver: NSObjectProtocol? = nil
     

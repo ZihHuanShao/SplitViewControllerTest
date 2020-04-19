@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E8347ED244C4CBF00298AF9 /* PttViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8347EC244C4CBF00298AF9 /* PttViewController.swift */; };
+		4E8347EF244C9DF000298AF9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8347EE244C9DF000298AF9 /* MapViewController.swift */; };
 		D069205024459868006E65D4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069204F24459868006E65D4 /* Strings.swift */; };
 		D06920602445A104006E65D4 /* bg_listbox_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = D069205D2445A104006E65D4 /* bg_listbox_bottom.png */; };
 		D06920612445A104006E65D4 /* bg_listbox_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = D069205E2445A104006E65D4 /* bg_listbox_middle.png */; };
@@ -128,6 +129,7 @@
 
 /* Begin PBXFileReference section */
 		4E8347EC244C4CBF00298AF9 /* PttViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PttViewController.swift; sourceTree = "<group>"; };
+		4E8347EE244C9DF000298AF9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D069204F24459868006E65D4 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		D069205D2445A104006E65D4 /* bg_listbox_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listbox_bottom.png; sourceTree = "<group>"; };
 		D069205E2445A104006E65D4 /* bg_listbox_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listbox_middle.png; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				4E8347EC244C4CBF00298AF9 /* PttViewController.swift */,
+				4E8347EE244C9DF000298AF9 /* MapViewController.swift */,
 				D070DEC32446F3F2008466E6 /* AddMemberViewController.swift */,
 				D06920692445B289006E65D4 /* CreateGroupViewController.swift */,
 				D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */,
@@ -628,6 +631,7 @@
 				F22F8B5D242DDD5F00CB08D5 /* DispatchBoardSplitViewController.swift in Sources */,
 				F20CCF332429FC8000048BA3 /* DetailViewController.swift in Sources */,
 				F20CCF312429F61200048BA3 /* MasterViewController.swift in Sources */,
+				4E8347EF244C9DF000298AF9 /* MapViewController.swift in Sources */,
 				D0E23684243C7E760009506F /* GroupDispatchViewControllerTableViewDelegate.swift in Sources */,
 				D069206A2445B289006E65D4 /* CreateGroupViewController.swift in Sources */,
 				D070DEC42446F3F2008466E6 /* AddMemberViewController.swift in Sources */,
