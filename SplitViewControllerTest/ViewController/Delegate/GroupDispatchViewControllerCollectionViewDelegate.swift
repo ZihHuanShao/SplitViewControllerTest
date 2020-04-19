@@ -1,5 +1,5 @@
 //
-//  GroupDispatchViewCollectionViewDelegate.swift
+//  GroupDispatchViewControllerCollectionViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by kokome maxkit on 2020/4/8.
@@ -19,7 +19,7 @@ private class CellData {
     }
 }
 
-class GroupDispatchViewCollectionViewDelegate: NSObject {
+class GroupDispatchViewControllerCollectionViewDelegate: NSObject {
     
     // MARK: - Properties
     
@@ -45,7 +45,7 @@ class GroupDispatchViewCollectionViewDelegate: NSObject {
 
 // MARK: - Private Methods
 
-extension GroupDispatchViewCollectionViewDelegate {
+extension GroupDispatchViewControllerCollectionViewDelegate {
     private func reloadCellData() {
         cellsData.removeAll()
         
@@ -59,7 +59,7 @@ extension GroupDispatchViewCollectionViewDelegate {
 
 // MARK: - Public Methods
 
-extension GroupDispatchViewCollectionViewDelegate {
+extension GroupDispatchViewControllerCollectionViewDelegate {
     
     func appendSelectedGroup(tableRowIndex: Int, _ selectedGroupVo: GroupVo) {
         
@@ -114,7 +114,7 @@ extension GroupDispatchViewCollectionViewDelegate {
 
 // MARK: - UICollectionViewDataSource
 
-extension GroupDispatchViewCollectionViewDelegate: UICollectionViewDataSource {
+extension GroupDispatchViewControllerCollectionViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedGroups.count
     }
@@ -139,13 +139,13 @@ extension GroupDispatchViewCollectionViewDelegate: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 
-extension GroupDispatchViewCollectionViewDelegate: UICollectionViewDelegate {
+extension GroupDispatchViewControllerCollectionViewDelegate: UICollectionViewDelegate {
     
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension GroupDispatchViewCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
+extension GroupDispatchViewControllerCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 80, height: 72)
     }

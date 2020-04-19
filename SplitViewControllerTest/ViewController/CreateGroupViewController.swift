@@ -41,7 +41,7 @@ class CreateGroupViewController: UIViewController {
     fileprivate var membersVo = [MemberVo]()
     
     // tableview
-    fileprivate var tableViewDelegate: CreateGroupViewTableViewDelegate?
+    fileprivate var tableViewDelegate: CreateGroupViewControllerTableViewDelegate?
     
     
     
@@ -175,7 +175,7 @@ extension CreateGroupViewController {
         // TableView
         //
         
-        tableViewDelegate = CreateGroupViewTableViewDelegate(createGroupViewController: self, tableView: tableView)
+        tableViewDelegate = CreateGroupViewControllerTableViewDelegate(createGroupViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: CREATE_GROUP_TABLE_VIEW_CELL, cellId: CREATE_GROUP_TABLE_VIEW_CELL)
         
         tableViewDelegate?.reloadUI()

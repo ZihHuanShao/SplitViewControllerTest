@@ -1,5 +1,5 @@
 //
-//  GroupCollectionoViewDelegate.swift
+//  GroupViewControllerCollectionoViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by maxkitmac on 2020/3/30.
@@ -17,7 +17,7 @@ private class CellData {
     }
 }
 
-class GroupCollectionoViewDelegate: NSObject {
+class GroupViewControllerCollectionoViewDelegate: NSObject {
     
     // MARK: - Properties
     
@@ -41,7 +41,7 @@ class GroupCollectionoViewDelegate: NSObject {
 
 // MARK: - Private Methods
 
-extension GroupCollectionoViewDelegate {
+extension GroupViewControllerCollectionoViewDelegate {
     private func reloadCellData() {
         cellsData.removeAll()
         
@@ -53,7 +53,7 @@ extension GroupCollectionoViewDelegate {
 
 // MARK: - Public Methods
 
-extension GroupCollectionoViewDelegate {
+extension GroupViewControllerCollectionoViewDelegate {
     func updateMembersVo(_ membersVo: [MemberVo]) {
         self.membersVo = membersVo
     }
@@ -77,7 +77,7 @@ extension GroupCollectionoViewDelegate {
 
 // MARK: - UICollectionViewDataSource
 
-extension GroupCollectionoViewDelegate: UICollectionViewDataSource {
+extension GroupViewControllerCollectionoViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return membersCount ?? 0
     }
@@ -107,7 +107,7 @@ extension GroupCollectionoViewDelegate: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 
-extension GroupCollectionoViewDelegate: UICollectionViewDelegate {
+extension GroupViewControllerCollectionoViewDelegate: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(membersVo[indexPath.row].name)
     }
@@ -115,7 +115,7 @@ extension GroupCollectionoViewDelegate: UICollectionViewDelegate {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension GroupCollectionoViewDelegate: UICollectionViewDelegateFlowLayout {
+extension GroupViewControllerCollectionoViewDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         /*------------------------

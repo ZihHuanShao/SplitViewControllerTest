@@ -33,7 +33,7 @@ class MemberViewController: UIViewController {
     fileprivate var memberVo: MemberVo?
     
     // tableview
-    fileprivate var tableViewDelegate: MemberViewTableViewDelegate?
+    fileprivate var tableViewDelegate: MemberViewControllerTableViewDelegate?
     
     // MARK: - Life Cycle
     
@@ -128,7 +128,7 @@ extension MemberViewController {
         memberNameLabel.text = mVo.name
         memberImage.image = UIImage(named: mVo.imageName ?? "sticker_contact.png")
         
-        tableViewDelegate = MemberViewTableViewDelegate(memberViewController: self, tableView: tableView)
+        tableViewDelegate = MemberViewControllerTableViewDelegate(memberViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: MEMBER_PROFILE_TABLE_VIEW_CELL, cellId: MEMBER_PROFILE_TABLE_VIEW_CELL)
         if let _memberVo = memberVo {
             tableViewDelegate?.updateMemberVo(_memberVo)

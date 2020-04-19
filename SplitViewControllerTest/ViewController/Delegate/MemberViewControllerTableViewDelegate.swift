@@ -1,5 +1,5 @@
 //
-//  MemberViewTableViewDelegate.swift
+//  MemberViewControllerTableViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by maxkitmac on 2020/3/31.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MemberViewTableViewDelegate: NSObject {
+class MemberViewControllerTableViewDelegate: NSObject {
     
     // MARK: - Properties
     
@@ -31,7 +31,7 @@ class MemberViewTableViewDelegate: NSObject {
 
 // MARK: - Public Methods
 
-extension MemberViewTableViewDelegate {
+extension MemberViewControllerTableViewDelegate {
     func updateMemberVo(_ memberVo: MemberVo) {
         self.memberVo = memberVo
     }
@@ -54,7 +54,7 @@ extension MemberViewTableViewDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension MemberViewTableViewDelegate: UITableViewDataSource {
+extension MemberViewControllerTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 目前只有四個欄位(帳號/ SIP號碼/ 國家/ 電子信箱)
         return MemberProfileType.allCases.count
@@ -83,6 +83,6 @@ extension MemberViewTableViewDelegate: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension MemberViewTableViewDelegate: UITableViewDelegate {
+extension MemberViewControllerTableViewDelegate: UITableViewDelegate {
     
 }

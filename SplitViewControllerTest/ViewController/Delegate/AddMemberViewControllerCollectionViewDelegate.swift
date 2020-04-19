@@ -1,5 +1,5 @@
 //
-//  AddMemberViewCollectionViewDelegate.swift
+//  AddMemberViewControllerCollectionViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by kokome maxkit on 2020/4/15.
@@ -20,7 +20,7 @@ private class CellData {
 }
 
 
-class AddMemberViewCollectionViewDelegate: NSObject {
+class AddMemberViewControllerCollectionViewDelegate: NSObject {
     
     // MARK: - Properties
     
@@ -46,7 +46,7 @@ class AddMemberViewCollectionViewDelegate: NSObject {
 
 // MARK: - Private Methods
 
-extension AddMemberViewCollectionViewDelegate {
+extension AddMemberViewControllerCollectionViewDelegate {
     private func reloadCellData() {
         cellsData.removeAll()
         
@@ -60,7 +60,7 @@ extension AddMemberViewCollectionViewDelegate {
 
 // MARK: - Public Methods
 
-extension AddMemberViewCollectionViewDelegate {
+extension AddMemberViewControllerCollectionViewDelegate {
     
     func appendSelectedMember(tableRowIndex: Int, _ selectedMemberVo: MemberVo) {
         
@@ -132,7 +132,7 @@ extension AddMemberViewCollectionViewDelegate {
 
 // MARK: - UICollectionViewDataSource
 
-extension AddMemberViewCollectionViewDelegate: UICollectionViewDataSource {
+extension AddMemberViewControllerCollectionViewDelegate: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedMembers.count
     }
@@ -158,13 +158,13 @@ extension AddMemberViewCollectionViewDelegate: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 
-extension AddMemberViewCollectionViewDelegate: UICollectionViewDelegate {
+extension AddMemberViewControllerCollectionViewDelegate: UICollectionViewDelegate {
     
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension AddMemberViewCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
+extension AddMemberViewControllerCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 80, height: 72)
     }

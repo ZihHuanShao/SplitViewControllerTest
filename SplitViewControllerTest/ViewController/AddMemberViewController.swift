@@ -21,10 +21,10 @@ class AddMemberViewController: UIViewController {
     // MARK: - Properties
     
     // tableview
-    fileprivate var tableViewDelegate: AddMemberViewTableViewDelegate?
+    fileprivate var tableViewDelegate: AddMemberViewControllerTableViewDelegate?
     
     // collectionview
-    fileprivate var collectionViewDelegate: AddMemberViewCollectionViewDelegate?
+    fileprivate var collectionViewDelegate: AddMemberViewControllerCollectionViewDelegate?
     
     // Original Test data
     fileprivate var membersVo = [MemberVo]()
@@ -134,7 +134,7 @@ extension AddMemberViewController {
         // TableView
         //
         
-        tableViewDelegate = AddMemberViewTableViewDelegate(addMemberViewController: self, tableView: tableView)
+        tableViewDelegate = AddMemberViewControllerTableViewDelegate(addMemberViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: ADD_MEMBER_TABLE_VIEW_CELL, cellId: ADD_MEMBER_TABLE_VIEW_CELL)
         
         tableViewDelegate?.updateMembersVo(membersVo)
@@ -144,7 +144,7 @@ extension AddMemberViewController {
         // CollectionView
         //
         
-        collectionViewDelegate = AddMemberViewCollectionViewDelegate(addMemberViewController: self, collectionView: collectionView)
+        collectionViewDelegate = AddMemberViewControllerCollectionViewDelegate(addMemberViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: ADD_MEMBER_COLLECTION_VIEW_CELL, cellId: ADD_MEMBER_COLLECTION_VIEW_CELL)
         
         
@@ -192,7 +192,7 @@ extension AddMemberViewController {
 
 // MARK: - AddMemberTableViewExtendDelegate
 
-extension AddMemberViewController: AddMemberTableViewExtendDelegate {
+extension AddMemberViewController: AddMemberViewControllerTableViewDelegateExtend {
     func pickupMember(tableRowIndex: Int, selectedMemberVo: MemberVo) {
         collectionViewDelegate?.appendSelectedMember(tableRowIndex: tableRowIndex, selectedMemberVo)
         collectionViewDelegate?.reloadUI()

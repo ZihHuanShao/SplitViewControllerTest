@@ -1,5 +1,5 @@
 //
-//  GroupDispatchViewTableViewDelegate.swift
+//  GroupDispatchViewControllerTableViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by kokome maxkit on 2020/4/7.
@@ -17,13 +17,13 @@ private class CellData {
     }
 }
 
-class GroupDispatchViewTableViewDelegate: NSObject {
+class GroupDispatchViewControllerTableViewDelegate: NSObject {
     
     // MARK: - Properties
     
     fileprivate weak var viewController: GroupDispatchViewController?
     fileprivate weak var tableView: UITableView?
-    fileprivate var tableViewExtendDelegate: GroupDispatchTableViewExtendDelegate?
+    fileprivate var tableViewExtendDelegate: GroupDispatchViewControllerTableViewDelegateExtend?
     
     fileprivate var cellsData = [CellData]()
     fileprivate var groupsVo = [GroupVo]()
@@ -43,7 +43,7 @@ class GroupDispatchViewTableViewDelegate: NSObject {
 
 // MARK: - Private Methods
 
-extension GroupDispatchViewTableViewDelegate {
+extension GroupDispatchViewControllerTableViewDelegate {
     private func reloadCellData() {
         cellsData.removeAll()
         for groupVo in groupsVo {
@@ -55,7 +55,7 @@ extension GroupDispatchViewTableViewDelegate {
 
 // MARK: - Public Methods
 
-extension GroupDispatchViewTableViewDelegate {
+extension GroupDispatchViewControllerTableViewDelegate {
     func updateGroupsVo(_ groupsVo: [GroupVo]) {
         self.groupsVo = groupsVo
     }
@@ -87,7 +87,7 @@ extension GroupDispatchViewTableViewDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension GroupDispatchViewTableViewDelegate: UITableViewDataSource {
+extension GroupDispatchViewControllerTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupsVo.count
     }
@@ -116,7 +116,7 @@ extension GroupDispatchViewTableViewDelegate: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension GroupDispatchViewTableViewDelegate: UITableViewDelegate {
+extension GroupDispatchViewControllerTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let rowIndex  = indexPath.row
@@ -136,7 +136,7 @@ extension GroupDispatchViewTableViewDelegate: UITableViewDelegate {
 
 // MARK: - Protocol
 
-protocol GroupDispatchTableViewExtendDelegate {
+protocol GroupDispatchViewControllerTableViewDelegateExtend {
     
     // 選到的Group會被加入到CollectionView裡面
     func pickupGroup(tableRowIndex: Int, selectedGroupVo: GroupVo)

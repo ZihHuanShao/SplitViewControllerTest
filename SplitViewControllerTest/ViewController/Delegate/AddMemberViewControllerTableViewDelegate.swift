@@ -1,5 +1,5 @@
 //
-//  AddMemberViewTableViewDelegate.swift
+//  AddMemberViewControllerTableViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by kokome maxkit on 2020/4/15.
@@ -17,12 +17,12 @@ private class CellData {
     }
 }
 
-class AddMemberViewTableViewDelegate: NSObject {
+class AddMemberViewControllerTableViewDelegate: NSObject {
     // MARK: - Properties
     
     fileprivate weak var viewController: AddMemberViewController?
     fileprivate weak var tableView: UITableView?
-    fileprivate var tableViewExtendDelegate: AddMemberTableViewExtendDelegate?
+    fileprivate var tableViewExtendDelegate: AddMemberViewControllerTableViewDelegateExtend?
     
     fileprivate var cellsData = [CellData]()
     fileprivate var membersVo = [MemberVo]()
@@ -41,7 +41,7 @@ class AddMemberViewTableViewDelegate: NSObject {
 
 // MARK: - Private Methods
 
-extension AddMemberViewTableViewDelegate {
+extension AddMemberViewControllerTableViewDelegate {
     private func reloadCellData() {
         cellsData.removeAll()
         for memberVo in membersVo {
@@ -53,7 +53,7 @@ extension AddMemberViewTableViewDelegate {
 
 // MARK: - Public Methods
 
-extension AddMemberViewTableViewDelegate {
+extension AddMemberViewControllerTableViewDelegate {
     func updateMembersVo(_ membersVo: [MemberVo]) {
         self.membersVo = membersVo
     }
@@ -86,7 +86,7 @@ extension AddMemberViewTableViewDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension AddMemberViewTableViewDelegate: UITableViewDataSource {
+extension AddMemberViewControllerTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return membersVo.count
     }
@@ -113,7 +113,7 @@ extension AddMemberViewTableViewDelegate: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension AddMemberViewTableViewDelegate: UITableViewDelegate {
+extension AddMemberViewControllerTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let rowIndex  = indexPath.row
@@ -133,7 +133,7 @@ extension AddMemberViewTableViewDelegate: UITableViewDelegate {
 
 // MARK: - Protocol
 
-protocol AddMemberTableViewExtendDelegate {
+protocol AddMemberViewControllerTableViewDelegateExtend {
     
     // 選到的Member會被加入到CollectionView裡面
     func pickupMember(tableRowIndex: Int, selectedMemberVo: MemberVo)

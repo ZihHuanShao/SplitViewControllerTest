@@ -1,5 +1,5 @@
 //
-//  CreateGroupViewTableViewDelegate.swift
+//  CreateGroupViewControllerTableViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by kokome maxkit on 2020/4/15.
@@ -17,7 +17,7 @@ private class CellData {
     }
 }
 
-class CreateGroupViewTableViewDelegate: NSObject {
+class CreateGroupViewControllerTableViewDelegate: NSObject {
     // MARK: - Properties
     
     fileprivate weak var viewController: CreateGroupViewController?
@@ -39,7 +39,7 @@ class CreateGroupViewTableViewDelegate: NSObject {
 
 // MARK: - Private Methods
 
-extension CreateGroupViewTableViewDelegate {
+extension CreateGroupViewControllerTableViewDelegate {
     private func reloadCellData() {
         for memberVo in membersVo {
             cellsData.append(CellData(memberVo))
@@ -49,7 +49,7 @@ extension CreateGroupViewTableViewDelegate {
 
 // MARK: - Public Methods
 
-extension CreateGroupViewTableViewDelegate {
+extension CreateGroupViewControllerTableViewDelegate {
     func updateMembersVo(_ membersVo: [MemberVo]) {
         self.membersVo = membersVo
     }
@@ -69,7 +69,7 @@ extension CreateGroupViewTableViewDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension CreateGroupViewTableViewDelegate: UITableViewDataSource {
+extension CreateGroupViewControllerTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  membersVo.count
     }
@@ -91,7 +91,7 @@ extension CreateGroupViewTableViewDelegate: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension CreateGroupViewTableViewDelegate: UITableViewDelegate {
+extension CreateGroupViewControllerTableViewDelegate: UITableViewDelegate {
     
 }
 

@@ -21,10 +21,10 @@ class GroupDispatchViewController: UIViewController {
     // MARK: - Properties
     
     // tableview
-    fileprivate var tableViewDelegate: GroupDispatchViewTableViewDelegate?
+    fileprivate var tableViewDelegate: GroupDispatchViewControllerTableViewDelegate?
     
     // collectionview
-    fileprivate var collectionViewDelegate: GroupDispatchViewCollectionViewDelegate?
+    fileprivate var collectionViewDelegate: GroupDispatchViewControllerCollectionViewDelegate?
     
     // Original Test data
     fileprivate var groupsVo = [GroupVo]()
@@ -135,7 +135,7 @@ extension GroupDispatchViewController {
         // TableView
         //
         
-        tableViewDelegate = GroupDispatchViewTableViewDelegate(groupDispatchViewController: self, tableView: tableView)
+        tableViewDelegate = GroupDispatchViewControllerTableViewDelegate(groupDispatchViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: GROUP_DISPATCH_TABLE_VIEW_CELL, cellId: GROUP_DISPATCH_TABLE_VIEW_CELL)
         tableViewDelegate?.updateGroupsVo(groupsVo)
         
@@ -143,7 +143,7 @@ extension GroupDispatchViewController {
         // CollectionView
         //
         
-        collectionViewDelegate = GroupDispatchViewCollectionViewDelegate(groupDispatchViewController: self, collectionView: collectionView)
+        collectionViewDelegate = GroupDispatchViewControllerCollectionViewDelegate(groupDispatchViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: GROUP_DISPATCH_COLLECTION_VIEW_CELL, cellId: GROUP_DISPATCH_COLLECTION_VIEW_CELL)
         
         
@@ -193,7 +193,7 @@ extension GroupDispatchViewController {
 
 // MARK: - GroupDispatchTableViewExtendDelegate
 
-extension GroupDispatchViewController: GroupDispatchTableViewExtendDelegate {
+extension GroupDispatchViewController: GroupDispatchViewControllerTableViewDelegateExtend {
     func pickupGroup(tableRowIndex: Int, selectedGroupVo: GroupVo) {
         collectionViewDelegate?.appendSelectedGroup(tableRowIndex: tableRowIndex, selectedGroupVo)
         collectionViewDelegate?.reloadUI()

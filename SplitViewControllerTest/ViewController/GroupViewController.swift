@@ -23,7 +23,7 @@ class GroupViewController: UIViewController {
     
     fileprivate var groupVo: GroupVo?
     fileprivate var membersVo: [MemberVo]?
-    fileprivate var collectionViewDelegate: GroupCollectionoViewDelegate?
+    fileprivate var collectionViewDelegate: GroupViewControllerCollectionoViewDelegate?
     
     // MARK: - Life Cycle
     
@@ -92,7 +92,7 @@ extension GroupViewController {
         groupNameLabel.text = gVo.name
         (gVo.monitorState == true) ? enableMonitor() : disableMonitor()
 
-        collectionViewDelegate = GroupCollectionoViewDelegate(groupViewController: self, collectionView: collectionView)
+        collectionViewDelegate = GroupViewControllerCollectionoViewDelegate(groupViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: GROUP_COLLECTION_VIEW_CELL, cellId: GROUP_COLLECTION_VIEW_CELL)
         
         

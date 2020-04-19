@@ -1,5 +1,5 @@
 //
-//  MasterViewTableViewDelegate.swift
+//  PttViewControllerTableViewDelegate.swift
 //  SplitViewControllerTest
 //
 //  Created by maxkitmac on 2020/3/24.
@@ -27,13 +27,13 @@ private class MemberCellData {
     }
 }
 
-class MasterViewTableViewDelegate: NSObject {
+class PttViewControllerTableViewDelegate: NSObject {
     
     // MARK: - Properties
     
-    fileprivate weak var viewController: MasterViewController?
+    fileprivate weak var viewController: PttViewController?
     fileprivate weak var tableView: UITableView?
-    fileprivate weak var tableViewExtendDelegate: MasterViewTableViewExtendDelegate?
+    fileprivate weak var tableViewExtendDelegate: PttViewControllerTableViewDelegateExtend?
     
     fileprivate var groupCellsData  = [GroupCellData]()
     fileprivate var memberCellsData = [MemberCellData]()
@@ -46,9 +46,9 @@ class MasterViewTableViewDelegate: NSObject {
     
     // MARK: - initializer
     
-    init(masterViewController: MasterViewController, tableView: UITableView, type: TabType) {
+    init(pttViewController: PttViewController, tableView: UITableView, type: TabType) {
         super.init()
-        self.viewController = masterViewController
+        self.viewController = pttViewController
         self.tableView = tableView
         tableView.dataSource = self
         tableView.delegate = self
@@ -77,7 +77,7 @@ class MasterViewTableViewDelegate: NSObject {
 
 // MARK: - Private Methods
 
-extension MasterViewTableViewDelegate {
+extension PttViewControllerTableViewDelegate {
     private func reloadCellData() {
         switch tabType {
         case .GROUP:
@@ -123,7 +123,7 @@ extension MasterViewTableViewDelegate {
 
 // MARK: - Public Methods
 
-extension MasterViewTableViewDelegate {
+extension PttViewControllerTableViewDelegate {
     
     func updateGroups(_ groupsVo: [GroupVo]) {
         self.groupsVo = groupsVo
@@ -164,7 +164,7 @@ extension MasterViewTableViewDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension MasterViewTableViewDelegate: UITableViewDataSource {
+extension PttViewControllerTableViewDelegate: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tabType {
@@ -252,7 +252,7 @@ extension MasterViewTableViewDelegate: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension MasterViewTableViewDelegate: UITableViewDelegate {
+extension PttViewControllerTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
 //        print("didSelectRowAt: \(indexPath.row)")
@@ -281,7 +281,7 @@ extension MasterViewTableViewDelegate: UITableViewDelegate {
 
 // MARK: - Protocol
 
-protocol MasterViewTableViewExtendDelegate: NSObject {
+protocol PttViewControllerTableViewDelegateExtend: NSObject {
     func activateSegue(tapType: ShowDetailViewControllerType)
     func setCurrentCellRowIndex(_ rowIndex: Int)
 }
