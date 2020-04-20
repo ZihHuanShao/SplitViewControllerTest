@@ -57,6 +57,7 @@ let GROUP_DISPATCH_COLLECTION_VIEW_CELL = "GroupDispatchCollectionViewCell"
 let CREATE_GROUP_TABLE_VIEW_CELL = "CreateGroupTableViewCell"
 let ADD_MEMBER_TABLE_VIEW_CELL = "AddMemberTableViewCell"
 let ADD_MEMBER_COLLECTION_VIEW_CELL = "AddMemberCollectionViewCell"
+let MAP_TABLE_VIEW_CELL = "MapTableViewCell"
 
 // Storyboard
 let STORYBOARD_NAME_MAIN   = "Main"
@@ -124,10 +125,16 @@ enum OnlineType: Int {
 }
 
 enum MemberProfileType: CaseIterable {
-    case USER_ID
-    case SIP_NUMBER
-    case COUNTRY
-    case EMAIL
+    case USER_ID    // 帳號
+    case SIP_NUMBER // SIP號碼
+    case COUNTRY    // 國家
+    case EMAIL      // 電子信箱
+}
+
+enum MapFunctionType: CaseIterable {
+    case ELECTR_FENCE        // 電子圍籬
+    case TRAJECTORY_TRACKING // 軌跡追蹤
+    case TEMPORARY_GROUP     // 臨時群組
 }
 
 enum ButtonPressType: Int {

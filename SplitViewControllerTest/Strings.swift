@@ -39,3 +39,8 @@ let str_createGroup_groupDesc = "描述"
 let str_createGroup_groupDesc_placeholder = "請輸入群組描述"
 let str_createGroup_groupMember = "群組成員"
 let str_createGroup_createMember = "新增成員"
+
+// MapViewController
+let str_map_electrFence = "電子圍籬"
+let str_map_trajectoryTracking = "軌跡追蹤"
+let str_map_temporaryGroup = "臨時群組"

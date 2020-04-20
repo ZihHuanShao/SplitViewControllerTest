@@ -24,12 +24,20 @@ class MapViewControllerTableViewDelegate: NSObject {
         self.tableView = tableView
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.tableFooterView = UIView(frame: .zero)
     }
 }
 
 // MARK: - Public Methods
 
 extension MapViewControllerTableViewDelegate {
+    func registerCell(cellName: String, cellId: String) {
+        tableView?.register(
+            UINib(nibName: cellName, bundle: nil),
+            forCellReuseIdentifier: cellId
+        )
+    }
+    
     func reloadUI() {
         tableView?.reloadData()
     }
@@ -39,16 +47,20 @@ extension MapViewControllerTableViewDelegate {
 
 extension MapViewControllerTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return MapFunctionType.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SHOW", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: MAP_TABLE_VIEW_CELL, for: indexPath) as! MapTableViewCell
         
+        cell.updateCell(MapFunctionType.allCases[indexPath.row])
+        cell.selectionStyle = .none
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 56
+    }
 }
 
 // MARK: - UITableViewDelegate

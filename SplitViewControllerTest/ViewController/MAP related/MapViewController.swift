@@ -16,7 +16,6 @@ class MapViewController: UIViewController {
     @IBOutlet weak var dispatcherButton: UIButton!
     @IBOutlet weak var dispatcherName: UILabel!
     
-    
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
@@ -29,9 +28,9 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableViewDelegate = MapViewControllerTableViewDelegate(mapViewController: self, tableView: tableView)
-        tableViewDelegate?.reloadUI()
-        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
+        updateDataSource()
+        updateUI()
+
     }
     
     // MARK: - Actions
@@ -60,5 +59,27 @@ class MapViewController: UIViewController {
 extension MapViewController {
     func setMainMenuSelectedRowIndex(_ rowIndex: Int) {
         mainMenuSelectedRowIndex = rowIndex
+    }
+}
+
+// MARK: - Private Methods
+
+extension MapViewController {
+    private func updateDataSource() {
+        tableViewDelegate = MapViewControllerTableViewDelegate(mapViewController: self, tableView: tableView)
+        tableViewDelegate?.registerCell(cellName: MAP_TABLE_VIEW_CELL, cellId: MAP_TABLE_VIEW_CELL)
+    }
+    
+    private func updateUI() {
+        
+        // TitleView Field
+         dispatcherButton.layer.cornerRadius = dispatcherButton.frame.size.width / 2
+         dispatcherButton.clipsToBounds      = true
+        //dispatcherName.text = ""
+        
+        
+        tableViewDelegate?.reloadUI()
+        
+        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
     }
 }
