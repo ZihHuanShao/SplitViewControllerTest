@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4E8347ED244C4CBF00298AF9 /* PttViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8347EC244C4CBF00298AF9 /* PttViewController.swift */; };
 		4E8347EF244C9DF000298AF9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8347EE244C9DF000298AF9 /* MapViewController.swift */; };
+		7EBCFD4689B8DDF555FD16C9 /* Pods_SplitViewControllerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F065087E1BC1A143062444 /* Pods_SplitViewControllerTest.framework */; };
 		D069205024459868006E65D4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069204F24459868006E65D4 /* Strings.swift */; };
 		D06920602445A104006E65D4 /* bg_listbox_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = D069205D2445A104006E65D4 /* bg_listbox_bottom.png */; };
 		D06920612445A104006E65D4 /* bg_listbox_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = D069205E2445A104006E65D4 /* bg_listbox_middle.png */; };
@@ -131,8 +132,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29881B354140E135BE8628D7 /* Pods-SplitViewControllerTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitViewControllerTest.release.xcconfig"; path = "Target Support Files/Pods-SplitViewControllerTest/Pods-SplitViewControllerTest.release.xcconfig"; sourceTree = "<group>"; };
 		4E8347EC244C4CBF00298AF9 /* PttViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PttViewController.swift; sourceTree = "<group>"; };
 		4E8347EE244C9DF000298AF9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		5513D85D95B2822F5016DD32 /* Pods-SplitViewControllerTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitViewControllerTest.debug.xcconfig"; path = "Target Support Files/Pods-SplitViewControllerTest/Pods-SplitViewControllerTest.debug.xcconfig"; sourceTree = "<group>"; };
 		D069204F24459868006E65D4 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		D069205D2445A104006E65D4 /* bg_listbox_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listbox_bottom.png; sourceTree = "<group>"; };
 		D069205E2445A104006E65D4 /* bg_listbox_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listbox_middle.png; sourceTree = "<group>"; };
@@ -229,6 +232,7 @@
 		D0E23686243C818C0009506F /* GroupDispatchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDispatchTableViewCell.xib; sourceTree = "<group>"; };
 		D0E23689243C88060009506F /* icon_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_selected.png; sourceTree = "<group>"; };
 		D0E2368A243C88060009506F /* icon_unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_unselected.png; sourceTree = "<group>"; };
+		E6F065087E1BC1A143062444 /* Pods_SplitViewControllerTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitViewControllerTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20CCEF92429F00800048BA3 /* SplitViewControllerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitViewControllerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20CCEFC2429F00800048BA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F20CCF012429F00800048BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -261,12 +265,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EBCFD4689B8DDF555FD16C9 /* Pods_SplitViewControllerTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83A037B42EEE24B7ED281A6E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5513D85D95B2822F5016DD32 /* Pods-SplitViewControllerTest.debug.xcconfig */,
+				29881B354140E135BE8628D7 /* Pods-SplitViewControllerTest.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		886CCAC5901F0F7758D4D840 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E6F065087E1BC1A143062444 /* Pods_SplitViewControllerTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D0701257244D391F00B4080B /* PTT related */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +338,8 @@
 			children = (
 				F20CCEFB2429F00800048BA3 /* SplitViewControllerTest */,
 				F20CCEFA2429F00800048BA3 /* Products */,
+				83A037B42EEE24B7ED281A6E /* Pods */,
+				886CCAC5901F0F7758D4D840 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -507,9 +532,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F20CCF0B2429F00900048BA3 /* Build configuration list for PBXNativeTarget "SplitViewControllerTest" */;
 			buildPhases = (
+				38B89674FE5602D6A9D980B9 /* [CP] Check Pods Manifest.lock */,
 				F20CCEF52429F00800048BA3 /* Sources */,
 				F20CCEF62429F00800048BA3 /* Frameworks */,
 				F20CCEF72429F00800048BA3 /* Resources */,
+				D77111B4CBA6384DF4E74017 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -646,6 +673,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		38B89674FE5602D6A9D980B9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SplitViewControllerTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D77111B4CBA6384DF4E74017 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SplitViewControllerTest/Pods-SplitViewControllerTest-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SplitViewControllerTest/Pods-SplitViewControllerTest-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SplitViewControllerTest/Pods-SplitViewControllerTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F20CCEF52429F00800048BA3 /* Sources */ = {
@@ -832,6 +901,7 @@
 		};
 		F20CCF0C2429F00900048BA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5513D85D95B2822F5016DD32 /* Pods-SplitViewControllerTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -851,6 +921,7 @@
 		};
 		F20CCF0D2429F00900048BA3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29881B354140E135BE8628D7 /* Pods-SplitViewControllerTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

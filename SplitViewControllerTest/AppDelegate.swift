@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var originalSplitVC: DispatchBoardSplitViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let GMS_KEY = "AIzaSyAEd5UeJifJ8Gf3cajo4dI5Fv2-kepNP3I"
+        GMSServices.provideAPIKey(GMS_KEY)
+        
         return true
     }
 
@@ -93,7 +97,7 @@ extension AppDelegate {
          
         // present the overlay
         if let vc = presentVC {
-            underlayVC.present(vc, animated: true, completion: nil)
+            underlayVC.present(vc, animated: false, completion: nil)
         }
         // 避免presentVC為nil時的處理
         else {

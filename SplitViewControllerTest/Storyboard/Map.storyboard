@@ -15,9 +15,24 @@
                     <view key="view" contentMode="scaleToFill" id="9Y9-es-HKR">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-Sb-m3Y" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="r4r-tO-Wqj" firstAttribute="bottom" secondItem="bm0-Sb-m3Y" secondAttribute="bottom" id="6Cv-gN-oTx"/>
+                            <constraint firstItem="bm0-Sb-m3Y" firstAttribute="top" secondItem="r4r-tO-Wqj" secondAttribute="top" id="bcG-2g-nmX"/>
+                            <constraint firstItem="bm0-Sb-m3Y" firstAttribute="leading" secondItem="r4r-tO-Wqj" secondAttribute="leading" id="gWF-1T-rwf"/>
+                            <constraint firstItem="r4r-tO-Wqj" firstAttribute="trailing" secondItem="bm0-Sb-m3Y" secondAttribute="trailing" id="xnw-Ac-nxF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="r4r-tO-Wqj"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="bm0-Sb-m3Y" id="HCz-a3-YNi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GMp-K3-9AL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
