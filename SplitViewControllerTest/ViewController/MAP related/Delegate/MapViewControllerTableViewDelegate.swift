@@ -66,6 +66,11 @@ extension MapViewControllerTableViewDelegate: UITableViewDataSource {
 // MARK: - UITableViewDelegate
  
 extension MapViewControllerTableViewDelegate: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 { print(str_map_electrFence) }
+        else if indexPath.row == 1 { print(str_map_trajectoryTracking) }
+        else { print(str_map_temporaryGroup) }
+        
+    }
 }
 
