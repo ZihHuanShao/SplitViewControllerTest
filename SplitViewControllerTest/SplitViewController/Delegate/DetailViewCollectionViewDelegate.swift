@@ -29,6 +29,7 @@ class DetailViewCollectionViewDelegate: NSObject {
     
     fileprivate var preSelectedIconIndex: Int?
     
+    
     // MARK: - initializer
     
     init(detailViewController: DetailViewController, collectionView: UICollectionView) {
@@ -51,6 +52,14 @@ extension DetailViewCollectionViewDelegate {
         reloadCellData()
         collectionView?.reloadData()
     }
+    
+    func setBackgroundColor(_ rowIndex: Int) {
+        if let index = preSelectedIconIndex {
+            mainMenuIconsVo[index].isSelected = false
+        }
+        
+        mainMenuIconsVo[rowIndex].isSelected = true
+    }
 }
 
 // MARK: - Private Methods
@@ -63,13 +72,7 @@ extension DetailViewCollectionViewDelegate {
         }
     }
     
-    private func setBackgroundColor(rowIndex: Int) {
-        if let index = preSelectedIconIndex {
-            mainMenuIconsVo[index].isSelected = false
-        }
-        
-        mainMenuIconsVo[rowIndex].isSelected = true
-    }
+    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -102,16 +105,34 @@ extension DetailViewCollectionViewDelegate: UICollectionViewDataSource {
 extension DetailViewCollectionViewDelegate: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
-        setBackgroundColor(rowIndex: indexPath.row)
+//        setBackgroundColor(rowIndex: indexPath.row)
         
-        preSelectedIconIndex = indexPath.row
+//        preSelectedIconIndex = indexPath.row
         
-        if indexPath.row == 1 {
-            NotificationCenter.default.post(name: SWITCH_MAIN_MENU_NOTIFY_KEY, object: self, userInfo: [SWITCH_MAIN_MENU_USER_KEY: true])
+        if indexPath.row == 0 {
+            let userInfo = SwitchMainMenuUserInfo(mainMenuType: .PTT, selectedRowIndex: 0)
+            NotificationCenter.default.post(
+                name: SWITCH_MAIN_MENU_NOTIFY_KEY,
+                object: self,
+                userInfo: [SWITCH_MAIN_MENU_USER_KEY: userInfo]
+            )
+        } else if indexPath.row == 1 {
+            let userInfo = SwitchMainMenuUserInfo(mainMenuType: .MAP, selectedRowIndex: 1)
+            NotificationCenter.default.post(
+                name: SWITCH_MAIN_MENU_NOTIFY_KEY,
+                object: self,
+                userInfo: [SWITCH_MAIN_MENU_USER_KEY: userInfo]
+            )
         } else if indexPath.row == 2 {
-            NotificationCenter.default.post(name: SWITCH_MAIN_MENU_NOTIFY_KEY, object: self, userInfo: [SWITCH_MAIN_MENU_USER_KEY: false])
+            let userInfo = SwitchMainMenuUserInfo(mainMenuType: .PTT, selectedRowIndex: 2)
+            NotificationCenter.default.post(
+                name: SWITCH_MAIN_MENU_NOTIFY_KEY,
+                object: self,
+                userInfo: [SWITCH_MAIN_MENU_USER_KEY: userInfo]
+            )
         }
         
+//        preSelectedIconIndex = indexPath.row
         reloadUI()
     }
 }

@@ -13,7 +13,7 @@ class PttViewController: UIViewController {
     // MARK: - IBOutlet
     
     // TitleView Filed
-    @IBOutlet weak var dispatcherImage: UIButton!
+    @IBOutlet weak var dispatcherButton: UIButton!
     @IBOutlet weak var dispatcherName: UILabel!
 
     // TabView Filed
@@ -44,6 +44,7 @@ class PttViewController: UIViewController {
     fileprivate var tapType = ShowDetailViewControllerType.NONE
     fileprivate var tabSelected = TabType.NONE
     fileprivate var tableViewDelegate: PttViewControllerTableViewDelegate?
+    fileprivate var mainMenuSelectedRowIndex: Int?
     
     // Original Test data
 
@@ -142,6 +143,10 @@ class PttViewController: UIViewController {
         
         if segue.identifier == SHOW_DETAIL_VIEW_CONTROLLER {
             let dVC = segue.destination as? DetailViewController
+            dVC?.setMainMenuType(.PTT)
+            if let rowIndex = mainMenuSelectedRowIndex {
+                dVC?.setMainMenuSelectedRowIndex(rowIndex)
+            }
             dVC?.setTabSelected(type: tapType)
             
             var rowIndex = Int()
@@ -173,6 +178,14 @@ class PttViewController: UIViewController {
         }
     }
     
+}
+
+// MARK: - Public Methods
+
+extension PttViewController {
+    func setMainMenuSelectedRowIndex(_ rowIndex: Int) {
+        mainMenuSelectedRowIndex = rowIndex
+    }
 }
 
 // MARK: - Private Methods
@@ -247,8 +260,8 @@ extension PttViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         // TitleView Field
-        dispatcherImage.layer.cornerRadius = dispatcherImage.frame.size.width / 2
-        dispatcherImage.clipsToBounds      = true
+        dispatcherButton.layer.cornerRadius = dispatcherButton.frame.size.width / 2
+        dispatcherButton.clipsToBounds      = true
         //dispatcherName.text = ""
         
         // TabView Filed

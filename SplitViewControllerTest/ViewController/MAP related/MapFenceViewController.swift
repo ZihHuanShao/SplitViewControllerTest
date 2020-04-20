@@ -1,23 +1,21 @@
 //
-//  MapViewController.swift
+//  MapFenceViewController.swift
 //  SplitViewControllerTest
 //
-//  Created by TzuHuan Shao on 2020/4/19.
+//  Created by kokome maxkit on 2020/4/20.
 //  Copyright © 2020 fredshao. All rights reserved.
 //
 
 import UIKit
 
-class MapViewController: UIViewController {
+class MapFenceViewController: UIViewController {
 
-    // MARK: - IBOutlet
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+
     }
     
 

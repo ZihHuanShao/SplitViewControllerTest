@@ -23,6 +23,9 @@
 		D06E35BB243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E35B9243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift */; };
 		D06E35BC243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06E35BA243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib */; };
 		D06E35BE243DD1ED00E33C44 /* icon_member_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D06E35BD243DD1ED00E33C44 /* icon_member_delete.png */; };
+		D070125A244D397900B4080B /* MapFenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0701259244D397900B4080B /* MapFenceViewController.swift */; };
+		D070125C244D39DD00B4080B /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D070125B244D39DD00B4080B /* Map.storyboard */; };
+		D0701260244D3F0B00B4080B /* MapViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070125F244D3F0B00B4080B /* MapViewControllerTableViewDelegate.swift */; };
 		D070DEB32446A2CB008466E6 /* bg_title.png in Resources */ = {isa = PBXBuildFile; fileRef = D070DEB12446A2CA008466E6 /* bg_title.png */; };
 		D070DEB42446A2CB008466E6 /* bg_content.png in Resources */ = {isa = PBXBuildFile; fileRef = D070DEB22446A2CA008466E6 /* bg_content.png */; };
 		D070DEB62446D8A4008466E6 /* CreateGroupViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070DEB52446D8A4008466E6 /* CreateGroupViewControllerTableViewDelegate.swift */; };
@@ -144,6 +147,9 @@
 		D06E35B9243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchCollectionViewCell.swift; sourceTree = "<group>"; };
 		D06E35BA243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDispatchCollectionViewCell.xib; sourceTree = "<group>"; };
 		D06E35BD243DD1ED00E33C44 /* icon_member_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_member_delete.png; sourceTree = "<group>"; };
+		D0701259244D397900B4080B /* MapFenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFenceViewController.swift; sourceTree = "<group>"; };
+		D070125B244D39DD00B4080B /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		D070125F244D3F0B00B4080B /* MapViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		D070DEB12446A2CA008466E6 /* bg_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_title.png; sourceTree = "<group>"; };
 		D070DEB22446A2CA008466E6 /* bg_content.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_content.png; sourceTree = "<group>"; };
 		D070DEB52446D8A4008466E6 /* CreateGroupViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
@@ -261,12 +267,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0701257244D391F00B4080B /* PTT related */ = {
+			isa = PBXGroup;
+			children = (
+				4E8347EC244C4CBF00298AF9 /* PttViewController.swift */,
+				D070DEC32446F3F2008466E6 /* AddMemberViewController.swift */,
+				D06920692445B289006E65D4 /* CreateGroupViewController.swift */,
+				D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */,
+				F21E21CF243186C8001AE003 /* GroupViewController.swift */,
+				F23C0DE92432DC3700DD7A48 /* MemberViewController.swift */,
+				F21E21FD2431F1B2001AE003 /* Delegate */,
+			);
+			path = "PTT related";
+			sourceTree = "<group>";
+		};
+		D0701258244D395E00B4080B /* MAP related */ = {
+			isa = PBXGroup;
+			children = (
+				4E8347EE244C9DF000298AF9 /* MapViewController.swift */,
+				D0701259244D397900B4080B /* MapFenceViewController.swift */,
+				D0701261244D45AF00B4080B /* Delegate */,
+			);
+			path = "MAP related";
+			sourceTree = "<group>";
+		};
+		D0701261244D45AF00B4080B /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				D070125F244D3F0B00B4080B /* MapViewControllerTableViewDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		D0E23598243C21650009506F /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				F20CCF002429F00800048BA3 /* Main.storyboard */,
 				D0E23596243C20E70009506F /* Member.storyboard */,
 				D0E23594243C20810009506F /* Group.storyboard */,
+				D070125B244D39DD00B4080B /* Map.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -311,14 +350,8 @@
 		F21E21F92431F123001AE003 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4E8347EC244C4CBF00298AF9 /* PttViewController.swift */,
-				4E8347EE244C9DF000298AF9 /* MapViewController.swift */,
-				D070DEC32446F3F2008466E6 /* AddMemberViewController.swift */,
-				D06920692445B289006E65D4 /* CreateGroupViewController.swift */,
-				D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */,
-				F21E21CF243186C8001AE003 /* GroupViewController.swift */,
-				F23C0DE92432DC3700DD7A48 /* MemberViewController.swift */,
-				F21E21FD2431F1B2001AE003 /* Delegate */,
+				D0701257244D391F00B4080B /* PTT related */,
+				D0701258244D395E00B4080B /* MAP related */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -596,6 +629,7 @@
 				D0E23674243C767B0009506F /* btn_contact_member_selected.png in Resources */,
 				F261B464242C9FD800482992 /* MemberTableViewCell.xib in Resources */,
 				F21E21F52431C7D3001AE003 /* GroupCollectionViewCell.xib in Resources */,
+				D070125C244D39DD00B4080B /* Map.storyboard in Resources */,
 				D0E2366D243C767B0009506F /* icon_group_notify_off.png in Resources */,
 				D0E23681243C767B0009506F /* bg_ptt_animation2.png in Resources */,
 				F20CCF022429F00800048BA3 /* Main.storyboard in Resources */,
@@ -650,7 +684,9 @@
 				D070DEBD2446EBBB008466E6 /* AddMemberTableViewCell.swift in Sources */,
 				4E8347ED244C4CBF00298AF9 /* PttViewController.swift in Sources */,
 				F23C0DF12433155600DD7A48 /* MemberProfileTableViewCell.swift in Sources */,
+				D0701260244D3F0B00B4080B /* MapViewControllerTableViewDelegate.swift in Sources */,
 				D070DEB62446D8A4008466E6 /* CreateGroupViewControllerTableViewDelegate.swift in Sources */,
+				D070125A244D397900B4080B /* MapFenceViewController.swift in Sources */,
 				F2508003242B51AB003DBE79 /* GroupTableViewCell.swift in Sources */,
 				D06E35BB243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift in Sources */,
 			);

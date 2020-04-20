@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-// MainMenuIcon [點擊時的圖,未點擊時的圖]
+// MainMenuIcon [點擊時,未點擊時]
 let MAIN_MENU_ICON_PTT     = ["btn_menu_ptt_selected", "btn_menu_ptt_normal"]
 let MAIN_MENU_ICON_MAP     = ["btn_menu_map_selected", "btn_menu_map_normal"]
 let MAIN_MENU_ICON_VIDEO   = ["btn_menu_video_selected", "btn_menu_video_normal"]
@@ -44,6 +44,7 @@ let GROUP_DISPATCH_VIEW_CONTROLLER = "GroupDispatchViewController"
 
 // Segue
 let SHOW_DETAIL_VIEW_CONTROLLER = "showDetailViewController"
+let SHOW_MAP_SEGUE = "showMapSegue"
 
 // Cell
 let GROUP_TABLE_VIEW_CELL  = "GroupTableViewCell"  // nib name & cell name (the same)
@@ -61,6 +62,7 @@ let ADD_MEMBER_COLLECTION_VIEW_CELL = "AddMemberCollectionViewCell"
 let STORYBOARD_NAME_MAIN   = "Main"
 let STORYBOARD_NAME_MEMBER = "Member"
 let STORYBOARD_NAME_GROUP  = "Group"
+let STORYBOARD_NAME_MAP    = "Map"
 
 // UserDefault
 let SPLIT_MASTER_VIEW_CONTROLLER_WIDTH = "splitMasterViewControllerWidth"
@@ -92,6 +94,14 @@ let TAB_UNSELECTED_TITLE_COLOR = 0x9F9A94 // 未選文字色碼
 
 
 // enum
+enum MainMenuType: Int {
+    case PTT    = 0
+    case MAP    = 1
+    case VIDEO  = 2
+    case RECORD = 3
+    case NONE   = 99
+}
+
 enum ShowDetailViewControllerType: Int {
     case TAB_GROUP_SELECT  = 0
     case TAB_MEMBER_SELECT = 1
@@ -149,6 +159,11 @@ struct MemberInfo {
 struct MainMenuIconInfo {
     var selectedIcon: String?
     var unselectedIcon: String?
+}
+
+struct SwitchMainMenuUserInfo {
+    var mainMenuType = MainMenuType.NONE
+    var selectedRowIndex: Int?
 }
 
 struct UnderlayPresentInfo {

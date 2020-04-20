@@ -22,6 +22,10 @@ class DetailViewController: UIViewController {
     fileprivate var memberVo: MemberVo?
     fileprivate var mainMenuIconsVo = [MainMenuIconVo]()
     
+    fileprivate var mainMenuType = MainMenuType.NONE
+    
+    fileprivate var mainMenuSelectedRowIndex: Int?
+    
     // Delegate
     fileprivate var collectionViewDelegate: DetailViewCollectionViewDelegate?
     
@@ -37,43 +41,65 @@ class DetailViewController: UIViewController {
         
         collectionViewDelegate = DetailViewCollectionViewDelegate(detailViewController: self, collectionView: collectionView)
         collectionViewDelegate?.updateMainMenuIcons(mainMenuIconsVo: mainMenuIconsVo)
+        
         // show PTT menu color
-        collectionViewDelegate?.collectionView(collectionView, didSelectItemAt: IndexPath(row: 0, section: 0))
+        // 禁止使用呼叫didSelectItemAt造成無窮迴圈
+        //collectionViewDelegate?.collectionView(collectionView, didSelectItemAt: IndexPath(row: 0, section: 0))
+        
+        if let rowIndex = mainMenuSelectedRowIndex {
+            collectionViewDelegate?.setBackgroundColor(rowIndex)
+        }
+        // MainMenu預設顯示點擊PTT Menu
+        else {
+            collectionViewDelegate?.setBackgroundColor(0)
+        }
+        
         collectionViewDelegate?.reloadUI()
         
+        if mainMenuType == .PTT {
         
-        //
-        // ContainerView
-        //
-        
-        switch tapType {
+            //
+            // ContainerView
+            //
             
-        case .TAB_GROUP_SELECT:
-            let groupViewController = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
-            
-            if let _groupVo = groupVo {
-                groupViewController.updateGroupVo(_groupVo)
-            }
+            switch tapType {
+                
+            case .TAB_GROUP_SELECT:
+                let groupViewController = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
+                
+                if let _groupVo = groupVo {
+                    groupViewController.updateGroupVo(_groupVo)
+                }
 
-            setChildView(viewController: groupViewController)
+                setChildView(viewController: groupViewController)
+                
             
-        
-        case .TAB_MEMBER_SELECT:
-            let memberViewController = UIStoryboard(name: STORYBOARD_NAME_MEMBER, bundle: nil).instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+            case .TAB_MEMBER_SELECT:
+                let memberViewController = UIStoryboard(name: STORYBOARD_NAME_MEMBER, bundle: nil).instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+                
+                if let _memberVo = memberVo {
+                    memberViewController.updateMemberVo(_memberVo)
+                }
+                
+                setChildView(viewController: memberViewController)
             
-            if let _memberVo = memberVo {
-                memberViewController.updateMemberVo(_memberVo)
+            case .TAB_GROUP_CREATE_GROUP:
+                let createGroupViewController = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
+                
+                setChildView(viewController: createGroupViewController)
+                
+            case .NONE:
+                break
             }
+        } else if mainMenuType == .MAP {
+            let mapFenceViewController = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "MapFenceViewController") as! MapFenceViewController
             
-            setChildView(viewController: memberViewController)
-        
-        case .TAB_GROUP_CREATE_GROUP:
-            let createGroupViewController = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
+
+            self.addChild(mapFenceViewController)
+            mapFenceViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+            self.containerView.addSubview(mapFenceViewController.view)
             
-            setChildView(viewController: createGroupViewController)
-            
-        case .NONE:
-            break
+            mapFenceViewController.didMove(toParent: self)
         }
     }
 }
@@ -91,6 +117,14 @@ extension DetailViewController {
     
     func setTabSelected(type: ShowDetailViewControllerType) {
         tapType = type
+    }
+    
+    func setMainMenuType(_ mainMenuType: MainMenuType) {
+        self.mainMenuType = mainMenuType
+    }
+    
+    func setMainMenuSelectedRowIndex(_ rowIndex: Int) {
+        mainMenuSelectedRowIndex = rowIndex
     }
 }
 

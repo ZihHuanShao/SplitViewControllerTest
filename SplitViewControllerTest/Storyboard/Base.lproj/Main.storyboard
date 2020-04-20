@@ -118,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4e1-T7-vTD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-26" y="93"/>
+            <point key="canvasLocation" x="-84" y="55"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VZk-Sy-9Vt">
@@ -570,7 +570,7 @@
                         <outlet property="createGroupTrailingConstraint" destination="593-NW-WhQ" id="bmX-YB-13J"/>
                         <outlet property="createGroupWidthConstraint" destination="Hcb-xG-hOf" id="SxC-xV-jht"/>
                         <outlet property="createGroupoView" destination="oGp-r0-P3W" id="jcm-cF-olp"/>
-                        <outlet property="dispatcherImage" destination="a3h-Wx-PJs" id="oxa-NA-ZUF"/>
+                        <outlet property="dispatcherButton" destination="a3h-Wx-PJs" id="CHF-2z-q9N"/>
                         <outlet property="dispatcherName" destination="3u7-i3-D5V" id="Gbi-77-s0M"/>
                         <outlet property="groupDispatchImage" destination="4rs-yJ-gYk" id="7q2-qH-2Pw"/>
                         <outlet property="groupDispatchTitleLabel" destination="umx-el-Rrt" id="7Zl-cE-dnj"/>
@@ -587,7 +587,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XUC-vV-ZfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="686" y="85"/>
+            <point key="canvasLocation" x="685.546875" y="84.375"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="BNw-kX-7ww">
@@ -597,6 +597,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1QI-Ee-xP0"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lS1-fm-28C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -653,6 +654,9 @@
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWz-BK-P05" userLabel="Dispatcher Setting Button">
                                                         <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                                         <state key="normal" image="btn_profile_set.png"/>
+                                                        <connections>
+                                                            <action selector="dispatcherSetting:" destination="dKB-ee-295" eventType="touchUpInside" id="b88-Hh-YlA"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -693,24 +697,50 @@
                                     <constraint firstAttribute="height" constant="64" id="xNR-Yk-tkc"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="smW-QH-n8Z">
+                                <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SHOW" id="jfN-a9-sz7">
+                                        <rect key="frame" x="0.0" y="28" width="1024" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jfN-a9-sz7" id="9hq-Cz-UBQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="biV-Bj-S4I" kind="showDetail" identifier="showMapSegue" id="vE9-FA-KwL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="smW-QH-n8Z" firstAttribute="top" secondItem="Fwd-Da-FAE" secondAttribute="bottom" id="65Y-c9-7MD"/>
                             <constraint firstItem="Fwd-Da-FAE" firstAttribute="top" secondItem="YHl-mb-aft" secondAttribute="top" id="6fQ-TT-ils"/>
+                            <constraint firstItem="YHl-mb-aft" firstAttribute="trailing" secondItem="smW-QH-n8Z" secondAttribute="trailing" id="Bv8-PL-LtC"/>
                             <constraint firstItem="Fwd-Da-FAE" firstAttribute="leading" secondItem="YHl-mb-aft" secondAttribute="leading" id="Opl-F0-jHh"/>
+                            <constraint firstItem="YHl-mb-aft" firstAttribute="bottom" secondItem="smW-QH-n8Z" secondAttribute="bottom" id="mNe-hd-Rg6"/>
+                            <constraint firstItem="smW-QH-n8Z" firstAttribute="leading" secondItem="YHl-mb-aft" secondAttribute="leading" id="ovE-mk-94g"/>
                             <constraint firstItem="YHl-mb-aft" firstAttribute="trailing" secondItem="Fwd-Da-FAE" secondAttribute="trailing" id="soq-ZP-NKM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YHl-mb-aft"/>
                     </view>
                     <navigationItem key="navigationItem" id="QLI-xX-cig"/>
+                    <connections>
+                        <outlet property="dispatcherButton" destination="M2I-si-OkA" id="mvN-Gv-4HI"/>
+                        <outlet property="dispatcherName" destination="fX5-R7-CJx" id="BeK-SN-eJa"/>
+                        <outlet property="tableView" destination="smW-QH-n8Z" id="O2V-M4-IZS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soK-Bk-FID" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1339" y="84"/>
+            <point key="canvasLocation" x="686" y="816"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hFN-tr-p0g"/>
+        <segue reference="vE9-FA-KwL"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bg_menu.png" width="784" height="64"/>

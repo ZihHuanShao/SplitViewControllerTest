@@ -23,7 +23,8 @@ class MasterViewController: UIViewController {
         super.viewDidLoad()
         self.splitViewController?.preferredDisplayMode = .allVisible
         
-        locatePttViewController()
+        // 預設顯示PTTViewController
+        locatePttViewController(0)
         addObserver()
         
 
@@ -49,10 +50,13 @@ extension MasterViewController {
         }
     }
     
-    private func locatePttViewController() {
+    // PttViewController
+    private func locatePttViewController(_ selectedMainMenuRowIndex: Int) {
         let pttViewController = UIStoryboard(name: STORYBOARD_NAME_MAIN, bundle: nil).instantiateViewController(withIdentifier: "PttViewController") as! PttViewController
         
         containerView.subviews.forEach({ $0.removeFromSuperview() })
+        
+        pttViewController.setMainMenuSelectedRowIndex(selectedMainMenuRowIndex)
         
         self.addChild(pttViewController)
         pttViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
@@ -61,10 +65,13 @@ extension MasterViewController {
         pttViewController.didMove(toParent: self)
     }
     
-    private func locateMapViewController() {
+    // MapViewController
+    private func locateMapViewController(_ selectedMainMenuRowIndex: Int) {
         let mapViewController = UIStoryboard(name: STORYBOARD_NAME_MAIN, bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         
         containerView.subviews.forEach({ $0.removeFromSuperview() })
+        
+        mapViewController.setMainMenuSelectedRowIndex(selectedMainMenuRowIndex)
         
         self.addChild(mapViewController)
         mapViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
@@ -80,12 +87,25 @@ extension MasterViewController {
 extension MasterViewController {
 
     func switchMainMenu(notification: Notification) -> Void {
-        if let flag = notification.userInfo?[SWITCH_MAIN_MENU_USER_KEY] as? Bool {
-            if flag == true {
-                locateMapViewController()
-            } else {
-                locatePttViewController()
+        if let userInfo = notification.userInfo?[SWITCH_MAIN_MENU_USER_KEY] as? SwitchMainMenuUserInfo {
+            switch userInfo.mainMenuType {
+                
+            case .PTT:
+                locatePttViewController(userInfo.selectedRowIndex ?? 0)
+                
+            case .MAP:
+                locateMapViewController(userInfo.selectedRowIndex ?? 0)
+                
+            case .VIDEO:
+                break
+                
+            case .RECORD:
+                break
+                
+            case .NONE:
+                break
             }
+
         }
     }
 }
