@@ -12,10 +12,6 @@ class MapViewController: UIViewController {
 
     // MARK: - IBOutlet
     
-    // TitleView Filed
-    @IBOutlet weak var dispatcherButton: UIButton!
-    @IBOutlet weak var dispatcherName: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
@@ -71,15 +67,7 @@ extension MapViewController {
     }
     
     private func updateUI() {
-        
-        // TitleView Field
-         dispatcherButton.layer.cornerRadius = dispatcherButton.frame.size.width / 2
-         dispatcherButton.clipsToBounds      = true
-        //dispatcherName.text = ""
-        
-        
         tableViewDelegate?.reloadUI()
-        
         performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
     }
 }

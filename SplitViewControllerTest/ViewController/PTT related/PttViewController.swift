@@ -11,10 +11,6 @@ import UIKit
 class PttViewController: UIViewController {
 
     // MARK: - IBOutlet
-    
-    // TitleView Filed
-    @IBOutlet weak var dispatcherButton: UIButton!
-    @IBOutlet weak var dispatcherName: UILabel!
 
     // TabView Filed
     @IBOutlet weak var tabLeftIcon: UIImageView!
@@ -86,10 +82,6 @@ class PttViewController: UIViewController {
     */
     
     // MARK: - Actions
-    
-    @IBAction func dispatcherSetting(_ sender: UIButton) {
-        print("dispatcherSetting pressed")
-    }
     
     //
     // tabLeftContentButton
@@ -258,11 +250,6 @@ extension PttViewController {
         
         // Navigation Bar Field
         self.navigationController?.navigationBar.isHidden = true
-        
-        // TitleView Field
-        dispatcherButton.layer.cornerRadius = dispatcherButton.frame.size.width / 2
-        dispatcherButton.clipsToBounds      = true
-        //dispatcherName.text = ""
         
         // TabView Filed
         tabLeftTitle.text  = str_contactTab_group

@@ -11,7 +11,12 @@ import UIKit
 class MasterViewController: UIViewController {
 
     // MARK: - IBOutlet
+        
+    // TitleView Filed
+    @IBOutlet weak var dispatcherButton: UIButton!
+    @IBOutlet weak var dispatcherName: UILabel!
     
+    // ContainerView Field
     @IBOutlet weak var containerView: UIView!
     
     // MARK: - Properties
@@ -23,11 +28,19 @@ class MasterViewController: UIViewController {
         super.viewDidLoad()
         self.splitViewController?.preferredDisplayMode = .allVisible
         
+        updateUI()
+        
         // 預設顯示PTTViewController
         locatePttViewController(0)
         addObserver()
         
 
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func dispatcherSetting(_ sender: UIButton) {
+        print("dispatcherSetting pressed")
     }
 }
 
@@ -48,6 +61,13 @@ extension MasterViewController {
             gVar.switchMainMenuObserver = NotificationCenter.default.addObserver(forName: SWITCH_MAIN_MENU_NOTIFY_KEY, object: nil, queue: nil, using: switchMainMenu)
             print("addObserver: switchMainMenuObserver")
         }
+    }
+    
+    private func updateUI() {
+        // TitleView Field
+        dispatcherButton.layer.cornerRadius = dispatcherButton.frame.size.width / 2
+        dispatcherButton.clipsToBounds      = true
+        dispatcherName.text = "調度員MAXKIT"
     }
     
     // PttViewController
