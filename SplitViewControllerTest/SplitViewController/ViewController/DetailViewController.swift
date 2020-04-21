@@ -170,9 +170,9 @@ extension DetailViewController {
     }
     
     private func showMapView() {
-        let mapFenceViewController = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "MapFenceViewController") as! MapFenceViewController
+        let googleMapViewController = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "GoogleMapViewController") as! GoogleMapViewController
         
-        setChildView(viewController: mapFenceViewController)
+        setChildView(viewController: googleMapViewController)
     }
     
     private func showVideoView() {
@@ -217,12 +217,12 @@ extension DetailViewController {
             }
             
         case .MAP:
-            let mapFenceViewController = viewController as! MapFenceViewController
-            self.addChild(mapFenceViewController)
-            mapFenceViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-            self.containerView.addSubview(mapFenceViewController.view)
+            let googleMapViewController = viewController as! GoogleMapViewController
+            self.addChild(googleMapViewController)
+            googleMapViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+            self.containerView.addSubview(googleMapViewController.view)
             
-            mapFenceViewController.didMove(toParent: self)
+            googleMapViewController.didMove(toParent: self)
             
         case .VIDEO:
             break

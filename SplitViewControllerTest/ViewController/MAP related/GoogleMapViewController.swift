@@ -1,5 +1,5 @@
 //
-//  MapFenceViewController.swift
+//  GoogleMapViewController.swift
 //  SplitViewControllerTest
 //
 //  Created by kokome maxkit on 2020/4/20.
@@ -11,7 +11,7 @@ import MapKit
 import GoogleMaps
 
 
-class MapFenceViewController: UIViewController {
+class GoogleMapViewController: UIViewController {
 
     // MARK: - IBOutlet
     
@@ -77,7 +77,7 @@ class MapFenceViewController: UIViewController {
 
 }
 
-extension MapFenceViewController {
+extension GoogleMapViewController {
     private func updateToolButtonImage(type: ButtonPressType) {
         switch type {
         case .PRESSED:

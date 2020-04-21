@@ -13,6 +13,8 @@ class MapViewController: UIViewController {
     // MARK: - IBOutlet
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var mapFunctionName: UILabel!
+    @IBOutlet weak var backButtonImage: UIImageView!
     
     // MARK: - Properties
     
@@ -34,7 +36,18 @@ class MapViewController: UIViewController {
     @IBAction func dispatcherSetting(_ sender: UIButton) {
         print("dispatcherSetting pressed")
     }
-
+    
+    @IBAction func backButtonTouchDown(_ sender: UIButton) {
+        updateBackButtonImage(type: .PRESSED)
+    }
+    @IBAction func backButtonTouchDragExit(_ sender: UIButton) {
+        updateBackButtonImage(type: .AWAY)
+    }
+    
+    @IBAction func backButtonTouchUpInside(_ sender: UIButton) {
+        updateBackButtonImage(type: .AWAY)
+        
+    }
     
     // MARK: - Navigation
 
@@ -69,6 +82,16 @@ extension MapViewController {
     private func updateUI() {
         tableViewDelegate?.reloadUI()
         performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
+    }
+    
+    private func updateBackButtonImage(type: ButtonPressType) {
+        switch type {
+        case .PRESSED:
+            backButtonImage.image = UIImage(named: "btn_contact_pressed")
+            
+        case .AWAY:
+            backButtonImage.image = UIImage(named: "btn_contact_normal")
+        }
     }
 }
 

@@ -115,10 +115,10 @@
             </objects>
             <point key="canvasLocation" x="151" y="-598"/>
         </scene>
-        <!--Map Fence View Controller-->
+        <!--Google Map View Controller-->
         <scene sceneID="cOh-q1-V9a">
             <objects>
-                <viewController storyboardIdentifier="MapFenceViewController" id="2cl-lY-npp" customClass="MapFenceViewController" customModule="SplitViewControllerTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GoogleMapViewController" id="2cl-lY-npp" customClass="GoogleMapViewController" customModule="SplitViewControllerTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Y9-es-HKR">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -26,7 +26,7 @@
 		D06E35BB243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E35B9243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift */; };
 		D06E35BC243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06E35BA243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib */; };
 		D06E35BE243DD1ED00E33C44 /* icon_member_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D06E35BD243DD1ED00E33C44 /* icon_member_delete.png */; };
-		D070125A244D397900B4080B /* MapFenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0701259244D397900B4080B /* MapFenceViewController.swift */; };
+		D070125A244D397900B4080B /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0701259244D397900B4080B /* GoogleMapViewController.swift */; };
 		D070125C244D39DD00B4080B /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D070125B244D39DD00B4080B /* Map.storyboard */; };
 		D0701260244D3F0B00B4080B /* MapViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070125F244D3F0B00B4080B /* MapViewControllerTableViewDelegate.swift */; };
 		D0701266244D8DE800B4080B /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0701264244D8DE800B4080B /* MapTableViewCell.swift */; };
@@ -159,7 +159,7 @@
 		D06E35B9243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchCollectionViewCell.swift; sourceTree = "<group>"; };
 		D06E35BA243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDispatchCollectionViewCell.xib; sourceTree = "<group>"; };
 		D06E35BD243DD1ED00E33C44 /* icon_member_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_member_delete.png; sourceTree = "<group>"; };
-		D0701259244D397900B4080B /* MapFenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFenceViewController.swift; sourceTree = "<group>"; };
+		D0701259244D397900B4080B /* GoogleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
 		D070125B244D39DD00B4080B /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		D070125F244D3F0B00B4080B /* MapViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		D0701264244D8DE800B4080B /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
@@ -321,7 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				4E8347EE244C9DF000298AF9 /* MapViewController.swift */,
-				D0701259244D397900B4080B /* MapFenceViewController.swift */,
+				D0701259244D397900B4080B /* GoogleMapViewController.swift */,
 				D0566BFA244E88B500B127AF /* ElectrFenceViewController.swift */,
 				D0701261244D45AF00B4080B /* Delegate */,
 			);
@@ -798,7 +798,7 @@
 				F23C0DF12433155600DD7A48 /* MemberProfileTableViewCell.swift in Sources */,
 				D0701260244D3F0B00B4080B /* MapViewControllerTableViewDelegate.swift in Sources */,
 				D070DEB62446D8A4008466E6 /* CreateGroupViewControllerTableViewDelegate.swift in Sources */,
-				D070125A244D397900B4080B /* MapFenceViewController.swift in Sources */,
+				D070125A244D397900B4080B /* GoogleMapViewController.swift in Sources */,
 				F2508003242B51AB003DBE79 /* GroupTableViewCell.swift in Sources */,
 				D06E35BB243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift in Sources */,
 			);
