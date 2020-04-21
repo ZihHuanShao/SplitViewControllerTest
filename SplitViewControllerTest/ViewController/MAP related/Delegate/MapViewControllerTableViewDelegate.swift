@@ -15,6 +15,7 @@ class MapViewControllerTableViewDelegate: NSObject {
     
     fileprivate weak var viewController: MapViewController?
     fileprivate weak var tableView: UITableView?
+    fileprivate var tableViewDelegateExtend: MapViewControllerTableViewDelegateExtend?
     
     // MARK: - initializer
     
@@ -24,6 +25,8 @@ class MapViewControllerTableViewDelegate: NSObject {
         self.tableView = tableView
         tableView.dataSource = self
         tableView.delegate = self
+        tableViewDelegateExtend = self.viewController
+        
         tableView.tableFooterView = UIView(frame: .zero)
     }
 }
@@ -67,10 +70,18 @@ extension MapViewControllerTableViewDelegate: UITableViewDataSource {
  
 extension MapViewControllerTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 { print(str_map_electrFence) }
+        if indexPath.row == 0 {
+            print(str_map_electrFence)
+            tableViewDelegateExtend?.didTapElectrFence()
+        }
         else if indexPath.row == 1 { print(str_map_trajectoryTracking) }
         else { print(str_map_temporaryGroup) }
         
     }
 }
 
+protocol MapViewControllerTableViewDelegateExtend {
+    func didTapElectrFence()
+    func didTapTrajectoryTracking()
+    func didTapTemporaryGroup()
+}

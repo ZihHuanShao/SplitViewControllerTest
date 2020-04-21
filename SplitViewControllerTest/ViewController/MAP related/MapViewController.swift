@@ -71,3 +71,20 @@ extension MapViewController {
         performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
     }
 }
+
+extension MapViewController: MapViewControllerTableViewDelegateExtend {
+    func didTapElectrFence() {
+        let electrFenceViewController = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "ElectrFenceViewController") as! ElectrFenceViewController
+        
+    }
+    
+    func didTapTrajectoryTracking() {
+        return
+    }
+    
+    func didTapTemporaryGroup() {
+        return
+    }
+    
+    
+}

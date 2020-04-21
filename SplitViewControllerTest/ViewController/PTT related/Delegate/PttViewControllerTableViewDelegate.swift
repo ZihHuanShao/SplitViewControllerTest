@@ -33,7 +33,7 @@ class PttViewControllerTableViewDelegate: NSObject {
     
     fileprivate weak var viewController: PttViewController?
     fileprivate weak var tableView: UITableView?
-    fileprivate weak var tableViewExtendDelegate: PttViewControllerTableViewDelegateExtend?
+    fileprivate weak var tableViewDelegateExtend: PttViewControllerTableViewDelegateExtend?
     
     fileprivate var groupCellsData  = [GroupCellData]()
     fileprivate var memberCellsData = [MemberCellData]()
@@ -52,7 +52,7 @@ class PttViewControllerTableViewDelegate: NSObject {
         self.tableView = tableView
         tableView.dataSource = self
         tableView.delegate = self
-        tableViewExtendDelegate = self.viewController
+        tableViewDelegateExtend = self.viewController
         tabType = type   
     }
     
@@ -260,14 +260,14 @@ extension PttViewControllerTableViewDelegate: UITableViewDelegate {
         switch tabType {
         case .GROUP:
             // trigger seque to display UI
-            tableViewExtendDelegate?.activateSegue(tapType: .TAB_GROUP_SELECT)
-            tableViewExtendDelegate?.setCurrentCellRowIndex(indexPath.row)
+            tableViewDelegateExtend?.activateSegue(tapType: .TAB_GROUP_SELECT)
+            tableViewDelegateExtend?.setCurrentCellRowIndex(indexPath.row)
             setColorBar(rowIndex: indexPath.row)
             
         case .MEMBER:
             // trigger seque to display UI
-            tableViewExtendDelegate?.activateSegue(tapType: .TAB_MEMBER_SELECT)
-            tableViewExtendDelegate?.setCurrentCellRowIndex(indexPath.row)
+            tableViewDelegateExtend?.activateSegue(tapType: .TAB_MEMBER_SELECT)
+            tableViewDelegateExtend?.setCurrentCellRowIndex(indexPath.row)
             setColorBar(rowIndex: indexPath.row)
             
         case .NONE:

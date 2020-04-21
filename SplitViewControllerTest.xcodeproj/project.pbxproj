@@ -10,6 +10,8 @@
 		4E8347ED244C4CBF00298AF9 /* PttViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8347EC244C4CBF00298AF9 /* PttViewController.swift */; };
 		4E8347EF244C9DF000298AF9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8347EE244C9DF000298AF9 /* MapViewController.swift */; };
 		7EBCFD4689B8DDF555FD16C9 /* Pods_SplitViewControllerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F065087E1BC1A143062444 /* Pods_SplitViewControllerTest.framework */; };
+		D0566BFB244E88B500B127AF /* ElectrFenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0566BFA244E88B500B127AF /* ElectrFenceViewController.swift */; };
+		D0566BFD244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0566BFC244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift */; };
 		D069205024459868006E65D4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D069204F24459868006E65D4 /* Strings.swift */; };
 		D06920602445A104006E65D4 /* bg_listbox_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = D069205D2445A104006E65D4 /* bg_listbox_bottom.png */; };
 		D06920612445A104006E65D4 /* bg_listbox_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = D069205E2445A104006E65D4 /* bg_listbox_middle.png */; };
@@ -141,6 +143,8 @@
 		4E8347EC244C4CBF00298AF9 /* PttViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PttViewController.swift; sourceTree = "<group>"; };
 		4E8347EE244C9DF000298AF9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5513D85D95B2822F5016DD32 /* Pods-SplitViewControllerTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitViewControllerTest.debug.xcconfig"; path = "Target Support Files/Pods-SplitViewControllerTest/Pods-SplitViewControllerTest.debug.xcconfig"; sourceTree = "<group>"; };
+		D0566BFA244E88B500B127AF /* ElectrFenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectrFenceViewController.swift; sourceTree = "<group>"; };
+		D0566BFC244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectrFenceViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		D069204F24459868006E65D4 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		D069205D2445A104006E65D4 /* bg_listbox_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listbox_bottom.png; sourceTree = "<group>"; };
 		D069205E2445A104006E65D4 /* bg_listbox_middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listbox_middle.png; sourceTree = "<group>"; };
@@ -318,6 +322,7 @@
 			children = (
 				4E8347EE244C9DF000298AF9 /* MapViewController.swift */,
 				D0701259244D397900B4080B /* MapFenceViewController.swift */,
+				D0566BFA244E88B500B127AF /* ElectrFenceViewController.swift */,
 				D0701261244D45AF00B4080B /* Delegate */,
 			);
 			path = "MAP related";
@@ -327,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				D070125F244D3F0B00B4080B /* MapViewControllerTableViewDelegate.swift */,
+				D0566BFC244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -763,6 +769,7 @@
 				F21E21F42431C7D3001AE003 /* GroupCollectionViewCell.swift in Sources */,
 				D0701266244D8DE800B4080B /* MapTableViewCell.swift in Sources */,
 				F22F8B51242DABDB00CB08D5 /* MainMenuCollectionViewCell.swift in Sources */,
+				D0566BFD244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift in Sources */,
 				F22F8B53242DAF0100CB08D5 /* DetailViewCollectionViewDelegate.swift in Sources */,
 				F21E21F72431CA4F001AE003 /* GroupViewControllerCollectionoViewDelegate.swift in Sources */,
 				D070DEC12446EF2A008466E6 /* AddMemberCollectionViewCell.swift in Sources */,
@@ -778,6 +785,7 @@
 				D06E35B8243DC00C00E33C44 /* GroupDispatchViewControllerCollectionViewDelegate.swift in Sources */,
 				F21E21D0243186C8001AE003 /* GroupViewController.swift in Sources */,
 				D06DEED124405FE70056A7E7 /* UserVo.swift in Sources */,
+				D0566BFB244E88B500B127AF /* ElectrFenceViewController.swift in Sources */,
 				F23C0DEA2432DC3700DD7A48 /* MemberViewController.swift in Sources */,
 				F20CCEFD2429F00800048BA3 /* AppDelegate.swift in Sources */,
 				F261B463242C9FD800482992 /* MemberTableViewCell.swift in Sources */,

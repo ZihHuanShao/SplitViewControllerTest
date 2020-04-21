@@ -626,9 +626,6 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <segue destination="biV-Bj-S4I" kind="showDetail" identifier="showMapSegue" id="vE9-FA-KwL"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -646,32 +643,16 @@
                     <size key="freeformSize" width="240" height="768"/>
                     <connections>
                         <outlet property="tableView" destination="smW-QH-n8Z" id="O2V-M4-IZS"/>
+                        <segue destination="biV-Bj-S4I" kind="showDetail" identifier="showMapSegue" id="ELf-fW-w15"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soK-Bk-FID" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2204.8828125" y="-872.65625"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="KGI-8I-g13">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7CM-oU-dbE" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aid-sS-XVZ">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="dKB-ee-295" kind="relationship" relationship="rootViewController" id="FGe-fj-yAF"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bXr-Gs-tUN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1763" y="-873"/>
+            <point key="canvasLocation" x="1455" y="-873"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vE9-FA-KwL"/>
+        <segue reference="ELf-fW-w15"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bg_menu.png" width="784" height="64"/>
