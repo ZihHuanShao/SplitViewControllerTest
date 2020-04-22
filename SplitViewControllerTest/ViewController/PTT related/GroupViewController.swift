@@ -18,6 +18,7 @@ class GroupViewController: UIViewController {
     @IBOutlet weak var pttButtonImage: UIImageView!
     @IBOutlet weak var chatButtonImage: UIImageView!
     @IBOutlet weak var pttButtonAnimationImage: UIImageView!
+    @IBOutlet weak var groupMemberView: UIView!
     
     // MARK: - Properties
     
@@ -29,7 +30,7 @@ class GroupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        groupMemberView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         updateUI()
     }
     

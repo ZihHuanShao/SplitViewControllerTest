@@ -669,6 +669,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="240" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="VHE-En-yJw"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Squ-Qg-WmN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
