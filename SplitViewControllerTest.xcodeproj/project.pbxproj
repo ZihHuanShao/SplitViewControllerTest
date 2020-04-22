@@ -51,6 +51,12 @@
 		D071F8BD2450161600C7C372 /* TemporaryGroupViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8BC2450161600C7C372 /* TemporaryGroupViewControllerTableViewDelegate.swift */; };
 		D071F8BF24501EF100C7C372 /* RealTimePositioningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8BE24501EF100C7C372 /* RealTimePositioningViewController.swift */; };
 		D071F8C12450203700C7C372 /* RealTimePositioningViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8C02450203700C7C372 /* RealTimePositioningViewControllerTableViewDelegate.swift */; };
+		D071F8C824503AAC00C7C372 /* ElectrFenceSectionTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8C624503AAC00C7C372 /* ElectrFenceSectionTitleTableViewCell.swift */; };
+		D071F8C924503AAC00C7C372 /* ElectrFenceSectionTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D071F8C724503AAC00C7C372 /* ElectrFenceSectionTitleTableViewCell.xib */; };
+		D071F8CE24503AD600C7C372 /* ElectrFenceSectionDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8CC24503AD600C7C372 /* ElectrFenceSectionDataTableViewCell.swift */; };
+		D071F8CF24503AD600C7C372 /* ElectrFenceSectionDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D071F8CD24503AD600C7C372 /* ElectrFenceSectionDataTableViewCell.xib */; };
+		D071F8D224503C4400C7C372 /* TemporaryGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8D024503C4400C7C372 /* TemporaryGroupTableViewCell.swift */; };
+		D071F8D324503C4400C7C372 /* TemporaryGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D071F8D124503C4400C7C372 /* TemporaryGroupTableViewCell.xib */; };
 		D0E23595243C20810009506F /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23594243C20810009506F /* Group.storyboard */; };
 		D0E23597243C20E70009506F /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23596243C20E70009506F /* Member.storyboard */; };
 		D0E2359A243C4DD50009506F /* GroupDispatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */; };
@@ -188,6 +194,12 @@
 		D071F8BC2450161600C7C372 /* TemporaryGroupViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryGroupViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		D071F8BE24501EF100C7C372 /* RealTimePositioningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimePositioningViewController.swift; sourceTree = "<group>"; };
 		D071F8C02450203700C7C372 /* RealTimePositioningViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimePositioningViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
+		D071F8C624503AAC00C7C372 /* ElectrFenceSectionTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectrFenceSectionTitleTableViewCell.swift; sourceTree = "<group>"; };
+		D071F8C724503AAC00C7C372 /* ElectrFenceSectionTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElectrFenceSectionTitleTableViewCell.xib; sourceTree = "<group>"; };
+		D071F8CC24503AD600C7C372 /* ElectrFenceSectionDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectrFenceSectionDataTableViewCell.swift; sourceTree = "<group>"; };
+		D071F8CD24503AD600C7C372 /* ElectrFenceSectionDataTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElectrFenceSectionDataTableViewCell.xib; sourceTree = "<group>"; };
+		D071F8D024503C4400C7C372 /* TemporaryGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryGroupTableViewCell.swift; sourceTree = "<group>"; };
+		D071F8D124503C4400C7C372 /* TemporaryGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemporaryGroupTableViewCell.xib; sourceTree = "<group>"; };
 		D0E23594243C20810009506F /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		D0E23596243C20E70009506F /* Member.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
 		D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchViewController.swift; sourceTree = "<group>"; };
@@ -379,6 +391,12 @@
 			children = (
 				D0701264244D8DE800B4080B /* MapTableViewCell.swift */,
 				D0701265244D8DE800B4080B /* MapTableViewCell.xib */,
+				D071F8C624503AAC00C7C372 /* ElectrFenceSectionTitleTableViewCell.swift */,
+				D071F8C724503AAC00C7C372 /* ElectrFenceSectionTitleTableViewCell.xib */,
+				D071F8CC24503AD600C7C372 /* ElectrFenceSectionDataTableViewCell.swift */,
+				D071F8CD24503AD600C7C372 /* ElectrFenceSectionDataTableViewCell.xib */,
+				D071F8D024503C4400C7C372 /* TemporaryGroupTableViewCell.swift */,
+				D071F8D124503C4400C7C372 /* TemporaryGroupTableViewCell.xib */,
 			);
 			path = "Map related";
 			sourceTree = "<group>";
@@ -661,12 +679,14 @@
 				D0E23649243C767B0009506F /* bg_ptt_animation3.png in Resources */,
 				D0E2367B243C767B0009506F /* btn_contact_group_selected.png in Resources */,
 				D0E2365A243C767B0009506F /* btn_menu_video_selected.png in Resources */,
+				D071F8C924503AAC00C7C372 /* ElectrFenceSectionTitleTableViewCell.xib in Resources */,
 				D06920602445A104006E65D4 /* bg_listbox_bottom.png in Resources */,
 				D0E23651243C767B0009506F /* btn_chat_pressed.png in Resources */,
 				D0E23673243C767B0009506F /* bg_ptt_animation4.png in Resources */,
 				D070DEBA2446DC5E008466E6 /* CreateGroupTableViewCell.xib in Resources */,
 				F20CCF042429F00900048BA3 /* Assets.xcassets in Resources */,
 				D0E2367D243C767B0009506F /* btn_add_pressed.png in Resources */,
+				D071F8D324503C4400C7C372 /* TemporaryGroupTableViewCell.xib in Resources */,
 				D0E2367C243C767B0009506F /* btn_menu_map_selected.png in Resources */,
 				D0E23688243C818C0009506F /* GroupDispatchTableViewCell.xib in Resources */,
 				D0E23662243C767B0009506F /* btn_menu_history_selected.png in Resources */,
@@ -704,6 +724,7 @@
 				D06920662445AB4C006E65D4 /* icon_camera.png in Resources */,
 				D0E2364A243C767B0009506F /* icon_voice_pause.png in Resources */,
 				D0E2366C243C767B0009506F /* bg_ptt_animation6.png in Resources */,
+				D071F8CF24503AD600C7C372 /* ElectrFenceSectionDataTableViewCell.xib in Resources */,
 				D0E23675243C767B0009506F /* btn_contact_group_normal.png in Resources */,
 				D0E23674243C767B0009506F /* btn_contact_member_selected.png in Resources */,
 				F261B464242C9FD800482992 /* MemberTableViewCell.xib in Resources */,
@@ -802,12 +823,15 @@
 				F23C0DEA2432DC3700DD7A48 /* MemberViewController.swift in Sources */,
 				F20CCEFD2429F00800048BA3 /* AppDelegate.swift in Sources */,
 				F261B463242C9FD800482992 /* MemberTableViewCell.swift in Sources */,
+				D071F8D224503C4400C7C372 /* TemporaryGroupTableViewCell.swift in Sources */,
 				D071F8BB2450150800C7C372 /* TemporaryGroupViewController.swift in Sources */,
 				F20CCF35242A02D500048BA3 /* PttViewControllerTableViewDelegate.swift in Sources */,
+				D071F8C824503AAC00C7C372 /* ElectrFenceSectionTitleTableViewCell.swift in Sources */,
 				D071F8BF24501EF100C7C372 /* RealTimePositioningViewController.swift in Sources */,
 				D06DEECF244012960056A7E7 /* TestCase.swift in Sources */,
 				D070DEB92446DC5E008466E6 /* CreateGroupTableViewCell.swift in Sources */,
 				F22F8B4F242D9B7F00CB08D5 /* ConfigAndConst.swift in Sources */,
+				D071F8CE24503AD600C7C372 /* ElectrFenceSectionDataTableViewCell.swift in Sources */,
 				D070DEBD2446EBBB008466E6 /* AddMemberTableViewCell.swift in Sources */,
 				4E8347ED244C4CBF00298AF9 /* PttViewController.swift in Sources */,
 				D071F8BD2450161600C7C372 /* TemporaryGroupViewControllerTableViewDelegate.swift in Sources */,

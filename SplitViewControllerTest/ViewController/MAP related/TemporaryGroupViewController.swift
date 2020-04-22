@@ -51,6 +51,7 @@ class TemporaryGroupViewController: UIViewController {
 extension TemporaryGroupViewController {
     private func updateDataSource() {
         tableViewDelegate = TemporaryGroupViewControllerTableViewDelegate(temporaryGroupViewController: self, tableView: tableView)
+        tableViewDelegate?.registerCell(cellName: TEMPORARY_GROUP_TABLE_VIEW_CELL, cellId: TEMPORARY_GROUP_TABLE_VIEW_CELL)
     }
     
     private func updateUI() {

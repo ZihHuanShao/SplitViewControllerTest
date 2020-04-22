@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
+private class CellData {
+    var memberVo: MemberVo?
+    
+    init(_ memberVo: MemberVo) {
+        self.memberVo = memberVo
+    }
+}
+
 class TemporaryGroupViewControllerTableViewDelegate: NSObject {
     
     // MARK: - Properties
@@ -54,11 +62,14 @@ extension TemporaryGroupViewControllerTableViewDelegate: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: TEMPORARY_GROUP_TABLE_VIEW_CELL, for: indexPath) as! TemporaryGroupTableViewCell
+        cell.selectionStyle = .none
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 56
+    }
 }
 
 // MARK: - UITableViewDelegate

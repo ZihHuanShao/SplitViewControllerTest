@@ -58,7 +58,7 @@ let CREATE_GROUP_TABLE_VIEW_CELL = "CreateGroupTableViewCell"
 let ADD_MEMBER_TABLE_VIEW_CELL = "AddMemberTableViewCell"
 let ADD_MEMBER_COLLECTION_VIEW_CELL = "AddMemberCollectionViewCell"
 let MAP_TABLE_VIEW_CELL = "MapTableViewCell"
-
+let TEMPORARY_GROUP_TABLE_VIEW_CELL = "TemporaryGroupTableViewCell"
 // Storyboard
 let STORYBOARD_NAME_MAIN   = "Main"
 let STORYBOARD_NAME_MEMBER = "Member"
