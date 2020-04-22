@@ -74,14 +74,19 @@ extension MapViewControllerTableViewDelegate: UITableViewDelegate {
             print(str_map_electrFence)
             tableViewDelegateExtend?.didTapElectrFence()
         }
-        else if indexPath.row == 1 { print(str_map_trajectoryTracking) }
-        else { print(str_map_temporaryGroup) }
+        else if indexPath.row == 1 {
+            print(str_map_realTimePositioning)
+            tableViewDelegateExtend?.didTapRealTimePositioning()
+        } else if indexPath.row == 2 {
+            print(str_map_temporaryGroup)
+            tableViewDelegateExtend?.didTapTemporaryGroup()
+        }
         
     }
 }
 
 protocol MapViewControllerTableViewDelegateExtend {
     func didTapElectrFence()
-    func didTapTrajectoryTracking()
+    func didTapRealTimePositioning()
     func didTapTemporaryGroup()
 }

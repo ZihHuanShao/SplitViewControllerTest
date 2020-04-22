@@ -37,8 +37,8 @@ extension MapTableViewCell {
         case .ELECTR_FENCE:
             mapFunctionName.text = str_map_electrFence
             
-        case .TRAJECTORY_TRACKING:
-            mapFunctionName.text = str_map_trajectoryTracking
+        case .REAL_TIME_POSITION:
+            mapFunctionName.text = str_map_realTimePositioning
             
         case .TEMPORARY_GROUP:
             mapFunctionName.text = str_map_temporaryGroup

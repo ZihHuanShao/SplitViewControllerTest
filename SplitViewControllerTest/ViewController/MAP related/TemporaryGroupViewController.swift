@@ -1,15 +1,15 @@
 //
-//  ElectrFenceViewController.swift
+//  TemporaryGroupViewController.swift
 //  SplitViewControllerTest
 //
-//  Created by kokome maxkit on 2020/4/21.
+//  Created by kokome maxkit on 2020/4/22.
 //  Copyright © 2020 fredshao. All rights reserved.
 //
 
 import UIKit
 
-class ElectrFenceViewController: UIViewController {
-
+class TemporaryGroupViewController: UIViewController {
+    
     // MARK: - IBOutlet
     
     @IBOutlet weak var tableView: UITableView!
@@ -18,8 +18,8 @@ class ElectrFenceViewController: UIViewController {
     
     // MARK: - Properties
     
-    var tableViewDelegate: ElectrFenceViewControllerTableViewDelegate?
-    var delegate: ElectrFenceViewControllerDelegate?
+    var tableViewDelegate: TemporaryGroupViewControllerTableViewDelegate?
+    var delegate: TemporaryGroupViewControllerDelegate?
     
     // MARK: - Life Cycle
     
@@ -41,20 +41,20 @@ class ElectrFenceViewController: UIViewController {
     
     @IBAction func backButtonTouchUpInside(_ sender: UIButton) {
         updateBackButtonImage(type: .AWAY)
-        delegate?.electrFenceDidTapBack()
+        delegate?.temporaryGroupDidTapBack()
     }
 
 }
 
 // MARK: - Private Methods
 
-extension ElectrFenceViewController {
+extension TemporaryGroupViewController {
     private func updateDataSource() {
-        tableViewDelegate = ElectrFenceViewControllerTableViewDelegate(electrFenceViewController: self, tableView: tableView)
+        tableViewDelegate = TemporaryGroupViewControllerTableViewDelegate(temporaryGroupViewController: self, tableView: tableView)
     }
     
     private func updateUI() {
-        functionName.text = str_map_electrFence
+        functionName.text = str_map_temporaryGroup
         tableViewDelegate?.reloadUI()
     }
     
@@ -71,7 +71,7 @@ extension ElectrFenceViewController {
 
 // MARK: - Public Methods
 
-extension ElectrFenceViewController {
+extension TemporaryGroupViewController {
     func setDelegate(mapViewController: MapViewController) {
         delegate = mapViewController
     }
@@ -79,6 +79,6 @@ extension ElectrFenceViewController {
 
 // MARK: - Protocol
 
-protocol ElectrFenceViewControllerDelegate {
-    func electrFenceDidTapBack()
+protocol TemporaryGroupViewControllerDelegate {
+    func temporaryGroupDidTapBack()
 }

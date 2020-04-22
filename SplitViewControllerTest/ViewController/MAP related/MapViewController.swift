@@ -13,8 +13,7 @@ class MapViewController: UIViewController {
     // MARK: - IBOutlet
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var mapFunctionName: UILabel!
-    @IBOutlet weak var backButtonImage: UIImageView!
+    @IBOutlet weak var containerView: UIView!
     
     // MARK: - Properties
     
@@ -37,17 +36,7 @@ class MapViewController: UIViewController {
         print("dispatcherSetting pressed")
     }
     
-    @IBAction func backButtonTouchDown(_ sender: UIButton) {
-        updateBackButtonImage(type: .PRESSED)
-    }
-    @IBAction func backButtonTouchDragExit(_ sender: UIButton) {
-        updateBackButtonImage(type: .AWAY)
-    }
-    
-    @IBAction func backButtonTouchUpInside(_ sender: UIButton) {
-        updateBackButtonImage(type: .AWAY)
-        
-    }
+
     
     // MARK: - Navigation
 
@@ -84,30 +73,99 @@ extension MapViewController {
         performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
     }
     
-    private func updateBackButtonImage(type: ButtonPressType) {
-        switch type {
-        case .PRESSED:
-            backButtonImage.image = UIImage(named: "btn_contact_pressed")
+    private func returnBack() {
+        containerView.subviews.forEach({ $0.removeFromSuperview() })
+        tableView.isHidden = false
+    }
+    
+    private func setChildView(viewController: UIViewController) {
+        self.addChild(viewController)
+        viewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+        self.containerView.addSubview(viewController.view)
+        
+        viewController.didMove(toParent: self)
+    }
+    
+    private func changeContainerView(mapFunctionType: MapFunctionType) {
+        
+        switch mapFunctionType {
+     
+        case .ELECTR_FENCE:
+            let electrFenceVC = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "ElectrFenceViewController") as! ElectrFenceViewController
             
-        case .AWAY:
-            backButtonImage.image = UIImage(named: "btn_contact_normal")
+            electrFenceVC.setDelegate(mapViewController: self)
+            setChildView(viewController: electrFenceVC)
+            
+
+            
+        case .REAL_TIME_POSITION:
+            let realTimePositioningVC = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "RealTimePositioningViewController") as! RealTimePositioningViewController
+            
+            realTimePositioningVC.setDelegate(mapViewController: self)
+            setChildView(viewController: realTimePositioningVC)
+
+            
+        case .TEMPORARY_GROUP:
+            let temporaryGroupVC = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "TemporaryGroupViewController") as! TemporaryGroupViewController
+    
+            temporaryGroupVC.setDelegate(mapViewController: self)
+            setChildView(viewController: temporaryGroupVC)
         }
+        
+        tableView.isHidden = true
+    }
+    
+    private func locateElectrFenceViewController() {
+        changeContainerView(mapFunctionType: .ELECTR_FENCE)
+    }
+    
+    private func locateRealTimePositioningViewController() {
+        changeContainerView(mapFunctionType: .REAL_TIME_POSITION)
+    }
+    
+    private func locateTemporaryGroupViewController() {
+        changeContainerView(mapFunctionType: .TEMPORARY_GROUP)
     }
 }
 
+// MARK: - MapViewControllerTableViewDelegateExtend
+
 extension MapViewController: MapViewControllerTableViewDelegateExtend {
     func didTapElectrFence() {
-        let electrFenceViewController = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "ElectrFenceViewController") as! ElectrFenceViewController
-        
+        locateElectrFenceViewController()
     }
     
-    func didTapTrajectoryTracking() {
-        return
+    func didTapRealTimePositioning() {
+        locateRealTimePositioningViewController()
     }
     
     func didTapTemporaryGroup() {
-        return
+        locateTemporaryGroupViewController()
     }
-    
-    
 }
+
+// MARK: - ElectrFenceViewControllerDelegate
+
+extension MapViewController: ElectrFenceViewControllerDelegate {
+    func electrFenceDidTapBack() {
+        returnBack()
+    }
+}
+
+// MARK: - RealTimePositioningViewControllerDelegate
+
+extension MapViewController: RealTimePositioningViewControllerDelegate {
+    func realTimePositioningDidTapBack() {
+        returnBack()
+    }
+}
+
+// MARK: - TemporaryGroupViewControllerDelegate
+
+extension MapViewController: TemporaryGroupViewControllerDelegate {
+    func temporaryGroupDidTapBack() {
+        returnBack()
+    }
+}
+
+

@@ -42,5 +42,5 @@ let str_createGroup_createMember = "新增成員"
 
 // MapViewController
 let str_map_electrFence = "電子圍籬"
-let str_map_trajectoryTracking = "軌跡追蹤"
+let str_map_realTimePositioning = "即時定位"
 let str_map_temporaryGroup = "臨時群組"

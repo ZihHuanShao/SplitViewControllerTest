@@ -108,23 +108,26 @@ extension MasterViewController {
 
     func switchMainMenu(notification: Notification) -> Void {
         if let userInfo = notification.userInfo?[SWITCH_MAIN_MENU_USER_KEY] as? SwitchMainMenuUserInfo {
-            switch userInfo.mainMenuType {
-                
-            case .PTT:
-                locatePttViewController(userInfo.selectedRowIndex ?? 0)
-                
-            case .MAP:
-                locateMapViewController(userInfo.selectedRowIndex ?? 0)
-                
-            case .VIDEO:
-                break
-                
-            case .RECORD:
-                break
-                
-            case .NONE:
-                break
+            if let mainMenuSelectedRowIndex = userInfo.selectedRowIndex {
+                switch userInfo.mainMenuType {
+                    
+                case .PTT:
+                    locatePttViewController(mainMenuSelectedRowIndex)
+                    
+                case .MAP:
+                    locateMapViewController(mainMenuSelectedRowIndex)
+                    
+                case .VIDEO:
+                    break
+                    
+                case .RECORD:
+                    break
+                    
+                case .NONE:
+                    break
+                }
             }
+            
 
         }
     }

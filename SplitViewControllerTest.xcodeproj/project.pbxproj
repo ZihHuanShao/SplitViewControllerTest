@@ -47,6 +47,10 @@
 		D070DEC62446F916008466E6 /* AddMemberViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070DEC52446F916008466E6 /* AddMemberViewControllerTableViewDelegate.swift */; };
 		D070DEC82446F929008466E6 /* AddMemberViewControllerCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070DEC72446F929008466E6 /* AddMemberViewControllerCollectionViewDelegate.swift */; };
 		D070DECA24471046008466E6 /* GlobalVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070DEC924471046008466E6 /* GlobalVars.swift */; };
+		D071F8BB2450150800C7C372 /* TemporaryGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8BA2450150800C7C372 /* TemporaryGroupViewController.swift */; };
+		D071F8BD2450161600C7C372 /* TemporaryGroupViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8BC2450161600C7C372 /* TemporaryGroupViewControllerTableViewDelegate.swift */; };
+		D071F8BF24501EF100C7C372 /* RealTimePositioningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8BE24501EF100C7C372 /* RealTimePositioningViewController.swift */; };
+		D071F8C12450203700C7C372 /* RealTimePositioningViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8C02450203700C7C372 /* RealTimePositioningViewControllerTableViewDelegate.swift */; };
 		D0E23595243C20810009506F /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23594243C20810009506F /* Group.storyboard */; };
 		D0E23597243C20E70009506F /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23596243C20E70009506F /* Member.storyboard */; };
 		D0E2359A243C4DD50009506F /* GroupDispatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */; };
@@ -180,6 +184,10 @@
 		D070DEC52446F916008466E6 /* AddMemberViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		D070DEC72446F929008466E6 /* AddMemberViewControllerCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberViewControllerCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		D070DEC924471046008466E6 /* GlobalVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVars.swift; sourceTree = "<group>"; };
+		D071F8BA2450150800C7C372 /* TemporaryGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryGroupViewController.swift; sourceTree = "<group>"; };
+		D071F8BC2450161600C7C372 /* TemporaryGroupViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryGroupViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
+		D071F8BE24501EF100C7C372 /* RealTimePositioningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimePositioningViewController.swift; sourceTree = "<group>"; };
+		D071F8C02450203700C7C372 /* RealTimePositioningViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimePositioningViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		D0E23594243C20810009506F /* Group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		D0E23596243C20E70009506F /* Member.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Member.storyboard; sourceTree = "<group>"; };
 		D0E23599243C4DD50009506F /* GroupDispatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchViewController.swift; sourceTree = "<group>"; };
@@ -321,8 +329,10 @@
 			isa = PBXGroup;
 			children = (
 				4E8347EE244C9DF000298AF9 /* MapViewController.swift */,
-				D0701259244D397900B4080B /* GoogleMapViewController.swift */,
 				D0566BFA244E88B500B127AF /* ElectrFenceViewController.swift */,
+				D071F8BE24501EF100C7C372 /* RealTimePositioningViewController.swift */,
+				D071F8BA2450150800C7C372 /* TemporaryGroupViewController.swift */,
+				D0701259244D397900B4080B /* GoogleMapViewController.swift */,
 				D0701261244D45AF00B4080B /* Delegate */,
 			);
 			path = "MAP related";
@@ -333,6 +343,8 @@
 			children = (
 				D070125F244D3F0B00B4080B /* MapViewControllerTableViewDelegate.swift */,
 				D0566BFC244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift */,
+				D071F8C02450203700C7C372 /* RealTimePositioningViewControllerTableViewDelegate.swift */,
+				D071F8BC2450161600C7C372 /* TemporaryGroupViewControllerTableViewDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -403,7 +415,6 @@
 		F20CCEFB2429F00800048BA3 /* SplitViewControllerTest */ = {
 			isa = PBXGroup;
 			children = (
-				F21E21FA2431F149001AE003 /* SplitViewController */,
 				F21E21F92431F123001AE003 /* ViewController */,
 				F2507FED242AFCBC003DBE79 /* Cell */,
 				D0E23598243C21650009506F /* Storyboard */,
@@ -424,6 +435,7 @@
 		F21E21F92431F123001AE003 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F21E21FA2431F149001AE003 /* SplitViewController */,
 				D0701257244D391F00B4080B /* PTT related */,
 				D0701258244D395E00B4080B /* MAP related */,
 			);
@@ -763,6 +775,7 @@
 			files = (
 				D070DEC62446F916008466E6 /* AddMemberViewControllerTableViewDelegate.swift in Sources */,
 				D070DECA24471046008466E6 /* GlobalVars.swift in Sources */,
+				D071F8C12450203700C7C372 /* RealTimePositioningViewControllerTableViewDelegate.swift in Sources */,
 				D0E23687243C818C0009506F /* GroupDispatchTableViewCell.swift in Sources */,
 				D070DEC82446F929008466E6 /* AddMemberViewControllerCollectionViewDelegate.swift in Sources */,
 				D0E2359A243C4DD50009506F /* GroupDispatchViewController.swift in Sources */,
@@ -789,12 +802,15 @@
 				F23C0DEA2432DC3700DD7A48 /* MemberViewController.swift in Sources */,
 				F20CCEFD2429F00800048BA3 /* AppDelegate.swift in Sources */,
 				F261B463242C9FD800482992 /* MemberTableViewCell.swift in Sources */,
+				D071F8BB2450150800C7C372 /* TemporaryGroupViewController.swift in Sources */,
 				F20CCF35242A02D500048BA3 /* PttViewControllerTableViewDelegate.swift in Sources */,
+				D071F8BF24501EF100C7C372 /* RealTimePositioningViewController.swift in Sources */,
 				D06DEECF244012960056A7E7 /* TestCase.swift in Sources */,
 				D070DEB92446DC5E008466E6 /* CreateGroupTableViewCell.swift in Sources */,
 				F22F8B4F242D9B7F00CB08D5 /* ConfigAndConst.swift in Sources */,
 				D070DEBD2446EBBB008466E6 /* AddMemberTableViewCell.swift in Sources */,
 				4E8347ED244C4CBF00298AF9 /* PttViewController.swift in Sources */,
+				D071F8BD2450161600C7C372 /* TemporaryGroupViewControllerTableViewDelegate.swift in Sources */,
 				F23C0DF12433155600DD7A48 /* MemberProfileTableViewCell.swift in Sources */,
 				D0701260244D3F0B00B4080B /* MapViewControllerTableViewDelegate.swift in Sources */,
 				D070DEB62446D8A4008466E6 /* CreateGroupViewControllerTableViewDelegate.swift in Sources */,

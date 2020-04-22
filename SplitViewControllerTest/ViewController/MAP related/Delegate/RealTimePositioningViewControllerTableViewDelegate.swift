@@ -1,26 +1,26 @@
 //
-//  ElectrFenceViewControllerTableViewDelegate.swift
+//  RealTimePositioningViewControllerTableViewDelegate.swift
 //  SplitViewControllerTest
 //
-//  Created by kokome maxkit on 2020/4/21.
+//  Created by kokome maxkit on 2020/4/22.
 //  Copyright © 2020 fredshao. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class ElectrFenceViewControllerTableViewDelegate: NSObject {
+class RealTimePositioningViewControllerTableViewDelegate: NSObject {
     
     // MARK: - Properties
     
-    fileprivate weak var viewController: ElectrFenceViewController?
+    fileprivate weak var viewController: RealTimePositioningViewController?
     fileprivate weak var tableView: UITableView?
     
     // MARK: - initializer
     
-    init(electrFenceViewController: ElectrFenceViewController, tableView: UITableView) {
+    init(realTimePositioningViewController: RealTimePositioningViewController, tableView: UITableView) {
         super.init()
-        self.viewController = electrFenceViewController
+        self.viewController = realTimePositioningViewController
         self.tableView = tableView
         tableView.dataSource = self
         tableView.delegate = self
@@ -30,7 +30,7 @@ class ElectrFenceViewControllerTableViewDelegate: NSObject {
 
 // MARK: - Public Methods
 
-extension ElectrFenceViewControllerTableViewDelegate {
+extension RealTimePositioningViewControllerTableViewDelegate {
     func registerCell(cellName: String, cellId: String) {
         tableView?.register(
             UINib(nibName: cellName, bundle: nil),
@@ -45,7 +45,7 @@ extension ElectrFenceViewControllerTableViewDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension ElectrFenceViewControllerTableViewDelegate: UITableViewDataSource {
+extension RealTimePositioningViewControllerTableViewDelegate: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -63,7 +63,7 @@ extension ElectrFenceViewControllerTableViewDelegate: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension ElectrFenceViewControllerTableViewDelegate: UITableViewDelegate {
+extension RealTimePositioningViewControllerTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
     }

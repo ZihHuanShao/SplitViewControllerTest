@@ -97,7 +97,7 @@ extension AppDelegate {
          
         // present the overlay
         if let vc = presentVC {
-            underlayVC.present(vc, animated: false, completion: nil)
+            underlayVC.present(vc, animated: true, completion: nil)
         }
         // 避免presentVC為nil時的處理
         else {

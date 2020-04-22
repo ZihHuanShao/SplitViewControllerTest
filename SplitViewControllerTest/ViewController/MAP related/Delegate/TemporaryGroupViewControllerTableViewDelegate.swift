@@ -1,26 +1,26 @@
 //
-//  ElectrFenceViewControllerTableViewDelegate.swift
+//  TemporaryGroupViewControllerTableViewDelegate.swift
 //  SplitViewControllerTest
 //
-//  Created by kokome maxkit on 2020/4/21.
+//  Created by kokome maxkit on 2020/4/22.
 //  Copyright © 2020 fredshao. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class ElectrFenceViewControllerTableViewDelegate: NSObject {
+class TemporaryGroupViewControllerTableViewDelegate: NSObject {
     
     // MARK: - Properties
-    
-    fileprivate weak var viewController: ElectrFenceViewController?
-    fileprivate weak var tableView: UITableView?
+       
+       fileprivate weak var viewController: TemporaryGroupViewController?
+       fileprivate weak var tableView: UITableView?
     
     // MARK: - initializer
     
-    init(electrFenceViewController: ElectrFenceViewController, tableView: UITableView) {
+    init(temporaryGroupViewController: TemporaryGroupViewController, tableView: UITableView) {
         super.init()
-        self.viewController = electrFenceViewController
+        self.viewController = temporaryGroupViewController
         self.tableView = tableView
         tableView.dataSource = self
         tableView.delegate = self
@@ -30,7 +30,7 @@ class ElectrFenceViewControllerTableViewDelegate: NSObject {
 
 // MARK: - Public Methods
 
-extension ElectrFenceViewControllerTableViewDelegate {
+extension TemporaryGroupViewControllerTableViewDelegate {
     func registerCell(cellName: String, cellId: String) {
         tableView?.register(
             UINib(nibName: cellName, bundle: nil),
@@ -45,7 +45,7 @@ extension ElectrFenceViewControllerTableViewDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension ElectrFenceViewControllerTableViewDelegate: UITableViewDataSource {
+extension TemporaryGroupViewControllerTableViewDelegate: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -63,7 +63,7 @@ extension ElectrFenceViewControllerTableViewDelegate: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension ElectrFenceViewControllerTableViewDelegate: UITableViewDelegate {
+extension TemporaryGroupViewControllerTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
     }

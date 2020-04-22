@@ -1,14 +1,14 @@
 //
-//  ElectrFenceViewController.swift
+//  RealTimePositioningViewController.swift
 //  SplitViewControllerTest
 //
-//  Created by kokome maxkit on 2020/4/21.
+//  Created by kokome maxkit on 2020/4/22.
 //  Copyright © 2020 fredshao. All rights reserved.
 //
 
 import UIKit
 
-class ElectrFenceViewController: UIViewController {
+class RealTimePositioningViewController: UIViewController {
 
     // MARK: - IBOutlet
     
@@ -18,8 +18,8 @@ class ElectrFenceViewController: UIViewController {
     
     // MARK: - Properties
     
-    var tableViewDelegate: ElectrFenceViewControllerTableViewDelegate?
-    var delegate: ElectrFenceViewControllerDelegate?
+    var tableViewDelegate: RealTimePositioningViewControllerTableViewDelegate?
+    var delegate: RealTimePositioningViewControllerDelegate?
     
     // MARK: - Life Cycle
     
@@ -41,20 +41,19 @@ class ElectrFenceViewController: UIViewController {
     
     @IBAction func backButtonTouchUpInside(_ sender: UIButton) {
         updateBackButtonImage(type: .AWAY)
-        delegate?.electrFenceDidTapBack()
+        delegate?.realTimePositioningDidTapBack()
     }
-
 }
 
 // MARK: - Private Methods
 
-extension ElectrFenceViewController {
+extension RealTimePositioningViewController {
     private func updateDataSource() {
-        tableViewDelegate = ElectrFenceViewControllerTableViewDelegate(electrFenceViewController: self, tableView: tableView)
+        tableViewDelegate = RealTimePositioningViewControllerTableViewDelegate(realTimePositioningViewController: self, tableView: tableView)
     }
     
     private func updateUI() {
-        functionName.text = str_map_electrFence
+        functionName.text = str_map_realTimePositioning
         tableViewDelegate?.reloadUI()
     }
     
@@ -69,9 +68,10 @@ extension ElectrFenceViewController {
     }
 }
 
+
 // MARK: - Public Methods
 
-extension ElectrFenceViewController {
+extension RealTimePositioningViewController {
     func setDelegate(mapViewController: MapViewController) {
         delegate = mapViewController
     }
@@ -79,6 +79,6 @@ extension ElectrFenceViewController {
 
 // MARK: - Protocol
 
-protocol ElectrFenceViewControllerDelegate {
-    func electrFenceDidTapBack()
+protocol RealTimePositioningViewControllerDelegate {
+    func realTimePositioningDidTapBack()
 }

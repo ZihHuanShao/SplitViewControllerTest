@@ -133,7 +133,7 @@ enum MemberProfileType: CaseIterable {
 
 enum MapFunctionType: CaseIterable {
     case ELECTR_FENCE        // 電子圍籬
-    case TRAJECTORY_TRACKING // 軌跡追蹤
+    case REAL_TIME_POSITION  // 即時定位
     case TEMPORARY_GROUP     // 臨時群組
 }
 
