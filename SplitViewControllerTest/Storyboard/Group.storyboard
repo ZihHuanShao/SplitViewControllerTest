@@ -432,13 +432,13 @@
                         <outlet property="collectionView" destination="DbG-Kc-rgj" id="3fv-mZ-Jju"/>
                         <outlet property="connectionDurationTimeLabel" destination="sB1-5w-Cut" id="lwR-qt-J7p"/>
                         <outlet property="groupMemberImage" destination="kHW-Xh-9xi" id="Kyc-Oj-i21"/>
+                        <outlet property="groupMemberInfoBackgroundView" destination="03M-Rg-JxO" id="ga5-YP-k5R"/>
                         <outlet property="groupMemberInfoView" destination="pfg-F0-MQp" id="dgh-bA-C3h"/>
                         <outlet property="groupMemberName" destination="6Px-cE-oRy" id="zgI-Q6-wKU"/>
                         <outlet property="groupMemberPttButtonAnimationImage" destination="eKT-ha-pcn" id="aH8-Kc-i4u"/>
                         <outlet property="groupMemberPttButtonImage" destination="s9G-UD-8QI" id="mQV-Qp-6tk"/>
                         <outlet property="groupMemberSipButton" destination="4sd-PH-QpJ" id="ng5-2e-ecm"/>
                         <outlet property="groupMemberVideoButton" destination="lm2-v2-4FR" id="Kon-jm-1qP"/>
-                        <outlet property="groupMemberView" destination="03M-Rg-JxO" id="u7p-Rf-SVT"/>
                         <outlet property="groupNameLabel" destination="Ou7-4G-B4Y" id="gin-TS-Zhz"/>
                         <outlet property="monitorImage" destination="EoZ-Zh-n0Q" id="d4E-ha-Per"/>
                         <outlet property="pttButtonAnimationImage" destination="IZ7-qH-KnT" id="U32-8w-l4b"/>
@@ -447,7 +447,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sNB-wh-HHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="772" y="93"/>
+            <point key="canvasLocation" x="668" y="93"/>
         </scene>
         <!--Create Group View Controller-->
         <scene sceneID="Z60-fq-ehy">
@@ -849,7 +849,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rg1-0K-Dje" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1428.22265625" y="92.96875"/>
+            <point key="canvasLocation" x="1400" y="93"/>
         </scene>
         <!--Group Dispatch View Controller-->
         <scene sceneID="xZi-vZ-qNx">
@@ -1074,7 +1074,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2eH-79-4qE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="687" y="690"/>
+            <point key="canvasLocation" x="818" y="-657"/>
         </scene>
         <!--Add Member View Controller-->
         <scene sceneID="t0l-IG-eKQ">
@@ -1299,7 +1299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2CK-Ws-qN5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1004" y="690"/>
+            <point key="canvasLocation" x="1321" y="-657"/>
         </scene>
     </scenes>
     <resources>

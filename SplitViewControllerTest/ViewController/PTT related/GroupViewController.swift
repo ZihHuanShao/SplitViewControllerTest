@@ -26,9 +26,10 @@ class GroupViewController: UIViewController {
     @IBOutlet weak var pttButtonImage: UIImageView!
     @IBOutlet weak var pttButtonAnimationImage: UIImageView!
     
-    // Group Member View
+    // Group Member Info Background View
+    
+    @IBOutlet weak var groupMemberInfoBackgroundView: UIView!
     @IBOutlet weak var groupMemberInfoView: UIView!
-    @IBOutlet weak var groupMemberView: UIView!
     @IBOutlet weak var blurGroupMemberImage: UIImageView!
     @IBOutlet weak var blurBackgroundView: UIView!
     @IBOutlet weak var groupMemberImage: UIImageView!
@@ -201,7 +202,7 @@ extension GroupViewController {
     }
     
     private func updateGroupMemberViewUI() {
-        groupMemberView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        groupMemberInfoBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
         // 通話時間: 預設隱藏, 撥號有接通才會顯示
         connectionDurationTimeLabel.isHidden = true
@@ -211,11 +212,11 @@ extension GroupViewController {
         groupMemberVideoButton.setImage(UIImage(named: "btn_profile_video"), for: .normal)
         
         // 群組成員全畫面: 預設隱藏, 點擊成員才會顯示
-        groupMemberView.isHidden = true
+        groupMemberInfoBackgroundView.isHidden = true
     }
     
     private func updateGesture() {
-        groupMemberView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissGroupMemberView)))
+        groupMemberInfoBackgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissGroupMemberView)))
         
         groupMemberInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(keepViewFront)))
     }
@@ -243,7 +244,7 @@ extension GroupViewController {
         // 成員名字
         groupMemberName.text = memberVo?.name ?? ""
         
-        groupMemberView.isHidden = false
+        groupMemberInfoBackgroundView.isHidden = false
     }
     
     // 取得模糊化後的圖片
@@ -353,7 +354,7 @@ extension GroupViewController {
 
 extension GroupViewController {
     @objc func dismissGroupMemberView() {
-        groupMemberView.isHidden = true
+        groupMemberInfoBackgroundView.isHidden = true
     }
     
     @objc func keepViewFront() {
