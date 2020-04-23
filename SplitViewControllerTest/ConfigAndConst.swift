@@ -93,6 +93,9 @@ let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
 let TAB_SELECTED_TITLE_COLOR   = 0xE94242 // 已選文字色碼
 let TAB_UNSELECTED_TITLE_COLOR = 0x9F9A94 // 未選文字色碼
 
+// 點擊群組某成員彈出的畫面
+let GROUP_MEMBER_BLUR_BACKGROUND_COLOR = 0xE7393B // 背景顏色
+let GROUP_MEMBER_BLUR_BACKGROUND_COLOR_ALPHA = 0.75 // 背景顏色透明度
 
 // enum
 enum MainMenuType: Int {

@@ -26,6 +26,7 @@ class GroupViewControllerCollectionoViewDelegate: NSObject {
     fileprivate var membersCount: Int?
     fileprivate var membersVo = [MemberVo]()
     fileprivate var cellsData = [CellData]()
+    fileprivate var delegateExtend: GroupViewControllerCollectionoViewDelegateExtend?
     
     // MARK: - initializer
     
@@ -35,6 +36,8 @@ class GroupViewControllerCollectionoViewDelegate: NSObject {
         self.collectionView = collectionView
         collectionView.dataSource = self
         collectionView.delegate   = self
+        
+        delegateExtend = self.viewController
     }
     
 }
@@ -109,7 +112,11 @@ extension GroupViewControllerCollectionoViewDelegate: UICollectionViewDataSource
 
 extension GroupViewControllerCollectionoViewDelegate: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         print(membersVo[indexPath.row].name)
+        
+        let cellData = cellsData[indexPath.row]
+        delegateExtend?.didTapGroupMember(memberVo: cellData.memberVo)
     }
 }
 
@@ -146,4 +153,8 @@ extension GroupViewControllerCollectionoViewDelegate: UICollectionViewDelegateFl
     }
     
 
+}
+
+protocol GroupViewControllerCollectionoViewDelegateExtend {
+    func didTapGroupMember(memberVo: MemberVo?)
 }
