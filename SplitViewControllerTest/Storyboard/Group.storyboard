@@ -298,7 +298,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                                 <state key="normal" image="btn_profile_call.png"/>
                                                                 <connections>
-                                                                    <action selector="groupMemberSipButtonPressed:" destination="n8W-gL-WNz" eventType="touchUpInside" id="BjE-BZ-HXd"/>
+                                                                    <action selector="groupMemberSipButtonPressed:" destination="n8W-gL-WNz" eventType="touchUpInside" id="RdU-LU-sAK"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -313,24 +313,24 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Av2-5H-xL2" userLabel="PTT View">
-                                                        <rect key="frame" x="80" y="16" width="64" height="64"/>
+                                                        <rect key="frame" x="82" y="18" width="60" height="60"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eKT-ha-pcn">
-                                                                <rect key="frame" x="-38" y="-38" width="140" height="140"/>
+                                                                <rect key="frame" x="-40" y="-40" width="140" height="140"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="140" id="7q4-SO-XNJ"/>
                                                                     <constraint firstAttribute="width" constant="140" id="IgI-9a-JsG"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_ptt_normal.png" translatesAutoresizingMaskIntoConstraints="NO" id="s9G-UD-8QI">
-                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Nf-iU-L4W">
-                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                                 <connections>
-                                                                    <action selector="groupMemberPttButtonTouchDown:" destination="n8W-gL-WNz" eventType="touchDown" id="Apa-PS-rS8"/>
-                                                                    <action selector="groupMemberPttButtonTouchDragExit:" destination="n8W-gL-WNz" eventType="touchDragExit" id="i5N-It-v8P"/>
-                                                                    <action selector="groupMemberPttButtonTouchUpInside:" destination="n8W-gL-WNz" eventType="touchUpInside" id="xDC-Cp-NN9"/>
+                                                                    <action selector="groupMemberPttButtonTouchDown:" destination="n8W-gL-WNz" eventType="touchDown" id="w6S-XV-B1U"/>
+                                                                    <action selector="groupMemberPttButtonTouchDragExit:" destination="n8W-gL-WNz" eventType="touchDragExit" id="Lnp-HR-3PG"/>
+                                                                    <action selector="groupMemberPttButtonTouchUpInside:" destination="n8W-gL-WNz" eventType="touchUpInside" id="eZi-32-qcX"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -339,14 +339,14 @@
                                                             <constraint firstAttribute="bottom" secondItem="4Nf-iU-L4W" secondAttribute="bottom" id="2Lh-dL-aiN"/>
                                                             <constraint firstItem="4Nf-iU-L4W" firstAttribute="top" secondItem="Av2-5H-xL2" secondAttribute="top" id="90I-hJ-yyh"/>
                                                             <constraint firstItem="eKT-ha-pcn" firstAttribute="centerX" secondItem="s9G-UD-8QI" secondAttribute="centerX" id="9yu-ZC-jYV"/>
-                                                            <constraint firstAttribute="height" constant="64" id="Cy7-r1-OPd"/>
+                                                            <constraint firstAttribute="height" constant="60" id="Cy7-r1-OPd"/>
                                                             <constraint firstItem="s9G-UD-8QI" firstAttribute="top" secondItem="Av2-5H-xL2" secondAttribute="top" id="FTg-lv-EAB"/>
                                                             <constraint firstItem="eKT-ha-pcn" firstAttribute="centerY" secondItem="s9G-UD-8QI" secondAttribute="centerY" id="MTj-lb-yJB"/>
                                                             <constraint firstAttribute="bottom" secondItem="s9G-UD-8QI" secondAttribute="bottom" id="NPh-cd-b06"/>
                                                             <constraint firstItem="s9G-UD-8QI" firstAttribute="leading" secondItem="Av2-5H-xL2" secondAttribute="leading" id="RoT-Hi-7vt"/>
                                                             <constraint firstItem="4Nf-iU-L4W" firstAttribute="leading" secondItem="Av2-5H-xL2" secondAttribute="leading" id="bU1-Ja-ung"/>
                                                             <constraint firstAttribute="trailing" secondItem="4Nf-iU-L4W" secondAttribute="trailing" id="cQ8-yU-W03"/>
-                                                            <constraint firstAttribute="width" constant="64" id="dNm-XG-aB7"/>
+                                                            <constraint firstAttribute="width" constant="60" id="dNm-XG-aB7"/>
                                                             <constraint firstAttribute="trailing" secondItem="s9G-UD-8QI" secondAttribute="trailing" id="gnk-61-LxE"/>
                                                         </constraints>
                                                     </view>
@@ -357,7 +357,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                                 <state key="normal" image="btn_profile_video.png"/>
                                                                 <connections>
-                                                                    <action selector="GroupMemberVideoButtonPressed:" destination="n8W-gL-WNz" eventType="touchUpInside" id="GZY-ZB-Mwn"/>
+                                                                    <action selector="GroupMemberVideoButtonPressed:" destination="n8W-gL-WNz" eventType="touchUpInside" id="bep-1W-mOy"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -426,7 +426,6 @@
                         <viewLayoutGuide key="safeArea" id="w6w-mF-UXH"/>
                     </view>
                     <connections>
-                        <outlet property="GroupMemberVideoButton" destination="lm2-v2-4FR" id="2MM-ET-bpM"/>
                         <outlet property="blurBackgroundView" destination="2cT-OP-UAo" id="0C4-63-uMW"/>
                         <outlet property="blurGroupMemberImage" destination="jm4-Kc-X9r" id="3Ia-Ce-r3c"/>
                         <outlet property="chatButtonImage" destination="Txi-ZR-PBb" id="Q3u-Rh-zYE"/>
@@ -436,8 +435,9 @@
                         <outlet property="groupMemberInfoView" destination="pfg-F0-MQp" id="dgh-bA-C3h"/>
                         <outlet property="groupMemberName" destination="6Px-cE-oRy" id="zgI-Q6-wKU"/>
                         <outlet property="groupMemberPttButtonAnimationImage" destination="eKT-ha-pcn" id="aH8-Kc-i4u"/>
-                        <outlet property="groupMemberPttButtonImage" destination="s9G-UD-8QI" id="Q1L-L9-t3l"/>
-                        <outlet property="groupMemberSipButton" destination="4sd-PH-QpJ" id="ezU-fc-cw2"/>
+                        <outlet property="groupMemberPttButtonImage" destination="s9G-UD-8QI" id="mQV-Qp-6tk"/>
+                        <outlet property="groupMemberSipButton" destination="4sd-PH-QpJ" id="ng5-2e-ecm"/>
+                        <outlet property="groupMemberVideoButton" destination="lm2-v2-4FR" id="Kon-jm-1qP"/>
                         <outlet property="groupMemberView" destination="03M-Rg-JxO" id="u7p-Rf-SVT"/>
                         <outlet property="groupNameLabel" destination="Ou7-4G-B4Y" id="gin-TS-Zhz"/>
                         <outlet property="monitorImage" destination="EoZ-Zh-n0Q" id="d4E-ha-Per"/>

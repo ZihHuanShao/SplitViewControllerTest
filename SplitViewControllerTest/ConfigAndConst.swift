@@ -114,6 +114,7 @@ enum MainMenuType: Int {
     case MAP    = 1
     case VIDEO  = 2
     case RECORD = 3
+    
     case NONE   = 99
 }
 
@@ -128,7 +129,8 @@ enum ShowDetailViewControllerType: Int {
 enum TabType: Int {
     case GROUP  = 0
     case MEMBER = 1
-    case NONE   = 2
+    
+    case NONE   = 99
 }
 
 enum OnlineType: Int {
@@ -136,6 +138,12 @@ enum OnlineType: Int {
     case BUSY       = 1
     case NO_DISTURB = 2
     case OFFLINE    = 3
+}
+
+enum GroupMemberCallingType: Int {
+    case SIP_CALL = 0
+    case PTT      = 1
+    case VIDEO    = 2
 }
 
 enum MemberProfileType: CaseIterable {

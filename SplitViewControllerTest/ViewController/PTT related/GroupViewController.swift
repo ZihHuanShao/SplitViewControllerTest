@@ -34,10 +34,10 @@ class GroupViewController: UIViewController {
     @IBOutlet weak var groupMemberImage: UIImageView!
     @IBOutlet weak var groupMemberName: UILabel!
     @IBOutlet weak var connectionDurationTimeLabel: UILabel!
-    @IBOutlet weak var groupMemberSipButton: UIButton!
     @IBOutlet weak var groupMemberPttButtonImage: UIImageView!
     @IBOutlet weak var groupMemberPttButtonAnimationImage: UIImageView!
-    @IBOutlet weak var GroupMemberVideoButton: UIButton!
+    @IBOutlet weak var groupMemberSipButton: UIButton!
+    @IBOutlet weak var groupMemberVideoButton: UIButton!
     
     
     // MARK: - Properties
@@ -45,6 +45,7 @@ class GroupViewController: UIViewController {
     fileprivate var groupVo: GroupVo?
     fileprivate var membersVo: [MemberVo]?
     fileprivate var collectionViewDelegate: GroupViewControllerCollectionoViewDelegate?
+    fileprivate var callingType = GroupMemberCallingType.PTT
     
     // MARK: - Life Cycle
     
@@ -99,35 +100,61 @@ class GroupViewController: UIViewController {
     }
     
     //
-    // GroupMemberButton
+    // GroupMemberPttButton
     //
     
     @IBAction func groupMemberPttButtonTouchDown(_ sender: UIButton) {
-        updateGroupMemberButtonImage(type: .PRESSED)
+        if (callingType == .SIP_CALL || callingType == .VIDEO) {
+            updateGroupMemberHangUpImage(type: .PRESSED)
+        } else {
+            updateGroupMemberPttButtonImage(type: .PRESSED)
+        }
     }
     
     @IBAction func groupMemberPttButtonTouchDragExit(_ sender: UIButton) {
-        updateGroupMemberButtonImage(type: .AWAY)
+        if (callingType == .SIP_CALL || callingType == .VIDEO) {
+            updateGroupMemberHangUpImage(type: .AWAY)
+        } else {
+            updateGroupMemberPttButtonImage(type: .AWAY)
+        }
     }
     
     @IBAction func groupMemberPttButtonTouchUpInside(_ sender: UIButton) {
-        updateGroupMemberButtonImage(type: .AWAY)
+        if (callingType == .SIP_CALL || callingType == .VIDEO) {
+            print("Hang Up")
+            updateGroupMemberCallingControlUnits(type: .AWAY)
+            updateGroupMemberHangUpImage(type: .AWAY)
+            updateGroupMemberPttButtonImage(type: .AWAY)
+            callingType = .PTT
+        } else {
+            updateGroupMemberPttButtonImage(type: .AWAY)
+        }
     }
 
-    
     //
-    // groupMemberSipButton
+    // groupMemberSipButton (Sip/ Mute)
     //
     
     @IBAction func groupMemberSipButtonPressed(_ sender: UIButton) {
-        
+        if callingType == .SIP_CALL {
+            print("Mute")
+        } else {
+            updateGroupMemberCallingControlUnits(type: .PRESSED)
+            callingType = .SIP_CALL
+        }
     }
 
     //
-    // GroupMemberVideoButton
+    // GroupMemberVideoButton (Video/ Speaker)
     //
     
     @IBAction func GroupMemberVideoButtonPressed(_ sender: UIButton) {
+        if callingType == .VIDEO {
+            print("Speaker")
+        } else {
+            updateGroupMemberCallingControlUnits(type: .PRESSED)
+            callingType = .VIDEO
+        }
     }
     
 }
@@ -176,10 +203,14 @@ extension GroupViewController {
     private func updateGroupMemberViewUI() {
         groupMemberView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
-        // 預設隱藏, 撥號有接通才會顯示
+        // 通話時間: 預設隱藏, 撥號有接通才會顯示
         connectionDurationTimeLabel.isHidden = true
         
-        // 預設隱藏, 點擊成員才會顯示
+        // Sip與Video圖示: 預設顯示, 有撥號才會改變圖示
+        groupMemberSipButton.setImage(UIImage(named: "btn_profile_call"), for: .normal)
+        groupMemberVideoButton.setImage(UIImage(named: "btn_profile_video"), for: .normal)
+        
+        // 群組成員全畫面: 預設隱藏, 點擊成員才會顯示
         groupMemberView.isHidden = true
     }
     
@@ -251,6 +282,7 @@ extension GroupViewController {
         monitorImage.image = UIImage(named: "icon_titile_notify_off")
     }
     
+    // Ptt發話時, 更新UI及動畫
     private func updatePttButtonImage(type: ButtonPressType) {
         switch type {
         case .PRESSED:
@@ -265,6 +297,7 @@ extension GroupViewController {
         }
     }
     
+    // 點擊文字訊息, 更新UI
     private func updateChatButtonImage(type: ButtonPressType) {
         switch type {
         case .PRESSED:
@@ -275,7 +308,33 @@ extension GroupViewController {
         }
     }
     
-    private func updateGroupMemberButtonImage(type: ButtonPressType) {
+    // 當通話中掛斷時, 更新UI
+    private func updateGroupMemberHangUpImage(type: ButtonPressType) {
+        switch type {
+        case .PRESSED:
+            groupMemberPttButtonImage.image = UIImage(named: "btn_call_end_pressed")
+            
+        case .AWAY:
+            groupMemberPttButtonImage.image = UIImage(named: "btn_call_end_normal")
+        }
+    }
+    
+    // 當撥打Sip或Video時, 更新UI
+    private func updateGroupMemberCallingControlUnits(type: ButtonPressType) {
+        switch type {
+        case .PRESSED:
+            groupMemberSipButton.setImage(UIImage(named: "btn_call_mut"), for: .normal)
+            groupMemberVideoButton.setImage(UIImage(named: "btn_call_speaker"), for: .normal)
+            groupMemberPttButtonImage.image = UIImage(named: "btn_call_end_normal")
+            
+        case .AWAY:
+            groupMemberSipButton.setImage(UIImage(named: "btn_profile_call"), for: .normal)
+            groupMemberVideoButton.setImage(UIImage(named: "btn_profile_video.png"), for: .normal)
+        }
+    }
+    
+    // Ptt發話時, 更新UI及動畫
+    private func updateGroupMemberPttButtonImage(type: ButtonPressType) {
         switch type {
         case .PRESSED:
             groupMemberPttButtonImage.image = UIImage(named: "btn_ptt_pressed")
@@ -308,6 +367,7 @@ extension GroupViewController {
 
 extension GroupViewController: GroupViewControllerCollectionoViewDelegateExtend {
     func didTapGroupMember(memberVo: MemberVo?) {
+        updateGroupMemberViewUI()
         showGroupMemberView(memberVo: memberVo)
     }
 }
