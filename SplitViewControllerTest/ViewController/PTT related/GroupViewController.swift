@@ -27,12 +27,18 @@ class GroupViewController: UIViewController {
     @IBOutlet weak var pttButtonAnimationImage: UIImageView!
     
     // Group Member View
+    @IBOutlet weak var groupMemberInfoView: UIView!
     @IBOutlet weak var groupMemberView: UIView!
     @IBOutlet weak var blurGroupMemberImage: UIImageView!
     @IBOutlet weak var blurBackgroundView: UIView!
     @IBOutlet weak var groupMemberImage: UIImageView!
     @IBOutlet weak var groupMemberName: UILabel!
     @IBOutlet weak var connectionDurationTimeLabel: UILabel!
+    @IBOutlet weak var groupMemberSipButton: UIButton!
+    @IBOutlet weak var groupMemberPttButtonImage: UIImageView!
+    @IBOutlet weak var groupMemberPttButtonAnimationImage: UIImageView!
+    @IBOutlet weak var GroupMemberVideoButton: UIButton!
+    
     
     // MARK: - Properties
     
@@ -51,6 +57,10 @@ class GroupViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
+    //
+    // groupSettingButton
+    //
     
     @IBAction func groupSettingButtonPressed(_ sender: UIButton) {
         print("groupSettingButtonPressed")
@@ -88,6 +98,37 @@ class GroupViewController: UIViewController {
         updateChatButtonImage(type: .AWAY)
     }
     
+    //
+    // GroupMemberButton
+    //
+    
+    @IBAction func groupMemberPttButtonTouchDown(_ sender: UIButton) {
+        updateGroupMemberButtonImage(type: .PRESSED)
+    }
+    
+    @IBAction func groupMemberPttButtonTouchDragExit(_ sender: UIButton) {
+        updateGroupMemberButtonImage(type: .AWAY)
+    }
+    
+    @IBAction func groupMemberPttButtonTouchUpInside(_ sender: UIButton) {
+        updateGroupMemberButtonImage(type: .AWAY)
+    }
+
+    
+    //
+    // groupMemberSipButton
+    //
+    
+    @IBAction func groupMemberSipButtonPressed(_ sender: UIButton) {
+        
+    }
+
+    //
+    // GroupMemberVideoButton
+    //
+    
+    @IBAction func GroupMemberVideoButtonPressed(_ sender: UIButton) {
+    }
     
 }
 
@@ -135,12 +176,17 @@ extension GroupViewController {
     private func updateGroupMemberViewUI() {
         groupMemberView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
-        // 預設是隱藏的, 有點擊成員才會顯示
+        // 預設隱藏, 撥號有接通才會顯示
+        connectionDurationTimeLabel.isHidden = true
+        
+        // 預設隱藏, 點擊成員才會顯示
         groupMemberView.isHidden = true
     }
     
     private func updateGesture() {
         groupMemberView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissGroupMemberView)))
+        
+        groupMemberInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(keepViewFront)))
     }
     
     private func showGroupMemberView(memberVo: MemberVo?) {
@@ -228,6 +274,20 @@ extension GroupViewController {
             chatButtonImage.image = UIImage(named: "btn_chat_normal")
         }
     }
+    
+    private func updateGroupMemberButtonImage(type: ButtonPressType) {
+        switch type {
+        case .PRESSED:
+            groupMemberPttButtonImage.image = UIImage(named: "btn_ptt_pressed")
+            groupMemberPttButtonAnimationImage.image = UIImage.animatedImage(with: GROUP_MEMBER_PTT_ANIMATION_IMAGES, duration: 1)
+            groupMemberPttButtonAnimationImage.contentMode = .scaleAspectFit
+            
+        case .AWAY:
+            groupMemberPttButtonImage.image = UIImage(named: "btn_ptt_normal")
+            groupMemberPttButtonAnimationImage.image = nil
+            groupMemberPttButtonAnimationImage.animationImages = nil
+        }
+    }
 }
 
 // MARK: - Event Methods
@@ -235,6 +295,11 @@ extension GroupViewController {
 extension GroupViewController {
     @objc func dismissGroupMemberView() {
         groupMemberView.isHidden = true
+    }
+    
+    @objc func keepViewFront() {
+        // do nothing
+        // 點擊群組成員的畫面不應該被dismiss, 做一個空的function擋
     }
 }
 

@@ -297,6 +297,9 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sd-PH-QpJ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                                 <state key="normal" image="btn_profile_call.png"/>
+                                                                <connections>
+                                                                    <action selector="groupMemberSipButtonPressed:" destination="n8W-gL-WNz" eventType="touchUpInside" id="BjE-BZ-HXd"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -324,6 +327,11 @@
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Nf-iU-L4W">
                                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                                <connections>
+                                                                    <action selector="groupMemberPttButtonTouchDown:" destination="n8W-gL-WNz" eventType="touchDown" id="Apa-PS-rS8"/>
+                                                                    <action selector="groupMemberPttButtonTouchDragExit:" destination="n8W-gL-WNz" eventType="touchDragExit" id="i5N-It-v8P"/>
+                                                                    <action selector="groupMemberPttButtonTouchUpInside:" destination="n8W-gL-WNz" eventType="touchUpInside" id="xDC-Cp-NN9"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -348,6 +356,9 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lm2-v2-4FR">
                                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                                 <state key="normal" image="btn_profile_video.png"/>
+                                                                <connections>
+                                                                    <action selector="GroupMemberVideoButtonPressed:" destination="n8W-gL-WNz" eventType="touchUpInside" id="GZY-ZB-Mwn"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -415,13 +426,18 @@
                         <viewLayoutGuide key="safeArea" id="w6w-mF-UXH"/>
                     </view>
                     <connections>
+                        <outlet property="GroupMemberVideoButton" destination="lm2-v2-4FR" id="2MM-ET-bpM"/>
                         <outlet property="blurBackgroundView" destination="2cT-OP-UAo" id="0C4-63-uMW"/>
                         <outlet property="blurGroupMemberImage" destination="jm4-Kc-X9r" id="3Ia-Ce-r3c"/>
                         <outlet property="chatButtonImage" destination="Txi-ZR-PBb" id="Q3u-Rh-zYE"/>
                         <outlet property="collectionView" destination="DbG-Kc-rgj" id="3fv-mZ-Jju"/>
                         <outlet property="connectionDurationTimeLabel" destination="sB1-5w-Cut" id="lwR-qt-J7p"/>
                         <outlet property="groupMemberImage" destination="kHW-Xh-9xi" id="Kyc-Oj-i21"/>
+                        <outlet property="groupMemberInfoView" destination="pfg-F0-MQp" id="dgh-bA-C3h"/>
                         <outlet property="groupMemberName" destination="6Px-cE-oRy" id="zgI-Q6-wKU"/>
+                        <outlet property="groupMemberPttButtonAnimationImage" destination="eKT-ha-pcn" id="aH8-Kc-i4u"/>
+                        <outlet property="groupMemberPttButtonImage" destination="s9G-UD-8QI" id="Q1L-L9-t3l"/>
+                        <outlet property="groupMemberSipButton" destination="4sd-PH-QpJ" id="ezU-fc-cw2"/>
                         <outlet property="groupMemberView" destination="03M-Rg-JxO" id="u7p-Rf-SVT"/>
                         <outlet property="groupNameLabel" destination="Ou7-4G-B4Y" id="gin-TS-Zhz"/>
                         <outlet property="monitorImage" destination="EoZ-Zh-n0Q" id="d4E-ha-Per"/>
