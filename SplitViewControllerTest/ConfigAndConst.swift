@@ -149,9 +149,7 @@ enum GroupMemberCallingType: Int {
 }
 
 enum GroupSettingType: CaseIterable {
-    case DUMMY_HEAD   // (繪製背景對話框的角)
     case MONITOR_MODE // 監聽模式
-    case DUMMY_CONTENT   // (繪製背景對話框內容)
     case EDIT_GROUP   // 編輯群組
 }
 

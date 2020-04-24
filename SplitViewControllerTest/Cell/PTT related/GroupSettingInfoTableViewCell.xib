@@ -107,7 +107,6 @@
             <connections>
                 <outlet property="backgroundImage" destination="80Z-Kw-EaP" id="UmR-8y-ZJI"/>
                 <outlet property="indicatorImage" destination="Vri-yo-hMD" id="p2u-ak-1dz"/>
-                <outlet property="infoContentView" destination="nKk-Hp-l0z" id="VB9-si-gWM"/>
                 <outlet property="itemDesc" destination="bQk-FI-61e" id="008-s9-1RF"/>
                 <outlet property="itemImage" destination="Qrj-ai-Uaa" id="jtE-V3-0Gu"/>
                 <outlet property="itemTitle" destination="dDT-hE-4ir" id="eOH-25-Lon"/>

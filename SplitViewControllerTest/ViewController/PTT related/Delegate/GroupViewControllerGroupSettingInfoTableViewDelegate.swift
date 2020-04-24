@@ -53,16 +53,10 @@ extension GroupViewControllerGroupSettingInfoTableViewDelegate: UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_SETTING_INFO_TABLE_VIEW_CELL, for: indexPath) as! GroupSettingInfoTableViewCell
+        
         cell.updateCell(GroupSettingType.allCases[indexPath.row])
-        tableView.separatorStyle = .none
-//        if indexPath.row == 0 || indexPath.row == 3 {
-//            cell.separatorInset = UIEdgeInsets(top: 0, left: cell.bounds.size.width, bottom: 0, right: 0)
-//
-//        } else {
-//
-//        }
         
         return cell
     }
@@ -75,5 +69,7 @@ extension GroupViewControllerGroupSettingInfoTableViewDelegate: UITableViewDataS
 // MARK: - UITableViewDelegate
 
 extension GroupViewControllerGroupSettingInfoTableViewDelegate: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(GroupSettingType.allCases[indexPath.row])
+    }
 }

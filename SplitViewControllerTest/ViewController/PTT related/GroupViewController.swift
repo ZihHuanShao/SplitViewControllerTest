@@ -250,14 +250,26 @@ extension GroupViewController {
     }
     
     private func updateGesture() {
+        //
         // groupMemberInfo
-        groupMemberInfoMaskView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dissmissGroupMemberInfoMaskView)))
-        groupMemberInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(keepGroupMemberInfoView)))
+        //
         
+        groupMemberInfoMaskView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dissmissGroupMemberInfoMaskView)))
+        
+        let groupMemberInfoViewTap = UITapGestureRecognizer(target: self, action: #selector(keepGroupMemberInfoView))
+        groupMemberInfoViewTap.cancelsTouchesInView = false // 可以避免在view上加手勢, 點擊cell無法被trigger
+        groupMemberInfoView.addGestureRecognizer(groupMemberInfoViewTap)
+        
+        //
         // groupSettingInfo
+        //
+        
         groupSettingInfoMaskView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dissmissGroupSettingInfoMaskView)))
-//        groupSettingInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(keepGroupSettingInfoView)))
-
+        
+        let groupSettingInfoViewTap = UITapGestureRecognizer(target: self, action: #selector(keepGroupSettingInfoView))
+        groupSettingInfoViewTap.cancelsTouchesInView = false // 可以避免在view上加手勢, 點擊cell無法被trigger
+        groupSettingInfoView.addGestureRecognizer(groupSettingInfoViewTap)
+        
     }
     
     private func keepViewFront() {
@@ -413,9 +425,9 @@ extension GroupViewController {
         groupSettingInfoMaskView.isHidden = true
     }
     
-//    @objc func keepGroupSettingInfoView() {
-//        keepViewFront()
-//    }
+    @objc func keepGroupSettingInfoView() {
+        keepViewFront()
+    }
 }
 
 

@@ -44,3 +44,9 @@ let str_createGroup_createMember = "新增成員"
 let str_map_electrFence = "電子圍籬"
 let str_map_realTimePositioning = "即時定位"
 let str_map_temporaryGroup = "臨時群組"
+
+// GroupViewController
+let str_group_monitorMode = "監聽模式"
+let str_group_monitorModeDesc = "接收到新訊息時，系統直接播放語音"
+let str_group_editGroup = "編輯群組"
+let str_group_editGroupDesc = "進行群組名稱、成員等相關設定"
