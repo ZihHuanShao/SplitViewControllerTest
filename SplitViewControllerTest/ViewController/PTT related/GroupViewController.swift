@@ -27,8 +27,7 @@ class GroupViewController: UIViewController {
     @IBOutlet weak var pttButtonAnimationImage: UIImageView!
     
     // Group Member Info Background View
-    
-    @IBOutlet weak var groupMemberInfoBackgroundView: UIView!
+    @IBOutlet weak var groupMemberInfoMaskView: UIView!
     @IBOutlet weak var groupMemberInfoView: UIView!
     @IBOutlet weak var blurGroupMemberImage: UIImageView!
     @IBOutlet weak var blurBackgroundView: UIView!
@@ -40,6 +39,11 @@ class GroupViewController: UIViewController {
     @IBOutlet weak var groupMemberSipButton: UIButton!
     @IBOutlet weak var groupMemberVideoButton: UIButton!
     
+    // Group Setting Info Mask View
+    @IBOutlet weak var groupSettingInfoMaskView: UIView!
+    @IBOutlet weak var groupSettingInfoView: UIView!
+    @IBOutlet weak var groupSettingInfoTableView: UITableView!
+    
     
     // MARK: - Properties
     
@@ -47,14 +51,18 @@ class GroupViewController: UIViewController {
     fileprivate var membersVo: [MemberVo]?
     fileprivate var collectionViewDelegate: GroupViewControllerCollectionoViewDelegate?
     fileprivate var callingType = GroupMemberCallingType.PTT
+    fileprivate var groupSettingInfTableViewDelegate: GroupViewControllerGroupSettingInfoTableViewDelegate?
+    
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateDataSource()
         updateUI()
-        updateGroupMemberViewUI()
+        resetGroupSettingInfoViewUI()
+        resetGroupMemberInfoViewUI()
         updateGesture()
     }
     
@@ -66,6 +74,7 @@ class GroupViewController: UIViewController {
     
     @IBAction func groupSettingButtonPressed(_ sender: UIButton) {
         print("groupSettingButtonPressed")
+        showGroupSettingInfoView()
     }
     
     //
@@ -169,7 +178,16 @@ extension GroupViewController {
 
 // MARK: - Private Methods
 extension GroupViewController {
+    private func updateDataSource() {
+        collectionViewDelegate = GroupViewControllerCollectionoViewDelegate(groupViewController: self, collectionView: collectionView)
+        
+        groupSettingInfTableViewDelegate = GroupViewControllerGroupSettingInfoTableViewDelegate(groupViewController: self, tableView: groupSettingInfoTableView)
+    }
+    
     private func updateUI() {
+        //
+        // collectionViewDelegate
+        //
         
         guard let gVo = groupVo else {
             return
@@ -178,7 +196,7 @@ extension GroupViewController {
         groupNameLabel.text = gVo.name
         (gVo.monitorState == true) ? enableMonitor() : disableMonitor()
 
-        collectionViewDelegate = GroupViewControllerCollectionoViewDelegate(groupViewController: self, collectionView: collectionView)
+        
         collectionViewDelegate?.registerCell(cellName: GROUP_COLLECTION_VIEW_CELL, cellId: GROUP_COLLECTION_VIEW_CELL)
         
         
@@ -198,11 +216,27 @@ extension GroupViewController {
             collectionViewDelegate?.updateMembersVo(_membersVo)
         }
         
+        //
+        // groupSettingInfTableViewDelegate
+        //
+        
+        groupSettingInfTableViewDelegate?.registerCell(cellName: GROUP_SETTING_INFO_TABLE_VIEW_CELL, cellId: GROUP_SETTING_INFO_TABLE_VIEW_CELL)
+        
+        
+        // reload UI
         collectionViewDelegate?.reloadUI()
+        groupSettingInfTableViewDelegate?.reloadUI()
     }
     
-    private func updateGroupMemberViewUI() {
-        groupMemberInfoBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+    private func resetGroupSettingInfoViewUI() {
+        groupSettingInfoMaskView.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        
+        // 全畫面遮罩: 預設隱藏, 點擊設定才會顯示
+        groupSettingInfoMaskView.isHidden = true
+    }
+    
+    private func resetGroupMemberInfoViewUI() {
+        groupMemberInfoMaskView.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         
         // 通話時間: 預設隱藏, 撥號有接通才會顯示
         connectionDurationTimeLabel.isHidden = true
@@ -211,17 +245,31 @@ extension GroupViewController {
         groupMemberSipButton.setImage(UIImage(named: "btn_profile_call"), for: .normal)
         groupMemberVideoButton.setImage(UIImage(named: "btn_profile_video"), for: .normal)
         
-        // 群組成員全畫面: 預設隱藏, 點擊成員才會顯示
-        groupMemberInfoBackgroundView.isHidden = true
+        // 全畫面遮罩: 預設隱藏, 點擊成員才會顯示
+        groupMemberInfoMaskView.isHidden = true
     }
     
     private func updateGesture() {
-        groupMemberInfoBackgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissGroupMemberView)))
+        // groupMemberInfo
+        groupMemberInfoMaskView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dissmissGroupMemberInfoMaskView)))
+        groupMemberInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(keepGroupMemberInfoView)))
         
-        groupMemberInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(keepViewFront)))
+        // groupSettingInfo
+        groupSettingInfoMaskView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dissmissGroupSettingInfoMaskView)))
+//        groupSettingInfoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(keepGroupSettingInfoView)))
+
     }
     
-    private func showGroupMemberView(memberVo: MemberVo?) {
+    private func keepViewFront() {
+        // do nothing
+        // 點擊到焦點畫面不應該被dismiss, 做一個空的function擋
+    }
+    
+    private func showGroupSettingInfoView() {
+        groupSettingInfoMaskView.isHidden = false
+    }
+    
+    private func showGroupMemberInfoView(memberVo: MemberVo?) {
         
         var imageName = String()
         if let imgName = memberVo?.imageName, imgName != "" {
@@ -244,7 +292,7 @@ extension GroupViewController {
         // 成員名字
         groupMemberName.text = memberVo?.name ?? ""
         
-        groupMemberInfoBackgroundView.isHidden = false
+        groupMemberInfoMaskView.isHidden = false
     }
     
     // 取得模糊化後的圖片
@@ -353,14 +401,21 @@ extension GroupViewController {
 // MARK: - Event Methods
 
 extension GroupViewController {
-    @objc func dismissGroupMemberView() {
-        groupMemberInfoBackgroundView.isHidden = true
+    @objc func dissmissGroupMemberInfoMaskView() {
+        groupMemberInfoMaskView.isHidden = true
     }
     
-    @objc func keepViewFront() {
-        // do nothing
-        // 點擊群組成員的畫面不應該被dismiss, 做一個空的function擋
+    @objc func keepGroupMemberInfoView() {
+        keepViewFront()
     }
+    
+    @objc func  dissmissGroupSettingInfoMaskView() {
+        groupSettingInfoMaskView.isHidden = true
+    }
+    
+//    @objc func keepGroupSettingInfoView() {
+//        keepViewFront()
+//    }
 }
 
 
@@ -368,7 +423,7 @@ extension GroupViewController {
 
 extension GroupViewController: GroupViewControllerCollectionoViewDelegateExtend {
     func didTapGroupMember(memberVo: MemberVo?) {
-        updateGroupMemberViewUI()
-        showGroupMemberView(memberVo: memberVo)
+        resetGroupMemberInfoViewUI()
+        showGroupMemberInfoView(memberVo: memberVo)
     }
 }

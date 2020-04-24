@@ -18,3 +18,6 @@
 	*  語音信標（語音提示）
 	*  切換優先群組
 	*  電子圍籬以global (teamwork)為主
+
+4/23
+ GoogleMap API cost

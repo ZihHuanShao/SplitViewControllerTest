@@ -70,6 +70,8 @@ let ADD_MEMBER_TABLE_VIEW_CELL = "AddMemberTableViewCell"
 let ADD_MEMBER_COLLECTION_VIEW_CELL = "AddMemberCollectionViewCell"
 let MAP_TABLE_VIEW_CELL = "MapTableViewCell"
 let TEMPORARY_GROUP_TABLE_VIEW_CELL = "TemporaryGroupTableViewCell"
+let GROUP_SETTING_INFO_TABLE_VIEW_CELL = "GroupSettingInfoTableViewCell"
+
 // Storyboard
 let STORYBOARD_NAME_MAIN   = "Main"
 let STORYBOARD_NAME_MEMBER = "Member"
@@ -144,6 +146,13 @@ enum GroupMemberCallingType: Int {
     case SIP_CALL = 0
     case PTT      = 1
     case VIDEO    = 2
+}
+
+enum GroupSettingType: CaseIterable {
+    case DUMMY_HEAD   // (繪製背景對話框的角)
+    case MONITOR_MODE // 監聽模式
+    case DUMMY_CONTENT   // (繪製背景對話框內容)
+    case EDIT_GROUP   // 編輯群組
 }
 
 enum MemberProfileType: CaseIterable {
