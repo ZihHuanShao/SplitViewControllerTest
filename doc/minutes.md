@@ -19,5 +19,6 @@
 	*  切換優先群組
 	*  電子圍籬以global (teamwork)為主
 
-4/23
- GoogleMap API cost
+4/24
+
+*  GoogleMap API cost：需要大概計算使用成本

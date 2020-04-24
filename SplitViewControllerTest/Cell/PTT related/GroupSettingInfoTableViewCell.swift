@@ -33,12 +33,21 @@ class GroupSettingInfoTableViewCell: UITableViewCell {
     // MARK: - Actions
     
     @IBAction func switchButtonPressed(_ sender: UIButton) {
+        
     }
 }
 
 // MARK: - Public Methods
 
 extension GroupSettingInfoTableViewCell {
+    func enableSwitchButton() {
+        switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
+    }
+    
+    func disableSwitchButton() {
+        switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
+    }
+    
     func updateCell(_ type: GroupSettingType) {
         switch type {
             

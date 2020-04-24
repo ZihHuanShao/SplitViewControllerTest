@@ -14,7 +14,7 @@ class GroupViewControllerGroupSettingInfoTableViewDelegate: NSObject {
     
     fileprivate weak var viewController: GroupViewController?
     fileprivate weak var tableView: UITableView?
-    
+    fileprivate var monitorState = Bool()
 
     // MARK: - initializer
     
@@ -32,6 +32,14 @@ class GroupViewControllerGroupSettingInfoTableViewDelegate: NSObject {
 // MARK: - Public Methods
 
 extension GroupViewControllerGroupSettingInfoTableViewDelegate {
+    
+    func enableMonitorButton() {
+        monitorState = true
+    }
+    
+    func disableMonitorButton() {
+        monitorState = false
+    }
     
     func registerCell(cellName: String, cellId: String) {
         tableView?.register(
@@ -57,6 +65,10 @@ extension GroupViewControllerGroupSettingInfoTableViewDelegate: UITableViewDataS
         let cell = tableView.dequeueReusableCell(withIdentifier: GROUP_SETTING_INFO_TABLE_VIEW_CELL, for: indexPath) as! GroupSettingInfoTableViewCell
         
         cell.updateCell(GroupSettingType.allCases[indexPath.row])
+        
+        if GroupSettingType.allCases[indexPath.row] == .MONITOR_MODE {
+            (monitorState == true) ? cell.enableSwitchButton() : cell.disableSwitchButton()
+        }
         
         return cell
     }

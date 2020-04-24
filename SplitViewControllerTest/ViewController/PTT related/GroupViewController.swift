@@ -74,7 +74,7 @@ class GroupViewController: UIViewController {
     
     @IBAction func groupSettingButtonPressed(_ sender: UIButton) {
         print("groupSettingButtonPressed")
-        showGroupSettingInfoView()
+        showGroupSettingInfoView(groupVo: groupVo)
     }
     
     //
@@ -277,7 +277,15 @@ extension GroupViewController {
         // 點擊到焦點畫面不應該被dismiss, 做一個空的function擋
     }
     
-    private func showGroupSettingInfoView() {
+    private func showGroupSettingInfoView(groupVo: GroupVo?) {
+        if let monitorState = groupVo?.monitorState {
+            if monitorState {
+                groupSettingInfTableViewDelegate?.enableMonitorButton()
+            } else {
+                groupSettingInfTableViewDelegate?.disableMonitorButton()
+            }
+        }
+        groupSettingInfTableViewDelegate?.reloadUI()
         groupSettingInfoMaskView.isHidden = false
     }
     
