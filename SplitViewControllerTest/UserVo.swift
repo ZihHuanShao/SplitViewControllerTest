@@ -100,28 +100,28 @@ class ElectrFenceVo {
     var color: UInt? = 0xFF0000 // default red color
 
     var notifyTarget: MemberVo?
-    var enableAutoSwitchPreferGroup = Bool()
+    var autoSwitchPreferGroupEnabled = Bool()
     var preferGroup: GroupVo?
     
-    var enableEnterAlarm = Bool()
-    var enablePlayEnterAlarmVoice = Bool()
+    var enterAlarmEnabled = Bool()
+    var enterAlarmVoicePlayEnabled = Bool()
     var enterAlarmVoice: String?
     
-    var enableExitAlarm = Bool()
-    var enablePlayExitAlarmVoice = Bool()
+    var exitAlarmEnabled = Bool()
+    var exitAlarmVoicePlayEnabled = Bool()
     var exitAlarmVoice: String?
     
-    init(title: String?, color: UInt?, notifyTarget: MemberVo?, enableAutoSwitchPreferGroup: Bool, preferGroup: GroupVo?, enableEnterAlarm: Bool, enablePlayEnterAlarmVoice: Bool, enterAlarmVoice: String?, enableExitAlarm: Bool, enablePlayExitAlarmVoice: Bool, exitAlarmVoice: String) {
+    init(title: String?, color: UInt?, notifyTarget: MemberVo?, autoSwitchPreferGroupEnabled: Bool, preferGroup: GroupVo?, enterAlarmEnabled: Bool, enterAlarmVoicePlayEnabled: Bool, enterAlarmVoice: String?, exitAlarmEnabled: Bool, exitAlarmVoicePlayEnabled: Bool, exitAlarmVoice: String) {
         self.title = title
         self.color = color
         self.notifyTarget = notifyTarget
-        self.enableAutoSwitchPreferGroup = enableAutoSwitchPreferGroup
+        self.autoSwitchPreferGroupEnabled = autoSwitchPreferGroupEnabled
         self.preferGroup = preferGroup
-        self.enableEnterAlarm = enableEnterAlarm
-        self.enablePlayEnterAlarmVoice = enablePlayEnterAlarmVoice
+        self.enterAlarmEnabled = enterAlarmEnabled
+        self.enterAlarmVoicePlayEnabled = enterAlarmVoicePlayEnabled
         self.enterAlarmVoice = enterAlarmVoice
-        self.enableExitAlarm = enableExitAlarm
-        self.enablePlayExitAlarmVoice = enablePlayExitAlarmVoice
+        self.exitAlarmEnabled = exitAlarmEnabled
+        self.exitAlarmVoicePlayEnabled = exitAlarmVoicePlayEnabled
         self.exitAlarmVoice = exitAlarmVoice
     }
 }
