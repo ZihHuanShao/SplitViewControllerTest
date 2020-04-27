@@ -12,6 +12,8 @@
 		7EBCFD4689B8DDF555FD16C9 /* Pods_SplitViewControllerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F065087E1BC1A143062444 /* Pods_SplitViewControllerTest.framework */; };
 		D04383EB24566C9700B54F08 /* EditElectrFenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04383EA24566C9700B54F08 /* EditElectrFenceViewController.swift */; };
 		D04383ED245687B500B54F08 /* EditElectrFenceViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04383EC245687B500B54F08 /* EditElectrFenceViewControllerTableViewDelegate.swift */; };
+		D04383F02456E21500B54F08 /* EditElectrFenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04383EE2456E21500B54F08 /* EditElectrFenceTableViewCell.swift */; };
+		D04383F12456E21500B54F08 /* EditElectrFenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D04383EF2456E21500B54F08 /* EditElectrFenceTableViewCell.xib */; };
 		D0566BFB244E88B500B127AF /* ElectrFenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0566BFA244E88B500B127AF /* ElectrFenceViewController.swift */; };
 		D0566BFD244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0566BFC244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift */; };
 		D067042A2452D9F500E5F299 /* bg_groupset_alert1.png in Resources */ = {isa = PBXBuildFile; fileRef = D06704262452D9F500E5F299 /* bg_groupset_alert1.png */; };
@@ -183,6 +185,8 @@
 		5513D85D95B2822F5016DD32 /* Pods-SplitViewControllerTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitViewControllerTest.debug.xcconfig"; path = "Target Support Files/Pods-SplitViewControllerTest/Pods-SplitViewControllerTest.debug.xcconfig"; sourceTree = "<group>"; };
 		D04383EA24566C9700B54F08 /* EditElectrFenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditElectrFenceViewController.swift; sourceTree = "<group>"; };
 		D04383EC245687B500B54F08 /* EditElectrFenceViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditElectrFenceViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
+		D04383EE2456E21500B54F08 /* EditElectrFenceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditElectrFenceTableViewCell.swift; sourceTree = "<group>"; };
+		D04383EF2456E21500B54F08 /* EditElectrFenceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditElectrFenceTableViewCell.xib; sourceTree = "<group>"; };
 		D0566BFA244E88B500B127AF /* ElectrFenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectrFenceViewController.swift; sourceTree = "<group>"; };
 		D0566BFC244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectrFenceViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		D06704262452D9F500E5F299 /* bg_groupset_alert1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_groupset_alert1.png; sourceTree = "<group>"; };
@@ -457,6 +461,8 @@
 				D071F8CD24503AD600C7C372 /* ElectrFenceSectionDataTableViewCell.xib */,
 				D071F8D024503C4400C7C372 /* TemporaryGroupTableViewCell.swift */,
 				D071F8D124503C4400C7C372 /* TemporaryGroupTableViewCell.xib */,
+				D04383EE2456E21500B54F08 /* EditElectrFenceTableViewCell.swift */,
+				D04383EF2456E21500B54F08 /* EditElectrFenceTableViewCell.xib */,
 			);
 			path = "Map related";
 			sourceTree = "<group>";
@@ -831,6 +837,7 @@
 				D0E2366C243C767B0009506F /* bg_ptt_animation6.png in Resources */,
 				D071F8CF24503AD600C7C372 /* ElectrFenceSectionDataTableViewCell.xib in Resources */,
 				D0E23675243C767B0009506F /* btn_contact_group_normal.png in Resources */,
+				D04383F12456E21500B54F08 /* EditElectrFenceTableViewCell.xib in Resources */,
 				D0E23674243C767B0009506F /* btn_contact_member_selected.png in Resources */,
 				F261B464242C9FD800482992 /* MemberTableViewCell.xib in Resources */,
 				D06FC90C245140CF0029909A /* btn_call_speaker.png in Resources */,
@@ -952,6 +959,7 @@
 				D070125A244D397900B4080B /* GoogleMapViewController.swift in Sources */,
 				F2508003242B51AB003DBE79 /* GroupTableViewCell.swift in Sources */,
 				D04383ED245687B500B54F08 /* EditElectrFenceViewControllerTableViewDelegate.swift in Sources */,
+				D04383F02456E21500B54F08 /* EditElectrFenceTableViewCell.swift in Sources */,
 				D06E35BB243DC19100E33C44 /* GroupDispatchCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
