@@ -32,7 +32,7 @@ class DetailViewController: UIViewController {
     // [PTT related]
     
     // 目前所點擊的類型 (群組/ 群組中的「建立群組」/ 聯絡人)
-    fileprivate var pttTapType = ShowPttType.NONE
+    fileprivate var pttTapType = ShowPttSegueType.NONE
     
     fileprivate var groupVo:  GroupVo?
     
@@ -91,7 +91,7 @@ extension DetailViewController {
         self.memberVo = memberVo
     }
     
-    func setPttTabSelected(type: ShowPttType) {
+    func setPttTabSelected(type: ShowPttSegueType) {
         pttTapType = type
     }
     

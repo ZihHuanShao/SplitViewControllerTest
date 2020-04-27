@@ -37,8 +37,8 @@ class PttViewController: UIViewController {
     
     // MARK: - Properties
     
-    fileprivate var tapType = ShowPttType.NONE
-    fileprivate var tabSelected = PttTabType.NONE
+    fileprivate var tapType = ShowPttSegueType.NONE
+    fileprivate var tabSelected = PttContactTabType.NONE
     fileprivate var tableViewDelegate: PttViewControllerTableViewDelegate?
     fileprivate var mainMenuSelectedRowIndex: Int?
     
@@ -403,7 +403,7 @@ extension PttViewController: UITextFieldDelegate {
 // MARK: - MasterViewTableViewExtendDelegate
 
 extension PttViewController: PttViewControllerTableViewDelegateExtend {
-    func activateSegue(tapType: ShowPttType) {
+    func activateSegue(tapType: ShowPttSegueType) {
         self.tapType = tapType
         performSegue(withIdentifier: SHOW_PTT_SEGUE, sender: self)
     }

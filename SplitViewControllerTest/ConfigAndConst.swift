@@ -111,6 +111,7 @@ let GROUP_MEMBER_BLUR_BACKGROUND_COLOR = 0xE7393B // 背景顏色
 let GROUP_MEMBER_BLUR_BACKGROUND_COLOR_ALPHA = 0.75 // 背景顏色透明度
 
 // enum
+// [Common used]
 enum MainMenuType: Int {
     case PTT    = 0
     case MAP    = 1
@@ -120,7 +121,20 @@ enum MainMenuType: Int {
     case NONE   = 99
 }
 
-enum ShowPttType: Int {
+enum OnlineType: Int {
+    case AVAILABLE  = 0
+    case BUSY       = 1
+    case NO_DISTURB = 2
+    case OFFLINE    = 3
+}
+
+enum ButtonPressType: Int {
+    case PRESSED = 0
+    case AWAY    = 1
+}
+
+// [Ptt menu]
+enum ShowPttSegueType: Int {
     case TAB_GROUP_SELECT  = 0
     case TAB_MEMBER_SELECT = 1
     case TAB_GROUP_CREATE_GROUP = 2
@@ -128,18 +142,11 @@ enum ShowPttType: Int {
     case NONE = 99
 }
 
-enum PttTabType: Int {
+enum PttContactTabType: Int {
     case GROUP  = 0
     case MEMBER = 1
     
     case NONE   = 99
-}
-
-enum OnlineType: Int {
-    case AVAILABLE  = 0
-    case BUSY       = 1
-    case NO_DISTURB = 2
-    case OFFLINE    = 3
 }
 
 enum GroupMemberCallingType: Int {
@@ -160,16 +167,22 @@ enum MemberProfileType: CaseIterable {
     case EMAIL      // 電子信箱
 }
 
+
+// [Map menu]
+enum ShowMapSegueType: Int {
+    case MAP_SELECT      = 0
+    case EDIT_MAP_SELECT = 1
+    
+    case NONE = 99
+}
+
 enum MapFunctionType: CaseIterable {
     case ELECTR_FENCE        // 電子圍籬
     case REAL_TIME_POSITION  // 即時定位
     case TEMPORARY_GROUP     // 臨時群組
 }
 
-enum ButtonPressType: Int {
-    case PRESSED = 0
-    case AWAY    = 1
-}
+
 
 // struct
 struct GroupInfo {
