@@ -49,6 +49,8 @@ let str_map_temporaryGroup = "臨時群組"
 let str_ElectrFence_createElectrFence = "新增電子圍籬"
 
 // EditElectrFenceViewController
+let str_editElectrFence_name = "名稱"
+let str_editElectrFence_colorName = "顏色"
 let str_editElectrFence_customFenceNamePrefix = "電子圍籬 - "
 let str_editElectrFence_finish = "完成"
 

@@ -11,11 +11,19 @@ import UIKit
 class EditElectrFenceViewController: UIViewController {
     
     // MARK: - IBOutlet
-    
+    @IBOutlet weak var customElectrFenceTitle: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var colorLabel: UILabel!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var finishImage: UIImageView!
     @IBOutlet weak var finishButton: UIButton!
     
-    @IBOutlet weak var customElectrFenceTitle: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    // MARK: - Properties
+    
+    var tableViewDelegate: EditElectrFenceViewControllerTableViewDelegate?
     
     // MARK: - Life Cycle
     
@@ -24,7 +32,9 @@ class EditElectrFenceViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateDataSource()
         updateUI()
+        updateGesture()
     }
     
     // MARK: - Actions
@@ -62,10 +72,26 @@ class EditElectrFenceViewController: UIViewController {
 // MARK: - Private Methods
 
 extension EditElectrFenceViewController {
+    private func updateDataSource() {
+        tableViewDelegate = EditElectrFenceViewControllerTableViewDelegate(editElectrFenceViewController: self, tableView: tableView)
+        
+        nameTextField.delegate = self
+    }
     
     private func updateUI() {
+        nameLabel.text = str_editElectrFence_name
+        colorLabel.text = str_editElectrFence_colorName
         customElectrFenceTitle.text = str_editElectrFence_customFenceNamePrefix + "圍籬1"
         finishButton.setTitle(str_editElectrFence_finish, for: .normal)
+        
+        tableViewDelegate?.reloadTestData()
+        tableViewDelegate?.reloadUI()
+    }
+    
+    private func updateGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
+        tap.cancelsTouchesInView = false // 可以避免在view上加手勢, 點擊cell無法被trigger
+        self.view.addGestureRecognizer(tap)
     }
     
     private func updatefinishButtonImage(type: ButtonPressType) {
@@ -78,5 +104,22 @@ extension EditElectrFenceViewController {
             finishImage.image = UIImage(named: "btn_contact_normal")
             finishImage.contentMode = .scaleToFill
         }
+    }
+}
+
+// MARK: - Event Methods
+
+extension EditElectrFenceViewController {
+    @objc func dismissKeyBoard() {
+        self.view.endEditing(true)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+
+extension EditElectrFenceViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

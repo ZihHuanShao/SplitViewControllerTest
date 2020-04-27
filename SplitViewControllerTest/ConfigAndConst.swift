@@ -182,7 +182,21 @@ enum MapFunctionType: CaseIterable {
     case TEMPORARY_GROUP     // 臨時群組
 }
 
+enum ElectrFenceBasicAlarmType: CaseIterable {
+    case INTERNAL_ALARM_TARGET    // 內部通報對象
+    case AUTO_SWITCH_PREFER_GROUP // 自動切換優先群組
+    case PREFER_GROUP             // 優先群組
+}
 
+enum ElectrFenceEnterAlarmType: CaseIterable {
+    case ENTER_ALARM        // 進入警告
+    case PLAY_ALARM_VOICE   // 播放警示語音
+    case SELECT_ALARM_VOICE // 語音內容
+}
+
+enum ElectrFenceExitAlarmType: CaseIterable {
+    case EXUT_ALARM // 離開警告
+}
 
 // struct
 struct GroupInfo {

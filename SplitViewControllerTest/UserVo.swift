@@ -25,6 +25,10 @@ class GroupVo {
         self.monitorState = monitorState
         self.isSelected = isSelected
     }
+    
+    convenience init(name: String?) {
+        self.init(name: name, count: 0, imageName:"", desc: "", monitorState: true, isSelected: true)
+    }
 }
 
 class MemberVo {
@@ -88,5 +92,36 @@ class SelectedMemberVo {
     init(tableRowIndex: Int?, memberVo: MemberVo?) {
         self.tableRowIndex = tableRowIndex
         self.memberVo = memberVo
+    }
+}
+
+class ElectrFenceVo {
+    var title: String?
+    var color: UInt? = 0xFF0000 // default red color
+
+    var notifyTarget: MemberVo?
+    var enableAutoSwitchPreferGroup = Bool()
+    var preferGroup: GroupVo?
+    
+    var enableEnterAlarm = Bool()
+    var enablePlayEnterAlarmVoice = Bool()
+    var enterAlarmVoice: String?
+    
+    var enableExitAlarm = Bool()
+    var enablePlayExitAlarmVoice = Bool()
+    var exitAlarmVoice: String?
+    
+    init(title: String?, color: UInt?, notifyTarget: MemberVo?, enableAutoSwitchPreferGroup: Bool, preferGroup: GroupVo?, enableEnterAlarm: Bool, enablePlayEnterAlarmVoice: Bool, enterAlarmVoice: String?, enableExitAlarm: Bool, enablePlayExitAlarmVoice: Bool, exitAlarmVoice: String) {
+        self.title = title
+        self.color = color
+        self.notifyTarget = notifyTarget
+        self.enableAutoSwitchPreferGroup = enableAutoSwitchPreferGroup
+        self.preferGroup = preferGroup
+        self.enableEnterAlarm = enableEnterAlarm
+        self.enablePlayEnterAlarmVoice = enablePlayEnterAlarmVoice
+        self.enterAlarmVoice = enterAlarmVoice
+        self.enableExitAlarm = enableExitAlarm
+        self.enablePlayExitAlarmVoice = enablePlayExitAlarmVoice
+        self.exitAlarmVoice = exitAlarmVoice
     }
 }
