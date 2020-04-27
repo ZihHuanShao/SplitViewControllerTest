@@ -82,7 +82,8 @@ extension EditElectrFenceViewControllerTableViewDelegate {
 
 extension EditElectrFenceViewControllerTableViewDelegate: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+//        return 3
+        return ElectrFenceAllAlarmType.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
