@@ -17,6 +17,8 @@ class EditElectrFenceViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var finishImage: UIImageView!
     @IBOutlet weak var finishButton: UIButton!
+    @IBOutlet weak var colorBarBackgroundView: UIView!
+    @IBOutlet weak var colorBarButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -55,6 +57,9 @@ class EditElectrFenceViewController: UIViewController {
         updatefinishButtonImage(type: .AWAY)
     }
     
+    @IBAction func colorBarButtonPressed(_ sender: UIButton) {
+        print("colorBarButtonPressed")
+    }
     
     
     /*
@@ -83,6 +88,11 @@ extension EditElectrFenceViewController {
         colorLabel.text = str_editElectrFence_colorName
         customElectrFenceTitle.text = str_editElectrFence_customFenceNamePrefix + "圍籬1"
         finishButton.setTitle(str_editElectrFence_finish, for: .normal)
+        
+        colorBarBackgroundView.layer.cornerRadius = 5
+        colorBarBackgroundView.clipsToBounds = true
+        colorBarButton.layer.cornerRadius = 5
+        colorBarButton.clipsToBounds = true
         
         tableViewDelegate?.reloadTestData()
         tableViewDelegate?.reloadUI()
