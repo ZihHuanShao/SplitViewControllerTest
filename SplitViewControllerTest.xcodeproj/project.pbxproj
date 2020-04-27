@@ -396,9 +396,9 @@
 			children = (
 				4E8347EE244C9DF000298AF9 /* MapViewController.swift */,
 				D0566BFA244E88B500B127AF /* ElectrFenceViewController.swift */,
-				D04383EA24566C9700B54F08 /* EditElectrFenceViewController.swift */,
 				D071F8BE24501EF100C7C372 /* RealTimePositioningViewController.swift */,
 				D071F8BA2450150800C7C372 /* TemporaryGroupViewController.swift */,
+				D04383EA24566C9700B54F08 /* EditElectrFenceViewController.swift */,
 				D0701259244D397900B4080B /* GoogleMapViewController.swift */,
 				D0701261244D45AF00B4080B /* Delegate */,
 			);

@@ -41,7 +41,7 @@ class DetailViewController: UIViewController {
     // [MAP related]
     
     // 目前所點擊的類型 (電子圍籬中的新增電子圍籬/ )
-    fileprivate var mapTapType = 0
+    fileprivate var mapTapType = ShowMapSegueType.NONE
     
     
     // MARK: - Life Cycle
@@ -93,6 +93,10 @@ extension DetailViewController {
     
     func setPttTabSelected(type: ShowPttSegueType) {
         pttTapType = type
+    }
+    
+    func setMapTabSelected(type: ShowMapSegueType) {
+        mapTapType = type
     }
     
     func setMainMenuType(_ mainMenuType: MainMenuType) {
@@ -175,9 +179,22 @@ extension DetailViewController {
     }
     
     private func showMapView() {
-        let googleMapViewController = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "GoogleMapViewController") as! GoogleMapViewController
+        switch mapTapType {
+    
+        case .MAP_SELECT:
+            let googleMapViewController = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "GoogleMapViewController") as! GoogleMapViewController
+            
+            setChildView(viewController: googleMapViewController)
+            
+        case .EDIT_MAP_SELECT:
+            let editElectrFenceViewController = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "EditElectrFenceViewController") as! EditElectrFenceViewController
+            
+            setChildView(viewController: editElectrFenceViewController)
+            
+        case .NONE:
+            break
+        }
         
-        setChildView(viewController: googleMapViewController)
     }
     
     private func showVideoView() {
@@ -222,12 +239,28 @@ extension DetailViewController {
             }
             
         case .MAP:
-            let googleMapViewController = viewController as! GoogleMapViewController
-            self.addChild(googleMapViewController)
-            googleMapViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-            self.containerView.addSubview(googleMapViewController.view)
+            switch mapTapType {
+                
+            case .MAP_SELECT:
+                let googleMapViewController = viewController as! GoogleMapViewController
+                self.addChild(googleMapViewController)
+                googleMapViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+                self.containerView.addSubview(googleMapViewController.view)
+                
+                googleMapViewController.didMove(toParent: self)
+                
+            case .EDIT_MAP_SELECT:
+                let editElectrFenceViewController = viewController as! EditElectrFenceViewController
+                self.addChild(editElectrFenceViewController)
+                editElectrFenceViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+                self.containerView.addSubview(editElectrFenceViewController.view)
+                
+                editElectrFenceViewController.didMove(toParent: self)
+                
+            case .NONE:
+                break
+            }
             
-            googleMapViewController.didMove(toParent: self)
             
         case .VIDEO:
             break

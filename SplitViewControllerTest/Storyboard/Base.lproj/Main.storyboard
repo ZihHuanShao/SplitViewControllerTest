@@ -516,17 +516,12 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_contact_normal.png" translatesAutoresizingMaskIntoConstraints="NO" id="4rs-yJ-gYk">
                                         <rect key="frame" x="0.0" y="0.0" width="230" height="40"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="群組調度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umx-el-Rrt" userLabel="Create Group Title">
-                                        <rect key="frame" x="74" y="4" width="82" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="wmG-Rb-5I8"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OiI-Lb-rPc">
                                         <rect key="frame" x="0.0" y="0.0" width="230" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="群組調度">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="groupDispatchButtonTouchDown:" destination="x0S-5a-se8" eventType="touchDown" id="zoO-Vt-dQp"/>
                                             <action selector="groupDispatchButtonTouchDragExit:" destination="x0S-5a-se8" eventType="touchDragExit" id="45U-qO-8nM"/>
@@ -539,13 +534,11 @@
                                     <constraint firstAttribute="trailing" secondItem="OiI-Lb-rPc" secondAttribute="trailing" id="0j1-ND-aXW"/>
                                     <constraint firstItem="4rs-yJ-gYk" firstAttribute="leading" secondItem="ddf-KN-WWa" secondAttribute="leading" id="2Xu-Ld-CgG"/>
                                     <constraint firstItem="4rs-yJ-gYk" firstAttribute="top" secondItem="ddf-KN-WWa" secondAttribute="top" id="6ht-xs-Jsq"/>
-                                    <constraint firstItem="umx-el-Rrt" firstAttribute="centerY" secondItem="ddf-KN-WWa" secondAttribute="centerY" id="7Bi-sG-X2G"/>
                                     <constraint firstAttribute="width" constant="230" id="Aix-Mc-eN0"/>
                                     <constraint firstAttribute="trailing" secondItem="4rs-yJ-gYk" secondAttribute="trailing" id="Lv2-rj-jaa"/>
                                     <constraint firstItem="OiI-Lb-rPc" firstAttribute="top" secondItem="ddf-KN-WWa" secondAttribute="top" id="No7-aH-6Fs"/>
                                     <constraint firstItem="OiI-Lb-rPc" firstAttribute="leading" secondItem="ddf-KN-WWa" secondAttribute="leading" id="Oh7-8F-2PA"/>
                                     <constraint firstAttribute="bottom" secondItem="OiI-Lb-rPc" secondAttribute="bottom" id="Y2L-lf-qk3"/>
-                                    <constraint firstItem="umx-el-Rrt" firstAttribute="centerX" secondItem="ddf-KN-WWa" secondAttribute="centerX" id="a4M-Ne-wE0"/>
                                     <constraint firstAttribute="bottom" secondItem="4rs-yJ-gYk" secondAttribute="bottom" id="lvY-IS-mrN"/>
                                     <constraint firstAttribute="height" constant="40" id="wQA-am-bCE"/>
                                 </constraints>
@@ -574,8 +567,8 @@
                         <outlet property="createGroupTrailingConstraint" destination="593-NW-WhQ" id="bmX-YB-13J"/>
                         <outlet property="createGroupWidthConstraint" destination="Hcb-xG-hOf" id="SxC-xV-jht"/>
                         <outlet property="createGroupoView" destination="oGp-r0-P3W" id="jcm-cF-olp"/>
-                        <outlet property="groupDispatchImage" destination="4rs-yJ-gYk" id="7q2-qH-2Pw"/>
-                        <outlet property="groupDispatchTitleLabel" destination="umx-el-Rrt" id="7Zl-cE-dnj"/>
+                        <outlet property="groupDispatchButton" destination="OiI-Lb-rPc" id="dC7-FO-J6j"/>
+                        <outlet property="groupDispatchButtonImage" destination="4rs-yJ-gYk" id="9Kn-Yk-4aD"/>
                         <outlet property="groupDispatchView" destination="ddf-KN-WWa" id="sOQ-w1-oCj"/>
                         <outlet property="searchTextField" destination="20c-mS-abB" id="UAd-qo-xTf"/>
                         <outlet property="tabBottomLeftLine" destination="tK6-Wp-bbP" id="TqK-X7-i9a"/>
@@ -589,7 +582,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XUC-vV-ZfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1245" y="-872"/>
+            <point key="canvasLocation" x="1244.53125" y="-872.65625"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="BNw-kX-7ww">

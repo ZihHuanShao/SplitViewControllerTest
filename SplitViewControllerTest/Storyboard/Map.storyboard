@@ -492,8 +492,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ynL-aB-hOv" userLabel="Top Content View">
                                         <rect key="frame" x="8" y="8" width="767" height="39"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="電子圍籬 － 圍籬1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dH-7R-I01">
-                                                <rect key="frame" x="0.0" y="6" width="176" height="27"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="電子圍籬" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dH-7R-I01">
+                                                <rect key="frame" x="0.0" y="0.0" width="663" height="39"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -538,6 +538,9 @@
                                             <constraint firstAttribute="trailing" secondItem="5AC-Vh-nkS" secondAttribute="trailing" id="QSm-Xc-GVm"/>
                                             <constraint firstItem="5AC-Vh-nkS" firstAttribute="top" secondItem="ynL-aB-hOv" secondAttribute="top" id="SKx-YE-AwJ"/>
                                             <constraint firstItem="2dH-7R-I01" firstAttribute="leading" secondItem="ynL-aB-hOv" secondAttribute="leading" id="W6T-CW-KwJ"/>
+                                            <constraint firstItem="2dH-7R-I01" firstAttribute="top" secondItem="ynL-aB-hOv" secondAttribute="top" id="chk-jg-ExL"/>
+                                            <constraint firstItem="5AC-Vh-nkS" firstAttribute="leading" secondItem="2dH-7R-I01" secondAttribute="trailing" constant="16" id="f14-z4-ghu"/>
+                                            <constraint firstAttribute="bottom" secondItem="2dH-7R-I01" secondAttribute="bottom" id="vlB-V2-xUG"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9se-5L-yhK" userLabel="Top Bottom Line">

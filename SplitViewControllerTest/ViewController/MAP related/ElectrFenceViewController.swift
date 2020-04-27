@@ -17,7 +17,6 @@ class ElectrFenceViewController: UIViewController {
     @IBOutlet weak var functionName: UILabel!
     @IBOutlet weak var createElectrFenceButtonImage: UIImageView!
     @IBOutlet weak var createElectrFenceButton: UIButton!
-    @IBOutlet weak var createElectrFenceNameLabel: UILabel!
     
     // MARK: - Properties
     
@@ -61,6 +60,7 @@ class ElectrFenceViewController: UIViewController {
     }
     
     @IBAction func createElectrFenceButtonTouchUpInside(_ sender: UIButton) {
+        delegate?.electrFenceDidTapEdit()
         updateCreateElectrFenceButtonImage(type: .AWAY)
     }
 }
@@ -111,4 +111,5 @@ extension ElectrFenceViewController {
 
 protocol ElectrFenceViewControllerDelegate {
     func electrFenceDidTapBack()
+    func electrFenceDidTapEdit()
 }

@@ -30,9 +30,9 @@ class PttViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // Group Dispatch Field
-    @IBOutlet weak var groupDispatchTitleLabel: UILabel!
+    @IBOutlet weak var groupDispatchButton: UIButton!
     @IBOutlet weak var groupDispatchView: UIView!
-    @IBOutlet weak var groupDispatchImage: UIImageView!
+    @IBOutlet weak var groupDispatchButtonImage: UIImageView!
     
     
     // MARK: - Properties
@@ -264,7 +264,7 @@ extension PttViewController {
         tabBottomRightLine.isHidden = true
         
         // CreateGroupView Field
-        groupDispatchTitleLabel.text = str_contactTab_group_dispatch
+        groupDispatchButton.setTitle(str_contactTab_group_dispatch, for: .normal)
     }
     
     private func updateGesture() {
@@ -343,10 +343,10 @@ extension PttViewController {
     private func updateGroupDispatchButtonImage(type: ButtonPressType) {
         switch type {
         case .PRESSED:
-            groupDispatchImage.image = UIImage(named: "btn_contact_pressed")
+            groupDispatchButtonImage.image = UIImage(named: "btn_contact_pressed")
             
         case .AWAY:
-            groupDispatchImage.image = UIImage(named: "btn_contact_normal")
+            groupDispatchButtonImage.image = UIImage(named: "btn_contact_normal")
         }
     }
 }

@@ -170,8 +170,8 @@ enum MemberProfileType: CaseIterable {
 
 // [Map menu]
 enum ShowMapSegueType: Int {
-    case MAP_SELECT      = 0
-    case EDIT_MAP_SELECT = 1
+    case MAP_SELECT      = 0 // (電子圍籬/ 即時定位/ 臨時群組)
+    case EDIT_MAP_SELECT = 1 // (電子圍籬中的「編輯」)
     
     case NONE = 99
 }

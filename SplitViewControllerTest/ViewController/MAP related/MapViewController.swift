@@ -19,6 +19,7 @@ class MapViewController: UIViewController {
     
     fileprivate var tableViewDelegate: MapViewControllerTableViewDelegate?
     fileprivate var mainMenuSelectedRowIndex: Int?
+    fileprivate var tapType = ShowMapSegueType.NONE
     
     // MARK: - Life Cycle
     
@@ -48,6 +49,8 @@ class MapViewController: UIViewController {
             if let rowIndex = mainMenuSelectedRowIndex {
                 dVC?.setMainMenuSelectedRowIndex(rowIndex)
             }
+            
+            dVC?.setMapTabSelected(type: tapType)
         }
     }
 }
@@ -66,6 +69,12 @@ extension MapViewController {
     private func updateDataSource() {
         tableViewDelegate = MapViewControllerTableViewDelegate(mapViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: MAP_TABLE_VIEW_CELL, cellId: MAP_TABLE_VIEW_CELL)
+        
+        tapType = .MAP_SELECT
+    }
+    
+    private func setTapType(type: ShowMapSegueType) {
+        tapType = type
     }
     
     private func updateUI() {
@@ -150,6 +159,12 @@ extension MapViewController: ElectrFenceViewControllerDelegate {
     func electrFenceDidTapBack() {
         returnBack()
     }
+    
+    func electrFenceDidTapEdit() {
+        setTapType(type: .EDIT_MAP_SELECT)
+        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
+    }
+    
 }
 
 // MARK: - RealTimePositioningViewControllerDelegate

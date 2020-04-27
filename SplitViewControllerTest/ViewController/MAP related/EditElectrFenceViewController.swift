@@ -64,7 +64,8 @@ class EditElectrFenceViewController: UIViewController {
 extension EditElectrFenceViewController {
     
     private func updateUI() {
-        finishButton.setTitle("電子圍籬 - 圍籬1", for: .normal)
+        customElectrFenceTitle.text = "電子圍籬 - 圍籬1"
+        finishButton.setTitle(str_editElectrFence_finish, for: .normal)
     }
     
     private func updatefinishButtonImage(type: ButtonPressType) {
