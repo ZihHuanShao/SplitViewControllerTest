@@ -41,7 +41,7 @@ class MapViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //showDetailViewController
+        //showPttSegue
         if segue.identifier == SHOW_MAP_SEGUE {
             let dVC = segue.destination as? DetailViewController
             dVC?.setMainMenuType(.MAP)

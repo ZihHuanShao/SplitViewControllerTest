@@ -37,8 +37,8 @@ class PttViewController: UIViewController {
     
     // MARK: - Properties
     
-    fileprivate var tapType = ShowDetailViewControllerType.NONE
-    fileprivate var tabSelected = TabType.NONE
+    fileprivate var tapType = ShowPttType.NONE
+    fileprivate var tabSelected = PttTabType.NONE
     fileprivate var tableViewDelegate: PttViewControllerTableViewDelegate?
     fileprivate var mainMenuSelectedRowIndex: Int?
     
@@ -98,7 +98,7 @@ class PttViewController: UIViewController {
     @IBAction func createGroupButtonPressed(_ sender: UIButton) {
 //        print("createGroupButtonPressed pressed")
         tapType = .TAB_GROUP_CREATE_GROUP
-        performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: self)
+        performSegue(withIdentifier: SHOW_PTT_SEGUE, sender: self)
     }
     
     
@@ -133,13 +133,17 @@ class PttViewController: UIViewController {
     // 因此目前做法: 定義一protocol用來觸發prepareforsegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == SHOW_DETAIL_VIEW_CONTROLLER {
+        if segue.identifier == SHOW_PTT_SEGUE {
             let dVC = segue.destination as? DetailViewController
             dVC?.setMainMenuType(.PTT)
+            
+            // 若點擊「群組」或「聯絡人」才會有值
             if let rowIndex = mainMenuSelectedRowIndex {
                 dVC?.setMainMenuSelectedRowIndex(rowIndex)
             }
-            dVC?.setTabSelected(type: tapType)
+            
+            // 點擊的類型是哪一種(群組/ 群組中的「建立群組」/ 聯絡人)
+            dVC?.setPttTabSelected(type: tapType)
             
             var rowIndex = Int()
             
@@ -361,7 +365,7 @@ extension PttViewController {
             // 若點擊的監聽按鈕為當前cell的監聽按鈕, 則更新DetailViewController畫面
             if let _currentTableCellRowIndex = currentTableCellRowIndex {
                 if _currentTableCellRowIndex == tableRowIndex {
-                    performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: tableRowIndex)
+                    performSegue(withIdentifier: SHOW_PTT_SEGUE, sender: tableRowIndex)
                 }
             }
            
@@ -399,9 +403,9 @@ extension PttViewController: UITextFieldDelegate {
 // MARK: - MasterViewTableViewExtendDelegate
 
 extension PttViewController: PttViewControllerTableViewDelegateExtend {
-    func activateSegue(tapType: ShowDetailViewControllerType) {
+    func activateSegue(tapType: ShowPttType) {
         self.tapType = tapType
-        performSegue(withIdentifier: SHOW_DETAIL_VIEW_CONTROLLER, sender: self)
+        performSegue(withIdentifier: SHOW_PTT_SEGUE, sender: self)
     }
     
     func setCurrentCellRowIndex(_ rowIndex: Int) {

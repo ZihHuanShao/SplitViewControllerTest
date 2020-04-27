@@ -16,6 +16,7 @@ class ElectrFenceViewController: UIViewController {
     @IBOutlet weak var backButtonImage: UIImageView!
     @IBOutlet weak var functionName: UILabel!
     @IBOutlet weak var createElectrFenceButtonImage: UIImageView!
+    @IBOutlet weak var createElectrFenceButton: UIButton!
     @IBOutlet weak var createElectrFenceNameLabel: UILabel!
     
     // MARK: - Properties
@@ -72,7 +73,7 @@ extension ElectrFenceViewController {
     }
     
     private func updateUI() {
-        createElectrFenceNameLabel.text = str_ElectrFence_createElectrFence
+        createElectrFenceButton.setTitle(str_ElectrFence_createElectrFence, for: .normal)
         functionName.text = str_map_electrFence
         tableViewDelegate?.reloadUI()
     }

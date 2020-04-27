@@ -10,6 +10,7 @@
 		4E8347ED244C4CBF00298AF9 /* PttViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8347EC244C4CBF00298AF9 /* PttViewController.swift */; };
 		4E8347EF244C9DF000298AF9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8347EE244C9DF000298AF9 /* MapViewController.swift */; };
 		7EBCFD4689B8DDF555FD16C9 /* Pods_SplitViewControllerTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6F065087E1BC1A143062444 /* Pods_SplitViewControllerTest.framework */; };
+		D04383EB24566C9700B54F08 /* EditElectrFenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04383EA24566C9700B54F08 /* EditElectrFenceViewController.swift */; };
 		D0566BFB244E88B500B127AF /* ElectrFenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0566BFA244E88B500B127AF /* ElectrFenceViewController.swift */; };
 		D0566BFD244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0566BFC244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift */; };
 		D067042A2452D9F500E5F299 /* bg_groupset_alert1.png in Resources */ = {isa = PBXBuildFile; fileRef = D06704262452D9F500E5F299 /* bg_groupset_alert1.png */; };
@@ -179,6 +180,7 @@
 		4E8347EC244C4CBF00298AF9 /* PttViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PttViewController.swift; sourceTree = "<group>"; };
 		4E8347EE244C9DF000298AF9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5513D85D95B2822F5016DD32 /* Pods-SplitViewControllerTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitViewControllerTest.debug.xcconfig"; path = "Target Support Files/Pods-SplitViewControllerTest/Pods-SplitViewControllerTest.debug.xcconfig"; sourceTree = "<group>"; };
+		D04383EA24566C9700B54F08 /* EditElectrFenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditElectrFenceViewController.swift; sourceTree = "<group>"; };
 		D0566BFA244E88B500B127AF /* ElectrFenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectrFenceViewController.swift; sourceTree = "<group>"; };
 		D0566BFC244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectrFenceViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		D06704262452D9F500E5F299 /* bg_groupset_alert1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_groupset_alert1.png; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 			children = (
 				4E8347EE244C9DF000298AF9 /* MapViewController.swift */,
 				D0566BFA244E88B500B127AF /* ElectrFenceViewController.swift */,
+				D04383EA24566C9700B54F08 /* EditElectrFenceViewController.swift */,
 				D071F8BE24501EF100C7C372 /* RealTimePositioningViewController.swift */,
 				D071F8BA2450150800C7C372 /* TemporaryGroupViewController.swift */,
 				D0701259244D397900B4080B /* GoogleMapViewController.swift */,
@@ -905,6 +908,7 @@
 				D06FC91F24519D180029909A /* GroupViewControllerGroupSettingInfoTableViewDelegate.swift in Sources */,
 				F21E21F42431C7D3001AE003 /* GroupCollectionViewCell.swift in Sources */,
 				D0701266244D8DE800B4080B /* MapTableViewCell.swift in Sources */,
+				D04383EB24566C9700B54F08 /* EditElectrFenceViewController.swift in Sources */,
 				F22F8B51242DABDB00CB08D5 /* MainMenuCollectionViewCell.swift in Sources */,
 				D0566BFD244E88E300B127AF /* ElectrFenceViewControllerTableViewDelegate.swift in Sources */,
 				D06FC9222451A0000029909A /* GroupSettingInfoTableViewCell.swift in Sources */,

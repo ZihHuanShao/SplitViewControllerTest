@@ -54,7 +54,7 @@ let ADD_MEMBER_VIEW_CONTROLLER = "AddMemberViewController"
 let GROUP_DISPATCH_VIEW_CONTROLLER = "GroupDispatchViewController"
 
 // Segue
-let SHOW_DETAIL_VIEW_CONTROLLER = "showDetailViewController"
+let SHOW_PTT_SEGUE = "showPttSegue"
 let SHOW_MAP_SEGUE = "showMapSegue"
 
 // Cell
@@ -120,7 +120,7 @@ enum MainMenuType: Int {
     case NONE   = 99
 }
 
-enum ShowDetailViewControllerType: Int {
+enum ShowPttType: Int {
     case TAB_GROUP_SELECT  = 0
     case TAB_MEMBER_SELECT = 1
     case TAB_GROUP_CREATE_GROUP = 2
@@ -128,7 +128,7 @@ enum ShowDetailViewControllerType: Int {
     case NONE = 99
 }
 
-enum TabType: Int {
+enum PttTabType: Int {
     case GROUP  = 0
     case MEMBER = 1
     

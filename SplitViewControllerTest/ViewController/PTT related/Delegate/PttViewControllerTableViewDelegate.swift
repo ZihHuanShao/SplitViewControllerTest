@@ -41,12 +41,12 @@ class PttViewControllerTableViewDelegate: NSObject {
     fileprivate var groupsVo  = [GroupVo]()
     fileprivate var membersVo = [MemberVo]()
     
-    fileprivate var tabType = TabType.NONE
+    fileprivate var tabType = PttTabType.NONE
     fileprivate var preSelectedColorIndex: Int?
     
     // MARK: - initializer
     
-    init(pttViewController: PttViewController, tableView: UITableView, type: TabType) {
+    init(pttViewController: PttViewController, tableView: UITableView, type: PttTabType) {
         super.init()
         self.viewController = pttViewController
         self.tableView = tableView
@@ -282,6 +282,6 @@ extension PttViewControllerTableViewDelegate: UITableViewDelegate {
 // MARK: - Protocol
 
 protocol PttViewControllerTableViewDelegateExtend: NSObject {
-    func activateSegue(tapType: ShowDetailViewControllerType)
+    func activateSegue(tapType: ShowPttType)
     func setCurrentCellRowIndex(_ rowIndex: Int)
 }

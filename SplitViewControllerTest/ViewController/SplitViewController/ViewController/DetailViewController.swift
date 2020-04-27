@@ -31,12 +31,17 @@ class DetailViewController: UIViewController {
     
     // [PTT related]
     
-    // 目前所點擊的類型 (群組/ 群組中的建立群組/ 聯絡人)
-    fileprivate var tapType = ShowDetailViewControllerType.NONE
+    // 目前所點擊的類型 (群組/ 群組中的「建立群組」/ 聯絡人)
+    fileprivate var pttTapType = ShowPttType.NONE
     
     fileprivate var groupVo:  GroupVo?
     
     fileprivate var memberVo: MemberVo?
+    
+    // [MAP related]
+    
+    // 目前所點擊的類型 (電子圍籬中的新增電子圍籬/ )
+    fileprivate var mapTapType = 0
     
     
     // MARK: - Life Cycle
@@ -86,8 +91,8 @@ extension DetailViewController {
         self.memberVo = memberVo
     }
     
-    func setTabSelected(type: ShowDetailViewControllerType) {
-        tapType = type
+    func setPttTabSelected(type: ShowPttType) {
+        pttTapType = type
     }
     
     func setMainMenuType(_ mainMenuType: MainMenuType) {
@@ -142,7 +147,7 @@ extension DetailViewController {
     }
     
     private func showPttView() {
-        switch tapType {
+        switch pttTapType {
         case .TAB_GROUP_SELECT:
             let groupViewController = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
             
@@ -186,7 +191,7 @@ extension DetailViewController {
     private func setChildView(viewController: UIViewController) {
         switch self.mainMenuType {
         case .PTT:
-            switch tapType {
+            switch pttTapType {
             case .TAB_GROUP_SELECT:
                 let groupViewController = viewController as! GroupViewController
                 self.addChild(groupViewController)
