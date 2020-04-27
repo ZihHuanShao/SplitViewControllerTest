@@ -516,14 +516,6 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_contact_normal.png" translatesAutoresizingMaskIntoConstraints="NO" id="4rs-yJ-gYk">
                                         <rect key="frame" x="0.0" y="0.0" width="230" height="40"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OiI-Lb-rPc">
-                                        <rect key="frame" x="0.0" y="0.0" width="230" height="40"/>
-                                        <connections>
-                                            <action selector="groupDispatchButtonTouchDown:" destination="x0S-5a-se8" eventType="touchDown" id="zoO-Vt-dQp"/>
-                                            <action selector="groupDispatchButtonTouchDragExit:" destination="x0S-5a-se8" eventType="touchDragExit" id="45U-qO-8nM"/>
-                                            <action selector="groupDispatchButtonTouchUpInside:" destination="x0S-5a-se8" eventType="touchUpInside" id="Rkt-4X-MTk"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="群組調度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umx-el-Rrt" userLabel="Create Group Title">
                                         <rect key="frame" x="74" y="4" width="82" height="32"/>
                                         <constraints>
@@ -533,6 +525,14 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OiI-Lb-rPc">
+                                        <rect key="frame" x="0.0" y="0.0" width="230" height="40"/>
+                                        <connections>
+                                            <action selector="groupDispatchButtonTouchDown:" destination="x0S-5a-se8" eventType="touchDown" id="zoO-Vt-dQp"/>
+                                            <action selector="groupDispatchButtonTouchDragExit:" destination="x0S-5a-se8" eventType="touchDragExit" id="45U-qO-8nM"/>
+                                            <action selector="groupDispatchButtonTouchUpInside:" destination="x0S-5a-se8" eventType="touchUpInside" id="Rkt-4X-MTk"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -678,7 +678,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ELf-fW-w15"/>
+        <segue reference="hFN-tr-p0g"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bg_menu.png" width="784" height="64"/>

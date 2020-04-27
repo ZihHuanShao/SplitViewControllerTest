@@ -93,6 +93,45 @@
                                     <constraint firstItem="g2I-mB-6Wp" firstAttribute="top" secondItem="0I8-l1-ThD" secondAttribute="top" constant="8" id="v2E-c1-weI"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPs-HZ-CQg" userLabel="Create Electr Fence View">
+                                <rect key="frame" x="5" y="720" width="230" height="40"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_contact_normal.png" translatesAutoresizingMaskIntoConstraints="NO" id="kLJ-hP-APF">
+                                        <rect key="frame" x="0.0" y="0.0" width="230" height="40"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增電子圍籬" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGR-g6-n1r">
+                                        <rect key="frame" x="0.0" y="0.0" width="230" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQz-ww-VIJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="230" height="40"/>
+                                        <connections>
+                                            <action selector="createElectrFenceButtonTouchDown:" destination="u7Z-fo-xtI" eventType="touchDown" id="lRh-f8-d3R"/>
+                                            <action selector="createElectrFenceButtonTouchDragExit:" destination="u7Z-fo-xtI" eventType="touchDragExit" id="S7L-LR-CGo"/>
+                                            <action selector="createElectrFenceButtonTouchUpInside:" destination="u7Z-fo-xtI" eventType="touchUpInside" id="kAV-xq-OyM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="IQz-ww-VIJ" firstAttribute="leading" secondItem="dPs-HZ-CQg" secondAttribute="leading" id="1L7-8n-GOy"/>
+                                    <constraint firstAttribute="trailing" secondItem="IQz-ww-VIJ" secondAttribute="trailing" id="ATS-fP-CqP"/>
+                                    <constraint firstAttribute="trailing" secondItem="WGR-g6-n1r" secondAttribute="trailing" id="FXn-xl-jOM"/>
+                                    <constraint firstAttribute="trailing" secondItem="kLJ-hP-APF" secondAttribute="trailing" id="GVl-0q-yhG"/>
+                                    <constraint firstAttribute="bottom" secondItem="WGR-g6-n1r" secondAttribute="bottom" id="QUZ-Ei-9UK"/>
+                                    <constraint firstItem="kLJ-hP-APF" firstAttribute="leading" secondItem="dPs-HZ-CQg" secondAttribute="leading" id="R1D-RB-TY6"/>
+                                    <constraint firstAttribute="height" constant="40" id="aaU-zX-xZQ"/>
+                                    <constraint firstItem="IQz-ww-VIJ" firstAttribute="top" secondItem="dPs-HZ-CQg" secondAttribute="top" id="bTR-fj-aVG"/>
+                                    <constraint firstAttribute="bottom" secondItem="IQz-ww-VIJ" secondAttribute="bottom" id="d0e-mM-Wab"/>
+                                    <constraint firstItem="kLJ-hP-APF" firstAttribute="top" secondItem="dPs-HZ-CQg" secondAttribute="top" id="glS-u0-Fwd"/>
+                                    <constraint firstItem="WGR-g6-n1r" firstAttribute="leading" secondItem="dPs-HZ-CQg" secondAttribute="leading" id="rHy-35-qlU"/>
+                                    <constraint firstAttribute="bottom" secondItem="kLJ-hP-APF" secondAttribute="bottom" id="sJ5-V8-fZs"/>
+                                    <constraint firstAttribute="width" constant="230" id="vhU-iQ-1iM"/>
+                                    <constraint firstItem="WGR-g6-n1r" firstAttribute="top" secondItem="dPs-HZ-CQg" secondAttribute="top" id="xzQ-01-xx5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -102,6 +141,8 @@
                             <constraint firstItem="jPU-bq-jt5" firstAttribute="leading" secondItem="f95-aB-cT8" secondAttribute="leading" id="XUr-IP-OWz"/>
                             <constraint firstItem="0I8-l1-ThD" firstAttribute="top" secondItem="f95-aB-cT8" secondAttribute="top" id="agQ-p2-tcX"/>
                             <constraint firstItem="0I8-l1-ThD" firstAttribute="leading" secondItem="f95-aB-cT8" secondAttribute="leading" id="cX4-eb-Dll"/>
+                            <constraint firstItem="f95-aB-cT8" firstAttribute="bottom" secondItem="dPs-HZ-CQg" secondAttribute="bottom" constant="8" id="p7c-4U-wM7"/>
+                            <constraint firstItem="dPs-HZ-CQg" firstAttribute="centerX" secondItem="aiK-D0-CVd" secondAttribute="centerX" id="q9T-cQ-rQm"/>
                             <constraint firstItem="f95-aB-cT8" firstAttribute="bottom" secondItem="jPU-bq-jt5" secondAttribute="bottom" id="xV3-kq-3PN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="f95-aB-cT8"/>
@@ -109,6 +150,8 @@
                     <size key="freeformSize" width="240" height="768"/>
                     <connections>
                         <outlet property="backButtonImage" destination="rfD-g0-6LU" id="MVa-cy-hih"/>
+                        <outlet property="createElectrFenceButtonImage" destination="kLJ-hP-APF" id="Xuy-Z1-x4s"/>
+                        <outlet property="createElectrFenceNameLabel" destination="WGR-g6-n1r" id="a11-RU-x4Z"/>
                         <outlet property="functionName" destination="1AW-89-s4M" id="24r-AU-bIL"/>
                         <outlet property="tableView" destination="jPU-bq-jt5" id="c2e-E5-Xhg"/>
                     </connections>

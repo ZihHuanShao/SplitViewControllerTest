@@ -45,6 +45,9 @@ let str_map_electrFence = "電子圍籬"
 let str_map_realTimePositioning = "即時定位"
 let str_map_temporaryGroup = "臨時群組"
 
+// ElectrFenceViewController
+let str_ElectrFence_createElectrFence = "新增電子圍籬"
+
 // GroupViewController
 let str_group_monitorMode = "監聽模式"
 let str_group_monitorModeDesc = "接收到新訊息時，系統直接播放語音"

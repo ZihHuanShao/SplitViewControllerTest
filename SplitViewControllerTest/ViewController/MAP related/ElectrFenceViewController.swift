@@ -15,6 +15,8 @@ class ElectrFenceViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backButtonImage: UIImageView!
     @IBOutlet weak var functionName: UILabel!
+    @IBOutlet weak var createElectrFenceButtonImage: UIImageView!
+    @IBOutlet weak var createElectrFenceNameLabel: UILabel!
     
     // MARK: - Properties
     
@@ -44,6 +46,22 @@ class ElectrFenceViewController: UIViewController {
         delegate?.electrFenceDidTapBack()
     }
 
+    
+    //
+    // createElectrFence
+    //
+    
+    @IBAction func createElectrFenceButtonTouchDown(_ sender: UIButton) {
+        updateCreateElectrFenceButtonImage(type: .PRESSED)
+    }
+    
+    @IBAction func createElectrFenceButtonTouchDragExit(_ sender: UIButton) {
+        updateCreateElectrFenceButtonImage(type: .AWAY)
+    }
+    
+    @IBAction func createElectrFenceButtonTouchUpInside(_ sender: UIButton) {
+        updateCreateElectrFenceButtonImage(type: .AWAY)
+    }
 }
 
 // MARK: - Private Methods
@@ -54,6 +72,7 @@ extension ElectrFenceViewController {
     }
     
     private func updateUI() {
+        createElectrFenceNameLabel.text = str_ElectrFence_createElectrFence
         functionName.text = str_map_electrFence
         tableViewDelegate?.reloadUI()
     }
@@ -65,6 +84,16 @@ extension ElectrFenceViewController {
             
         case .AWAY:
             backButtonImage.image = UIImage(named: "btn_contact_normal")
+        }
+    }
+    
+    private func updateCreateElectrFenceButtonImage(type: ButtonPressType) {
+        switch type {
+        case .PRESSED:
+            createElectrFenceButtonImage.image = UIImage(named: "btn_contact_pressed")
+            
+        case .AWAY:
+            createElectrFenceButtonImage.image = UIImage(named: "btn_contact_normal")
         }
     }
 }
