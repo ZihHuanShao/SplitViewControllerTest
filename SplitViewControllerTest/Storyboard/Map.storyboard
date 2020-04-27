@@ -631,7 +631,7 @@
                                                 <rect key="frame" x="0.0" y="112" width="751" height="56"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="警告設定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnr-XQ-Ctb">
-                                                        <rect key="frame" x="16" y="16" width="82" height="24"/>
+                                                        <rect key="frame" x="16" y="32" width="82" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -640,8 +640,8 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56" id="8fL-JS-ZWJ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="lnr-XQ-Ctb" secondAttribute="bottom" id="PM3-dr-SJ6"/>
                                                     <constraint firstItem="lnr-XQ-Ctb" firstAttribute="leading" secondItem="aAC-gm-Hwh" secondAttribute="leading" constant="16" id="UCC-xW-bCP"/>
-                                                    <constraint firstItem="lnr-XQ-Ctb" firstAttribute="centerY" secondItem="aAC-gm-Hwh" secondAttribute="centerY" id="nmI-EN-59f"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Fh-Za-z4y" userLabel="Alarm Info View">
