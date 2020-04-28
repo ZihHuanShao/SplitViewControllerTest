@@ -13,7 +13,7 @@ import GoogleMaps
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var originalSplitVC: DispatchBoardSplitViewController?
+    var originalSplitVC: dp_DispatchBoardSplitViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -76,9 +76,9 @@ extension AppDelegate {
         
         var presentVC: UIViewController?
         
-        if let vc = viewController as? AddMemberViewController {
+        if let vc = viewController as? dp_AddMemberViewController {
             presentVC = vc
-        } else if let vc = viewController as? GroupDispatchViewController {
+        } else if let vc = viewController as? dp_GroupDispatchViewController {
             presentVC = vc
         }
         
@@ -109,26 +109,26 @@ extension AppDelegate {
 extension AppDelegate {
     func showGroupDispatchModal(groupsVo: [GroupVo]) {
         
-        let storyboard = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil)
-        let groupDispatchViewController = storyboard.instantiateViewController(withIdentifier: GROUP_DISPATCH_VIEW_CONTROLLER) as? GroupDispatchViewController
+        let storyboard = UIStoryboard(name: STORYBOARD_NAME_DP_GROUP, bundle: nil)
+        let dp_groupDispatchViewController = storyboard.instantiateViewController(withIdentifier: GROUP_DISPATCH_VIEW_CONTROLLER) as? dp_GroupDispatchViewController
         
-        groupDispatchViewController?.updateGroupsVo(groupsVo)
+        dp_groupDispatchViewController?.updateGroupsVo(groupsVo)
 
-        groupDispatchViewController?.modalPresentationStyle = .formSheet
+        dp_groupDispatchViewController?.modalPresentationStyle = .formSheet
         
-        showPresentView(viewController: groupDispatchViewController)
+        showPresentView(viewController: dp_groupDispatchViewController)
     }
     
     func showAddMemberModal(membersVo: [MemberVo]) {
          
-         let storyboard = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil)
-         let addMemberViewController = storyboard.instantiateViewController(withIdentifier: ADD_MEMBER_VIEW_CONTROLLER) as? AddMemberViewController
+         let storyboard = UIStoryboard(name: STORYBOARD_NAME_DP_GROUP, bundle: nil)
+         let dp_addMemberViewController = storyboard.instantiateViewController(withIdentifier: ADD_MEMBER_VIEW_CONTROLLER) as? dp_AddMemberViewController
          
-         addMemberViewController?.updateMembersVo(membersVo)
+         dp_addMemberViewController?.updateMembersVo(membersVo)
 
-         addMemberViewController?.modalPresentationStyle = .formSheet
+         dp_addMemberViewController?.modalPresentationStyle = .formSheet
          
-         showPresentView(viewController: addMemberViewController)
+         showPresentView(viewController: dp_addMemberViewController)
     }
     
     func dismissOverlayWithSelectedMembers(_ membersVo: [MemberVo]?) {
@@ -160,7 +160,7 @@ extension AppDelegate {
         
     }
     
-    func setOriginalSplitViewController(_ viewController: DispatchBoardSplitViewController) {
+    func setOriginalSplitViewController(_ viewController: dp_DispatchBoardSplitViewController) {
         self.originalSplitVC = viewController
     }
 }
