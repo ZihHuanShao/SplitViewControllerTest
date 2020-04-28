@@ -79,8 +79,28 @@ class EditElectrFenceViewController: UIViewController {
 extension EditElectrFenceViewController {
     private func updateDataSource() {
         tableViewDelegate = EditElectrFenceViewControllerTableViewDelegate(editElectrFenceViewController: self, tableView: tableView)
+        tableViewDelegate?.registerCell(cellName: EDIT_ELECTR_FENCE_TABLE_VIEW_CELL, cellId: EDIT_ELECTR_FENCE_TABLE_VIEW_CELL)
+        tableViewDelegate?.updateElectrFenceVo(getElectrFenceTestData())
         
         nameTextField.delegate = self
+    }
+    private func getElectrFenceTestData() -> ElectrFenceVo {
+        let memberVo = MemberVo(name: "調度員Fred")
+        let groupVo = GroupVo(name: "緊急通報群組")
+        
+        return ElectrFenceVo(
+            title: "測試圍籬1",
+            color: 0x00FF00,
+            notifyTarget: memberVo,
+            autoSwitchPreferGroupEnabled: true,
+            preferGroup: groupVo,
+            enterAlarmEnabled: true,
+            enterAlarmVoicePlayEnabled: true,
+            enterAlarmVoice: "危險區域 請儘速離開",
+            exitAlarmEnabled: true,
+            exitAlarmVoicePlayEnabled: true,
+            exitAlarmVoice: "您已離開 測試圍籬1"
+        )
     }
     
     private func updateUI() {
@@ -94,7 +114,6 @@ extension EditElectrFenceViewController {
         colorBarButton.layer.cornerRadius = 5
         colorBarButton.clipsToBounds = true
         
-        tableViewDelegate?.reloadTestData()
         tableViewDelegate?.reloadUI()
     }
     

@@ -71,6 +71,8 @@ let ADD_MEMBER_COLLECTION_VIEW_CELL = "AddMemberCollectionViewCell"
 let MAP_TABLE_VIEW_CELL = "MapTableViewCell"
 let TEMPORARY_GROUP_TABLE_VIEW_CELL = "TemporaryGroupTableViewCell"
 let GROUP_SETTING_INFO_TABLE_VIEW_CELL = "GroupSettingInfoTableViewCell"
+let EDIT_ELECTR_FENCE_TABLE_VIEW_CELL = "EditElectrFenceTableViewCell"
+
 
 // Storyboard
 let STORYBOARD_NAME_MAIN   = "Main"
@@ -182,27 +184,40 @@ enum MapFunctionType: CaseIterable {
     case TEMPORARY_GROUP     // 臨時群組
 }
 
-
+// 警告設定顯示的cell樣式 (選擇清單(通報對象/群組/語音內容)/ 開關)
+enum ElectrFenceAlarmSettingMode: CaseIterable {
+    case SELECTED
+    case SWITCH
+}
 
 enum ElectrFenceAllAlarmType: CaseIterable {
+    case BASIC_ALRAM_TYPE
     enum BasicAlarmType: CaseIterable {
         case INTERNAL_NOTIFY_TARGET   // 內部通報對象
         case AUTO_SWITCH_PREFER_GROUP // 自動切換優先群組
         case PREFER_GROUP             // 優先群組
     }
-
+    
+    case ENTER_ALARM_TYPE
     enum EnterAlarmType: CaseIterable {
         case ENTER_ALARM            // 進入警告
         case ENTER_ALARM_VOICE_PLAY // 播放警示語音
         case ENTER_ALARM_VOICE      // 語音內容
     }
 
+    case EXIT_ALARM_TYPE
     enum ExitAlarmType: CaseIterable {
         case EXIT_ALARM            // 離開警告
         case EXIT_ALARM_VOICE_PLAY // 播放警示語音
         case EXIT_ALARM_VOICE      // 語音內容
     }
 }
+
+
+
+
+
+
 
 // struct
 struct GroupInfo {
