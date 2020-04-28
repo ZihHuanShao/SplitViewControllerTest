@@ -137,6 +137,8 @@ extension EditElectrFenceViewControllerTableViewDelegate: UITableViewDataSource 
             }
         }
 
+        cell.setIndexPath(indexPath)
+        
         cell.selectionStyle = .none
         return cell
     }
@@ -149,9 +151,21 @@ extension EditElectrFenceViewControllerTableViewDelegate: UITableViewDataSource 
 // MARK: - UITableViewDelegate
  
 extension EditElectrFenceViewControllerTableViewDelegate: UITableViewDelegate {
+    /*
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            if indexPath.row == 1 {
+        
+        let alarmType = ElectrFenceAllAlarmType.allCases[indexPath.section]
+        
+        switch alarmType {
+            
+        case .BASIC_ALRAM_TYPE:
+            
+            switch ElectrFenceAllAlarmType.BasicAlarmType.allCases[indexPath.row] {
+
+            case .INTERNAL_NOTIFY_TARGET:
+                break
+                
+            case .AUTO_SWITCH_PREFER_GROUP:
                 if electrFenceVo?.autoSwitchPreferGroupEnabled == true {
                     electrFenceVo?.autoSwitchPreferGroupEnabled = false
                 } else {
@@ -159,10 +173,18 @@ extension EditElectrFenceViewControllerTableViewDelegate: UITableViewDelegate {
                 }
                 let indexes = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexes, with: .automatic)
+                
+            case .PREFER_GROUP:
+                break
             }
-        }
-        else if indexPath.section == 1 {
-            if indexPath.row == 0 {
+            
+            print(ElectrFenceAllAlarmType.BasicAlarmType.allCases[indexPath.row])
+            
+        case .ENTER_ALARM_TYPE:
+            
+            switch ElectrFenceAllAlarmType.EnterAlarmType.allCases[indexPath.row] {
+                
+            case .ENTER_ALARM:
                 if electrFenceVo?.enterAlarmEnabled == true {
                     electrFenceVo?.enterAlarmEnabled = false
                 } else {
@@ -170,8 +192,8 @@ extension EditElectrFenceViewControllerTableViewDelegate: UITableViewDelegate {
                 }
                 let indexes = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexes, with: .automatic)
-            }
-            else if indexPath.row == 1 {
+                
+            case .ENTER_ALARM_VOICE_PLAY:
                 if electrFenceVo?.enterAlarmVoicePlayEnabled == true {
                    electrFenceVo?.enterAlarmVoicePlayEnabled = false
                 } else {
@@ -179,12 +201,18 @@ extension EditElectrFenceViewControllerTableViewDelegate: UITableViewDelegate {
                 }
                 let indexes = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexes, with: .automatic)
+                
+            case .ENTER_ALARM_VOICE:
+                break
             }
-            else {
-            }
-        }
-        else {
-            if indexPath.row == 0 {
+            
+            print(ElectrFenceAllAlarmType.EnterAlarmType.allCases[indexPath.row])
+            
+        case .EXIT_ALARM_TYPE:
+            
+            switch ElectrFenceAllAlarmType.ExitAlarmType.allCases[indexPath.row] {
+                
+            case .EXIT_ALARM:
                 if electrFenceVo?.exitAlarmEnabled == true {
                     electrFenceVo?.exitAlarmEnabled = false
                 } else {
@@ -192,19 +220,22 @@ extension EditElectrFenceViewControllerTableViewDelegate: UITableViewDelegate {
                 }
                 let indexes = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexes, with: .automatic)
-            }
-            else if indexPath.row == 1 {
+                
+            case .EXIT_ALARM_VOICE_PLAY:
                 if electrFenceVo?.exitAlarmVoicePlayEnabled == true {
-                   electrFenceVo?.exitAlarmVoicePlayEnabled = false
+                    electrFenceVo?.exitAlarmVoicePlayEnabled = false
                 } else {
                     electrFenceVo?.exitAlarmVoicePlayEnabled = true
                 }
                 let indexes = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexes, with: .automatic)
+                
+            case .EXIT_ALARM_VOICE:
+                break
             }
-            else {
-            }
+            
+            print(ElectrFenceAllAlarmType.ExitAlarmType.allCases[indexPath.row])
         }
-        
     }
+    */
 }

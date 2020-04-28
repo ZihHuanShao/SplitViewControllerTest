@@ -37,4 +37,15 @@ class gVar {
     // MasterViewController
     static var changeMonitorObserver: NSObjectProtocol? = nil
     static var reloadGroupTableViewObserver: NSObjectProtocol? = nil
+    
+    // [MapViewController]
+    
+    // EditElectrFenceViewController
+    static var autoSwitchPreferGroupChangedObserver: NSObjectProtocol? = nil
+    static var enterAlarmChangedObserver: NSObjectProtocol? = nil
+    static var enterAlarmVoicePlayChangedObserver: NSObjectProtocol? = nil
+    static var exitAlarmChangedObserver: NSObjectProtocol? = nil
+    static var exitAlarmVoicePlayChangedObserver: NSObjectProtocol? = nil
+
+
 }

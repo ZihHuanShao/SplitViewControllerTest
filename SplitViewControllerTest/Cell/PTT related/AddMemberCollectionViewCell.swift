@@ -34,7 +34,7 @@ class AddMemberCollectionViewCell: UICollectionViewCell {
     @IBAction func dropoutButtonPressed(_ sender: UIButton) {
         print("dropoutButtonPressed")
         if let _tableRowIndex = tableRowIndex {
-            NotificationCenter.default.post(name: DROP_SELECTED_MEMBER_TABLE_CELL_NOTIFY_KEY, object: self, userInfo: [DROP_SELECTED_Member_TABLE_CELL_USER_KEY: _tableRowIndex])
+            NotificationCenter.default.post(name: DROP_SELECTED_MEMBER_TABLE_CELL_NOTIFY_KEY, object: self, userInfo: [DROP_SELECTED_MEMBER_TABLE_CELL_USER_KEY: _tableRowIndex])
         }
         
     }

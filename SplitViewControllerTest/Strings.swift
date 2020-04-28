@@ -53,6 +53,14 @@ let str_editElectrFence_name = "名稱"
 let str_editElectrFence_colorName = "顏色"
 let str_editElectrFence_customFenceNamePrefix = "電子圍籬 - "
 let str_editElectrFence_finish = "完成"
+let str_editElectrFence_internalNotifyTarget = "內部通報對象"
+let str_editElectrFence_autoSwitchPreferGroup = "自動切換優先群組"
+let str_editElectrFence_preferGroup = "優先群組"
+let str_editElectrFence_enterAlarm = "進入警告"
+let str_editElectrFence_exitAlarm = "離開警告"
+let str_editElectrFence_playAlarmVoice = "播放警示語音"
+let str_editElectrFence_alarmVoice = "語音內容"
+
 
 // GroupViewController
 let str_group_monitorMode = "監聽模式"

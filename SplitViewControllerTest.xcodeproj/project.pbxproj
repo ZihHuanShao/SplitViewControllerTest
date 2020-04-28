@@ -28,6 +28,7 @@
 		D06920672445AB4C006E65D4 /* sticker_contact.png in Resources */ = {isa = PBXBuildFile; fileRef = D06920642445AB4C006E65D4 /* sticker_contact.png */; };
 		D06920682445AB4C006E65D4 /* sticker_group.png in Resources */ = {isa = PBXBuildFile; fileRef = D06920652445AB4C006E65D4 /* sticker_group.png */; };
 		D069206A2445B289006E65D4 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06920692445B289006E65D4 /* CreateGroupViewController.swift */; };
+		D069EAA82457FD9300638476 /* bg_listside_line.png in Resources */ = {isa = PBXBuildFile; fileRef = D069EAA72457FD9300638476 /* bg_listside_line.png */; };
 		D06DEECF244012960056A7E7 /* TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DEECE244012960056A7E7 /* TestCase.swift */; };
 		D06DEED124405FE70056A7E7 /* UserVo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DEED024405FE70056A7E7 /* UserVo.swift */; };
 		D06E35B8243DC00C00E33C44 /* GroupDispatchViewControllerCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E35B7243DC00B00E33C44 /* GroupDispatchViewControllerCollectionViewDelegate.swift */; };
@@ -201,6 +202,7 @@
 		D06920642445AB4C006E65D4 /* sticker_contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sticker_contact.png; sourceTree = "<group>"; };
 		D06920652445AB4C006E65D4 /* sticker_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sticker_group.png; sourceTree = "<group>"; };
 		D06920692445B289006E65D4 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		D069EAA72457FD9300638476 /* bg_listside_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_listside_line.png; sourceTree = "<group>"; };
 		D06DEECE244012960056A7E7 /* TestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase.swift; sourceTree = "<group>"; };
 		D06DEED024405FE70056A7E7 /* UserVo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVo.swift; sourceTree = "<group>"; };
 		D06E35B7243DC00B00E33C44 /* GroupDispatchViewControllerCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDispatchViewControllerCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 		F261B467242CAB1300482992 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D069EAA72457FD9300638476 /* bg_listside_line.png */,
 				D06704262452D9F500E5F299 /* bg_groupset_alert1.png */,
 				D06704282452D9F500E5F299 /* bg_groupset_alert2.png */,
 				D06704292452D9F500E5F299 /* bg_groupset_alert3.png */,
@@ -812,6 +815,7 @@
 				D0E2364F243C767B0009506F /* icon_status_offline.png in Resources */,
 				D0E23652243C767B0009506F /* icon_group_notify_on.png in Resources */,
 				D0E23659243C767B0009506F /* icon_search.png in Resources */,
+				D069EAA82457FD9300638476 /* bg_listside_line.png in Resources */,
 				D06920622445A104006E65D4 /* bg_listbox_top.png in Resources */,
 				D0E2366B243C767B0009506F /* bg_profile.png in Resources */,
 				D06E35BC243DC19100E33C44 /* GroupDispatchCollectionViewCell.xib in Resources */,

@@ -10,12 +10,19 @@ import UIKit
 
 class EditElectrFenceTableViewCell: UITableViewCell {
 
+    // MARK: - IBOutlet
+    
     @IBOutlet weak var itemTitle: UILabel!
     @IBOutlet weak var indicatorImage: UIImageView!
     @IBOutlet weak var selectedDescButton: UIButton!
     @IBOutlet weak var switchButton: UIButton!
+
+    // MARK: - Properties
     
-//    private var alarmType: ElectrFenceAllAlarmType!
+    // 用來比對是哪個button被按下
+    fileprivate var indexPath: IndexPath?
+    
+    // MARK: - Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,9 +33,56 @@ class EditElectrFenceTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    // MARK: - Actions
     
     @IBAction func switchButtonPressed(_ sender: UIButton) {
         print("switchButtonPressed")
+        
+        if let _indexPath = indexPath {
+            
+            let section  = _indexPath.section
+            let rowIndex = _indexPath.row
+            
+            switch ElectrFenceAllAlarmType.allCases[section] {
+                
+            case .BASIC_ALRAM_TYPE:
+                switch ElectrFenceAllAlarmType.BasicAlarmType.allCases[rowIndex] {
+                    
+                case .INTERNAL_NOTIFY_TARGET, .PREFER_GROUP:
+                    break
+                    
+                case .AUTO_SWITCH_PREFER_GROUP:
+                    NotificationCenter.default.post(name: AUTO_SWITCH_PREFER_GROUP_CHANGED_NOTIFY_KEY, object: self, userInfo: nil)
+                }
+                
+            case .ENTER_ALARM_TYPE:
+                switch ElectrFenceAllAlarmType.EnterAlarmType.allCases[rowIndex] {
+                    
+                case .ENTER_ALARM:
+                    NotificationCenter.default.post(name: ENTER_ALARM_CHANGED_NOTIFY_KEY, object: self, userInfo: nil)
+                    
+                case .ENTER_ALARM_VOICE_PLAY:
+                    NotificationCenter.default.post(name: ENTER_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY, object: self, userInfo: nil)
+                    
+                case .ENTER_ALARM_VOICE:
+                    break
+                }
+                
+            case .EXIT_ALARM_TYPE:
+                switch ElectrFenceAllAlarmType.ExitAlarmType.allCases[rowIndex] {
+                    
+                case .EXIT_ALARM:
+                    NotificationCenter.default.post(name: EXIT_ALARM_CHANGED_NOTIFY_KEY, object: self, userInfo: nil)
+                    
+                case .EXIT_ALARM_VOICE_PLAY:
+                    NotificationCenter.default.post(name: EXIT_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY, object: self, userInfo: nil)
+                    
+                case .EXIT_ALARM_VOICE:
+                    break
+                }
+            }
+
+        }
     }
     
     @IBAction func selectedDescButtonPressed(_ sender: UIButton) {
@@ -37,19 +91,24 @@ class EditElectrFenceTableViewCell: UITableViewCell {
     
 }
 
+// MARK: - Public Methods
+
 extension EditElectrFenceTableViewCell {
+    func setIndexPath(_ indexPath: IndexPath) {
+        self.indexPath = indexPath
+    }
     
     func updateCell(basicAlarmType: ElectrFenceAllAlarmType.BasicAlarmType, electrFenceVo: ElectrFenceVo) {
         switch basicAlarmType {
             
         case .INTERNAL_NOTIFY_TARGET:
-            itemTitle.text = "內部通報對象"
+            itemTitle.text = str_editElectrFence_internalNotifyTarget
             
             selectedDescButton.setTitle(electrFenceVo.notifyTarget?.name, for: .normal)
             displayMode(mode: .SELECTED)
             
         case .AUTO_SWITCH_PREFER_GROUP:
-            itemTitle.text = "自動切換優先群組"
+            itemTitle.text = str_editElectrFence_autoSwitchPreferGroup
             if electrFenceVo.autoSwitchPreferGroupEnabled {
                 switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
             } else {
@@ -58,7 +117,7 @@ extension EditElectrFenceTableViewCell {
             displayMode(mode: .SWITCH)
             
         case .PREFER_GROUP:
-            itemTitle.text = "優先群組"
+            itemTitle.text = str_editElectrFence_preferGroup
             
             selectedDescButton.setTitle(electrFenceVo.preferGroup?.name, for: .normal)
             displayMode(mode: .SELECTED)
@@ -69,7 +128,7 @@ extension EditElectrFenceTableViewCell {
         switch enterAlarmType {
             
         case .ENTER_ALARM:
-            itemTitle.text = "進入警告"
+            itemTitle.text = str_editElectrFence_enterAlarm
             if electrFenceVo.enterAlarmEnabled {
                 switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
             } else {
@@ -78,7 +137,7 @@ extension EditElectrFenceTableViewCell {
             displayMode(mode: .SWITCH)
             
         case .ENTER_ALARM_VOICE_PLAY:
-            itemTitle.text = "播放警示語音"
+            itemTitle.text = str_editElectrFence_playAlarmVoice
             if electrFenceVo.enterAlarmVoicePlayEnabled {
                 switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
             } else {
@@ -87,7 +146,7 @@ extension EditElectrFenceTableViewCell {
             displayMode(mode: .SWITCH)
             
         case .ENTER_ALARM_VOICE:
-            itemTitle.text = "語音內容"
+            itemTitle.text = str_editElectrFence_alarmVoice
             selectedDescButton.setTitle(electrFenceVo.enterAlarmVoice, for: .normal)
             displayMode(mode: .SELECTED)
         }
@@ -97,7 +156,7 @@ extension EditElectrFenceTableViewCell {
         switch exitAlarmType {
             
         case .EXIT_ALARM:
-            itemTitle.text = "離開警告"
+            itemTitle.text = str_editElectrFence_exitAlarm
             if electrFenceVo.exitAlarmEnabled {
                 switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
             } else {
@@ -106,7 +165,7 @@ extension EditElectrFenceTableViewCell {
             displayMode(mode: .SWITCH)
             
         case .EXIT_ALARM_VOICE_PLAY:
-            itemTitle.text = "播放警示語音"
+            itemTitle.text = str_editElectrFence_playAlarmVoice
             if electrFenceVo.exitAlarmVoicePlayEnabled {
                 switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
             } else {
@@ -115,7 +174,7 @@ extension EditElectrFenceTableViewCell {
             displayMode(mode: .SWITCH)
             
         case .EXIT_ALARM_VOICE:
-            itemTitle.text = "語音內容"
+            itemTitle.text = str_editElectrFence_alarmVoice
             selectedDescButton.setTitle(electrFenceVo.exitAlarmVoice, for: .normal)
             displayMode(mode: .SELECTED)
         }
@@ -123,6 +182,7 @@ extension EditElectrFenceTableViewCell {
 }
 
 // MARK : - Private Methods
+
 extension EditElectrFenceTableViewCell {
     private func displayMode(mode: ElectrFenceAlarmSettingMode) {
         switch mode {

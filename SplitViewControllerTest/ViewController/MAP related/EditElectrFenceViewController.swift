@@ -26,6 +26,7 @@ class EditElectrFenceViewController: UIViewController {
     // MARK: - Properties
     
     var tableViewDelegate: EditElectrFenceViewControllerTableViewDelegate?
+    var testElectrFenceVo: ElectrFenceVo?
     
     // MARK: - Life Cycle
     
@@ -34,7 +35,9 @@ class EditElectrFenceViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        reloadElectrFenceTestData()
         updateDataSource()
+        addObserver()
         updateUI()
         updateGesture()
     }
@@ -80,15 +83,18 @@ extension EditElectrFenceViewController {
     private func updateDataSource() {
         tableViewDelegate = EditElectrFenceViewControllerTableViewDelegate(editElectrFenceViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: EDIT_ELECTR_FENCE_TABLE_VIEW_CELL, cellId: EDIT_ELECTR_FENCE_TABLE_VIEW_CELL)
-        tableViewDelegate?.updateElectrFenceVo(getElectrFenceTestData())
+        
+        if let electrFenceVo = testElectrFenceVo {
+            tableViewDelegate?.updateElectrFenceVo(electrFenceVo)
+        }
         
         nameTextField.delegate = self
     }
-    private func getElectrFenceTestData() -> ElectrFenceVo {
+    private func reloadElectrFenceTestData() {
         let memberVo = MemberVo(name: "調度員Fred")
         let groupVo = GroupVo(name: "緊急通報群組")
         
-        return ElectrFenceVo(
+        testElectrFenceVo = ElectrFenceVo(
             title: "測試圍籬1",
             color: 0x00FF00,
             notifyTarget: memberVo,
@@ -115,6 +121,66 @@ extension EditElectrFenceViewController {
         colorBarButton.clipsToBounds = true
         
         tableViewDelegate?.reloadUI()
+    }
+    
+    private func removeObserver() {
+        if let _ = gVar.autoSwitchPreferGroupChangedObserver {
+            NotificationCenter.default.removeObserver(gVar.autoSwitchPreferGroupChangedObserver!)
+            gVar.autoSwitchPreferGroupChangedObserver = nil
+            print("removeObserver: switchChangedObserver")
+        }
+        
+        if let _ = gVar.enterAlarmChangedObserver {
+            NotificationCenter.default.removeObserver(gVar.enterAlarmChangedObserver!)
+            gVar.enterAlarmChangedObserver = nil
+            print("removeObserver: enterAlarmChangedObserver")
+        }
+        
+        if let _ = gVar.enterAlarmVoicePlayChangedObserver {
+            NotificationCenter.default.removeObserver(gVar.enterAlarmVoicePlayChangedObserver!)
+            gVar.enterAlarmVoicePlayChangedObserver = nil
+            print("removeObserver: enterAlarmVoicePlayChangedObserver")
+        }
+        
+        if let _ = gVar.exitAlarmChangedObserver {
+            NotificationCenter.default.removeObserver(gVar.exitAlarmChangedObserver!)
+            gVar.exitAlarmChangedObserver = nil
+            print("removeObserver: exitAlarmChangedObserver")
+        }
+        
+        if let _ = gVar.exitAlarmVoicePlayChangedObserver {
+            NotificationCenter.default.removeObserver(gVar.exitAlarmVoicePlayChangedObserver!)
+            gVar.exitAlarmVoicePlayChangedObserver = nil
+            print("removeObserver: exitAlarmVoicePlayChangedObserver")
+        }
+        
+       }
+    
+    private func addObserver() {
+        if gVar.autoSwitchPreferGroupChangedObserver == nil {
+            gVar.autoSwitchPreferGroupChangedObserver = NotificationCenter.default.addObserver(forName: AUTO_SWITCH_PREFER_GROUP_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: autoSwitchPreferGroupChanged)
+            print("addObserver: switchChangedObserver")
+        }
+        
+        if gVar.enterAlarmChangedObserver == nil {
+            gVar.enterAlarmChangedObserver = NotificationCenter.default.addObserver(forName: ENTER_ALARM_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: enterAlarmChanged)
+            print("addObserver: switchChangedObserver")
+        }
+        
+        if gVar.enterAlarmVoicePlayChangedObserver == nil {
+            gVar.enterAlarmVoicePlayChangedObserver = NotificationCenter.default.addObserver(forName: ENTER_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: enterAlarmVoicePlayChanged)
+            print("addObserver: enterAlarmVoicePlayChangedObserver")
+        }
+        
+        if gVar.exitAlarmChangedObserver == nil {
+            gVar.exitAlarmChangedObserver = NotificationCenter.default.addObserver(forName: EXIT_ALARM_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: exitAlarmChanged)
+            print("addObserver: exitAlarmChangedObserver")
+        }
+        
+        if gVar.exitAlarmVoicePlayChangedObserver == nil {
+            gVar.exitAlarmVoicePlayChangedObserver = NotificationCenter.default.addObserver(forName: EXIT_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: exitAlarmVoicePlayChanged)
+            print("addObserver: exitAlarmVoicePlayChangedObserver")
+        }
     }
     
     private func updateGesture() {
@@ -150,5 +216,44 @@ extension EditElectrFenceViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+// MARK: - Notification Methods
+
+extension EditElectrFenceViewController {
+    func autoSwitchPreferGroupChanged(notification: Notification) -> Void {
+        if let electrFenceVo = testElectrFenceVo {
+            electrFenceVo.autoSwitchPreferGroupEnabled = !(electrFenceVo.autoSwitchPreferGroupEnabled)
+            tableViewDelegate?.reloadUI()
+        }
+    }
+    
+    func enterAlarmChanged(notification: Notification) -> Void {
+        if let electrFenceVo = testElectrFenceVo {
+            electrFenceVo.enterAlarmEnabled = !(electrFenceVo.enterAlarmEnabled)
+            tableViewDelegate?.reloadUI()
+        }
+    }
+    
+    func enterAlarmVoicePlayChanged(notification: Notification) -> Void {
+        if let electrFenceVo = testElectrFenceVo {
+            electrFenceVo.enterAlarmVoicePlayEnabled = !(electrFenceVo.enterAlarmVoicePlayEnabled)
+            tableViewDelegate?.reloadUI()
+        }
+    }
+    
+    func exitAlarmChanged(notification: Notification) -> Void {
+        if let electrFenceVo = testElectrFenceVo {
+            electrFenceVo.exitAlarmEnabled = !(electrFenceVo.exitAlarmEnabled)
+            tableViewDelegate?.reloadUI()
+        }
+    }
+    
+    func exitAlarmVoicePlayChanged(notification: Notification) -> Void {
+        if let electrFenceVo = testElectrFenceVo {
+            electrFenceVo.exitAlarmVoicePlayEnabled = !(electrFenceVo.exitAlarmVoicePlayEnabled)
+            tableViewDelegate?.reloadUI()
+        }
     }
 }

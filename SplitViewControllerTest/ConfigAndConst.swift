@@ -93,15 +93,25 @@ let SELECTED_MEMBERS_RELOADED_NOTIFY_KEY = NSNotification.Name(rawValue: "select
 let KEEP_ORIGINAL_SPLIT_VIEW_CONTROLLER_NOTIFY_KEY = NSNotification.Name("keepOriginalSplitViewControllerNotifyKey")
 let RELOAD_GROUP_TABLE_VIEW_NOTIFY_KEY = Notification.Name("reloadGroupTableViewObserverNotifyKey")
 let SWITCH_MAIN_MENU_NOTIFY_KEY = Notification.Name("switchMainMenuNotifyKey")
+let AUTO_SWITCH_PREFER_GROUP_CHANGED_NOTIFY_KEY = Notification.Name("autoSwitchPreferGroupChangedNotifyKey")
+let ENTER_ALARM_CHANGED_NOTIFY_KEY = Notification.Name("enterAlarmChangedNotifyKey")
+let ENTER_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY = Notification.Name("enterAlarmVoicePlayChangedNotifyKey")
+let EXIT_ALARM_CHANGED_NOTIFY_KEY = Notification.Name("exitAlarmChangedNotifyKey")
+let EXIT_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY = Notification.Name("exitAlarmVoicePlayChangedNotifyKey")
 
 // Notification userInfo
 let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
-let DROP_SELECTED_Member_TABLE_CELL_USER_KEY = "dropSelectedMemberTableCellUserKey"
+let DROP_SELECTED_MEMBER_TABLE_CELL_USER_KEY = "dropSelectedMemberTableCellUserKey"
 let CHANGE_MONITOR_USER_KEY = "changeMonitorUserKey"
 let SELECTED_MEMBERS_RELOADED_USER_KEY = "selectedMembersReloadedUserKey"
 let KEEP_ORIGINAL_SPLIT_VIEW_CONTROLLER_USER_KEY = "keepOriginalSplitViewControllerUserKey"
 let RELOAD_GROUP_TABLE_VIEW_USER_KEY = "reloadGroupTableViewObserverUserKey"
 let SWITCH_MAIN_MENU_USER_KEY = "switchMainMenuUserKey"
+let AUTO_SWITCH_PREFER_GROUP_CHANGED_USER_KEY = "autoSwitchPreferGroupChangedUserKey"
+let ENTER_ALARM_CHANGED_USER_KEY = "enterAlarmChangedUserKey"
+let ENTER_ALARM_VOICE_PLAY_CHANGED_USER_KEY = "enterAlarmVoicePlayChangedUserKey"
+let EXIT_ALARM_CHANGED_USER_KEY = "exitAlarmChangedUserKey"
+let EXIT_ALARM_VOICE_PLAY_CHANGED_USER_KEY = "exitAlarmVoicePlayChangedUserKey"
 
 // 通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼

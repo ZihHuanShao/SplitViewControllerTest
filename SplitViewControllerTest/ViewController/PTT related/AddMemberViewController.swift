@@ -179,7 +179,7 @@ extension AddMemberViewController {
 
 extension AddMemberViewController {
     func dropSelectedMember(notification: Notification) -> Void {
-        if let rowIndex = notification.userInfo?[DROP_SELECTED_Member_TABLE_CELL_USER_KEY] as? Int {
+        if let rowIndex = notification.userInfo?[DROP_SELECTED_MEMBER_TABLE_CELL_USER_KEY] as? Int {
             
             tableViewDelegate?.deselectMember(rowIndex: rowIndex)
             collectionViewDelegate?.removeSelectedMember(tableRowIndex: rowIndex)

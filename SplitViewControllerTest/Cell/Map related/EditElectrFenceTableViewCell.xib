@@ -17,6 +17,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="719" height="56"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_listside_line.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zi9-Oa-JF9">
+                        <rect key="frame" x="0.0" y="0.0" width="719" height="56"/>
+                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgG-Ve-kxF">
                         <rect key="frame" x="8" y="8" width="703" height="40"/>
                         <subviews>
@@ -77,6 +80,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="AgG-Ve-kxF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Bro-gY-RuU"/>
+                    <constraint firstAttribute="trailing" secondItem="Zi9-Oa-JF9" secondAttribute="trailing" id="SSp-GT-1hH"/>
+                    <constraint firstItem="Zi9-Oa-JF9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Ygk-XU-ZrC"/>
+                    <constraint firstAttribute="bottom" secondItem="Zi9-Oa-JF9" secondAttribute="bottom" id="c3F-LR-7gS"/>
+                    <constraint firstItem="Zi9-Oa-JF9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gsi-zX-Cgy"/>
                     <constraint firstItem="AgG-Ve-kxF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="hGl-xi-b7T"/>
                     <constraint firstAttribute="bottom" secondItem="AgG-Ve-kxF" secondAttribute="bottom" constant="8" id="llI-gL-K0P"/>
                     <constraint firstAttribute="trailing" secondItem="AgG-Ve-kxF" secondAttribute="trailing" constant="8" id="sET-DK-JcT"/>
@@ -84,6 +91,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="indicatorImage" destination="YwJ-7L-Owf" id="eoS-9c-SKS"/>
                 <outlet property="itemTitle" destination="1EM-J1-2GK" id="fg5-Wm-Cn3"/>
@@ -94,6 +102,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="bg_listside_line.png" width="719" height="56"/>
         <image name="btn_switch_on.png" width="64" height="30"/>
         <image name="icon_next.png" width="8" height="14"/>
     </resources>
