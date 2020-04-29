@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DispCreateGroupTableViewCell" id="KGk-i7-Jjw" customClass="DispCreateGroupTableViewCell" customModule="SplitViewControllerTest" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" userLabel=" View">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="43v-Cf-Or7" userLabel="Content View">
+                        <rect key="frame" x="8" y="8" width="304" height="40"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sticker_contact.png" translatesAutoresizingMaskIntoConstraints="NO" id="8zm-RP-ndb">
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="7nV-VV-IU0"/>
+                                    <constraint firstAttribute="height" constant="40" id="ugK-sh-lI5"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQz-1u-dHh">
+                                <rect key="frame" x="48" y="10" width="248" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8zm-RP-ndb" firstAttribute="leading" secondItem="43v-Cf-Or7" secondAttribute="leading" id="5W3-hj-QJD"/>
+                            <constraint firstItem="AQz-1u-dHh" firstAttribute="centerY" secondItem="43v-Cf-Or7" secondAttribute="centerY" id="Lzc-RF-D90"/>
+                            <constraint firstItem="8zm-RP-ndb" firstAttribute="centerY" secondItem="43v-Cf-Or7" secondAttribute="centerY" id="VGE-Uo-xfK"/>
+                            <constraint firstItem="AQz-1u-dHh" firstAttribute="leading" secondItem="8zm-RP-ndb" secondAttribute="trailing" constant="8" id="ZPm-8f-0gc"/>
+                            <constraint firstAttribute="trailing" secondItem="AQz-1u-dHh" secondAttribute="trailing" constant="8" id="rhX-sj-hCE"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="43v-Cf-Or7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="52L-Ew-7Im"/>
+                    <constraint firstAttribute="trailing" secondItem="43v-Cf-Or7" secondAttribute="trailing" constant="8" id="KjW-kV-GdK"/>
+                    <constraint firstAttribute="bottom" secondItem="43v-Cf-Or7" secondAttribute="bottom" constant="8" id="j0O-B6-lfx"/>
+                    <constraint firstItem="43v-Cf-Or7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="jM9-WQ-cLW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="memberImage" destination="8zm-RP-ndb" id="ezo-G1-bLV"/>
+                <outlet property="memberName" destination="AQz-1u-dHh" id="bop-Gn-XmO"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="125"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="sticker_contact.png" width="240" height="240"/>
+    </resources>
+</document>

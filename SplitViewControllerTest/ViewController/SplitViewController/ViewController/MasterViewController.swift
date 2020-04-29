@@ -20,7 +20,7 @@ class MasterViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     
     // MARK: - Properties
-    var pttViewController: PttViewController?
+    var dispPttViewController: DispPttViewController?
     
     // MARK: - Life Cycle
     
@@ -70,34 +70,34 @@ extension MasterViewController {
         dispatcherName.text = "調度員MAXKIT"
     }
     
-    // PttViewController
+    // DispPttViewController
     private func locatePttViewController(_ selectedMainMenuRowIndex: Int) {
-        let pttViewController = UIStoryboard(name: STORYBOARD_NAME_MAIN, bundle: nil).instantiateViewController(withIdentifier: "PttViewController") as! PttViewController
+        let dispPttViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAIN, bundle: nil).instantiateViewController(withIdentifier: "DispPttViewController") as! DispPttViewController
         
         containerView.subviews.forEach({ $0.removeFromSuperview() })
         
-        pttViewController.setMainMenuSelectedRowIndex(selectedMainMenuRowIndex)
+        dispPttViewController.setMainMenuSelectedRowIndex(selectedMainMenuRowIndex)
         
-        self.addChild(pttViewController)
-        pttViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-        self.containerView.addSubview(pttViewController.view)
+        self.addChild(dispPttViewController)
+        dispPttViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+        self.containerView.addSubview(dispPttViewController.view)
         
-        pttViewController.didMove(toParent: self)
+        dispPttViewController.didMove(toParent: self)
     }
     
-    // MapViewController
+    // DispMapViewController
     private func locateMapViewController(_ selectedMainMenuRowIndex: Int) {
-        let mapViewController = UIStoryboard(name: STORYBOARD_NAME_MAIN, bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        let dispMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAIN, bundle: nil).instantiateViewController(withIdentifier: "DispMapViewController") as! DispMapViewController
         
         containerView.subviews.forEach({ $0.removeFromSuperview() })
         
-        mapViewController.setMainMenuSelectedRowIndex(selectedMainMenuRowIndex)
+        dispMapViewController.setMainMenuSelectedRowIndex(selectedMainMenuRowIndex)
         
-        self.addChild(mapViewController)
-        mapViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-        self.containerView.addSubview(mapViewController.view)
+        self.addChild(dispMapViewController)
+        dispMapViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+        self.containerView.addSubview(dispMapViewController.view)
         
-        mapViewController.didMove(toParent: self)
+        dispMapViewController.didMove(toParent: self)
     }
     
 }

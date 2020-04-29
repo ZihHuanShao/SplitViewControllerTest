@@ -83,7 +83,7 @@ extension DetailViewCollectionViewDelegate: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MAINMENU_COLLECTION_VIEW_CELL, for: indexPath) as! MainMenuCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DISP_MAINMENU_COLLECTION_VIEW_CELL, for: indexPath) as! DispMainMenuCollectionViewCell
         
         let cellData = cellsData[indexPath.row]
         

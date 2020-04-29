@@ -153,25 +153,25 @@ extension DetailViewController {
     private func showPttView() {
         switch pttTapType {
         case .TAB_GROUP_SELECT:
-            let groupViewController = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "GroupViewController") as! GroupViewController
+            let dispGroupViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_GROUP, bundle: nil).instantiateViewController(withIdentifier: "DispGroupViewController") as! DispGroupViewController
             
             if let _groupVo = groupVo {
-                groupViewController.updateGroupVo(_groupVo)
+                dispGroupViewController.updateGroupVo(_groupVo)
             }
-            setChildView(viewController: groupViewController)
+            setChildView(viewController: dispGroupViewController)
             
         case .TAB_MEMBER_SELECT:
-            let memberViewController = UIStoryboard(name: STORYBOARD_NAME_MEMBER, bundle: nil).instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+            let dispMemberViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MEMBER, bundle: nil).instantiateViewController(withIdentifier: "DispMemberViewController") as! DispMemberViewController
             
             if let _memberVo = memberVo {
-                memberViewController.updateMemberVo(_memberVo)
+                dispMemberViewController.updateMemberVo(_memberVo)
             }
-            setChildView(viewController: memberViewController)
+            setChildView(viewController: dispMemberViewController)
         
         case .TAB_GROUP_CREATE_GROUP:
-            let createGroupViewController = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil).instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
+            let dispCreateGroupViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_GROUP, bundle: nil).instantiateViewController(withIdentifier: "DispCreateGroupViewController") as! DispCreateGroupViewController
             
-            setChildView(viewController: createGroupViewController)
+            setChildView(viewController: dispCreateGroupViewController)
             
         case .NONE:
             break
@@ -182,14 +182,14 @@ extension DetailViewController {
         switch mapTapType {
     
         case .MAP_SELECT:
-            let googleMapViewController = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "GoogleMapViewController") as! GoogleMapViewController
+            let dispGoogleMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispGoogleMapViewController") as! DispGoogleMapViewController
             
-            setChildView(viewController: googleMapViewController)
+            setChildView(viewController: dispGoogleMapViewController)
             
         case .EDIT_MAP_SELECT:
-            let editElectrFenceViewController = UIStoryboard(name: STORYBOARD_NAME_MAP, bundle: nil).instantiateViewController(withIdentifier: "EditElectrFenceViewController") as! EditElectrFenceViewController
+            let dispEditElectrFenceViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispEditElectrFenceViewController") as! DispEditElectrFenceViewController
             
-            setChildView(viewController: editElectrFenceViewController)
+            setChildView(viewController: dispEditElectrFenceViewController)
             
         case .NONE:
             break
@@ -210,28 +210,28 @@ extension DetailViewController {
         case .PTT:
             switch pttTapType {
             case .TAB_GROUP_SELECT:
-                let groupViewController = viewController as! GroupViewController
-                self.addChild(groupViewController)
-                groupViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-                self.containerView.addSubview(groupViewController.view)
+                let dispGroupViewController = viewController as! DispGroupViewController
+                self.addChild(dispGroupViewController)
+                dispGroupViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+                self.containerView.addSubview(dispGroupViewController.view)
                 
-                groupViewController.didMove(toParent: self)
+                dispGroupViewController.didMove(toParent: self)
                 
             case .TAB_MEMBER_SELECT:
-                let memberViewController = viewController as! MemberViewController
-                self.addChild(memberViewController)
-                memberViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-                self.containerView.addSubview(memberViewController.view)
+                let dispMemberViewController = viewController as! DispMemberViewController
+                self.addChild(dispMemberViewController)
+                dispMemberViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+                self.containerView.addSubview(dispMemberViewController.view)
                 
-                memberViewController.didMove(toParent: self)
+                dispMemberViewController.didMove(toParent: self)
             
             case .TAB_GROUP_CREATE_GROUP:
-                let createGroupViewController = viewController as! CreateGroupViewController
-                self.addChild(createGroupViewController)
-                createGroupViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-                self.containerView.addSubview(createGroupViewController.view)
+                let dispCreateGroupViewController = viewController as! DispCreateGroupViewController
+                self.addChild(dispCreateGroupViewController)
+                dispCreateGroupViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+                self.containerView.addSubview(dispCreateGroupViewController.view)
                 
-                createGroupViewController.didMove(toParent: self)
+                dispCreateGroupViewController.didMove(toParent: self)
                 break
                 
             case .NONE:
@@ -242,20 +242,20 @@ extension DetailViewController {
             switch mapTapType {
                 
             case .MAP_SELECT:
-                let googleMapViewController = viewController as! GoogleMapViewController
-                self.addChild(googleMapViewController)
-                googleMapViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-                self.containerView.addSubview(googleMapViewController.view)
+                let dispGoogleMapViewController = viewController as! DispGoogleMapViewController
+                self.addChild(dispGoogleMapViewController)
+                dispGoogleMapViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+                self.containerView.addSubview(dispGoogleMapViewController.view)
                 
-                googleMapViewController.didMove(toParent: self)
+                dispGoogleMapViewController.didMove(toParent: self)
                 
             case .EDIT_MAP_SELECT:
-                let editElectrFenceViewController = viewController as! EditElectrFenceViewController
-                self.addChild(editElectrFenceViewController)
-                editElectrFenceViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
-                self.containerView.addSubview(editElectrFenceViewController.view)
+                let dispEditElectrFenceViewController = viewController as! DispEditElectrFenceViewController
+                self.addChild(dispEditElectrFenceViewController)
+                dispEditElectrFenceViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
+                self.containerView.addSubview(dispEditElectrFenceViewController.view)
                 
-                editElectrFenceViewController.didMove(toParent: self)
+                dispEditElectrFenceViewController.didMove(toParent: self)
                 
             case .NONE:
                 break

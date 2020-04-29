@@ -76,9 +76,9 @@ extension AppDelegate {
         
         var presentVC: UIViewController?
         
-        if let vc = viewController as? AddMemberViewController {
+        if let vc = viewController as? DispAddMemberViewController {
             presentVC = vc
-        } else if let vc = viewController as? GroupDispatchViewController {
+        } else if let vc = viewController as? DispGroupDispatchViewController {
             presentVC = vc
         }
         
@@ -109,26 +109,26 @@ extension AppDelegate {
 extension AppDelegate {
     func showGroupDispatchModal(groupsVo: [GroupVo]) {
         
-        let storyboard = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil)
-        let groupDispatchViewController = storyboard.instantiateViewController(withIdentifier: GROUP_DISPATCH_VIEW_CONTROLLER) as? GroupDispatchViewController
+        let storyboard = UIStoryboard(name: STORYBOARD_NAME_DISP_GROUP, bundle: nil)
+        let dispGroupDispatchViewController = storyboard.instantiateViewController(withIdentifier: GROUP_DISPATCH_VIEW_CONTROLLER) as? DispGroupDispatchViewController
         
-        groupDispatchViewController?.updateGroupsVo(groupsVo)
+        dispGroupDispatchViewController?.updateGroupsVo(groupsVo)
 
-        groupDispatchViewController?.modalPresentationStyle = .formSheet
+        dispGroupDispatchViewController?.modalPresentationStyle = .formSheet
         
-        showPresentView(viewController: groupDispatchViewController)
+        showPresentView(viewController: dispGroupDispatchViewController)
     }
     
     func showAddMemberModal(membersVo: [MemberVo]) {
          
-         let storyboard = UIStoryboard(name: STORYBOARD_NAME_GROUP, bundle: nil)
-         let addMemberViewController = storyboard.instantiateViewController(withIdentifier: ADD_MEMBER_VIEW_CONTROLLER) as? AddMemberViewController
+         let storyboard = UIStoryboard(name: STORYBOARD_NAME_DISP_GROUP, bundle: nil)
+         let dispAddMemberViewController = storyboard.instantiateViewController(withIdentifier: ADD_MEMBER_VIEW_CONTROLLER) as? DispAddMemberViewController
          
-         addMemberViewController?.updateMembersVo(membersVo)
+         dispAddMemberViewController?.updateMembersVo(membersVo)
 
-         addMemberViewController?.modalPresentationStyle = .formSheet
+         dispAddMemberViewController?.modalPresentationStyle = .formSheet
          
-         showPresentView(viewController: addMemberViewController)
+         showPresentView(viewController: dispAddMemberViewController)
     }
     
     func dismissOverlayWithSelectedMembers(_ membersVo: [MemberVo]?) {
