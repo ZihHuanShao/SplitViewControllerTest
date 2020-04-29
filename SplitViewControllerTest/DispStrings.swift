@@ -65,3 +65,8 @@ let str_dispGroup_monitorMode = "監聽模式"
 let str_dispGroup_monitorModeDesc = "接收到新訊息時，系統直接播放語音"
 let str_dispGroup_editGroup = "編輯群組"
 let str_dispGroup_editGroupDesc = "進行群組名稱、成員等相關設定"
+
+// DispEditColorViewController
+let str_dispEditColor_cancel = "取消"
+let str_dispEditColor_finish = "完成"
+let str_dispEditColor_colorTitle = "顏色效果："

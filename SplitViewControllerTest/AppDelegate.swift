@@ -80,6 +80,8 @@ extension AppDelegate {
             presentVC = vc
         } else if let vc = viewController as? DispGroupDispatchViewController {
             presentVC = vc
+        } else if let vc = viewController as? DispEditColorViewController {
+            presentVC = vc
         }
         
         // 把目前畫面的VC存起來, 等dismiss時再取出來顯示
@@ -110,7 +112,7 @@ extension AppDelegate {
     func showGroupDispatchModal(groupsVo: [GroupVo]) {
         
         let storyboard = UIStoryboard(name: STORYBOARD_NAME_DISP_GROUP, bundle: nil)
-        let dispGroupDispatchViewController = storyboard.instantiateViewController(withIdentifier: GROUP_DISPATCH_VIEW_CONTROLLER) as? DispGroupDispatchViewController
+        let dispGroupDispatchViewController = storyboard.instantiateViewController(withIdentifier: DISP_GROUP_DISPATCH_VIEW_CONTROLLER) as? DispGroupDispatchViewController
         
         dispGroupDispatchViewController?.updateGroupsVo(groupsVo)
 
@@ -122,13 +124,24 @@ extension AppDelegate {
     func showAddMemberModal(membersVo: [MemberVo]) {
          
          let storyboard = UIStoryboard(name: STORYBOARD_NAME_DISP_GROUP, bundle: nil)
-         let dispAddMemberViewController = storyboard.instantiateViewController(withIdentifier: ADD_MEMBER_VIEW_CONTROLLER) as? DispAddMemberViewController
+         let dispAddMemberViewController = storyboard.instantiateViewController(withIdentifier: DISP_ADD_MEMBER_VIEW_CONTROLLER) as? DispAddMemberViewController
          
          dispAddMemberViewController?.updateMembersVo(membersVo)
 
          dispAddMemberViewController?.modalPresentationStyle = .formSheet
          
          showPresentView(viewController: dispAddMemberViewController)
+    }
+    
+    func showEditColorModal(colorCode: RGBColorCode) {
+        let storyboard = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil)
+        let dispEditColorViewController = storyboard.instantiateViewController(withIdentifier: DISP_EDIT_COLOR_VIEW_CONTROLLER) as? DispEditColorViewController
+       
+        dispEditColorViewController?.updateColorCode(colorCode: colorCode)
+        dispEditColorViewController?.modalPresentationStyle = .formSheet
+        
+        showPresentView(viewController: dispEditColorViewController)
+        
     }
     
     func dismissOverlayWithSelectedMembers(_ membersVo: [MemberVo]?) {

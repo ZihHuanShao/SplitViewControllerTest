@@ -20,6 +20,7 @@ class DispEditElectrFenceViewController: UIViewController {
     @IBOutlet weak var colorBarBackgroundView: UIView!
     @IBOutlet weak var colorBarButton: UIButton!
     
+    // tableView
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -44,9 +45,7 @@ class DispEditElectrFenceViewController: UIViewController {
     
     // MARK: - Actions
     
-    //
-    // finishButton
-    //
+    // [finishButton]
     
     @IBAction func finishButtonTouchDown(_ sender: UIButton) {
         updatefinishButtonImage(type: .PRESSED)
@@ -62,19 +61,14 @@ class DispEditElectrFenceViewController: UIViewController {
     
     @IBAction func colorBarButtonPressed(_ sender: UIButton) {
         print("colorBarButtonPressed")
+        
+        if !gVar.isHoldFormSheetView {
+            gVar.isHoldFormSheetView = true
+            
+            // wait a moment before taking the screenshot
+            let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showEdidColorModalDelayed), userInfo: nil, repeats: false)
+        }
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 // MARK: - Private Methods
@@ -96,7 +90,7 @@ extension DispEditElectrFenceViewController {
         
         testElectrFenceVo = ElectrFenceVo(
             title: "測試圍籬1",
-            color: 0x00FF00,
+            color: 0xEE55AA,
             notifyTarget: memberVo,
             autoSwitchPreferGroupEnabled: true,
             preferGroup: groupVo,
@@ -119,8 +113,26 @@ extension DispEditElectrFenceViewController {
         colorBarBackgroundView.clipsToBounds = true
         colorBarButton.layer.cornerRadius = 5
         colorBarButton.clipsToBounds = true
+        colorBarButton.backgroundColor = UIColorFromRGB(rgbValue: testElectrFenceVo?.color ?? 0x000000)
         
         tableViewDelegate?.reloadUI()
+    }
+    
+    private func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+        return UIColor(
+            red:   CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8)  / 255.0,
+            blue:  CGFloat(rgbValue  & 0x0000FF)        / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
+    private func getRGBColor(rgbValue: UInt) -> RGBColorCode {
+        let rVal = Int((rgbValue & 0xFF0000) >> 16)
+        let gVal = Int((rgbValue & 0x00FF00) >> 8)
+        let bVal = Int(rgbValue & 0x0000FF)
+        
+        return RGBColorCode(red: rVal, green: gVal, blue: bVal)
     }
     
     private func removeObserver() {
@@ -255,5 +267,19 @@ extension DispEditElectrFenceViewController {
             electrFenceVo.exitAlarmVoicePlayEnabled = !(electrFenceVo.exitAlarmVoicePlayEnabled)
             tableViewDelegate?.reloadUI()
         }
+    }
+}
+
+// MARK: - Event Methods
+
+extension DispEditElectrFenceViewController {
+    @objc func showEdidColorModalDelayed() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let colorValue = testElectrFenceVo?.color ?? 0
+        
+        // 將目前圍籬的顏色(EX: 0xFF0000)改為RGB值(EX: r:255, g:0, b:0)
+        let colorCode = getRGBColor(rgbValue: colorValue)
+        
+        appDelegate?.showEditColorModal(colorCode: colorCode)
     }
 }

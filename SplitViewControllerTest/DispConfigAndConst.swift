@@ -50,8 +50,9 @@ let MEMBER_PROFILE_TITLES = [str_memberProfile_userId,
                              str_memberProfile_email]
 
 // Storyboard(ViewController) ID
-let ADD_MEMBER_VIEW_CONTROLLER = "DispAddMemberViewController"
-let GROUP_DISPATCH_VIEW_CONTROLLER = "DispGroupDispatchViewController"
+let DISP_ADD_MEMBER_VIEW_CONTROLLER = "DispAddMemberViewController"
+let DISP_GROUP_DISPATCH_VIEW_CONTROLLER = "DispGroupDispatchViewController"
+let DISP_EDIT_COLOR_VIEW_CONTROLLER = "DispEditColorViewController"
 
 // Segue
 let SHOW_PTT_SEGUE = "showPttSegue"
@@ -264,4 +265,10 @@ struct UnderlayPresentInfo {
     var backgroundImageView: UIImageView?
     var window: UIWindow?
     var groupsVo: [GroupVo]?
+}
+
+struct RGBColorCode {
+    var red = 0
+    var green = 0
+    var blue = 0
 }
