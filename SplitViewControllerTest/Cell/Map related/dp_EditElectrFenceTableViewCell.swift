@@ -98,18 +98,18 @@ extension dp_EditElectrFenceTableViewCell {
         self.indexPath = indexPath
     }
     
-    func updateCell(basicAlarmType: ElectrFenceAllAlarmType.BasicAlarmType, electrFenceVo: ElectrFenceVo) {
+    func updateCell(basicAlarmType: ElectrFenceAllAlarmType.BasicAlarmType, dp_electrFenceVo: dp_ElectrFenceVo) {
         switch basicAlarmType {
             
         case .INTERNAL_NOTIFY_TARGET:
             itemTitle.text = str_editElectrFence_internalNotifyTarget
             
-            selectedDescButton.setTitle(electrFenceVo.notifyTarget?.name, for: .normal)
+            selectedDescButton.setTitle(dp_electrFenceVo.notifyTarget?.name, for: .normal)
             displayMode(mode: .SELECTED)
             
         case .AUTO_SWITCH_PREFER_GROUP:
             itemTitle.text = str_editElectrFence_autoSwitchPreferGroup
-            if electrFenceVo.autoSwitchPreferGroupEnabled {
+            if dp_electrFenceVo.autoSwitchPreferGroupEnabled {
                 switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
             } else {
                 switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
@@ -119,17 +119,17 @@ extension dp_EditElectrFenceTableViewCell {
         case .PREFER_GROUP:
             itemTitle.text = str_editElectrFence_preferGroup
             
-            selectedDescButton.setTitle(electrFenceVo.preferGroup?.name, for: .normal)
+            selectedDescButton.setTitle(dp_electrFenceVo.preferGroup?.name, for: .normal)
             displayMode(mode: .SELECTED)
         }
     }
     
-    func updateCell(enterAlarmType: ElectrFenceAllAlarmType.EnterAlarmType, electrFenceVo: ElectrFenceVo) {
+    func updateCell(enterAlarmType: ElectrFenceAllAlarmType.EnterAlarmType, dp_electrFenceVo: dp_ElectrFenceVo) {
         switch enterAlarmType {
             
         case .ENTER_ALARM:
             itemTitle.text = str_editElectrFence_enterAlarm
-            if electrFenceVo.enterAlarmEnabled {
+            if dp_electrFenceVo.enterAlarmEnabled {
                 switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
             } else {
                 switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
@@ -138,7 +138,7 @@ extension dp_EditElectrFenceTableViewCell {
             
         case .ENTER_ALARM_VOICE_PLAY:
             itemTitle.text = str_editElectrFence_playAlarmVoice
-            if electrFenceVo.enterAlarmVoicePlayEnabled {
+            if dp_electrFenceVo.enterAlarmVoicePlayEnabled {
                 switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
             } else {
                 switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
@@ -147,17 +147,17 @@ extension dp_EditElectrFenceTableViewCell {
             
         case .ENTER_ALARM_VOICE:
             itemTitle.text = str_editElectrFence_alarmVoice
-            selectedDescButton.setTitle(electrFenceVo.enterAlarmVoice, for: .normal)
+            selectedDescButton.setTitle(dp_electrFenceVo.enterAlarmVoice, for: .normal)
             displayMode(mode: .SELECTED)
         }
     }
     
-    func updateCell(exitAlarmType: ElectrFenceAllAlarmType.ExitAlarmType, electrFenceVo: ElectrFenceVo) {
+    func updateCell(exitAlarmType: ElectrFenceAllAlarmType.ExitAlarmType, dp_electrFenceVo: dp_ElectrFenceVo) {
         switch exitAlarmType {
             
         case .EXIT_ALARM:
             itemTitle.text = str_editElectrFence_exitAlarm
-            if electrFenceVo.exitAlarmEnabled {
+            if dp_electrFenceVo.exitAlarmEnabled {
                 switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
             } else {
                 switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
@@ -166,7 +166,7 @@ extension dp_EditElectrFenceTableViewCell {
             
         case .EXIT_ALARM_VOICE_PLAY:
             itemTitle.text = str_editElectrFence_playAlarmVoice
-            if electrFenceVo.exitAlarmVoicePlayEnabled {
+            if dp_electrFenceVo.exitAlarmVoicePlayEnabled {
                 switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
             } else {
                 switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
@@ -175,7 +175,7 @@ extension dp_EditElectrFenceTableViewCell {
             
         case .EXIT_ALARM_VOICE:
             itemTitle.text = str_editElectrFence_alarmVoice
-            selectedDescButton.setTitle(electrFenceVo.exitAlarmVoice, for: .normal)
+            selectedDescButton.setTitle(dp_electrFenceVo.exitAlarmVoice, for: .normal)
             displayMode(mode: .SELECTED)
         }
     }

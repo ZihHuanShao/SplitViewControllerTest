@@ -30,7 +30,7 @@ class dp_MemberViewController: UIViewController {
     
     // MARK: - Properties
     
-    fileprivate var memberVo: MemberVo?
+    fileprivate var dp_memberVo: dp_MemberVo?
     
     // tableview
     fileprivate var tableViewDelegate: dp_MemberViewControllerTableViewDelegate?
@@ -113,15 +113,15 @@ class dp_MemberViewController: UIViewController {
 // MARK: - Public Methods
 
 extension dp_MemberViewController {
-    func updateMemberVo(_ memberVo: MemberVo) {
-        self.memberVo = memberVo
+    func updateMemberVo(_ dp_memberVo: dp_MemberVo) {
+        self.dp_memberVo = dp_memberVo
     }
     
     func updateUI() {
         memberImage.layer.cornerRadius = memberImage.frame.size.width / 2
         memberImage.clipsToBounds      = true
         
-        guard let mVo = memberVo else {
+        guard let mVo = dp_memberVo else {
             return
         }
         
@@ -130,7 +130,7 @@ extension dp_MemberViewController {
         
         tableViewDelegate = dp_MemberViewControllerTableViewDelegate(dp_memberViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: DP_MEMBER_PROFILE_TABLE_VIEW_CELL, cellId: DP_MEMBER_PROFILE_TABLE_VIEW_CELL)
-        if let _memberVo = memberVo {
+        if let _memberVo = dp_memberVo {
             tableViewDelegate?.updateMemberVo(_memberVo)
         }
         

@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 private class CellData {
-    var groupVo: GroupVo?
+    var dp_groupVo: dp_GroupVo?
     
-    init(_ groupVo: GroupVo) {
-        self.groupVo = groupVo
+    init(_ dp_groupVo: dp_GroupVo) {
+        self.dp_groupVo = dp_groupVo
     }
 }
 
@@ -26,7 +26,7 @@ class dp_GroupDispatchViewControllerTableViewDelegate: NSObject {
     fileprivate var tableViewExtendDelegate: GroupDispatchViewControllerTableViewDelegateExtend?
     
     fileprivate var cellsData = [CellData]()
-    fileprivate var groupsVo = [GroupVo]()
+    fileprivate var groupsVo = [dp_GroupVo]()
     
     // MARK: - initializer
     
@@ -46,8 +46,8 @@ class dp_GroupDispatchViewControllerTableViewDelegate: NSObject {
 extension dp_GroupDispatchViewControllerTableViewDelegate {
     private func reloadCellData() {
         cellsData.removeAll()
-        for groupVo in groupsVo {
-            cellsData.append(CellData(groupVo))
+        for dp_groupVo in groupsVo {
+            cellsData.append(CellData(dp_groupVo))
         }
 
     }
@@ -56,7 +56,7 @@ extension dp_GroupDispatchViewControllerTableViewDelegate {
 // MARK: - Public Methods
 
 extension dp_GroupDispatchViewControllerTableViewDelegate {
-    func updateGroupsVo(_ groupsVo: [GroupVo]) {
+    func updateGroupsVo(_ groupsVo: [dp_GroupVo]) {
         self.groupsVo = groupsVo
     }
     
@@ -65,8 +65,8 @@ extension dp_GroupDispatchViewControllerTableViewDelegate {
     }
     
     func resetGroups() {
-        for groupVo in groupsVo {
-            groupVo.isSelected = false
+        for dp_groupVo in groupsVo {
+            dp_groupVo.isSelected = false
         }
 
         cellsData.removeAll()
@@ -98,12 +98,12 @@ extension dp_GroupDispatchViewControllerTableViewDelegate: UITableViewDataSource
         let cellData = cellsData[indexPath.row]
         
         cell.selectionStyle = .none
-        cell.setGroupName(name: cellData.groupVo?.name ?? "")
-        cell.setGroupImage(name: cellData.groupVo?.imageName ?? "")
-        cell.setGroupMemberCount(cellData.groupVo?.count ?? 0)
-        cell.setGroupDesc(desc: cellData.groupVo?.desc ?? "")
+        cell.setGroupName(name: cellData.dp_groupVo?.name ?? "")
+        cell.setGroupImage(name: cellData.dp_groupVo?.imageName ?? "")
+        cell.setGroupMemberCount(cellData.dp_groupVo?.count ?? 0)
+        cell.setGroupDesc(desc: cellData.dp_groupVo?.desc ?? "")
         
-        (cellData.groupVo?.isSelected == true) ? cell.enableCheckbox() : cell.disableCheckbox()
+        (cellData.dp_groupVo?.isSelected == true) ? cell.enableCheckbox() : cell.disableCheckbox()
         
         
         return cell
@@ -121,14 +121,14 @@ extension dp_GroupDispatchViewControllerTableViewDelegate: UITableViewDelegate {
         
         let rowIndex  = indexPath.row
         
-        if let cellData = cellsData[rowIndex].groupVo {
+        if let cellData = cellsData[rowIndex].dp_groupVo {
             cellData.isSelected = !(cellData.isSelected)
         }
 
         //
-        let selectedGroupVo = groupsVo[rowIndex]
-        print("rowIndex: \(rowIndex), groupName: \(String(describing: selectedGroupVo.name))")
-        tableViewExtendDelegate?.pickupGroup(tableRowIndex: rowIndex, selectedGroupVo: selectedGroupVo)
+        let dp_selectedGroupVo = groupsVo[rowIndex]
+        print("rowIndex: \(rowIndex), groupName: \(String(describing: dp_selectedGroupVo.name))")
+        tableViewExtendDelegate?.pickupGroup(tableRowIndex: rowIndex, dp_selectedGroupVo: dp_selectedGroupVo)
         
         reloadUI()
     }
@@ -139,6 +139,6 @@ extension dp_GroupDispatchViewControllerTableViewDelegate: UITableViewDelegate {
 protocol GroupDispatchViewControllerTableViewDelegateExtend {
     
     // 選到的Group會被加入到CollectionView裡面
-    func pickupGroup(tableRowIndex: Int, selectedGroupVo: GroupVo)
+    func pickupGroup(tableRowIndex: Int, dp_selectedGroupVo: dp_GroupVo)
     
 }

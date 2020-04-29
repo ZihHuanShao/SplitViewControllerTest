@@ -47,8 +47,8 @@ class dp_GroupViewController: UIViewController {
     
     // MARK: - Properties
     
-    fileprivate var groupVo: GroupVo?
-    fileprivate var membersVo: [MemberVo]?
+    fileprivate var dp_groupVo: dp_GroupVo?
+    fileprivate var membersVo: [dp_MemberVo]?
     fileprivate var collectionViewDelegate: dp_GroupViewControllerCollectionoViewDelegate?
     fileprivate var callingType = GroupMemberCallingType.PTT
     fileprivate var groupSettingInfTableViewDelegate: dp_GroupViewControllerGroupSettingInfoTableViewDelegate?
@@ -74,7 +74,7 @@ class dp_GroupViewController: UIViewController {
     
     @IBAction func groupSettingButtonPressed(_ sender: UIButton) {
         print("groupSettingButtonPressed")
-        showGroupSettingInfoView(groupVo: groupVo)
+        showGroupSettingInfoView(dp_groupVo: dp_groupVo)
     }
     
     //
@@ -171,8 +171,8 @@ class dp_GroupViewController: UIViewController {
 
 // MARK: - Public Methods
 extension dp_GroupViewController {
-    func updateGroupVo(_ groupVo: GroupVo) {
-        self.groupVo = groupVo
+    func updateGroupVo(_ dp_groupVo: dp_GroupVo) {
+        self.dp_groupVo = dp_groupVo
     }
 }
 
@@ -189,7 +189,7 @@ extension dp_GroupViewController {
         // collectionViewDelegate
         //
         
-        guard let gVo = groupVo else {
+        guard let gVo = dp_groupVo else {
             return
         }
         
@@ -205,9 +205,9 @@ extension dp_GroupViewController {
         
         var count = gVo.count ?? 0
         if count > 0 {
-            membersVo = [MemberVo]()
+            membersVo = [dp_MemberVo]()
             while (count > 0) {
-                membersVo?.append(MemberVo.init(name: String(count)))
+                membersVo?.append(dp_MemberVo.init(name: String(count)))
                 count -= 1
             }
         }
@@ -277,8 +277,8 @@ extension dp_GroupViewController {
         // 點擊到焦點畫面不應該被dismiss, 做一個空的function擋
     }
     
-    private func showGroupSettingInfoView(groupVo: GroupVo?) {
-        if let monitorState = groupVo?.monitorState {
+    private func showGroupSettingInfoView(dp_groupVo: dp_GroupVo?) {
+        if let monitorState = dp_groupVo?.monitorState {
             if monitorState {
                 groupSettingInfTableViewDelegate?.enableMonitorButton()
             } else {
@@ -289,10 +289,10 @@ extension dp_GroupViewController {
         groupSettingInfoMaskView.isHidden = false
     }
     
-    private func showGroupMemberInfoView(memberVo: MemberVo?) {
+    private func showGroupMemberInfoView(dp_memberVo: dp_MemberVo?) {
         
         var imageName = String()
-        if let imgName = memberVo?.imageName, imgName != "" {
+        if let imgName = dp_memberVo?.imageName, imgName != "" {
             imageName = imgName
         } else {
             imageName = "sticker_contact.png"
@@ -310,7 +310,7 @@ extension dp_GroupViewController {
         groupMemberImage.image = memberImage
         
         // 成員名字
-        groupMemberName.text = memberVo?.name ?? ""
+        groupMemberName.text = dp_memberVo?.name ?? ""
         
         groupMemberInfoMaskView.isHidden = false
     }
@@ -442,8 +442,8 @@ extension dp_GroupViewController {
 // MARK: - GroupViewControllerCollectionoViewDelegateExtend
 
 extension dp_GroupViewController: GroupViewControllerCollectionoViewDelegateExtend {
-    func didTapGroupMember(memberVo: MemberVo?) {
+    func didTapGroupMember(dp_memberVo: dp_MemberVo?) {
         resetGroupMemberInfoViewUI()
-        showGroupMemberInfoView(memberVo: memberVo)
+        showGroupMemberInfoView(dp_memberVo: dp_memberVo)
     }
 }

@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 private class CellData {
-    var memberVo: MemberVo?
+    var dp_memberVo: dp_MemberVo?
     
-    init(_ memberVo: MemberVo) {
-        self.memberVo = memberVo
+    init(_ dp_memberVo: dp_MemberVo) {
+        self.dp_memberVo = dp_memberVo
     }
 }
 

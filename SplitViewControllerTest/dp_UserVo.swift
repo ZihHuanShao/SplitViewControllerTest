@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GroupVo {
+class dp_GroupVo {
     var name: String?
     var count: Int?
     var imageName: String?
@@ -31,7 +31,7 @@ class GroupVo {
     }
 }
 
-class MemberVo {
+class dp_MemberVo {
     var name: String?
     var imageName: String?
     var userId: String?
@@ -62,7 +62,7 @@ class MemberVo {
 }
 
 
-class MainMenuIconVo {
+class dp_MainMenuIconVo {
     var selectedIconName: String?
     var unselectedIconName: String?
     var isSelected = Bool()
@@ -75,33 +75,33 @@ class MainMenuIconVo {
 }
 
 
-class SelectedGroupVo {
+class dp_SelectedGroupVo {
     var tableRowIndex: Int?
-    var groupVo: GroupVo?
+    var dp_groupVo: dp_GroupVo?
     
-    init(tableRowIndex: Int?, groupVo: GroupVo?) {
+    init(tableRowIndex: Int?, dp_groupVo: dp_GroupVo?) {
         self.tableRowIndex = tableRowIndex
-        self.groupVo = groupVo
+        self.dp_groupVo = dp_groupVo
     }
 }
 
-class SelectedMemberVo {
+class dp_SelectedMemberVo {
     var tableRowIndex: Int?
-    var memberVo: MemberVo?
+    var dp_memberVo: dp_MemberVo?
     
-    init(tableRowIndex: Int?, memberVo: MemberVo?) {
+    init(tableRowIndex: Int?, dp_memberVo: dp_MemberVo?) {
         self.tableRowIndex = tableRowIndex
-        self.memberVo = memberVo
+        self.dp_memberVo = dp_memberVo
     }
 }
 
-class ElectrFenceVo {
+class dp_ElectrFenceVo {
     var title: String?
     var color: UInt? = 0xFF0000 // default red color
 
-    var notifyTarget: MemberVo?
+    var notifyTarget: dp_MemberVo?
     var autoSwitchPreferGroupEnabled = Bool()
-    var preferGroup: GroupVo?
+    var preferGroup: dp_GroupVo?
     
     var enterAlarmEnabled = Bool()
     var enterAlarmVoicePlayEnabled = Bool()
@@ -111,7 +111,7 @@ class ElectrFenceVo {
     var exitAlarmVoicePlayEnabled = Bool()
     var exitAlarmVoice: String?
     
-    init(title: String?, color: UInt?, notifyTarget: MemberVo?, autoSwitchPreferGroupEnabled: Bool, preferGroup: GroupVo?, enterAlarmEnabled: Bool, enterAlarmVoicePlayEnabled: Bool, enterAlarmVoice: String?, exitAlarmEnabled: Bool, exitAlarmVoicePlayEnabled: Bool, exitAlarmVoice: String) {
+    init(title: String?, color: UInt?, notifyTarget: dp_MemberVo?, autoSwitchPreferGroupEnabled: Bool, preferGroup: dp_GroupVo?, enterAlarmEnabled: Bool, enterAlarmVoicePlayEnabled: Bool, enterAlarmVoice: String?, exitAlarmEnabled: Bool, exitAlarmVoicePlayEnabled: Bool, exitAlarmVoice: String) {
         self.title = title
         self.color = color
         self.notifyTarget = notifyTarget

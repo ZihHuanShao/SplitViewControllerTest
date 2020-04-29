@@ -26,7 +26,7 @@ class dp_EditElectrFenceViewController: UIViewController {
     // MARK: - Properties
     
     var tableViewDelegate: dp_EditElectrFenceViewControllerTableViewDelegate?
-    var testElectrFenceVo: ElectrFenceVo?
+    var testElectrFenceVo: dp_ElectrFenceVo?
     
     // MARK: - Life Cycle
     
@@ -84,22 +84,22 @@ extension dp_EditElectrFenceViewController {
         tableViewDelegate = dp_EditElectrFenceViewControllerTableViewDelegate(dp_editElectrFenceViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: DP_EDIT_ELECTR_FENCE_TABLE_VIEW_CELL, cellId: DP_EDIT_ELECTR_FENCE_TABLE_VIEW_CELL)
         
-        if let electrFenceVo = testElectrFenceVo {
-            tableViewDelegate?.updateElectrFenceVo(electrFenceVo)
+        if let dp_electrFenceVo = testElectrFenceVo {
+            tableViewDelegate?.updateElectrFenceVo(dp_electrFenceVo)
         }
         
         nameTextField.delegate = self
     }
     private func reloadElectrFenceTestData() {
-        let memberVo = MemberVo(name: "調度員Fred")
-        let groupVo = GroupVo(name: "緊急通報群組")
+        let dp_memberVo = dp_MemberVo(name: "調度員Fred")
+        let dp_groupVo = dp_GroupVo(name: "緊急通報群組")
         
-        testElectrFenceVo = ElectrFenceVo(
+        testElectrFenceVo = dp_ElectrFenceVo(
             title: "測試圍籬1",
             color: 0x00FF00,
-            notifyTarget: memberVo,
+            notifyTarget: dp_memberVo,
             autoSwitchPreferGroupEnabled: true,
-            preferGroup: groupVo,
+            preferGroup: dp_groupVo,
             enterAlarmEnabled: true,
             enterAlarmVoicePlayEnabled: true,
             enterAlarmVoice: "危險區域 請儘速離開",
@@ -223,36 +223,36 @@ extension dp_EditElectrFenceViewController: UITextFieldDelegate {
 
 extension dp_EditElectrFenceViewController {
     func autoSwitchPreferGroupChanged(notification: Notification) -> Void {
-        if let electrFenceVo = testElectrFenceVo {
-            electrFenceVo.autoSwitchPreferGroupEnabled = !(electrFenceVo.autoSwitchPreferGroupEnabled)
+        if let dp_electrFenceVo = testElectrFenceVo {
+            dp_electrFenceVo.autoSwitchPreferGroupEnabled = !(dp_electrFenceVo.autoSwitchPreferGroupEnabled)
             tableViewDelegate?.reloadUI()
         }
     }
     
     func enterAlarmChanged(notification: Notification) -> Void {
-        if let electrFenceVo = testElectrFenceVo {
-            electrFenceVo.enterAlarmEnabled = !(electrFenceVo.enterAlarmEnabled)
+        if let dp_electrFenceVo = testElectrFenceVo {
+            dp_electrFenceVo.enterAlarmEnabled = !(dp_electrFenceVo.enterAlarmEnabled)
             tableViewDelegate?.reloadUI()
         }
     }
     
     func enterAlarmVoicePlayChanged(notification: Notification) -> Void {
-        if let electrFenceVo = testElectrFenceVo {
-            electrFenceVo.enterAlarmVoicePlayEnabled = !(electrFenceVo.enterAlarmVoicePlayEnabled)
+        if let dp_electrFenceVo = testElectrFenceVo {
+            dp_electrFenceVo.enterAlarmVoicePlayEnabled = !(dp_electrFenceVo.enterAlarmVoicePlayEnabled)
             tableViewDelegate?.reloadUI()
         }
     }
     
     func exitAlarmChanged(notification: Notification) -> Void {
-        if let electrFenceVo = testElectrFenceVo {
-            electrFenceVo.exitAlarmEnabled = !(electrFenceVo.exitAlarmEnabled)
+        if let dp_electrFenceVo = testElectrFenceVo {
+            dp_electrFenceVo.exitAlarmEnabled = !(dp_electrFenceVo.exitAlarmEnabled)
             tableViewDelegate?.reloadUI()
         }
     }
     
     func exitAlarmVoicePlayChanged(notification: Notification) -> Void {
-        if let electrFenceVo = testElectrFenceVo {
-            electrFenceVo.exitAlarmVoicePlayEnabled = !(electrFenceVo.exitAlarmVoicePlayEnabled)
+        if let dp_electrFenceVo = testElectrFenceVo {
+            dp_electrFenceVo.exitAlarmVoicePlayEnabled = !(dp_electrFenceVo.exitAlarmVoicePlayEnabled)
             tableViewDelegate?.reloadUI()
         }
     }

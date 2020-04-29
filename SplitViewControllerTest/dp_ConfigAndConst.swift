@@ -263,5 +263,5 @@ struct SwitchMainMenuUserInfo {
 struct UnderlayPresentInfo {
     var backgroundImageView: UIImageView?
     var window: UIWindow?
-    var groupsVo: [GroupVo]?
+    var groupsVo: [dp_GroupVo]?
 }

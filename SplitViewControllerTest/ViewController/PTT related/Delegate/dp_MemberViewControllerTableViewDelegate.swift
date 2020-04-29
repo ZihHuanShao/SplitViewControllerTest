@@ -16,7 +16,7 @@ class dp_MemberViewControllerTableViewDelegate: NSObject {
     fileprivate weak var viewController: dp_MemberViewController?
     fileprivate weak var tableView: UITableView?
     fileprivate var profileTitles = [String]()
-    fileprivate var memberVo: MemberVo?
+    fileprivate var dp_memberVo: dp_MemberVo?
     
     // MARK: - initializer
     
@@ -32,8 +32,8 @@ class dp_MemberViewControllerTableViewDelegate: NSObject {
 // MARK: - Public Methods
 
 extension dp_MemberViewControllerTableViewDelegate {
-    func updateMemberVo(_ memberVo: MemberVo) {
-        self.memberVo = memberVo
+    func updateMemberVo(_ dp_memberVo: dp_MemberVo) {
+        self.dp_memberVo = dp_memberVo
     }
     
     func registerCell(cellName: String, cellId: String) {
@@ -63,8 +63,8 @@ extension dp_MemberViewControllerTableViewDelegate: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DP_MEMBER_PROFILE_TABLE_VIEW_CELL, for: indexPath) as! dp_MemberProfileTableViewCell
         
-        if let _memberVo = memberVo {
-            cell.updateCell(MemberProfileType.allCases[indexPath.row], memberVo: _memberVo)
+        if let _memberVo = dp_memberVo {
+            cell.updateCell(MemberProfileType.allCases[indexPath.row], dp_memberVo: _memberVo)
         }
         
         return cell

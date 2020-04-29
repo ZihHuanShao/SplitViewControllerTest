@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 private class CellData {
-    var memberVo: MemberVo?
+    var dp_memberVo: dp_MemberVo?
     
-    init(_ memberVo: MemberVo) {
-        self.memberVo = memberVo
+    init(_ dp_memberVo: dp_MemberVo) {
+        self.dp_memberVo = dp_memberVo
     }
 }
 
@@ -24,7 +24,7 @@ class dp_GroupViewControllerCollectionoViewDelegate: NSObject {
     fileprivate weak var viewController: dp_GroupViewController?
     fileprivate weak var collectionView: UICollectionView?
     fileprivate var membersCount: Int?
-    fileprivate var membersVo = [MemberVo]()
+    fileprivate var membersVo = [dp_MemberVo]()
     fileprivate var cellsData = [CellData]()
     fileprivate var delegateExtend: GroupViewControllerCollectionoViewDelegateExtend?
     
@@ -48,8 +48,8 @@ extension dp_GroupViewControllerCollectionoViewDelegate {
     private func reloadCellData() {
         cellsData.removeAll()
         
-        for memberVo in membersVo {
-            cellsData.append(CellData(memberVo))
+        for dp_memberVo in membersVo {
+            cellsData.append(CellData(dp_memberVo))
         }
     }
 }
@@ -57,7 +57,7 @@ extension dp_GroupViewControllerCollectionoViewDelegate {
 // MARK: - Public Methods
 
 extension dp_GroupViewControllerCollectionoViewDelegate {
-    func updateMembersVo(_ membersVo: [MemberVo]) {
+    func updateMembersVo(_ membersVo: [dp_MemberVo]) {
         self.membersVo = membersVo
     }
     
@@ -88,14 +88,14 @@ extension dp_GroupViewControllerCollectionoViewDelegate: UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DP_GROUP_COLLECTION_VIEW_CELL, for: indexPath) as! dp_GroupCollectionViewCell
         
-        guard let memberVo = cellsData[indexPath.row].memberVo else {
+        guard let dp_memberVo = cellsData[indexPath.row].dp_memberVo else {
             return cell
         }
         
-        cell.setMemberName(name: memberVo.name ?? "")
-        cell.setMemberImage(name: memberVo.imageName ?? "")
+        cell.setMemberName(name: dp_memberVo.name ?? "")
+        cell.setMemberImage(name: dp_memberVo.imageName ?? "")
         
-        switch memberVo.onlineState {
+        switch dp_memberVo.onlineState {
         case .AVAILABLE:    cell.setOnlineState(type: .AVAILABLE)
         case .BUSY:         cell.setOnlineState(type: .BUSY)
         case .NO_DISTURB:   cell.setOnlineState(type: .NO_DISTURB)
@@ -116,7 +116,7 @@ extension dp_GroupViewControllerCollectionoViewDelegate: UICollectionViewDelegat
         print(membersVo[indexPath.row].name)
         
         let cellData = cellsData[indexPath.row]
-        delegateExtend?.didTapGroupMember(memberVo: cellData.memberVo)
+        delegateExtend?.didTapGroupMember(dp_memberVo: cellData.dp_memberVo)
     }
 }
 
@@ -156,5 +156,5 @@ extension dp_GroupViewControllerCollectionoViewDelegate: UICollectionViewDelegat
 }
 
 protocol GroupViewControllerCollectionoViewDelegateExtend {
-    func didTapGroupMember(memberVo: MemberVo?)
+    func didTapGroupMember(dp_memberVo: dp_MemberVo?)
 }

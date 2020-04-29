@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 private class CellData {
-    var mainMenuIconVo: MainMenuIconVo?
+    var dp_mainMenuIconVo: dp_MainMenuIconVo?
     
-    init(_ mainMenuIconVo: MainMenuIconVo) {
-        self.mainMenuIconVo = mainMenuIconVo
+    init(_ dp_mainMenuIconVo: dp_MainMenuIconVo) {
+        self.dp_mainMenuIconVo = dp_mainMenuIconVo
     }
 }
 
@@ -25,7 +25,7 @@ class dp_DetailViewCollectionViewDelegate: NSObject {
     fileprivate weak var collectionView: UICollectionView?
     
     fileprivate var cellsData = [CellData]()
-    fileprivate var mainMenuIconsVo  = [MainMenuIconVo]()
+    fileprivate var mainMenuIconsVo  = [dp_MainMenuIconVo]()
     
     fileprivate var preSelectedIconIndex: Int?
     
@@ -44,7 +44,7 @@ class dp_DetailViewCollectionViewDelegate: NSObject {
 // MARK: - Public Methods
 
 extension dp_DetailViewCollectionViewDelegate {
-    func updateMainMenuIcons(mainMenuIconsVo: [MainMenuIconVo]) {
+    func updateMainMenuIcons(mainMenuIconsVo: [dp_MainMenuIconVo]) {
         self.mainMenuIconsVo = mainMenuIconsVo
     }
     
@@ -67,8 +67,8 @@ extension dp_DetailViewCollectionViewDelegate {
 extension dp_DetailViewCollectionViewDelegate {
     private func reloadCellData() {
         cellsData.removeAll()
-        for mainMenuIconVo in mainMenuIconsVo {
-            cellsData.append(CellData(mainMenuIconVo))
+        for dp_mainMenuIconVo in mainMenuIconsVo {
+            cellsData.append(CellData(dp_mainMenuIconVo))
         }
     }
     
@@ -87,10 +87,10 @@ extension dp_DetailViewCollectionViewDelegate: UICollectionViewDataSource {
         
         let cellData = cellsData[indexPath.row]
         
-        if (cellData.mainMenuIconVo?.isSelected == true) {
-            cell.setMainMenuIcon(name: cellData.mainMenuIconVo?.selectedIconName ?? "")
+        if (cellData.dp_mainMenuIconVo?.isSelected == true) {
+            cell.setMainMenuIcon(name: cellData.dp_mainMenuIconVo?.selectedIconName ?? "")
         } else {
-            cell.setMainMenuIcon(name: cellData.mainMenuIconVo?.unselectedIconName ?? "")
+            cell.setMainMenuIcon(name: cellData.dp_mainMenuIconVo?.unselectedIconName ?? "")
         }
     
        

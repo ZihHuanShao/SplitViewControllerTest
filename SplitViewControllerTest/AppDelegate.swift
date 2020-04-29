@@ -107,7 +107,7 @@ extension AppDelegate {
 }
 
 extension AppDelegate {
-    func showGroupDispatchModal(groupsVo: [GroupVo]) {
+    func showGroupDispatchModal(groupsVo: [dp_GroupVo]) {
         
         let storyboard = UIStoryboard(name: STORYBOARD_NAME_DP_GROUP, bundle: nil)
         let dp_groupDispatchViewController = storyboard.instantiateViewController(withIdentifier: GROUP_DISPATCH_VIEW_CONTROLLER) as? dp_GroupDispatchViewController
@@ -119,7 +119,7 @@ extension AppDelegate {
         showPresentView(viewController: dp_groupDispatchViewController)
     }
     
-    func showAddMemberModal(membersVo: [MemberVo]) {
+    func showAddMemberModal(membersVo: [dp_MemberVo]) {
          
          let storyboard = UIStoryboard(name: STORYBOARD_NAME_DP_GROUP, bundle: nil)
          let dp_addMemberViewController = storyboard.instantiateViewController(withIdentifier: ADD_MEMBER_VIEW_CONTROLLER) as? dp_AddMemberViewController
@@ -131,7 +131,7 @@ extension AppDelegate {
          showPresentView(viewController: dp_addMemberViewController)
     }
     
-    func dismissOverlayWithSelectedMembers(_ membersVo: [MemberVo]?) {
+    func dismissOverlayWithSelectedMembers(_ membersVo: [dp_MemberVo]?) {
         // dismiss the overlay
         window?.rootViewController?.dismiss(animated: true, completion: {
             if let vc = self.originalSplitVC {

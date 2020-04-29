@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 private class CellData {
-    var memberVo: MemberVo?
+    var dp_memberVo: dp_MemberVo?
     
-    init(_ memberVo: MemberVo) {
-        self.memberVo = memberVo
+    init(_ dp_memberVo: dp_MemberVo) {
+        self.dp_memberVo = dp_memberVo
     }
 }
 
@@ -25,7 +25,7 @@ class dp_AddMemberViewControllerTableViewDelegate: NSObject {
     fileprivate var tableViewExtendDelegate: AddMemberViewControllerTableViewDelegateExtend?
     
     fileprivate var cellsData = [CellData]()
-    fileprivate var membersVo = [MemberVo]()
+    fileprivate var membersVo = [dp_MemberVo]()
     
     // MARK: - initializer
     
@@ -44,8 +44,8 @@ class dp_AddMemberViewControllerTableViewDelegate: NSObject {
 extension dp_AddMemberViewControllerTableViewDelegate {
     private func reloadCellData() {
         cellsData.removeAll()
-        for memberVo in membersVo {
-            cellsData.append(CellData(memberVo))
+        for dp_memberVo in membersVo {
+            cellsData.append(CellData(dp_memberVo))
         }
 
     }
@@ -54,7 +54,7 @@ extension dp_AddMemberViewControllerTableViewDelegate {
 // MARK: - Public Methods
 
 extension dp_AddMemberViewControllerTableViewDelegate {
-    func updateMembersVo(_ membersVo: [MemberVo]) {
+    func updateMembersVo(_ membersVo: [dp_MemberVo]) {
         self.membersVo = membersVo
     }
     
@@ -63,8 +63,8 @@ extension dp_AddMemberViewControllerTableViewDelegate {
     }
     
     func resetMembers() {
-        for memberVo in membersVo {
-            memberVo.isSelected = false
+        for dp_memberVo in membersVo {
+            dp_memberVo.isSelected = false
         }
 
         cellsData.removeAll()
@@ -97,11 +97,11 @@ extension dp_AddMemberViewControllerTableViewDelegate: UITableViewDataSource {
         let cellData = cellsData[indexPath.row]
         
         cell.selectionStyle = .none
-        cell.setMemberName(name: cellData.memberVo?.name ?? "")
-        cell.setMemberImage(name: cellData.memberVo?.imageName ?? "")
+        cell.setMemberName(name: cellData.dp_memberVo?.name ?? "")
+        cell.setMemberImage(name: cellData.dp_memberVo?.imageName ?? "")
 
         
-        (cellData.memberVo?.isSelected == true) ? cell.enableCheckbox() : cell.disableCheckbox()
+        (cellData.dp_memberVo?.isSelected == true) ? cell.enableCheckbox() : cell.disableCheckbox()
         
         return cell
     }
@@ -118,14 +118,14 @@ extension dp_AddMemberViewControllerTableViewDelegate: UITableViewDelegate {
         
         let rowIndex  = indexPath.row
         
-        if let cellData = cellsData[rowIndex].memberVo {
+        if let cellData = cellsData[rowIndex].dp_memberVo {
             cellData.isSelected = !(cellData.isSelected)
         }
 
         //
-        let selectedMemberVo = membersVo[rowIndex]
-        print("rowIndex: \(rowIndex), memberName: \(String(describing: selectedMemberVo.name))")
-        tableViewExtendDelegate?.pickupMember(tableRowIndex: rowIndex, selectedMemberVo: selectedMemberVo)
+        let dp_selectedMemberVo = membersVo[rowIndex]
+        print("rowIndex: \(rowIndex), memberName: \(String(describing: dp_selectedMemberVo.name))")
+        tableViewExtendDelegate?.pickupMember(tableRowIndex: rowIndex, dp_selectedMemberVo: dp_selectedMemberVo)
         
         reloadUI()
     }
@@ -136,6 +136,6 @@ extension dp_AddMemberViewControllerTableViewDelegate: UITableViewDelegate {
 protocol AddMemberViewControllerTableViewDelegateExtend {
     
     // 選到的Member會被加入到CollectionView裡面
-    func pickupMember(tableRowIndex: Int, selectedMemberVo: MemberVo)
+    func pickupMember(tableRowIndex: Int, dp_selectedMemberVo: dp_MemberVo)
     
 }

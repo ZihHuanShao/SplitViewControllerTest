@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 private class CellData {
-    var memberVo: MemberVo?
+    var dp_memberVo: dp_MemberVo?
     
-    init(_ memberVo: MemberVo) {
-        self.memberVo = memberVo
+    init(_ dp_memberVo: dp_MemberVo) {
+        self.dp_memberVo = dp_memberVo
     }
 }
 
@@ -24,7 +24,7 @@ class dp_CreateGroupViewControllerTableViewDelegate: NSObject {
     fileprivate weak var tableView: UITableView?
     
     fileprivate var cellsData = [CellData]()
-    fileprivate var membersVo = [MemberVo]()
+    fileprivate var membersVo = [dp_MemberVo]()
     
     // MARK: - initializer
     
@@ -41,8 +41,8 @@ class dp_CreateGroupViewControllerTableViewDelegate: NSObject {
 
 extension dp_CreateGroupViewControllerTableViewDelegate {
     private func reloadCellData() {
-        for memberVo in membersVo {
-            cellsData.append(CellData(memberVo))
+        for dp_memberVo in membersVo {
+            cellsData.append(CellData(dp_memberVo))
         }
     }
 }
@@ -50,7 +50,7 @@ extension dp_CreateGroupViewControllerTableViewDelegate {
 // MARK: - Public Methods
 
 extension dp_CreateGroupViewControllerTableViewDelegate {
-    func updateMembersVo(_ membersVo: [MemberVo]) {
+    func updateMembersVo(_ membersVo: [dp_MemberVo]) {
         self.membersVo = membersVo
     }
     
@@ -79,7 +79,7 @@ extension dp_CreateGroupViewControllerTableViewDelegate: UITableViewDataSource {
         
         let cellData = cellsData[indexPath.row]
         
-        cell.setMemberName(name: cellData.memberVo?.name ?? "")
+        cell.setMemberName(name: cellData.dp_memberVo?.name ?? "")
         
         return cell
     }

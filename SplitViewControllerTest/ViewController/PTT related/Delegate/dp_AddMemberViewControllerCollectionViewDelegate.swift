@@ -11,11 +11,11 @@ import UIKit
 
 private class CellData {
     var tableRowIndex: Int?
-    var memberVo: MemberVo?
+    var dp_memberVo: dp_MemberVo?
     
-    init(tableRowIndex: Int, _ memberVo: MemberVo) {
+    init(tableRowIndex: Int, _ dp_memberVo: dp_MemberVo) {
         self.tableRowIndex = tableRowIndex
-        self.memberVo = memberVo
+        self.dp_memberVo = dp_memberVo
     }
 }
 
@@ -28,7 +28,7 @@ class dp_AddMemberViewControllerCollectionViewDelegate: NSObject {
     fileprivate weak var collectionView: UICollectionView?
     
     // 目前所挑選要加入新群組的成員
-    fileprivate var selectedMembers = [SelectedMemberVo]()
+    fileprivate var selectedMembers = [dp_SelectedMemberVo]()
     
     fileprivate var cellsData = [CellData]()
     
@@ -51,8 +51,8 @@ extension dp_AddMemberViewControllerCollectionViewDelegate {
         cellsData.removeAll()
         
         for member in selectedMembers {
-            if let memberVo = member.memberVo , let tableRowIndex = member.tableRowIndex {
-                cellsData.append(CellData(tableRowIndex: tableRowIndex, memberVo))
+            if let dp_memberVo = member.dp_memberVo , let tableRowIndex = member.tableRowIndex {
+                cellsData.append(CellData(tableRowIndex: tableRowIndex, dp_memberVo))
             }
         }
     }
@@ -62,7 +62,7 @@ extension dp_AddMemberViewControllerCollectionViewDelegate {
 
 extension dp_AddMemberViewControllerCollectionViewDelegate {
     
-    func appendSelectedMember(tableRowIndex: Int, _ selectedMemberVo: MemberVo) {
+    func appendSelectedMember(tableRowIndex: Int, _ dp_selectedMemberVo: dp_MemberVo) {
         
         var isPickedup = false
         var collectionRowIndex = Int()
@@ -77,12 +77,12 @@ extension dp_AddMemberViewControllerCollectionViewDelegate {
         
         if isPickedup {
             // 移除已挑選的成員
-            selectedMemberVo.isSelected = false
+            dp_selectedMemberVo.isSelected = false
             selectedMembers.remove(at: collectionRowIndex)
         } else {
             // 加入已挑選的成員
-            selectedMemberVo.isSelected = true
-            selectedMembers.append(SelectedMemberVo(tableRowIndex: tableRowIndex, memberVo: selectedMemberVo))
+            dp_selectedMemberVo.isSelected = true
+            selectedMembers.append(dp_SelectedMemberVo(tableRowIndex: tableRowIndex, dp_memberVo: dp_selectedMemberVo))
         }
         
     }
@@ -104,12 +104,12 @@ extension dp_AddMemberViewControllerCollectionViewDelegate {
         selectedMembers.removeAll()
     }
     
-    func getSelectedMembers() -> [MemberVo] {
-        var selectedMembersVo = [MemberVo]()
+    func getSelectedMembers() -> [dp_MemberVo] {
+        var selectedMembersVo = [dp_MemberVo]()
         
         for selectedMember in selectedMembers {
-            if let memberVo = selectedMember.memberVo {
-                selectedMembersVo.append(memberVo)
+            if let dp_memberVo = selectedMember.dp_memberVo {
+                selectedMembersVo.append(dp_memberVo)
             }
         }
         
@@ -146,8 +146,8 @@ extension dp_AddMemberViewControllerCollectionViewDelegate: UICollectionViewData
             cell.setTableRowIndex(tableRowIndex)
         }
         
-        cell.setMemberName(name: cellData.memberVo?.name ?? "")
-        cell.setMemberImage(name: cellData.memberVo?.imageName ?? "")
+        cell.setMemberName(name: cellData.dp_memberVo?.name ?? "")
+        cell.setMemberImage(name: cellData.dp_memberVo?.imageName ?? "")
         
         return cell
     }

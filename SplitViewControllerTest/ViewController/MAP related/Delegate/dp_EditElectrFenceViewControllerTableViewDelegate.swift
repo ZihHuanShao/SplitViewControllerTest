@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 private class CellData {
-    var electrFenceVo: ElectrFenceVo?
+    var dp_electrFenceVo: dp_ElectrFenceVo?
     
-    init(electrFenceVo: ElectrFenceVo) {
-        self.electrFenceVo = electrFenceVo
+    init(dp_electrFenceVo: dp_ElectrFenceVo) {
+        self.dp_electrFenceVo = dp_electrFenceVo
     }
 }
 
@@ -24,7 +24,7 @@ class dp_EditElectrFenceViewControllerTableViewDelegate: NSObject {
     fileprivate weak var viewController: dp_EditElectrFenceViewController?
     fileprivate weak var tableView: UITableView?
     
-    fileprivate var electrFenceVo: ElectrFenceVo?
+    fileprivate var dp_electrFenceVo: dp_ElectrFenceVo?
     
     // MARK: - initializer
     
@@ -44,8 +44,8 @@ class dp_EditElectrFenceViewControllerTableViewDelegate: NSObject {
 
 extension dp_EditElectrFenceViewControllerTableViewDelegate {
     
-    func updateElectrFenceVo(_ electrFenceVo: ElectrFenceVo) {
-        self.electrFenceVo = electrFenceVo
+    func updateElectrFenceVo(_ dp_electrFenceVo: dp_ElectrFenceVo) {
+        self.dp_electrFenceVo = dp_electrFenceVo
     }
     
     func registerCell(cellName: String, cellId: String) {
@@ -76,7 +76,7 @@ extension dp_EditElectrFenceViewControllerTableViewDelegate: UITableViewDataSour
         
         case .BASIC_ALRAM_TYPE:
             // 「自動切換優先群組」啟用
-            if electrFenceVo?.autoSwitchPreferGroupEnabled == true {
+            if dp_electrFenceVo?.autoSwitchPreferGroupEnabled == true {
                 return 3
             }
             // 「自動切換優先群組」關閉
@@ -86,11 +86,11 @@ extension dp_EditElectrFenceViewControllerTableViewDelegate: UITableViewDataSour
             
         case .ENTER_ALARM_TYPE:
             // 「進入警告」啟用 &&「播放警示語音」啟用
-            if electrFenceVo?.enterAlarmEnabled == true && electrFenceVo?.enterAlarmVoicePlayEnabled == true {
+            if dp_electrFenceVo?.enterAlarmEnabled == true && dp_electrFenceVo?.enterAlarmVoicePlayEnabled == true {
                 return 3
             }
             // 「進入警告」啟用 &&「播放警示語音」關閉
-            else if electrFenceVo?.enterAlarmEnabled == true && electrFenceVo?.enterAlarmVoicePlayEnabled == false {
+            else if dp_electrFenceVo?.enterAlarmEnabled == true && dp_electrFenceVo?.enterAlarmVoicePlayEnabled == false {
                 return 2
             }
             // 「進入警告」關閉
@@ -100,11 +100,11 @@ extension dp_EditElectrFenceViewControllerTableViewDelegate: UITableViewDataSour
             
         case .EXIT_ALARM_TYPE:
             // 「離開警告」啟用 &&「播放警示語音」啟用
-            if electrFenceVo?.exitAlarmEnabled == true && electrFenceVo?.exitAlarmVoicePlayEnabled == true {
+            if dp_electrFenceVo?.exitAlarmEnabled == true && dp_electrFenceVo?.exitAlarmVoicePlayEnabled == true {
                 return 3
             }
             // 「離開警告」啟用 &&「播放警示語音」關閉
-            else if electrFenceVo?.exitAlarmEnabled == true && electrFenceVo?.exitAlarmVoicePlayEnabled == false {
+            else if dp_electrFenceVo?.exitAlarmEnabled == true && dp_electrFenceVo?.exitAlarmVoicePlayEnabled == false {
                 return 2
             }
             // 「離開警告」關閉
@@ -123,17 +123,17 @@ extension dp_EditElectrFenceViewControllerTableViewDelegate: UITableViewDataSour
         // section 2: 離開警告(是否啟用/ 播放警示語音/ 語音內容)
         let alarmType = ElectrFenceAllAlarmType.allCases[indexPath.section]
         
-        if let eFenceVo = electrFenceVo {
+        if let eFenceVo = dp_electrFenceVo {
             switch alarmType {
             
             case .BASIC_ALRAM_TYPE:
-                cell.updateCell(basicAlarmType: ElectrFenceAllAlarmType.BasicAlarmType.allCases[indexPath.row], electrFenceVo: eFenceVo)
+                cell.updateCell(basicAlarmType: ElectrFenceAllAlarmType.BasicAlarmType.allCases[indexPath.row], dp_electrFenceVo: eFenceVo)
                 
             case .ENTER_ALARM_TYPE:
-                cell.updateCell(enterAlarmType: ElectrFenceAllAlarmType.EnterAlarmType.allCases[indexPath.row], electrFenceVo: eFenceVo)
+                cell.updateCell(enterAlarmType: ElectrFenceAllAlarmType.EnterAlarmType.allCases[indexPath.row], dp_electrFenceVo: eFenceVo)
 
             case .EXIT_ALARM_TYPE:
-                cell.updateCell(exitAlarmType: ElectrFenceAllAlarmType.ExitAlarmType.allCases[indexPath.row], electrFenceVo: eFenceVo)
+                cell.updateCell(exitAlarmType: ElectrFenceAllAlarmType.ExitAlarmType.allCases[indexPath.row], dp_electrFenceVo: eFenceVo)
             }
         }
 
@@ -166,10 +166,10 @@ extension dp_EditElectrFenceViewControllerTableViewDelegate: UITableViewDelegate
                 break
                 
             case .AUTO_SWITCH_PREFER_GROUP:
-                if electrFenceVo?.autoSwitchPreferGroupEnabled == true {
-                    electrFenceVo?.autoSwitchPreferGroupEnabled = false
+                if dp_electrFenceVo?.autoSwitchPreferGroupEnabled == true {
+                    dp_electrFenceVo?.autoSwitchPreferGroupEnabled = false
                 } else {
-                    electrFenceVo?.autoSwitchPreferGroupEnabled = true
+                    dp_electrFenceVo?.autoSwitchPreferGroupEnabled = true
                 }
                 let indexes = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexes, with: .automatic)
@@ -185,19 +185,19 @@ extension dp_EditElectrFenceViewControllerTableViewDelegate: UITableViewDelegate
             switch ElectrFenceAllAlarmType.EnterAlarmType.allCases[indexPath.row] {
                 
             case .ENTER_ALARM:
-                if electrFenceVo?.enterAlarmEnabled == true {
-                    electrFenceVo?.enterAlarmEnabled = false
+                if dp_electrFenceVo?.enterAlarmEnabled == true {
+                    dp_electrFenceVo?.enterAlarmEnabled = false
                 } else {
-                    electrFenceVo?.enterAlarmEnabled = true
+                    dp_electrFenceVo?.enterAlarmEnabled = true
                 }
                 let indexes = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexes, with: .automatic)
                 
             case .ENTER_ALARM_VOICE_PLAY:
-                if electrFenceVo?.enterAlarmVoicePlayEnabled == true {
-                   electrFenceVo?.enterAlarmVoicePlayEnabled = false
+                if dp_electrFenceVo?.enterAlarmVoicePlayEnabled == true {
+                   dp_electrFenceVo?.enterAlarmVoicePlayEnabled = false
                 } else {
-                    electrFenceVo?.enterAlarmVoicePlayEnabled = true
+                    dp_electrFenceVo?.enterAlarmVoicePlayEnabled = true
                 }
                 let indexes = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexes, with: .automatic)
@@ -213,19 +213,19 @@ extension dp_EditElectrFenceViewControllerTableViewDelegate: UITableViewDelegate
             switch ElectrFenceAllAlarmType.ExitAlarmType.allCases[indexPath.row] {
                 
             case .EXIT_ALARM:
-                if electrFenceVo?.exitAlarmEnabled == true {
-                    electrFenceVo?.exitAlarmEnabled = false
+                if dp_electrFenceVo?.exitAlarmEnabled == true {
+                    dp_electrFenceVo?.exitAlarmEnabled = false
                 } else {
-                    electrFenceVo?.exitAlarmEnabled = true
+                    dp_electrFenceVo?.exitAlarmEnabled = true
                 }
                 let indexes = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexes, with: .automatic)
                 
             case .EXIT_ALARM_VOICE_PLAY:
-                if electrFenceVo?.exitAlarmVoicePlayEnabled == true {
-                    electrFenceVo?.exitAlarmVoicePlayEnabled = false
+                if dp_electrFenceVo?.exitAlarmVoicePlayEnabled == true {
+                    dp_electrFenceVo?.exitAlarmVoicePlayEnabled = false
                 } else {
-                    electrFenceVo?.exitAlarmVoicePlayEnabled = true
+                    dp_electrFenceVo?.exitAlarmVoicePlayEnabled = true
                 }
                 let indexes = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexes, with: .automatic)

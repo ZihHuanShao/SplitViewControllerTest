@@ -27,7 +27,7 @@ class dp_AddMemberViewController: UIViewController {
     fileprivate var collectionViewDelegate: dp_AddMemberViewControllerCollectionViewDelegate?
     
     // Original Test data
-    fileprivate var membersVo = [MemberVo]()
+    fileprivate var membersVo = [dp_MemberVo]()
     
     // MARK: - Life Cycle
     
@@ -85,7 +85,7 @@ extension dp_AddMemberViewController: UITextFieldDelegate {
 // MARK: - Public Methods
 
 extension dp_AddMemberViewController {
-    func updateMembersVo(_ membersVo: [MemberVo]) {
+    func updateMembersVo(_ membersVo: [dp_MemberVo]) {
         self.membersVo = membersVo
     }
 }
@@ -193,8 +193,8 @@ extension dp_AddMemberViewController {
 // MARK: - AddMemberTableViewExtendDelegate
 
 extension dp_AddMemberViewController: AddMemberViewControllerTableViewDelegateExtend {
-    func pickupMember(tableRowIndex: Int, selectedMemberVo: MemberVo) {
-        collectionViewDelegate?.appendSelectedMember(tableRowIndex: tableRowIndex, selectedMemberVo)
+    func pickupMember(tableRowIndex: Int, dp_selectedMemberVo: dp_MemberVo) {
+        collectionViewDelegate?.appendSelectedMember(tableRowIndex: tableRowIndex, dp_selectedMemberVo)
         collectionViewDelegate?.reloadUI()
     }
 }

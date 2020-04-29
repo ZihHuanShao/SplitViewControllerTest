@@ -38,7 +38,7 @@ class dp_CreateGroupViewController: UIViewController {
     // MARK: - Properties
     
     // 所有成員清單
-    fileprivate var membersVo = [MemberVo]()
+    fileprivate var membersVo = [dp_MemberVo]()
     
     // tableview
     fileprivate var tableViewDelegate: dp_CreateGroupViewControllerTableViewDelegate?
@@ -137,7 +137,7 @@ extension dp_CreateGroupViewController {
     private func reloadTestData() {
         for member in TEST_MEMBERS {
             membersVo.append(
-                MemberVo(
+                dp_MemberVo(
                     name: member.name,
                     imageName: member.imageName,
                     userId: member.userId,
@@ -235,7 +235,7 @@ extension dp_CreateGroupViewController {
 
 extension dp_CreateGroupViewController {
     func selectedMembersReloaded(notification: Notification) -> Void {
-        if let selectedMembersVo = notification.userInfo?[SELECTED_MEMBERS_RELOADED_USER_KEY] as? [MemberVo] {
+        if let selectedMembersVo = notification.userInfo?[SELECTED_MEMBERS_RELOADED_USER_KEY] as? [dp_MemberVo] {
             
             tableViewDelegate?.updateMembersVo(selectedMembersVo)
             tableViewDelegate?.reloadUI()

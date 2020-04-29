@@ -44,8 +44,8 @@ class dp_PttViewController: UIViewController {
     
     // Original Test data
 
-    fileprivate var groupsVo  = [GroupVo]()
-    fileprivate var membersVo = [MemberVo]()
+    fileprivate var groupsVo  = [dp_GroupVo]()
+    fileprivate var membersVo = [dp_MemberVo]()
 
     // 目前tableview列表所點擊的cell的row index
     var currentTableCellRowIndex: Int?
@@ -223,7 +223,7 @@ extension dp_PttViewController {
     private func reloadTestData() {
         for group in TEST_GROUPS {
             groupsVo.append(
-                GroupVo(
+                dp_GroupVo(
                     name: group.name,
                     count: group.count,
                     imageName: group.imageName,
@@ -236,7 +236,7 @@ extension dp_PttViewController {
         
         for member in TEST_MEMBERS {
             membersVo.append(
-                MemberVo(
+                dp_MemberVo(
                     name: member.name,
                     imageName: member.imageName,
                     userId: member.userId,
@@ -356,10 +356,10 @@ extension dp_PttViewController {
 extension dp_PttViewController {
     func changeMonitor(notification: Notification) -> Void {
         if let tableRowIndex = notification.userInfo?[CHANGE_MONITOR_USER_KEY] as? Int {
-            let groupVo = groupsVo[tableRowIndex]
-            groupVo.monitorState = !(groupVo.monitorState)
+            let dp_groupVo = groupsVo[tableRowIndex]
+            dp_groupVo.monitorState = !(dp_groupVo.monitorState)
 
-            tableViewDelegate?.updateGroup(groupVo)
+            tableViewDelegate?.updateGroup(dp_groupVo)
             tableViewDelegate?.reloadUI()
             
             // 若點擊的監聽按鈕為當前cell的監聽按鈕, 則更新dp_DetailViewController畫面

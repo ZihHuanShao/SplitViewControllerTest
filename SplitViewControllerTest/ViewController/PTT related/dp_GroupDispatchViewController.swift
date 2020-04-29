@@ -27,7 +27,7 @@ class dp_GroupDispatchViewController: UIViewController {
     fileprivate var collectionViewDelegate: dp_GroupDispatchViewControllerCollectionViewDelegate?
     
     // Original Test data
-    fileprivate var groupsVo = [GroupVo]()
+    fileprivate var groupsVo = [dp_GroupVo]()
     
     
     // MARK: - Life Cycle
@@ -86,7 +86,7 @@ extension dp_GroupDispatchViewController: UITextFieldDelegate {
 // MARK: - Public Methods
 
 extension dp_GroupDispatchViewController {
-    func updateGroupsVo(_ groupsVo: [GroupVo]) {
+    func updateGroupsVo(_ groupsVo: [dp_GroupVo]) {
         self.groupsVo = groupsVo
     }
 }
@@ -194,8 +194,8 @@ extension dp_GroupDispatchViewController {
 // MARK: - GroupDispatchTableViewExtendDelegate
 
 extension dp_GroupDispatchViewController: GroupDispatchViewControllerTableViewDelegateExtend {
-    func pickupGroup(tableRowIndex: Int, selectedGroupVo: GroupVo) {
-        collectionViewDelegate?.appendSelectedGroup(tableRowIndex: tableRowIndex, selectedGroupVo)
+    func pickupGroup(tableRowIndex: Int, dp_selectedGroupVo: dp_GroupVo) {
+        collectionViewDelegate?.appendSelectedGroup(tableRowIndex: tableRowIndex, dp_selectedGroupVo)
         collectionViewDelegate?.reloadUI()
     }
 }

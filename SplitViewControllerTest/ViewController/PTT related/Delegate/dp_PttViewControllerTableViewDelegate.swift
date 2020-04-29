@@ -12,18 +12,18 @@ import UIKit
 
 
 private class GroupCellData {
-    var groupVo: GroupVo?
+    var dp_groupVo: dp_GroupVo?
     
-    init(_ groupVo: GroupVo) {
-        self.groupVo = groupVo
+    init(_ dp_groupVo: dp_GroupVo) {
+        self.dp_groupVo = dp_groupVo
     }
 }
 
 private class MemberCellData {
-    var memberVo: MemberVo?
+    var dp_memberVo: dp_MemberVo?
     
-    init(_ memberVo: MemberVo) {
-        self.memberVo = memberVo
+    init(_ dp_memberVo: dp_MemberVo) {
+        self.dp_memberVo = dp_memberVo
     }
 }
 
@@ -38,8 +38,8 @@ class dp_PttViewControllerTableViewDelegate: NSObject {
     fileprivate var groupCellsData  = [GroupCellData]()
     fileprivate var memberCellsData = [MemberCellData]()
     
-    fileprivate var groupsVo  = [GroupVo]()
-    fileprivate var membersVo = [MemberVo]()
+    fileprivate var groupsVo  = [dp_GroupVo]()
+    fileprivate var membersVo = [dp_MemberVo]()
     
     fileprivate var tabType = PttContactTabType.NONE
     fileprivate var preSelectedColorIndex: Int?
@@ -82,15 +82,15 @@ extension dp_PttViewControllerTableViewDelegate {
         switch tabType {
         case .GROUP:
             groupCellsData.removeAll()
-            for groupVo in groupsVo {
-                groupCellsData.append(GroupCellData(groupVo))
+            for dp_groupVo in groupsVo {
+                groupCellsData.append(GroupCellData(dp_groupVo))
             }
             break
             
         case .MEMBER:
             memberCellsData.removeAll()
-            for memberVo in membersVo {
-                memberCellsData.append(MemberCellData(memberVo))
+            for dp_memberVo in membersVo {
+                memberCellsData.append(MemberCellData(dp_memberVo))
             }
             break
             
@@ -125,25 +125,25 @@ extension dp_PttViewControllerTableViewDelegate {
 
 extension dp_PttViewControllerTableViewDelegate {
     
-    func updateGroups(_ groupsVo: [GroupVo]) {
+    func updateGroups(_ groupsVo: [dp_GroupVo]) {
         self.groupsVo = groupsVo
     }
     
-    func updateMembers(_ membersVo: [MemberVo]) {
+    func updateMembers(_ membersVo: [dp_MemberVo]) {
         self.membersVo = membersVo
     }
     
     
     // 觸發時機: 點擊某個group的Monitor button
     // 更新某個group資訊
-    func updateGroup(_ groupVo: GroupVo) {
+    func updateGroup(_ dp_groupVo: dp_GroupVo) {
         for gVo in groupsVo {
-            if (gVo.name == groupVo.name) {
-                gVo.count = groupVo.count
-                gVo.desc = groupVo.desc
-                gVo.imageName = groupVo.imageName
-                gVo.monitorState = groupVo.monitorState
-                gVo.isSelected = groupVo.isSelected
+            if (gVo.name == dp_groupVo.name) {
+                gVo.count = dp_groupVo.count
+                gVo.desc = dp_groupVo.desc
+                gVo.imageName = dp_groupVo.imageName
+                gVo.monitorState = dp_groupVo.monitorState
+                gVo.isSelected = dp_groupVo.isSelected
             }
         }
     }
@@ -188,14 +188,14 @@ extension dp_PttViewControllerTableViewDelegate: UITableViewDataSource {
             
             let groupCellData = groupCellsData[indexPath.row]
             
-            cell.setGroupName(name: groupCellData.groupVo?.name ?? "")
-            cell.setGroupMemberCount(groupCellData.groupVo?.count ?? 0)
-            cell.setGroupDesc(desc: groupCellData.groupVo?.desc ?? "")
-            cell.setGroupImage(name: groupCellData.groupVo?.imageName ?? "")
-//            cell.setMonitorState(groupCellData.groupVo?.monitorState ?? false)
+            cell.setGroupName(name: groupCellData.dp_groupVo?.name ?? "")
+            cell.setGroupMemberCount(groupCellData.dp_groupVo?.count ?? 0)
+            cell.setGroupDesc(desc: groupCellData.dp_groupVo?.desc ?? "")
+            cell.setGroupImage(name: groupCellData.dp_groupVo?.imageName ?? "")
+//            cell.setMonitorState(groupCellData.dp_groupVo?.monitorState ?? false)
             cell.setGroupCellRowIndex(indexPath.row)
             
-            if (groupCellData.groupVo?.monitorState == true) {
+            if (groupCellData.dp_groupVo?.monitorState == true) {
                 cell.setMonitorState(true)
                 cell.enableMonitor()
             } else {
@@ -203,7 +203,7 @@ extension dp_PttViewControllerTableViewDelegate: UITableViewDataSource {
                 cell.disableMonitor()
             }
             
-            (groupCellData.groupVo?.isSelected == true) ? cell.enableColor() : cell.disableColor()
+            (groupCellData.dp_groupVo?.isSelected == true) ? cell.enableColor() : cell.disableColor()
        
             cell.selectionStyle = .none
 
@@ -214,9 +214,9 @@ extension dp_PttViewControllerTableViewDelegate: UITableViewDataSource {
             
             let memberCellData = memberCellsData[indexPath.row]
             
-            cell.setUserName(name: memberCellData.memberVo?.name ?? "")
+            cell.setUserName(name: memberCellData.dp_memberVo?.name ?? "")
             
-            if let onlineState = memberCellData.memberVo?.onlineState {
+            if let onlineState = memberCellData.dp_memberVo?.onlineState {
                switch onlineState {
                 case .AVAILABLE:
                     cell.setOnlineState(type: .AVAILABLE)
@@ -232,7 +232,7 @@ extension dp_PttViewControllerTableViewDelegate: UITableViewDataSource {
                 }
             }
             
-            (memberCellData.memberVo?.isSelected == true) ? cell.enableColor() : cell.disableColor()
+            (memberCellData.dp_memberVo?.isSelected == true) ? cell.enableColor() : cell.disableColor()
 
             cell.selectionStyle = .none
             

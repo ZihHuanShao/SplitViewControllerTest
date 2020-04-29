@@ -25,7 +25,7 @@ class dp_DetailViewController: UIViewController {
     // 目前所點擊menu的collectionView row index
     fileprivate var mainMenuSelectedRowIndex: Int?
     
-    fileprivate var mainMenuIconsVo = [MainMenuIconVo]()
+    fileprivate var mainMenuIconsVo = [dp_MainMenuIconVo]()
     
     fileprivate var collectionViewDelegate: dp_DetailViewCollectionViewDelegate?
     
@@ -34,9 +34,9 @@ class dp_DetailViewController: UIViewController {
     // 目前所點擊的類型 (群組/ 群組中的「建立群組」/ 聯絡人)
     fileprivate var pttTapType = ShowPttSegueType.NONE
     
-    fileprivate var groupVo:  GroupVo?
+    fileprivate var dp_groupVo:  dp_GroupVo?
     
-    fileprivate var memberVo: MemberVo?
+    fileprivate var dp_memberVo: dp_MemberVo?
     
     // [MAP related]
     
@@ -83,12 +83,12 @@ class dp_DetailViewController: UIViewController {
 // MARK: - Public Methods
 
 extension dp_DetailViewController {
-    func updateGroup(_ groupVo: GroupVo) {
-        self.groupVo = groupVo
+    func updateGroup(_ dp_groupVo: dp_GroupVo) {
+        self.dp_groupVo = dp_groupVo
     }
     
-    func updateMember(_ memberVo: MemberVo) {
-        self.memberVo = memberVo
+    func updateMember(_ dp_memberVo: dp_MemberVo) {
+        self.dp_memberVo = dp_memberVo
     }
     
     func setPttTabSelected(type: ShowPttSegueType) {
@@ -121,7 +121,7 @@ extension dp_DetailViewController {
         
         for mainMenuIcon in mainMenuIcons {
             mainMenuIconsVo.append(
-                MainMenuIconVo(
+                dp_MainMenuIconVo(
                     selectedIconName: mainMenuIcon.selectedIcon,
                     unselectedIconName: mainMenuIcon.unselectedIcon,
                     isSelected: false
@@ -155,7 +155,7 @@ extension dp_DetailViewController {
         case .TAB_GROUP_SELECT:
             let dp_groupViewController = UIStoryboard(name: STORYBOARD_NAME_DP_GROUP, bundle: nil).instantiateViewController(withIdentifier: "dp_GroupViewController") as! dp_GroupViewController
             
-            if let _groupVo = groupVo {
+            if let _groupVo = dp_groupVo {
                 dp_groupViewController.updateGroupVo(_groupVo)
             }
             setChildView(viewController: dp_groupViewController)
@@ -163,7 +163,7 @@ extension dp_DetailViewController {
         case .TAB_MEMBER_SELECT:
             let dp_memberViewController = UIStoryboard(name: STORYBOARD_NAME_DP_MEMBER, bundle: nil).instantiateViewController(withIdentifier: "dp_MemberViewController") as! dp_MemberViewController
             
-            if let _memberVo = memberVo {
+            if let _memberVo = dp_memberVo {
                 dp_memberViewController.updateMemberVo(_memberVo)
             }
             setChildView(viewController: dp_memberViewController)

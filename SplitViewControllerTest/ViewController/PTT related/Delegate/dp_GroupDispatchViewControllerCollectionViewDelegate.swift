@@ -11,11 +11,11 @@ import UIKit
 
 private class CellData {
     var tableRowIndex: Int?
-    var groupVo: GroupVo?
+    var dp_groupVo: dp_GroupVo?
     
-    init(tableRowIndex: Int, _ groupVo: GroupVo) {
+    init(tableRowIndex: Int, _ dp_groupVo: dp_GroupVo) {
         self.tableRowIndex = tableRowIndex
-        self.groupVo = groupVo
+        self.dp_groupVo = dp_groupVo
     }
 }
 
@@ -27,7 +27,7 @@ class dp_GroupDispatchViewControllerCollectionViewDelegate: NSObject {
     fileprivate weak var collectionView: UICollectionView?
     
     // 目前所挑選要調度的群組
-    fileprivate var selectedGroups = [SelectedGroupVo]()
+    fileprivate var selectedGroups = [dp_SelectedGroupVo]()
     
     fileprivate var cellsData = [CellData]()
     
@@ -50,8 +50,8 @@ extension dp_GroupDispatchViewControllerCollectionViewDelegate {
         cellsData.removeAll()
         
         for group in selectedGroups {
-            if let groupVo = group.groupVo , let tableRowIndex = group.tableRowIndex {
-                cellsData.append(CellData(tableRowIndex: tableRowIndex, groupVo))
+            if let dp_groupVo = group.dp_groupVo , let tableRowIndex = group.tableRowIndex {
+                cellsData.append(CellData(tableRowIndex: tableRowIndex, dp_groupVo))
             }
         }
     }
@@ -61,7 +61,7 @@ extension dp_GroupDispatchViewControllerCollectionViewDelegate {
 
 extension dp_GroupDispatchViewControllerCollectionViewDelegate {
     
-    func appendSelectedGroup(tableRowIndex: Int, _ selectedGroupVo: GroupVo) {
+    func appendSelectedGroup(tableRowIndex: Int, _ dp_selectedGroupVo: dp_GroupVo) {
         
         var isPickedup = false
         var collectionRowIndex = Int()
@@ -77,7 +77,7 @@ extension dp_GroupDispatchViewControllerCollectionViewDelegate {
         if isPickedup {
             selectedGroups.remove(at: collectionRowIndex)
         } else {
-            selectedGroups.append(SelectedGroupVo(tableRowIndex: tableRowIndex, groupVo: selectedGroupVo))
+            selectedGroups.append(dp_SelectedGroupVo(tableRowIndex: tableRowIndex, dp_groupVo: dp_selectedGroupVo))
         }
         
     }
@@ -128,8 +128,8 @@ extension dp_GroupDispatchViewControllerCollectionViewDelegate: UICollectionView
             cell.setTableRowIndex(tableRowIndex)
         }
         
-        cell.setGroupName(name: cellData.groupVo?.name ?? "")
-        cell.setGroupImage(name: cellData.groupVo?.imageName ?? "")
+        cell.setGroupName(name: cellData.dp_groupVo?.name ?? "")
+        cell.setGroupImage(name: cellData.dp_groupVo?.imageName ?? "")
         
         return cell
     }
