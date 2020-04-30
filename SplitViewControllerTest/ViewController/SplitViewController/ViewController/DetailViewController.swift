@@ -185,14 +185,32 @@ extension DetailViewController {
             let dispGoogleMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispGoogleMapViewController") as! DispGoogleMapViewController
             
             setChildView(viewController: dispGoogleMapViewController)
+            dispGoogleMapViewController.reloadGoogleMap(type: .MAP)
+        
+        case .ELECTR_FENCE:
+            let dispGoogleMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispGoogleMapViewController") as! DispGoogleMapViewController
+            
+            setChildView(viewController: dispGoogleMapViewController)
+            dispGoogleMapViewController.reloadGoogleMap(type: .ELECTR_FENCE)
+            break
             
         case .CREATE_ELECTR_FENCE:
+            let dispGoogleMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispGoogleMapViewController") as! DispGoogleMapViewController
+            
+            setChildView(viewController: dispGoogleMapViewController)
+            dispGoogleMapViewController.reloadGoogleMap(type: .CREATE_ELECTR_FENCE)
             break
             
         case .EDIT_ELECTR_FENCE:
             let dispEditElectrFenceViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispEditElectrFenceViewController") as! DispEditElectrFenceViewController
             
             setChildView(viewController: dispEditElectrFenceViewController)
+        
+        case .REAL_TIME_POSITION:
+            break
+        
+        case .TEMPORARY_GROUP:
+            break
             
         case .NONE:
             break
@@ -244,7 +262,7 @@ extension DetailViewController {
         case .MAP:
             switch mapTapType {
                 
-            case .MAP:
+            case .MAP, .ELECTR_FENCE, .CREATE_ELECTR_FENCE:
                 let dispGoogleMapViewController = viewController as! DispGoogleMapViewController
                 self.addChild(dispGoogleMapViewController)
                 dispGoogleMapViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
@@ -252,8 +270,11 @@ extension DetailViewController {
                 
                 dispGoogleMapViewController.didMove(toParent: self)
             
-            case .CREATE_ELECTR_FENCE:
-                break
+//            case .ELECTR_FENCE:
+//                break
+//
+//            case .CREATE_ELECTR_FENCE:
+//                break
                 
             case .EDIT_ELECTR_FENCE:
                 let dispEditElectrFenceViewController = viewController as! DispEditElectrFenceViewController
@@ -262,6 +283,12 @@ extension DetailViewController {
                 self.containerView.addSubview(dispEditElectrFenceViewController.view)
                 
                 dispEditElectrFenceViewController.didMove(toParent: self)
+            
+            case .REAL_TIME_POSITION:
+                break
+                
+            case .TEMPORARY_GROUP:
+                break
                 
             case .NONE:
                 break

@@ -70,7 +70,7 @@ extension DispMapViewController {
         tableViewDelegate = DispMapViewControllerTableViewDelegate(dispMapViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: DISP_MAP_TABLE_VIEW_CELL, cellId: DISP_MAP_TABLE_VIEW_CELL)
         
-        tapType = .MAP
+        setTapType(type: .MAP)
     }
     
     private func setTapType(type: ShowMapSegueType) {
@@ -85,6 +85,8 @@ extension DispMapViewController {
     private func returnBack() {
         containerView.subviews.forEach({ $0.removeFromSuperview() })
         tableView.isHidden = false
+        setTapType(type: .MAP)
+        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
     }
     
     private func setChildView(viewController: UIViewController) {
@@ -99,6 +101,7 @@ extension DispMapViewController {
         
         switch mapFunctionType {
      
+        // 電子圍籬
         case .ELECTR_FENCE:
             let electrFenceVC = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispElectrFenceViewController") as! DispElectrFenceViewController
             
@@ -106,14 +109,14 @@ extension DispMapViewController {
             setChildView(viewController: electrFenceVC)
             
 
-            
+        // 即時定位
         case .REAL_TIME_POSITION:
             let realTimePositioningVC = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispRealTimePositioningViewController") as! DispRealTimePositioningViewController
             
             realTimePositioningVC.setDelegate(dispMapViewController: self)
             setChildView(viewController: realTimePositioningVC)
 
-            
+        // 臨時群組
         case .TEMPORARY_GROUP:
             let temporaryGroupVC = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispTemporaryGroupViewController") as! DispTemporaryGroupViewController
     
@@ -141,35 +144,49 @@ extension DispMapViewController {
 
 extension DispMapViewController: MapViewControllerTableViewDelegateExtend {
     func didTapElectrFence() {
+        setTapType(type: .ELECTR_FENCE)
         locateElectrFenceViewController()
+        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
     }
     
     func didTapRealTimePositioning() {
+        setTapType(type: .REAL_TIME_POSITION)
         locateRealTimePositioningViewController()
+        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
     }
     
     func didTapTemporaryGroup() {
+        setTapType(type: .TEMPORARY_GROUP)
         locateTemporaryGroupViewController()
+        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
     }
 }
 
 // MARK: - ElectrFenceViewControllerDelegate
 
 extension DispMapViewController: ElectrFenceViewControllerDelegate {
+    // 點擊「返回」
     func electrFenceDidTapBack() {
         returnBack()
     }
     
+    // 點擊「設定」
     func electrFenceDidTapEdit() {
         setTapType(type: .EDIT_ELECTR_FENCE)
         performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
     }
     
+    // 點擊「新增電子圍籬」
+    func electrFenceDidTapCreate() {
+        setTapType(type: .CREATE_ELECTR_FENCE)
+        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
+    }
 }
 
 // MARK: - RealTimePositioningViewControllerDelegate
 
 extension DispMapViewController: RealTimePositioningViewControllerDelegate {
+    // 點擊「返回」
     func realTimePositioningDidTapBack() {
         returnBack()
     }
@@ -178,6 +195,7 @@ extension DispMapViewController: RealTimePositioningViewControllerDelegate {
 // MARK: - TemporaryGroupViewControllerDelegate
 
 extension DispMapViewController: TemporaryGroupViewControllerDelegate {
+    // 點擊「返回」
     func temporaryGroupDidTapBack() {
         returnBack()
     }

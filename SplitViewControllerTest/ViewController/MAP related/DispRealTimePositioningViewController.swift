@@ -80,5 +80,5 @@ extension DispRealTimePositioningViewController {
 // MARK: - Protocol
 
 protocol RealTimePositioningViewControllerDelegate {
-    func realTimePositioningDidTapBack()
+    func realTimePositioningDidTapBack() // 點擊「返回」
 }

@@ -81,5 +81,5 @@ extension DispTemporaryGroupViewController {
 // MARK: - Protocol
 
 protocol TemporaryGroupViewControllerDelegate {
-    func temporaryGroupDidTapBack()
+    func temporaryGroupDidTapBack() // 點擊「返回」
 }

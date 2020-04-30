@@ -15,10 +15,29 @@ class DispGoogleMapViewController: UIViewController {
 
     // MARK: - IBOutlet
     
-    @IBOutlet weak var toolButtonImage: UIImageView!
-    @IBOutlet weak var addButtonImage: UIImageView!
-    
+
     @IBOutlet weak var mapView: GMSMapView!
+    
+    // [Hint View]
+    
+    @IBOutlet weak var hintView: UIView!
+    @IBOutlet weak var hintTitle: UILabel!
+    @IBOutlet weak var hintDesc: UILabel!
+    
+    @IBOutlet weak var drawBackButtonView: UIView! // 返回上一步
+    @IBOutlet weak var drawBackButtonBackgroundImage: UIImageView!
+    
+    @IBOutlet weak var drawFinishButtonView: UIView! // 完成
+    @IBOutlet weak var drawFinishButtonBackgroundImage: UIImageView!
+    @IBOutlet weak var drawFinishButton: UIButton!
+    
+    
+    @IBOutlet weak var deleteButtonView: UIView! // 放棄
+    @IBOutlet weak var deleteButtonBackgroundImage: UIImageView!
+    
+    @IBOutlet weak var createButtonView: UIView! // 建立
+    @IBOutlet weak var createButtonBackgroundImage: UIImageView!
+    @IBOutlet weak var createButton: UIButton!
     
     
     // MARK: - Life Cycle
@@ -39,62 +58,150 @@ class DispGoogleMapViewController: UIViewController {
         marker.snippet = "Australia"
         marker.map = mapView
 
+        updateUI()
     }
     
-    @IBAction func toolButtonTouchDown(_ sender: UIButton) {
-        updateToolButtonImage(type: .PRESSED)
+    // MARK: - Actions
+    
+    // [drawBackButton] 返回上一步
+    
+    @IBAction func drawBackButtonTouchDown(_ sender: UIButton) {
+        updateDrawBackButtonImage(type: .PRESSED)
     }
     
-    @IBAction func toolButtonTouchDragExit(_ sender: UIButton) {
-        updateToolButtonImage(type: .AWAY)
+    @IBAction func drawBackButtonTouchDragExit(_ sender: UIButton) {
+        updateDrawBackButtonImage(type: .AWAY)
     }
     
-    @IBAction func toolButtonTiuchUpInside(_ sender: UIButton) {
-        updateToolButtonImage(type: .AWAY)
+    @IBAction func drawBackButtonTouchUpInside(_ sender: UIButton) {
+        updateDrawBackButtonImage(type: .AWAY)
     }
     
-    @IBAction func addButtonTouchDown(_ sender: UIButton) {
-        updateAddButtonImage(type: .PRESSED)
+    // [drawFinishButton] 完成
+    
+    @IBAction func drawFinishButtonTouchDown(_ sender: UIButton) {
+        updateDrawFinishButtonImage(type: .PRESSED)
     }
     
-    @IBAction func addButtonTouchDragExit(_ sender: UIButton) {
-        updateAddButtonImage(type: .AWAY)
+    @IBAction func drawFinishButtonTouchDragExit(_ sender: UIButton) {
+        updateDrawFinishButtonImage(type: .AWAY)
     }
     
-    @IBAction func addButtonTiuchUpInside(_ sender: UIButton) {
-        updateAddButtonImage(type: .AWAY)
+    @IBAction func drawFinishButtonTouchUpInside(_ sender: UIButton) {
+        updateDrawFinishButtonImage(type: .AWAY)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // [deleteButton] 放棄
+    
+    @IBAction func deleteButtonTouchDown(_ sender: UIButton) {
+        updateDeleteButtonImage(type: .PRESSED)
     }
-    */
+    
+    @IBAction func deleteButtonTouchDragExit(_ sender: UIButton) {
+        updateDeleteButtonImage(type: .AWAY)
+    }
+    
+    @IBAction func deleteButtonTouchUpInside(_ sender: UIButton) {
+        updateDeleteButtonImage(type: .AWAY)
+    }
+    
+    // [createButton] 建立
+    
+    @IBAction func createButtonTouchDown(_ sender: UIButton) {
+        updateCreateButtonImage(type: .PRESSED)
+    }
+    
+    @IBAction func createButtonTouchDragExit(_ sender: UIButton) {
+        updateCreateButtonImage(type: .AWAY)
+    }
+    
+    @IBAction func createButtonTouchUpInside(_ sender: UIButton) {
+        updateCreateButtonImage(type: .AWAY)
+    }
 
 }
 
+// MARK: - Private Methods
+
 extension DispGoogleMapViewController {
-    private func updateToolButtonImage(type: ButtonPressType) {
+    
+    private func updateUI() {
+        createButton.setTitle(str_dispGoogleMap_create, for: .normal)
+        drawFinishButton.setTitle(str_dispGoogleMap_finish, for: .normal)
+    }
+    
+    private func updateDrawBackButtonImage(type: ButtonPressType) {
         switch type {
         case .PRESSED:
-            toolButtonImage.image = UIImage(named: "btn_tool_pressed")
+            drawBackButtonBackgroundImage.image = UIImage(named: "btn_back_pressed")
             
         case .AWAY:
-            toolButtonImage.image = UIImage(named: "btn_tool_normal")
+            drawBackButtonBackgroundImage.image = UIImage(named: "btn_back_normal")
         }
     }
     
-    private func updateAddButtonImage(type: ButtonPressType) {
+    private func updateDrawFinishButtonImage(type: ButtonPressType) {
         switch type {
         case .PRESSED:
-            addButtonImage.image = UIImage(named: "btn_add_pressed")
+            drawFinishButtonBackgroundImage.image = UIImage(named: "btn_text_pressed")
             
         case .AWAY:
-            addButtonImage.image = UIImage(named: "btn_add_normal")
+            drawFinishButtonBackgroundImage.image = UIImage(named: "btn_text_normal")
+        }
+    }
+    
+    private func updateDeleteButtonImage(type: ButtonPressType) {
+        switch type {
+        case .PRESSED:
+            deleteButtonBackgroundImage.image = UIImage(named: "btn_delete_pressed")
+            
+        case .AWAY:
+            deleteButtonBackgroundImage.image = UIImage(named: "btn_delete_normal")
+        }
+    }
+    
+    private func updateCreateButtonImage(type: ButtonPressType) {
+        switch type {
+        case .PRESSED:
+            createButtonBackgroundImage.image = UIImage(named: "btn_text_pressed")
+            
+        case .AWAY:
+            createButtonBackgroundImage.image = UIImage(named: "btn_text_normal")
+        }
+    }
+    
+
+}
+
+// MARK: - Public Methods
+
+extension DispGoogleMapViewController {
+    func reloadGoogleMap(type: ShowMapSegueType) {
+        switch type {
+            
+        case .MAP:
+            hintView.isHidden = true
+            break
+            
+        case .ELECTR_FENCE:
+            hintView.isHidden = true
+            break
+            
+        case .CREATE_ELECTR_FENCE:
+            hintView.isHidden = false
+            break
+
+        case .REAL_TIME_POSITION:
+            hintView.isHidden = true
+            break
+            
+        case .TEMPORARY_GROUP:
+            hintView.isHidden = true
+            break
+            
+        case .EDIT_ELECTR_FENCE, .NONE:
+            // no use here
+            break
         }
     }
 }

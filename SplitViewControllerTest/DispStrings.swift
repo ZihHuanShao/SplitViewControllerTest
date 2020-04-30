@@ -70,3 +70,7 @@ let str_dispGroup_editGroupDesc = "進行群組名稱、成員等相關設定"
 let str_dispEditColor_cancel = "取消"
 let str_dispEditColor_finish = "完成"
 let str_dispEditColor_colorTitle = "顏色效果："
+
+// DispGoogleMapViewController
+let str_dispGoogleMap_create = "建立"
+let str_dispGoogleMap_finish = "完成"

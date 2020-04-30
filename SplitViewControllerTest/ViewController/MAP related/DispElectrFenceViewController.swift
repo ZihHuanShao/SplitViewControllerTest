@@ -46,10 +46,7 @@ class DispElectrFenceViewController: UIViewController {
         delegate?.electrFenceDidTapBack()
     }
 
-    
-    //
-    // createElectrFence
-    //
+    // [createElectrFence]
     
     @IBAction func createElectrFenceButtonTouchDown(_ sender: UIButton) {
         updateCreateElectrFenceButtonImage(type: .PRESSED)
@@ -60,7 +57,7 @@ class DispElectrFenceViewController: UIViewController {
     }
     
     @IBAction func createElectrFenceButtonTouchUpInside(_ sender: UIButton) {
-        delegate?.electrFenceDidTapEdit()
+        delegate?.electrFenceDidTapCreate()
         updateCreateElectrFenceButtonImage(type: .AWAY)
     }
 }
@@ -110,6 +107,7 @@ extension DispElectrFenceViewController {
 // MARK: - Protocol
 
 protocol ElectrFenceViewControllerDelegate {
-    func electrFenceDidTapBack()
-    func electrFenceDidTapEdit()
+    func electrFenceDidTapBack()   // 點擊「返回」
+    func electrFenceDidTapEdit()   // 點擊「設定」
+    func electrFenceDidTapCreate() // 點擊「新增電子圍籬」
 }

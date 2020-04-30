@@ -185,9 +185,13 @@ enum MemberProfileType: CaseIterable {
 
 // [Map menu]
 enum ShowMapSegueType: Int {
-    case MAP = 0                 // 電子圍籬/ 即時定位/ 臨時群組
-    case CREATE_ELECTR_FENCE = 1 // 電子圍籬中的「新增電子圍籬」
-    case EDIT_ELECTR_FENCE = 2   // 電子圍籬中的「設定」
+    case MAP = 0                 // 地圖首頁
+    case ELECTR_FENCE = 1        // 電子圍籬
+    case CREATE_ELECTR_FENCE = 2 // 電子圍籬中的「新增電子圍籬」
+    case EDIT_ELECTR_FENCE = 3   // 電子圍籬中的「設定」
+    case REAL_TIME_POSITION = 4  // 即時定位
+    case TEMPORARY_GROUP = 5     // 臨時群組
+    
     
     case NONE = 99
 }
