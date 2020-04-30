@@ -85,6 +85,8 @@ extension DispMapViewControllerTableViewDelegate: UITableViewDelegate {
     }
 }
 
+// MARK: - Protocol
+
 protocol MapViewControllerTableViewDelegateExtend {
     func didTapElectrFence()
     func didTapRealTimePositioning()

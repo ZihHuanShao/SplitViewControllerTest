@@ -40,7 +40,7 @@ class DetailViewController: UIViewController {
     
     // [MAP related]
     
-    // 目前所點擊的類型 (電子圍籬中的新增電子圍籬/ )
+    // 目前所點擊的類型 (目前僅分為是否顯示地圖兩種)
     fileprivate var mapTapType = ShowMapSegueType.NONE
     
     
@@ -181,12 +181,15 @@ extension DetailViewController {
     private func showMapView() {
         switch mapTapType {
     
-        case .MAP_SELECT:
+        case .MAP:
             let dispGoogleMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispGoogleMapViewController") as! DispGoogleMapViewController
             
             setChildView(viewController: dispGoogleMapViewController)
             
-        case .EDIT_MAP_SELECT:
+        case .CREATE_ELECTR_FENCE:
+            break
+            
+        case .EDIT_ELECTR_FENCE:
             let dispEditElectrFenceViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispEditElectrFenceViewController") as! DispEditElectrFenceViewController
             
             setChildView(viewController: dispEditElectrFenceViewController)
@@ -241,15 +244,18 @@ extension DetailViewController {
         case .MAP:
             switch mapTapType {
                 
-            case .MAP_SELECT:
+            case .MAP:
                 let dispGoogleMapViewController = viewController as! DispGoogleMapViewController
                 self.addChild(dispGoogleMapViewController)
                 dispGoogleMapViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
                 self.containerView.addSubview(dispGoogleMapViewController.view)
                 
                 dispGoogleMapViewController.didMove(toParent: self)
+            
+            case .CREATE_ELECTR_FENCE:
+                break
                 
-            case .EDIT_MAP_SELECT:
+            case .EDIT_ELECTR_FENCE:
                 let dispEditElectrFenceViewController = viewController as! DispEditElectrFenceViewController
                 self.addChild(dispEditElectrFenceViewController)
                 dispEditElectrFenceViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
@@ -259,6 +265,7 @@ extension DetailViewController {
                 
             case .NONE:
                 break
+            
             }
             
             

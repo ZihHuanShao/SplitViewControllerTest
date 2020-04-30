@@ -150,9 +150,9 @@ enum ButtonPressType: Int {
 
 // [Ptt menu]
 enum ShowPttSegueType: Int {
-    case TAB_GROUP_SELECT  = 0
-    case TAB_MEMBER_SELECT = 1
-    case TAB_GROUP_CREATE_GROUP = 2
+    case TAB_GROUP_SELECT  = 0      // 群組
+    case TAB_MEMBER_SELECT = 1      // 聯絡人
+    case TAB_GROUP_CREATE_GROUP = 2 // 群組中的「建立群組」
     
     case NONE = 99
 }
@@ -185,8 +185,9 @@ enum MemberProfileType: CaseIterable {
 
 // [Map menu]
 enum ShowMapSegueType: Int {
-    case MAP_SELECT      = 0 // (電子圍籬/ 即時定位/ 臨時群組)
-    case EDIT_MAP_SELECT = 1 // (電子圍籬中的「編輯」)
+    case MAP = 0                 // 電子圍籬/ 即時定位/ 臨時群組
+    case CREATE_ELECTR_FENCE = 1 // 電子圍籬中的「新增電子圍籬」
+    case EDIT_ELECTR_FENCE = 2   // 電子圍籬中的「設定」
     
     case NONE = 99
 }

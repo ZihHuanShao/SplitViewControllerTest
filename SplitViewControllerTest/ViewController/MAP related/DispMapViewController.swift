@@ -70,7 +70,7 @@ extension DispMapViewController {
         tableViewDelegate = DispMapViewControllerTableViewDelegate(dispMapViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: DISP_MAP_TABLE_VIEW_CELL, cellId: DISP_MAP_TABLE_VIEW_CELL)
         
-        tapType = .MAP_SELECT
+        tapType = .MAP
     }
     
     private func setTapType(type: ShowMapSegueType) {
@@ -161,7 +161,7 @@ extension DispMapViewController: ElectrFenceViewControllerDelegate {
     }
     
     func electrFenceDidTapEdit() {
-        setTapType(type: .EDIT_MAP_SELECT)
+        setTapType(type: .EDIT_ELECTR_FENCE)
         performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
     }
     
