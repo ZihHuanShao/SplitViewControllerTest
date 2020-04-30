@@ -159,6 +159,23 @@ extension AppDelegate {
         })
     }
     
+    func dismissOverlayWithColorChanged(_ rgbColorCode: RGBColorCode) {
+        // dismiss the overlay
+        window?.rootViewController?.dismiss(animated: true, completion: {
+            if let vc = self.originalSplitVC {
+                self.window?.rootViewController = vc
+            }
+            gVar.isHoldFormSheetView = false
+            
+            NotificationCenter.default.post(
+                name: CHANGE_COLOR_NOTIFY_KEY,
+                object: self,
+                userInfo: [CHANGE_COLOR_USER_KEY: rgbColorCode]
+            )
+            
+        })
+    }
+    
     func dismissOverlay() {
         // dismiss the overlay
         window?.rootViewController?.dismiss(animated: true, completion: {

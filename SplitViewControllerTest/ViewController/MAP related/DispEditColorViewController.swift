@@ -44,7 +44,7 @@ class DispEditColorViewController: UIViewController {
     
     @IBAction func finishButtonPressed(_ sender: UIButton) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.dismissOverlay()
+        appDelegate?.dismissOverlayWithColorChanged(colorCode)
     }
 
     // [Slider]
@@ -72,7 +72,6 @@ extension DispEditColorViewController {
         self.colorCode.red = colorCode.red
         self.colorCode.green = colorCode.green
         self.colorCode.blue = colorCode.blue
-//        changeColorView()
     }
 }
 
@@ -99,7 +98,6 @@ extension DispEditColorViewController {
     }
     
     private func changeColorView(){
-
         colorView.backgroundColor = UIColor(
             red: CGFloat(colorCode.red) / 255,
             green: CGFloat(colorCode.green) / 255,

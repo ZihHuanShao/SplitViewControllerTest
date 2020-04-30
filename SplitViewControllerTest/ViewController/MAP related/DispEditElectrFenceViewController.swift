@@ -113,26 +113,36 @@ extension DispEditElectrFenceViewController {
         colorBarBackgroundView.clipsToBounds = true
         colorBarButton.layer.cornerRadius = 5
         colorBarButton.clipsToBounds = true
-        colorBarButton.backgroundColor = UIColorFromRGB(rgbValue: testElectrFenceVo?.color ?? 0x000000)
+        colorBarButton.backgroundColor = UIColorFromRGB(colorValue: testElectrFenceVo?.color ?? 0x000000)
         
         tableViewDelegate?.reloadUI()
     }
     
-    private func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+    private func UIColorFromRGB(colorValue: UInt) -> UIColor {
         return UIColor(
-            red:   CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8)  / 255.0,
-            blue:  CGFloat(rgbValue  & 0x0000FF)        / 255.0,
+            red:   CGFloat((colorValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((colorValue & 0x00FF00) >> 8)  / 255.0,
+            blue:  CGFloat(colorValue  & 0x0000FF)        / 255.0,
             alpha: CGFloat(1.0)
         )
     }
     
-    private func getRGBColor(rgbValue: UInt) -> RGBColorCode {
-        let rVal = Int((rgbValue & 0xFF0000) >> 16)
-        let gVal = Int((rgbValue & 0x00FF00) >> 8)
-        let bVal = Int(rgbValue & 0x0000FF)
+    // EX: UInt(0xFF0A0B) 轉換 RGBColorCode(r:255, g:10, b:11)
+    private func getRGBColor(colorValue: UInt) -> RGBColorCode {
+        let rVal = Int((colorValue & 0xFF0000) >> 16) // 0xFF -> 255
+        let gVal = Int((colorValue & 0x00FF00) >> 8)  // 0x0A -> 10
+        let bVal = Int(colorValue & 0x0000FF)         // 0x0B -> 11
         
         return RGBColorCode(red: rVal, green: gVal, blue: bVal)
+    }
+    
+    // EX: RGBColorCode(r:255, g:10, b:11) 轉換 UInt(0xFF0A0B)
+    private func getUIntColor(rgbColor: RGBColorCode) -> UInt {
+        let rHex = (UInt(rgbColor.red)   & 0xFF) << 16 // 255 -> 0xFF0000
+        let gHex = (UInt(rgbColor.green) & 0xFF) << 8  // 10  -> 0x  000A
+        let bHex = UInt(rgbColor.blue)   & 0xFF        // 11  -> 0x    0B
+        
+        return (rHex | gHex | bHex)
     }
     
     private func removeObserver() {
@@ -169,6 +179,13 @@ extension DispEditElectrFenceViewController {
        }
     
     private func addObserver() {
+        
+        if gVar.changeColorObserver == nil {
+            gVar.changeColorObserver = NotificationCenter.default.addObserver(forName: CHANGE_COLOR_NOTIFY_KEY, object: nil, queue: nil, using: changeColor)
+            print("addObserver: changeColorObserver")
+        }
+        
+        
         if gVar.autoSwitchPreferGroupChangedObserver == nil {
             gVar.autoSwitchPreferGroupChangedObserver = NotificationCenter.default.addObserver(forName: AUTO_SWITCH_PREFER_GROUP_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: autoSwitchPreferGroupChanged)
             print("addObserver: switchChangedObserver")
@@ -234,6 +251,20 @@ extension DispEditElectrFenceViewController: UITextFieldDelegate {
 // MARK: - Notification Methods
 
 extension DispEditElectrFenceViewController {
+    func changeColor(notification: Notification) -> Void {
+        if let rgbColorCode = notification.userInfo?[CHANGE_COLOR_USER_KEY] as? RGBColorCode {
+            // update color
+            testElectrFenceVo?.color = getUIntColor(rgbColor: rgbColorCode)
+            
+            colorBarButton.backgroundColor = UIColor(
+                red:   CGFloat(rgbColorCode.red) / 255,
+                green: CGFloat(rgbColorCode.green) / 255,
+                blue:  CGFloat(rgbColorCode.blue) / 255,
+                alpha: 1
+            )
+        }
+    }
+    
     func autoSwitchPreferGroupChanged(notification: Notification) -> Void {
         if let electrFenceVo = testElectrFenceVo {
             electrFenceVo.autoSwitchPreferGroupEnabled = !(electrFenceVo.autoSwitchPreferGroupEnabled)
@@ -277,8 +308,8 @@ extension DispEditElectrFenceViewController {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let colorValue = testElectrFenceVo?.color ?? 0
         
-        // 將目前圍籬的顏色(EX: 0xFF0000)改為RGB值(EX: r:255, g:0, b:0)
-        let colorCode = getRGBColor(rgbValue: colorValue)
+        // 將目前圍籬的顏色(EX: 0xFF0A0B)改為RGB值(EX: r:255, g:10, b:11)
+        let colorCode = getRGBColor(colorValue: colorValue)
         
         appDelegate?.showEditColorModal(colorCode: colorCode)
     }

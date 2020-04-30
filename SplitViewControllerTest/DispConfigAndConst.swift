@@ -99,6 +99,7 @@ let ENTER_ALARM_CHANGED_NOTIFY_KEY = Notification.Name("enterAlarmChangedNotifyK
 let ENTER_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY = Notification.Name("enterAlarmVoicePlayChangedNotifyKey")
 let EXIT_ALARM_CHANGED_NOTIFY_KEY = Notification.Name("exitAlarmChangedNotifyKey")
 let EXIT_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY = Notification.Name("exitAlarmVoicePlayChangedNotifyKey")
+let CHANGE_COLOR_NOTIFY_KEY = Notification.Name("changeColorNotifyKey")
 
 // Notification userInfo
 let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
@@ -113,6 +114,7 @@ let ENTER_ALARM_CHANGED_USER_KEY = "enterAlarmChangedUserKey"
 let ENTER_ALARM_VOICE_PLAY_CHANGED_USER_KEY = "enterAlarmVoicePlayChangedUserKey"
 let EXIT_ALARM_CHANGED_USER_KEY = "exitAlarmChangedUserKey"
 let EXIT_ALARM_VOICE_PLAY_CHANGED_USER_KEY = "exitAlarmVoicePlayChangedUserKey"
+let CHANGE_COLOR_USER_KEY = Notification.Name("changeColorUserKey")
 
 // 通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
@@ -268,7 +270,7 @@ struct UnderlayPresentInfo {
 }
 
 struct RGBColorCode {
-    var red = 0
-    var green = 0
-    var blue = 0
+    var red = Int()
+    var green = Int()
+    var blue = Int()
 }

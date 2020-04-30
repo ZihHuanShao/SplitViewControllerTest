@@ -46,6 +46,6 @@ class gVar {
     static var enterAlarmVoicePlayChangedObserver: NSObjectProtocol? = nil
     static var exitAlarmChangedObserver: NSObjectProtocol? = nil
     static var exitAlarmVoicePlayChangedObserver: NSObjectProtocol? = nil
-
+    static var changeColorObserver: NSObjectProtocol? = nil
 
 }
