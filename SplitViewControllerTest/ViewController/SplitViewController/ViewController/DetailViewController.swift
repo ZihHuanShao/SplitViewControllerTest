@@ -180,20 +180,23 @@ extension DetailViewController {
     
     private func showMapView() {
         switch mapTapType {
-    
+
+        // 地圖首頁
         case .MAP:
             let dispGoogleMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispGoogleMapViewController") as! DispGoogleMapViewController
             
             setChildView(viewController: dispGoogleMapViewController)
             dispGoogleMapViewController.reloadGoogleMap(type: .MAP)
         
+        // 電子圍籬
         case .ELECTR_FENCE:
             let dispGoogleMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispGoogleMapViewController") as! DispGoogleMapViewController
             
             setChildView(viewController: dispGoogleMapViewController)
             dispGoogleMapViewController.reloadGoogleMap(type: .ELECTR_FENCE)
             break
-            
+        
+        // 電子圍籬中的「新增電子圍籬」
         case .CREATE_ELECTR_FENCE:
             let dispGoogleMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispGoogleMapViewController") as! DispGoogleMapViewController
             
@@ -201,14 +204,17 @@ extension DetailViewController {
             dispGoogleMapViewController.reloadGoogleMap(type: .CREATE_ELECTR_FENCE)
             break
             
+        // 電子圍籬中的「設定」
         case .EDIT_ELECTR_FENCE:
             let dispEditElectrFenceViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispEditElectrFenceViewController") as! DispEditElectrFenceViewController
             
             setChildView(viewController: dispEditElectrFenceViewController)
         
+        // 即時定位
         case .REAL_TIME_POSITION:
             break
         
+        // 臨時群組
         case .TEMPORARY_GROUP:
             break
             

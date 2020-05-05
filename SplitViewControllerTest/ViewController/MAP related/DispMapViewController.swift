@@ -162,7 +162,7 @@ extension DispMapViewController: MapViewControllerTableViewDelegateExtend {
     }
 }
 
-// MARK: - ElectrFenceViewControllerDelegate
+// MARK: - ElectrFenceViewControllerDelegate 電子圍籬
 
 extension DispMapViewController: ElectrFenceViewControllerDelegate {
     // 點擊「返回」
@@ -183,7 +183,7 @@ extension DispMapViewController: ElectrFenceViewControllerDelegate {
     }
 }
 
-// MARK: - RealTimePositioningViewControllerDelegate
+// MARK: - RealTimePositioningViewControllerDelegate 即時定位
 
 extension DispMapViewController: RealTimePositioningViewControllerDelegate {
     // 點擊「返回」
@@ -192,7 +192,7 @@ extension DispMapViewController: RealTimePositioningViewControllerDelegate {
     }
 }
 
-// MARK: - TemporaryGroupViewControllerDelegate
+// MARK: - TemporaryGroupViewControllerDelegate 臨時群組
 
 extension DispMapViewController: TemporaryGroupViewControllerDelegate {
     // 點擊「返回」

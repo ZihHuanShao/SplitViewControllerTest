@@ -39,26 +39,25 @@ class DispGoogleMapViewController: UIViewController {
     @IBOutlet weak var createButtonBackgroundImage: UIImageView!
     @IBOutlet weak var createButton: UIButton!
     
+    // MARK: - Properties
+    
+    fileprivate var isDrag: DragType! // 判斷是拖曳或是建立頂點
+    fileprivate var finishCreatingEletorFence = false // 是否完成此次繪製
+    fileprivate var myLocationMgr: CLLocationManager! // 向使用者取得定位權限
+    fileprivate let googleMgr = GoogleMapsManager.shareInstance
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
+        updateLocationDataSource()
         
-        mapView.camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
-        
-        // Creates a marker in the center of the map.
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
-        marker.map = mapView
-
         updateUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        myLocationMgr.stopUpdatingLocation()
     }
     
     // MARK: - Actions
@@ -75,6 +74,10 @@ class DispGoogleMapViewController: UIViewController {
     
     @IBAction func drawBackButtonTouchUpInside(_ sender: UIButton) {
         updateDrawBackButtonImage(type: .AWAY)
+        
+        if !finishCreatingEletorFence {
+            googleMgr.deletePreviousPonint(mapView: mapView)
+        }
     }
     
     // [drawFinishButton] 完成
@@ -89,6 +92,17 @@ class DispGoogleMapViewController: UIViewController {
     
     @IBAction func drawFinishButtonTouchUpInside(_ sender: UIButton) {
         updateDrawFinishButtonImage(type: .AWAY)
+        
+        // 至少要畫三個點才能按完成, 若沒有則跳警告
+        if !finishCreatingEletorFence {
+            if googleMgr.finishAddingVertex(mapView: mapView) {
+                updateCreateElectrFenceUI(type: .CREATE_SCOPE)
+                
+                finishCreatingEletorFence = true
+            } else {
+                showAlert(title: "請至少繪製三個點", message: "")
+            }
+        }
     }
     
     // [deleteButton] 放棄
@@ -103,6 +117,13 @@ class DispGoogleMapViewController: UIViewController {
     
     @IBAction func deleteButtonTouchUpInside(_ sender: UIButton) {
         updateDeleteButtonImage(type: .AWAY)
+        
+        updateCreateElectrFenceUI(type: .DRAW_SCOPE)
+        
+        // 放棄此次建立的電子圍籬, 重新繪製
+        googleMgr.resetMap(mapView: mapView)
+        googleMgr.startAddingVertex()
+        finishCreatingEletorFence = false
     }
     
     // [createButton] 建立
@@ -124,11 +145,44 @@ class DispGoogleMapViewController: UIViewController {
 // MARK: - Private Methods
 
 extension DispGoogleMapViewController {
+    private func updateLocationDataSource() {
+        myLocationMgr = CLLocationManager()
+        myLocationMgr.delegate = self
+        
+        // 使用者移動多少距離後會更新座標點(單位為米)
+        myLocationMgr.distanceFilter = kCLLocationAccuracyBestForNavigation
+        
+        // 定位的精確度
+        myLocationMgr.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        
+        /*
+        // Ref: https://reurl.cc/qdVQzg
+        // CLLocationDistance Type
+        kCLLocationAccuracyBestForNavigation: 精確度最高，適用於導航的定位
+        kCLLocationAccuracyBest: 精確度高
+        kCLLocationAccuracyNearestTenMeters: 精確度 10 公尺以內
+        kCLLocationAccuracyHundredMeters: 精確度 100 公尺以內
+        kCLLocationAccuracyKilometer: 精確度 1 公里以內
+        kCLLocationAccuracyThreeKilometers: 精確度 3 公里以內
+        */
+        
+        // 不在此處委派, 移至當點擊「新增電子圍籬」才委派
+        //mapView.delegate = self
+    }
     
     private func updateUI() {
         createButton.setTitle(str_dispGoogleMap_create, for: .normal)
         drawFinishButton.setTitle(str_dispGoogleMap_finish, for: .normal)
     }
+    
+     private func showAlert(title: String, message: String) {
+         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    
+         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+         
+         alert.addAction(okAction)
+         present(alert, animated: true, completion: nil)
+     }
     
     private func updateDrawBackButtonImage(type: ButtonPressType) {
         switch type {
@@ -170,7 +224,33 @@ extension DispGoogleMapViewController {
         }
     }
     
-
+    private func updateCreateElectrFenceUI(type: CreateElectrFenceType) {
+        
+        hintView.isHidden = false
+        
+        switch type {
+        
+        // 框選範圍
+        case .DRAW_SCOPE:
+            drawBackButtonView.isHidden = false
+            deleteButtonView.isHidden = true
+            drawFinishButtonView.isHidden = false
+            createButtonView.isHidden = true
+            
+            hintTitle.text = str_dispGoogleMap_drawScope
+            hintDesc.text = str_dispGoogleMap_drawScopeDesc
+            
+        // 建立圍籬
+        case .CREATE_SCOPE:
+            drawBackButtonView.isHidden = true
+            deleteButtonView.isHidden = false
+            drawFinishButtonView.isHidden = true
+            createButtonView.isHidden = false
+            
+            hintTitle.text = str_dispGoogleMap_createFence
+            hintDesc.text = str_dispGoogleMap_createFenceDesc
+        }
+    }
 }
 
 // MARK: - Public Methods
@@ -181,27 +261,145 @@ extension DispGoogleMapViewController {
             
         case .MAP:
             hintView.isHidden = true
-            break
+            
             
         case .ELECTR_FENCE:
             hintView.isHidden = true
-            break
+            
             
         case .CREATE_ELECTR_FENCE:
-            hintView.isHidden = false
-            break
+            updateCreateElectrFenceUI(type: .DRAW_SCOPE)
+            
+            mapView.delegate = self
+            googleMgr.resetMap(mapView: mapView)
+            googleMgr.startAddingVertex()
 
         case .REAL_TIME_POSITION:
             hintView.isHidden = true
-            break
+            
             
         case .TEMPORARY_GROUP:
             hintView.isHidden = true
-            break
+            
             
         case .EDIT_ELECTR_FENCE, .NONE:
             // no use here
             break
+        }
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension DispGoogleMapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+       
+        switch status {
+        // 第一次啟用APP
+        case .notDetermined:
+            myLocationMgr.requestWhenInUseAuthorization()
+            
+        case .denied:
+            let alertController = UIAlertController(title: "定位權限已關閉", message:"如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "確認", style: .default, handler:nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        
+        case .authorizedWhenInUse:
+            myLocationMgr.startUpdatingLocation() // 將畫面移動到目前使用者的位置
+            mapView.isMyLocationEnabled = true  // 開啟我的位置(小藍點)
+            mapView.settings.myLocationButton = true // 開啟定位按鈕(右下角的圓點)
+            
+        default:
+            break
+        }
+    }
+    
+    // 所在位置只要有更動就會觸發
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if let location = locations.first {
+            let lat = location.coordinate.latitude
+            let lng = location.coordinate.longitude
+            
+            // 印出目前所在位置座標
+            print("[Current Location]: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+            
+            // 將視角切換至使用者當前的位置
+            let myPos = GMSCameraPosition.camera(withLatitude: lat, longitude: lng, zoom: 15)
+            mapView.animate(to: myPos)
+
+            // 避免自己位置一有變動, 畫面就強制移到定位點
+            myLocationMgr.stopUpdatingLocation()
+        }
+    }
+}
+
+// MARK: - GMSMapViewDelegate
+
+extension DispGoogleMapViewController: GMSMapViewDelegate {
+    
+    // 長按
+    func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
+        let newCoordinate = coordinate
+        print("[didLongPressAt]: \(coordinate)")
+        
+        // 多邊形已畫完
+        if googleMgr.checkFinishDrawing() {
+            isDrag = .dragWithFinishDrawing
+        }
+        // 多邊形未畫完
+        else {
+            // 拖曳
+            if isDrag == .dragWithoutFinishingDrawing {
+                isDrag = .dragWithKeepDrawing
+            }
+            // 非拖曳(建立新點)
+            else {
+                print("[New Point] lat: \(newCoordinate.latitude), lng: \(newCoordinate.longitude)")
+                googleMgr.newPoint(coordinate: newCoordinate, forPolygon: mapView)
+            }
+        }
+    }
+    
+    // NOTE: 偵測「拖曳」與「長按」的function call有不同的順序, 因此另外使用DragType來判斷拖曳點的狀態
+    // 1. didBeginDragging -> didLongPressAt -> didDrag -> didEndDragging
+    // 2. didBeginDragging -> didDrag -> didEndDragging
+    
+    // 開始拖曳
+    func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
+        print("[didBeginDragging]: \(marker.position)")
+        
+        // 多邊形未畫完, isDrag設為dragNotFinishDrawingYet
+        if !googleMgr.checkFinishDrawing() {
+            isDrag = .dragWithoutFinishingDrawing
+        }
+    }
+    
+    // 拖曳中
+    func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker) {
+        print("[didDrag]: \(marker.position)")
+        
+        googleMgr.modifyPoint(newMarker: marker, mapView: mapView)
+        
+        /*---
+        if googleMgr.checkFinishDrawing() {
+            // 多邊形已畫完
+        } else {
+            // 多邊形未畫完
+        }
+        ---*/
+        
+    }
+    
+    // 結束拖曳
+    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
+        print("[didEndDragging]: \(marker.position)")
+        
+        if googleMgr.checkFinishDrawing() {
+            isDrag = .dragWithFinishDrawing
+        } else {
+            isDrag = .dragWithoutFinishingDrawing
         }
     }
 }

@@ -74,3 +74,7 @@ let str_dispEditColor_colorTitle = "顏色效果："
 // DispGoogleMapViewController
 let str_dispGoogleMap_create = "建立"
 let str_dispGoogleMap_finish = "完成"
+let str_dispGoogleMap_drawScope = "框選範圍"
+let str_dispGoogleMap_drawScopeDesc = "長按地圖畫面建立節點，點擊完成按鈕系統自動連接起訖點。"
+let str_dispGoogleMap_createFence = "建立圍籬"
+let str_dispGoogleMap_createFenceDesc = "拖拉節點可進行範圍調整，點擊建立按鈕即可建立新圍籬。"

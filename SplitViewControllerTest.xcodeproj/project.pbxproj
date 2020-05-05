@@ -24,6 +24,7 @@
 		D0566BFB244E88B500B127AF /* DispElectrFenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0566BFA244E88B500B127AF /* DispElectrFenceViewController.swift */; };
 		D0566BFD244E88E300B127AF /* DispElectrFenceViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0566BFC244E88E300B127AF /* DispElectrFenceViewControllerTableViewDelegate.swift */; };
 		D061DB2A24596FCE0079B60D /* DispEditColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D061DB2924596FCE0079B60D /* DispEditColorViewController.swift */; };
+		D06383DF246118B800846D31 /* GoogleMapsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06383DE246118B800846D31 /* GoogleMapsManager.swift */; };
 		D067042A2452D9F500E5F299 /* bg_groupset_alert1.png in Resources */ = {isa = PBXBuildFile; fileRef = D06704262452D9F500E5F299 /* bg_groupset_alert1.png */; };
 		D067042B2452D9F500E5F299 /* bg_groupset_alert4.png in Resources */ = {isa = PBXBuildFile; fileRef = D06704272452D9F500E5F299 /* bg_groupset_alert4.png */; };
 		D067042C2452D9F500E5F299 /* bg_groupset_alert2.png in Resources */ = {isa = PBXBuildFile; fileRef = D06704282452D9F500E5F299 /* bg_groupset_alert2.png */; };
@@ -206,6 +207,7 @@
 		D0566BFA244E88B500B127AF /* DispElectrFenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispElectrFenceViewController.swift; sourceTree = "<group>"; };
 		D0566BFC244E88E300B127AF /* DispElectrFenceViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispElectrFenceViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		D061DB2924596FCE0079B60D /* DispEditColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispEditColorViewController.swift; sourceTree = "<group>"; };
+		D06383DE246118B800846D31 /* GoogleMapsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsManager.swift; sourceTree = "<group>"; };
 		D06704262452D9F500E5F299 /* bg_groupset_alert1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_groupset_alert1.png; sourceTree = "<group>"; };
 		D06704272452D9F500E5F299 /* bg_groupset_alert4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_groupset_alert4.png; sourceTree = "<group>"; };
 		D06704282452D9F500E5F299 /* bg_groupset_alert2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_groupset_alert2.png; sourceTree = "<group>"; };
@@ -401,6 +403,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D06383DD2461187C00846D31 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D06383DE246118B800846D31 /* GoogleMapsManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		D0701257244D391F00B4080B /* PTT related */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,6 +528,7 @@
 		F20CCEFB2429F00800048BA3 /* SplitViewControllerTest */ = {
 			isa = PBXGroup;
 			children = (
+				D06383DD2461187C00846D31 /* Manager */,
 				F21E21F92431F123001AE003 /* ViewController */,
 				F2507FED242AFCBC003DBE79 /* Cell */,
 				D0E23598243C21650009506F /* Storyboard */,
@@ -967,6 +978,7 @@
 				4E8347EF244C9DF000298AF9 /* DispMapViewController.swift in Sources */,
 				D0E23684243C7E760009506F /* DispGroupDispatchViewControllerTableViewDelegate.swift in Sources */,
 				D069206A2445B289006E65D4 /* DispCreateGroupViewController.swift in Sources */,
+				D06383DF246118B800846D31 /* GoogleMapsManager.swift in Sources */,
 				D070DEC42446F3F2008466E6 /* DispAddMemberViewController.swift in Sources */,
 				D069205024459868006E65D4 /* DispStrings.swift in Sources */,
 				F23C0DEE2433139600DD7A48 /* DispMemberViewControllerTableViewDelegate.swift in Sources */,

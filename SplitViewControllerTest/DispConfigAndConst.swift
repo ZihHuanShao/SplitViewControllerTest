@@ -231,8 +231,16 @@ enum ElectrFenceAllAlarmType: CaseIterable {
     }
 }
 
+enum DragType: Int {
+    case dragWithFinishDrawing       = 0 // 移動頂點 && 多邊形還已繪製完
+    case dragWithoutFinishingDrawing = 1 // 移動頂點 && 多邊形還沒繪製完
+    case dragWithKeepDrawing         = 2 // 建立新頂點
+}
 
-
+enum CreateElectrFenceType: Int {
+    case DRAW_SCOPE = 0     // 框選範圍
+    case CREATE_SCOPE = 1   // 建立圍籬
+}
 
 
 
