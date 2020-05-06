@@ -138,6 +138,16 @@ class DispGoogleMapViewController: UIViewController {
     
     @IBAction func createButtonTouchUpInside(_ sender: UIButton) {
         updateCreateButtonImage(type: .AWAY)
+        
+        // 取得目前圍籬的所有頂點
+        let electrFenceCoordinates = googleMgr.getPoints()
+        
+        // 把圍籬的頂點資訊傳到下一步設定資訊頁面(名稱,顏色,警告設定等等), 以設定該圍籬的Vo資訊
+        NotificationCenter.default.post(
+            name: CREATE_ELECTR_FENCE_SETTING_NOTIFY_KEY,
+            object: nil,
+            userInfo: [CREATE_ELECTR_FENCE_SETTING_USER_KEY: electrFenceCoordinates]
+        )
     }
 
 }
@@ -270,7 +280,9 @@ extension DispGoogleMapViewController {
         case .CREATE_ELECTR_FENCE:
             updateCreateElectrFenceUI(type: .DRAW_SCOPE)
             
+            // 委派mapView.delegate, 讓user可以在地圖上畫圍籬
             mapView.delegate = self
+            
             googleMgr.resetMap(mapView: mapView)
             googleMgr.startAddingVertex()
 

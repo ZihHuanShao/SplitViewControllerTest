@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 class GroupVo {
     var name: String?
@@ -111,7 +112,9 @@ class ElectrFenceVo {
     var exitAlarmVoicePlayEnabled = Bool()
     var exitAlarmVoice: String?
     
-    init(title: String?, color: UInt?, notifyTarget: MemberVo?, autoSwitchPreferGroupEnabled: Bool, preferGroup: GroupVo?, enterAlarmEnabled: Bool, enterAlarmVoicePlayEnabled: Bool, enterAlarmVoice: String?, exitAlarmEnabled: Bool, exitAlarmVoicePlayEnabled: Bool, exitAlarmVoice: String) {
+    var coordinates: [CLLocationCoordinate2D]?
+    
+    init(title: String?, color: UInt?, notifyTarget: MemberVo?, autoSwitchPreferGroupEnabled: Bool, preferGroup: GroupVo?, enterAlarmEnabled: Bool, enterAlarmVoicePlayEnabled: Bool, enterAlarmVoice: String?, exitAlarmEnabled: Bool, exitAlarmVoicePlayEnabled: Bool, exitAlarmVoice: String, coordinates: [CLLocationCoordinate2D]?) {
         self.title = title
         self.color = color
         self.notifyTarget = notifyTarget
@@ -123,5 +126,6 @@ class ElectrFenceVo {
         self.exitAlarmEnabled = exitAlarmEnabled
         self.exitAlarmVoicePlayEnabled = exitAlarmVoicePlayEnabled
         self.exitAlarmVoice = exitAlarmVoice
+        self.coordinates = coordinates
     }
 }

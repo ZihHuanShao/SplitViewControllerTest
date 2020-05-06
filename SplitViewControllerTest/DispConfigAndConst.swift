@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 // MainMenuIcon [點擊時,未點擊時]
 let MAIN_MENU_ICON_PTT     = ["btn_menu_ptt_selected", "btn_menu_ptt_normal"]
@@ -100,6 +101,7 @@ let ENTER_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY = Notification.Name("enterAlarmVoi
 let EXIT_ALARM_CHANGED_NOTIFY_KEY = Notification.Name("exitAlarmChangedNotifyKey")
 let EXIT_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY = Notification.Name("exitAlarmVoicePlayChangedNotifyKey")
 let CHANGE_COLOR_NOTIFY_KEY = Notification.Name("changeColorNotifyKey")
+let CREATE_ELECTR_FENCE_SETTING_NOTIFY_KEY = NSNotification.Name("createElectrFenceSettingNotifyKey")
 
 // Notification userInfo
 let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
@@ -114,7 +116,8 @@ let ENTER_ALARM_CHANGED_USER_KEY = "enterAlarmChangedUserKey"
 let ENTER_ALARM_VOICE_PLAY_CHANGED_USER_KEY = "enterAlarmVoicePlayChangedUserKey"
 let EXIT_ALARM_CHANGED_USER_KEY = "exitAlarmChangedUserKey"
 let EXIT_ALARM_VOICE_PLAY_CHANGED_USER_KEY = "exitAlarmVoicePlayChangedUserKey"
-let CHANGE_COLOR_USER_KEY = Notification.Name("changeColorUserKey")
+let CHANGE_COLOR_USER_KEY = "changeColorUserKey"
+let CREATE_ELECTR_FENCE_SETTING_USER_KEY = "createElectrFenceSettingUserKey"
 
 // 通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
@@ -242,7 +245,12 @@ enum CreateElectrFenceType: Int {
     case CREATE_SCOPE = 1   // 建立圍籬
 }
 
-
+enum EditElectrFenceDisplayType: Int {
+    case CREATE = 0
+    case EDIT   = 1
+    
+    case NONE   = 99
+}
 
 
 // struct
@@ -286,4 +294,14 @@ struct RGBColorCode {
     var red = Int()
     var green = Int()
     var blue = Int()
+}
+
+struct EditElectrFenceDisplayCreateModeInfo {
+    let type = EditElectrFenceDisplayType.CREATE
+    var coordinates: [CLLocationCoordinate2D]?
+}
+
+struct EditElectrFenceDisplayEditModeInfo {
+    let type = EditElectrFenceDisplayType.EDIT
+    // other 圍籬資訊
 }

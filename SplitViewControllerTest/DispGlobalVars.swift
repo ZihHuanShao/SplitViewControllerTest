@@ -18,7 +18,13 @@ class gVar {
     // Notification
     //
     
+    // [MasterViewController]
+    
     static var switchMainMenuObserver: NSObjectProtocol? = nil
+    
+    // [DetailViewController]
+    
+    static var createElectrFenceSettingObserver: NSObjectProtocol? = nil
     
     // [DispPttViewController]
     

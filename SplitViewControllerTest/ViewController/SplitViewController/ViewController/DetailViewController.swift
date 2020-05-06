@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailViewController: UIViewController {
 
@@ -42,7 +43,8 @@ class DetailViewController: UIViewController {
     
     // 目前所點擊的類型 (目前僅分為是否顯示地圖兩種)
     fileprivate var mapTapType = ShowMapSegueType.NONE
-    
+    fileprivate var editElectrFenceDisplayType = EditElectrFenceDisplayType.NONE
+    fileprivate var newElectrFenceCoordinates: [CLLocationCoordinate2D]?
     
     // MARK: - Life Cycle
     
@@ -52,9 +54,7 @@ class DetailViewController: UIViewController {
         // 取得MainMenu的icon資訊
         reloadMainMenuData()
         
-        //
-        // Main menu
-        //
+        // [Main menu]
         
         collectionViewDelegate = DetailViewCollectionViewDelegate(detailViewController: self, collectionView: collectionView)
         collectionViewDelegate?.updateMainMenuIcons(mainMenuIconsVo: mainMenuIconsVo)
@@ -105,6 +105,14 @@ extension DetailViewController {
     
     func setMainMenuSelectedRowIndex(_ rowIndex: Int) {
         mainMenuSelectedRowIndex = rowIndex
+    }
+    
+    func setEditElectrFenceDisplayType(_ type: EditElectrFenceDisplayType) {
+        self.editElectrFenceDisplayType = type
+    }
+    
+    func updateNewElectrFenceCoordinates(_ newElectrFenceCoordinates: [CLLocationCoordinate2D]?) {
+        self.newElectrFenceCoordinates = newElectrFenceCoordinates
     }
 }
 
@@ -204,11 +212,27 @@ extension DetailViewController {
             dispGoogleMapViewController.reloadGoogleMap(type: .CREATE_ELECTR_FENCE)
             break
             
-        // 電子圍籬中的「設定」
+        // 電子圍籬中的「設定」, 顯示該頁面有兩種時機:
+        // 1. 針對已存在的電子圍籬做編輯 2. 新增電子圍籬後, 要設定相關圍籬資訊(名稱/顯示顏色/警告設定等等)
         case .EDIT_ELECTR_FENCE:
             let dispEditElectrFenceViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispEditElectrFenceViewController") as! DispEditElectrFenceViewController
             
-            setChildView(viewController: dispEditElectrFenceViewController)
+            switch editElectrFenceDisplayType {
+                
+            case .CREATE:
+                dispEditElectrFenceViewController.setDisplayMode(type: .CREATE)
+                dispEditElectrFenceViewController.updateNewElectrFenceCoordinates(newElectrFenceCoordinates)
+                setChildView(viewController: dispEditElectrFenceViewController)
+                
+            case .EDIT:
+                dispEditElectrFenceViewController.setDisplayMode(type: .EDIT)
+                setChildView(viewController: dispEditElectrFenceViewController)
+                
+            case .NONE:
+                break
+            }
+            
+            
         
         // 即時定位
         case .REAL_TIME_POSITION:

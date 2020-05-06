@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class DispMapViewController: UIViewController {
 
@@ -28,7 +29,7 @@ class DispMapViewController: UIViewController {
         
         updateDataSource()
         updateUI()
-
+        addObserver()
     }
     
     // MARK: - Actions
@@ -50,6 +51,13 @@ class DispMapViewController: UIViewController {
                 dVC?.setMainMenuSelectedRowIndex(rowIndex)
             }
             
+            if let createModeInfo = sender as? EditElectrFenceDisplayCreateModeInfo {
+                dVC?.setEditElectrFenceDisplayType(createModeInfo.type)
+                dVC?.updateNewElectrFenceCoordinates(createModeInfo.coordinates)
+            } else if let editModeInfo = sender as? EditElectrFenceDisplayEditModeInfo {
+                dVC?.setEditElectrFenceDisplayType(editModeInfo.type)
+            }
+            
             dVC?.setMapTabSelected(type: tapType)
         }
     }
@@ -66,6 +74,22 @@ extension DispMapViewController {
 // MARK: - Private Methods
 
 extension DispMapViewController {
+    private func removeObserver() {
+        if let _ = gVar.createElectrFenceSettingObserver {
+            NotificationCenter.default.removeObserver(gVar.createElectrFenceSettingObserver!)
+            gVar.createElectrFenceSettingObserver = nil
+            print("removeObserver: createElectrFenceSettingObserver")
+        }
+    }
+    
+    private func addObserver() {
+        if gVar.createElectrFenceSettingObserver == nil {
+            gVar.createElectrFenceSettingObserver = NotificationCenter.default.addObserver(forName: CREATE_ELECTR_FENCE_SETTING_NOTIFY_KEY, object: nil, queue: nil, using: createElectrFenceSetting)
+            
+            print("addObserver: createElectrFenceSettingObserver")
+        }
+    }
+    
     private func updateDataSource() {
         tableViewDelegate = DispMapViewControllerTableViewDelegate(dispMapViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: DISP_MAP_TABLE_VIEW_CELL, cellId: DISP_MAP_TABLE_VIEW_CELL)
@@ -140,21 +164,40 @@ extension DispMapViewController {
     }
 }
 
-// MARK: - MapViewControllerTableViewDelegateExtend
+// MARK: - Notification Methods
+
+extension DispMapViewController {
+    func createElectrFenceSetting(notification: Notification) {
+        setTapType(type: .EDIT_ELECTR_FENCE)
+        
+        if let electrFenceCoordinates = notification.userInfo?[CREATE_ELECTR_FENCE_SETTING_USER_KEY] as? [CLLocationCoordinate2D] {
+            
+            let data = EditElectrFenceDisplayCreateModeInfo(coordinates: electrFenceCoordinates)
+            
+            performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: data)
+        }
+        
+    }
+}
+
+// MARK: - MapViewControllerTableViewDelegateExtend 電子圍籬/ 即時定位/ 臨時群組
 
 extension DispMapViewController: MapViewControllerTableViewDelegateExtend {
+    // 點擊「電子圍籬」
     func didTapElectrFence() {
         setTapType(type: .ELECTR_FENCE)
         locateElectrFenceViewController()
         performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
     }
     
+    // 點擊「即時定位」
     func didTapRealTimePositioning() {
         setTapType(type: .REAL_TIME_POSITION)
         locateRealTimePositioningViewController()
         performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
     }
     
+    // 點擊「臨時群組」
     func didTapTemporaryGroup() {
         setTapType(type: .TEMPORARY_GROUP)
         locateTemporaryGroupViewController()
@@ -162,7 +205,7 @@ extension DispMapViewController: MapViewControllerTableViewDelegateExtend {
     }
 }
 
-// MARK: - ElectrFenceViewControllerDelegate 電子圍籬
+// MARK: - ElectrFenceViewControllerDelegate 「電子圍籬」列表
 
 extension DispMapViewController: ElectrFenceViewControllerDelegate {
     // 點擊「返回」
@@ -173,7 +216,10 @@ extension DispMapViewController: ElectrFenceViewControllerDelegate {
     // 點擊「設定」
     func electrFenceDidTapEdit() {
         setTapType(type: .EDIT_ELECTR_FENCE)
-        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
+        
+        let data = EditElectrFenceDisplayEditModeInfo()
+            
+        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: data)
     }
     
     // 點擊「新增電子圍籬」
@@ -183,7 +229,7 @@ extension DispMapViewController: ElectrFenceViewControllerDelegate {
     }
 }
 
-// MARK: - RealTimePositioningViewControllerDelegate 即時定位
+// MARK: - RealTimePositioningViewControllerDelegate 「即時定位」列表
 
 extension DispMapViewController: RealTimePositioningViewControllerDelegate {
     // 點擊「返回」
@@ -192,7 +238,7 @@ extension DispMapViewController: RealTimePositioningViewControllerDelegate {
     }
 }
 
-// MARK: - TemporaryGroupViewControllerDelegate 臨時群組
+// MARK: - TemporaryGroupViewControllerDelegate 「臨時群組」列表
 
 extension DispMapViewController: TemporaryGroupViewControllerDelegate {
     // 點擊「返回」
