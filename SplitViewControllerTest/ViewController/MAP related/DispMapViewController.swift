@@ -32,6 +32,9 @@ class DispMapViewController: UIViewController {
         addObserver()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        print("")
+    }
     // MARK: - Actions
     
     @IBAction func dispatcherSetting(_ sender: UIButton) {
@@ -148,6 +151,8 @@ extension DispMapViewController {
             setChildView(viewController: temporaryGroupVC)
         }
         
+        // tableView與ContainerView同一層, 且ContainerView是用來顯示 電子圍籬/即時定位/臨時群組
+        // 所以如果要顯示ContainerView則必須將tableView隱藏
         tableView.isHidden = true
     }
     

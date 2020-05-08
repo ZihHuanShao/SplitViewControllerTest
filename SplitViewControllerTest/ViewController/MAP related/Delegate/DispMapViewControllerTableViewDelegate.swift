@@ -70,14 +70,20 @@ extension DispMapViewControllerTableViewDelegate: UITableViewDataSource {
  
 extension DispMapViewControllerTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
+        switch MapFunctionType.allCases[indexPath.row] {
+        
+        // 點擊「電子圍籬」
+        case .ELECTR_FENCE:
             print(str_dispMap_electrFence)
             tableViewDelegateExtend?.didTapElectrFence()
-        }
-        else if indexPath.row == 1 {
+        
+        // 點擊「即時定位」
+        case .REAL_TIME_POSITION:
             print(str_dispMap_realTimePositioning)
             tableViewDelegateExtend?.didTapRealTimePositioning()
-        } else if indexPath.row == 2 {
+        
+        // 點擊「臨時群組」
+        case .TEMPORARY_GROUP:
             print(str_dispMap_temporaryGroup)
             tableViewDelegateExtend?.didTapTemporaryGroup()
         }

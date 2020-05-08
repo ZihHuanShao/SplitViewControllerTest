@@ -74,7 +74,7 @@ let DISP_MAP_TABLE_VIEW_CELL = "DispMapTableViewCell"
 let DISP_TEMPORARY_GROUP_TABLE_VIEW_CELL = "DispTemporaryGroupTableViewCell"
 let DISP_GROUP_SETTING_INFO_TABLE_VIEW_CELL = "DispGroupSettingInfoTableViewCell"
 let DISP_EDIT_ELECTR_FENCE_TABLE_VIEW_CELL = "DispEditElectrFenceTableViewCell"
-
+let DISP_ELECTR_FENCE_TABLE_VIEW_CELL = "DispElectrFenceTableViewCell"
 
 // Storyboard
 let STORYBOARD_NAME_DISP_MAIN   = "DispMain"
@@ -102,6 +102,7 @@ let EXIT_ALARM_CHANGED_NOTIFY_KEY = Notification.Name("exitAlarmChangedNotifyKey
 let EXIT_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY = Notification.Name("exitAlarmVoicePlayChangedNotifyKey")
 let CHANGE_COLOR_NOTIFY_KEY = Notification.Name("changeColorNotifyKey")
 let CREATE_ELECTR_FENCE_SETTING_NOTIFY_KEY = NSNotification.Name("createElectrFenceSettingNotifyKey")
+let UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY = NSNotification.Name("updateElectrFenceVoNotifyKey")
 
 // Notification userInfo
 let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
@@ -118,6 +119,7 @@ let EXIT_ALARM_CHANGED_USER_KEY = "exitAlarmChangedUserKey"
 let EXIT_ALARM_VOICE_PLAY_CHANGED_USER_KEY = "exitAlarmVoicePlayChangedUserKey"
 let CHANGE_COLOR_USER_KEY = "changeColorUserKey"
 let CREATE_ELECTR_FENCE_SETTING_USER_KEY = "createElectrFenceSettingUserKey"
+let UPDATE_ELECTR_FENCE_VO_USER_KEY = "updateElectrFenceVoUserKey"
 
 // 通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
@@ -209,6 +211,16 @@ enum MapFunctionType: CaseIterable {
 enum ElectrFenceAlarmSettingMode: CaseIterable {
     case SELECTED
     case SWITCH
+}
+
+// 電子圍籬列表的cell樣式
+enum ElectrFenceTableMode: CaseIterable {
+    case HEAD                   // 標頭列
+    case EDIT_FENCE_SCOPE       // 編輯圍籬範圍
+    case BORDER_COLOR           // 框線顏色
+    case ENTER_ALARM            // 進入警告
+    case EXIT_ALARM             // 離開警告
+    case FORBIDDEN_AND_SETTING  // 停用/設定
 }
 
 enum ElectrFenceAllAlarmType: CaseIterable {

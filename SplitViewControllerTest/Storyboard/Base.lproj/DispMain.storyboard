@@ -13,20 +13,20 @@
             <objects>
                 <viewController id="biV-Bj-S4I" customClass="DetailViewController" customModule="SplitViewControllerTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2bx-nU-14A">
-                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="712" height="728"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1t4-lI-pOU" userLabel="Main Menu View">
-                                <rect key="frame" x="0.0" y="0.0" width="703.5" height="64"/>
+                                <rect key="frame" x="0.0" y="0.0" width="712" height="64"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_menu.png" translatesAutoresizingMaskIntoConstraints="NO" id="xzm-0n-3cc">
-                                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="64"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="712" height="64"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ilJ-hL-BAp" userLabel="Main Menu Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="64"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="712" height="64"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kIb-uH-rW4">
-                                                <rect key="frame" x="0.0" y="0.0" width="703.5" height="64"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="712" height="64"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ZGh-qJ-lbn">
                                                     <size key="itemSize" width="50" height="50"/>
@@ -96,7 +96,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wo0-pD-jtW">
-                                <rect key="frame" x="0.0" y="64" width="703.5" height="704"/>
+                                <rect key="frame" x="0.0" y="64" width="712" height="664"/>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -671,7 +671,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CNx-bi-bX1"/>
+        <segue reference="ELf-fW-w15"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bg_menu.png" width="784" height="64"/>

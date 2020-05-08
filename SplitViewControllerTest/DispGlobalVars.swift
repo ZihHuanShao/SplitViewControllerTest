@@ -53,5 +53,7 @@ class gVar {
     static var exitAlarmChangedObserver: NSObjectProtocol? = nil
     static var exitAlarmVoicePlayChangedObserver: NSObjectProtocol? = nil
     static var changeColorObserver: NSObjectProtocol? = nil
-
+    
+    // DispElectrFenceViewController
+    static var updateElectrFenceVoObserver: NSObjectProtocol? = nil
 }

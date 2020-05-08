@@ -21,6 +21,9 @@
 		D04383ED245687B500B54F08 /* DispEditElectrFenceViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04383EC245687B500B54F08 /* DispEditElectrFenceViewControllerTableViewDelegate.swift */; };
 		D04383F02456E21500B54F08 /* DispEditElectrFenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04383EE2456E21500B54F08 /* DispEditElectrFenceTableViewCell.swift */; };
 		D04383F12456E21500B54F08 /* DispEditElectrFenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D04383EF2456E21500B54F08 /* DispEditElectrFenceTableViewCell.xib */; };
+		D044C97324639AC000767DB3 /* icon_list_close.png in Resources */ = {isa = PBXBuildFile; fileRef = D044C97024639ABF00767DB3 /* icon_list_close.png */; };
+		D044C97424639AC000767DB3 /* icon_list open.png in Resources */ = {isa = PBXBuildFile; fileRef = D044C97124639ABF00767DB3 /* icon_list open.png */; };
+		D044C97524639AC000767DB3 /* icon_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = D044C97224639ABF00767DB3 /* icon_edit.png */; };
 		D0566BFB244E88B500B127AF /* DispElectrFenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0566BFA244E88B500B127AF /* DispElectrFenceViewController.swift */; };
 		D0566BFD244E88E300B127AF /* DispElectrFenceViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0566BFC244E88E300B127AF /* DispElectrFenceViewControllerTableViewDelegate.swift */; };
 		D061DB2A24596FCE0079B60D /* DispEditColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D061DB2924596FCE0079B60D /* DispEditColorViewController.swift */; };
@@ -91,10 +94,8 @@
 		D071F8BD2450161600C7C372 /* DispTemporaryGroupViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8BC2450161600C7C372 /* DispTemporaryGroupViewControllerTableViewDelegate.swift */; };
 		D071F8BF24501EF100C7C372 /* DispRealTimePositioningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8BE24501EF100C7C372 /* DispRealTimePositioningViewController.swift */; };
 		D071F8C12450203700C7C372 /* DispRealTimePositioningViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8C02450203700C7C372 /* DispRealTimePositioningViewControllerTableViewDelegate.swift */; };
-		D071F8C824503AAC00C7C372 /* DispElectrFenceSectionTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8C624503AAC00C7C372 /* DispElectrFenceSectionTitleTableViewCell.swift */; };
-		D071F8C924503AAC00C7C372 /* DispElectrFenceSectionTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D071F8C724503AAC00C7C372 /* DispElectrFenceSectionTitleTableViewCell.xib */; };
-		D071F8CE24503AD600C7C372 /* DispElectrFenceSectionDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8CC24503AD600C7C372 /* DispElectrFenceSectionDataTableViewCell.swift */; };
-		D071F8CF24503AD600C7C372 /* DispElectrFenceSectionDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D071F8CD24503AD600C7C372 /* DispElectrFenceSectionDataTableViewCell.xib */; };
+		D071F8C824503AAC00C7C372 /* DispElectrFenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8C624503AAC00C7C372 /* DispElectrFenceTableViewCell.swift */; };
+		D071F8C924503AAC00C7C372 /* DispElectrFenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D071F8C724503AAC00C7C372 /* DispElectrFenceTableViewCell.xib */; };
 		D071F8D224503C4400C7C372 /* DispTemporaryGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D071F8D024503C4400C7C372 /* DispTemporaryGroupTableViewCell.swift */; };
 		D071F8D324503C4400C7C372 /* DispTemporaryGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D071F8D124503C4400C7C372 /* DispTemporaryGroupTableViewCell.xib */; };
 		D0E23595243C20810009506F /* DispGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E23594243C20810009506F /* DispGroup.storyboard */; };
@@ -204,6 +205,9 @@
 		D04383EC245687B500B54F08 /* DispEditElectrFenceViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispEditElectrFenceViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		D04383EE2456E21500B54F08 /* DispEditElectrFenceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispEditElectrFenceTableViewCell.swift; sourceTree = "<group>"; };
 		D04383EF2456E21500B54F08 /* DispEditElectrFenceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DispEditElectrFenceTableViewCell.xib; sourceTree = "<group>"; };
+		D044C97024639ABF00767DB3 /* icon_list_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_list_close.png; sourceTree = "<group>"; };
+		D044C97124639ABF00767DB3 /* icon_list open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list open.png"; sourceTree = "<group>"; };
+		D044C97224639ABF00767DB3 /* icon_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_edit.png; sourceTree = "<group>"; };
 		D0566BFA244E88B500B127AF /* DispElectrFenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispElectrFenceViewController.swift; sourceTree = "<group>"; };
 		D0566BFC244E88E300B127AF /* DispElectrFenceViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispElectrFenceViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		D061DB2924596FCE0079B60D /* DispEditColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispEditColorViewController.swift; sourceTree = "<group>"; };
@@ -274,10 +278,8 @@
 		D071F8BC2450161600C7C372 /* DispTemporaryGroupViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispTemporaryGroupViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		D071F8BE24501EF100C7C372 /* DispRealTimePositioningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispRealTimePositioningViewController.swift; sourceTree = "<group>"; };
 		D071F8C02450203700C7C372 /* DispRealTimePositioningViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispRealTimePositioningViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
-		D071F8C624503AAC00C7C372 /* DispElectrFenceSectionTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispElectrFenceSectionTitleTableViewCell.swift; sourceTree = "<group>"; };
-		D071F8C724503AAC00C7C372 /* DispElectrFenceSectionTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DispElectrFenceSectionTitleTableViewCell.xib; sourceTree = "<group>"; };
-		D071F8CC24503AD600C7C372 /* DispElectrFenceSectionDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispElectrFenceSectionDataTableViewCell.swift; sourceTree = "<group>"; };
-		D071F8CD24503AD600C7C372 /* DispElectrFenceSectionDataTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DispElectrFenceSectionDataTableViewCell.xib; sourceTree = "<group>"; };
+		D071F8C624503AAC00C7C372 /* DispElectrFenceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispElectrFenceTableViewCell.swift; sourceTree = "<group>"; };
+		D071F8C724503AAC00C7C372 /* DispElectrFenceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DispElectrFenceTableViewCell.xib; sourceTree = "<group>"; };
 		D071F8D024503C4400C7C372 /* DispTemporaryGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispTemporaryGroupTableViewCell.swift; sourceTree = "<group>"; };
 		D071F8D124503C4400C7C372 /* DispTemporaryGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DispTemporaryGroupTableViewCell.xib; sourceTree = "<group>"; };
 		D0E23594243C20810009506F /* DispGroup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DispGroup.storyboard; sourceTree = "<group>"; };
@@ -484,10 +486,8 @@
 			children = (
 				D0701264244D8DE800B4080B /* DispMapTableViewCell.swift */,
 				D0701265244D8DE800B4080B /* DispMapTableViewCell.xib */,
-				D071F8C624503AAC00C7C372 /* DispElectrFenceSectionTitleTableViewCell.swift */,
-				D071F8C724503AAC00C7C372 /* DispElectrFenceSectionTitleTableViewCell.xib */,
-				D071F8CC24503AD600C7C372 /* DispElectrFenceSectionDataTableViewCell.swift */,
-				D071F8CD24503AD600C7C372 /* DispElectrFenceSectionDataTableViewCell.xib */,
+				D071F8C624503AAC00C7C372 /* DispElectrFenceTableViewCell.swift */,
+				D071F8C724503AAC00C7C372 /* DispElectrFenceTableViewCell.xib */,
 				D071F8D024503C4400C7C372 /* DispTemporaryGroupTableViewCell.swift */,
 				D071F8D124503C4400C7C372 /* DispTemporaryGroupTableViewCell.xib */,
 				D04383EE2456E21500B54F08 /* DispEditElectrFenceTableViewCell.swift */,
@@ -612,6 +612,9 @@
 		F261B467242CAB1300482992 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D044C97224639ABF00767DB3 /* icon_edit.png */,
+				D044C97124639ABF00767DB3 /* icon_list open.png */,
+				D044C97024639ABF00767DB3 /* icon_list_close.png */,
 				D070DEB22446A2CA008466E6 /* bg_content.png */,
 				D043706D245AB04300B50687 /* bg_fence_alert.png */,
 				D06704262452D9F500E5F299 /* bg_groupset_alert1.png */,
@@ -814,7 +817,7 @@
 				D0E23649243C767B0009506F /* bg_ptt_animation3.png in Resources */,
 				D0E2367B243C767B0009506F /* btn_contact_group_selected.png in Resources */,
 				D0E2365A243C767B0009506F /* btn_menu_video_selected.png in Resources */,
-				D071F8C924503AAC00C7C372 /* DispElectrFenceSectionTitleTableViewCell.xib in Resources */,
+				D071F8C924503AAC00C7C372 /* DispElectrFenceTableViewCell.xib in Resources */,
 				D06920602445A104006E65D4 /* bg_listbox_bottom.png in Resources */,
 				D06FC910245140CF0029909A /* bg_ptt_s_animation5.png in Resources */,
 				D0E23651243C767B0009506F /* btn_chat_pressed.png in Resources */,
@@ -870,6 +873,7 @@
 				D06FC911245140CF0029909A /* btn_profile_call.png in Resources */,
 				D0E23597243C20E70009506F /* DispMember.storyboard in Resources */,
 				D06FC91D2451749F0029909A /* btn_call_end_pressed.png in Resources */,
+				D044C97324639AC000767DB3 /* icon_list_close.png in Resources */,
 				D06FC9232451A0000029909A /* DispGroupSettingInfoTableViewCell.xib in Resources */,
 				D06920672445AB4C006E65D4 /* sticker_contact.png in Resources */,
 				D0E2365B243C767B0009506F /* btn_chat_add.png in Resources */,
@@ -878,7 +882,6 @@
 				D06920662445AB4C006E65D4 /* icon_camera.png in Resources */,
 				D0E2364A243C767B0009506F /* icon_voice_pause.png in Resources */,
 				D0E2366C243C767B0009506F /* bg_ptt_animation6.png in Resources */,
-				D071F8CF24503AD600C7C372 /* DispElectrFenceSectionDataTableViewCell.xib in Resources */,
 				D0E23675243C767B0009506F /* btn_contact_group_normal.png in Resources */,
 				D04383F12456E21500B54F08 /* DispEditElectrFenceTableViewCell.xib in Resources */,
 				D0E23674243C767B0009506F /* btn_contact_member_selected.png in Resources */,
@@ -902,6 +905,8 @@
 				D06920682445AB4C006E65D4 /* sticker_group.png in Resources */,
 				D070DEB32446A2CB008466E6 /* bg_title.png in Resources */,
 				D0E2367A243C767B0009506F /* icon_status_online.png in Resources */,
+				D044C97424639AC000767DB3 /* icon_list open.png in Resources */,
+				D044C97524639AC000767DB3 /* icon_edit.png in Resources */,
 				D0E2365F243C767B0009506F /* btn_group_set.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -992,12 +997,11 @@
 				D071F8D224503C4400C7C372 /* DispTemporaryGroupTableViewCell.swift in Sources */,
 				D071F8BB2450150800C7C372 /* DispTemporaryGroupViewController.swift in Sources */,
 				F20CCF35242A02D500048BA3 /* DispPttViewControllerTableViewDelegate.swift in Sources */,
-				D071F8C824503AAC00C7C372 /* DispElectrFenceSectionTitleTableViewCell.swift in Sources */,
+				D071F8C824503AAC00C7C372 /* DispElectrFenceTableViewCell.swift in Sources */,
 				D071F8BF24501EF100C7C372 /* DispRealTimePositioningViewController.swift in Sources */,
 				D06DEECF244012960056A7E7 /* DispTestCase.swift in Sources */,
 				D070DEB92446DC5E008466E6 /* DispCreateGroupTableViewCell.swift in Sources */,
 				F22F8B4F242D9B7F00CB08D5 /* DispConfigAndConst.swift in Sources */,
-				D071F8CE24503AD600C7C372 /* DispElectrFenceSectionDataTableViewCell.swift in Sources */,
 				D070DEBD2446EBBB008466E6 /* DispAddMemberTableViewCell.swift in Sources */,
 				4E8347ED244C4CBF00298AF9 /* DispPttViewController.swift in Sources */,
 				D071F8BD2450161600C7C372 /* DispTemporaryGroupViewControllerTableViewDelegate.swift in Sources */,

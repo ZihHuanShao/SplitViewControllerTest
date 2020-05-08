@@ -65,8 +65,8 @@ extension DispEditElectrFenceViewControllerTableViewDelegate {
 
 extension DispEditElectrFenceViewControllerTableViewDelegate: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        // 分為三個設定的區域 (基本設定/ 進入警告/ 離開警告)
-        return ElectrFenceAllAlarmType.allCases.count
+        // 警告設定分為三個區域 (基本設定/ 進入警告/ 離開警告)
+        return ElectrFenceAllAlarmType.allCases.count // count is 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

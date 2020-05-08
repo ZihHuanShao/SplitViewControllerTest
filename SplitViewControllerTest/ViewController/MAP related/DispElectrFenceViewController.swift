@@ -30,6 +30,15 @@ class DispElectrFenceViewController: UIViewController {
         
         updateDataSource()
         updateUI()
+        addObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // 只要離開此「電子圍籬」頁面時, 一定要移除Observer, 然後下次進來時再重新註冊.
+        // 不這麼做的話, 當新的圍籬建立完成時, 從DispEditElectrFenceViewController post到這裡要處理
+        // tableViewDelegate?.reloadUI()時, 會造成這次呼叫的tableViewDelegate?.reloadUI()
+        // 當中的tableViewDelegate還是前一次註冊的資料, 為邏輯錯誤, 且也導致電子圍籬列表無法被正確刷新
+        removeObserver()
     }
     
     // MARK: - Actions
@@ -57,16 +66,41 @@ class DispElectrFenceViewController: UIViewController {
     }
     
     @IBAction func createElectrFenceButtonTouchUpInside(_ sender: UIButton) {
-        delegate?.electrFenceDidTapCreate()
         updateCreateElectrFenceButtonImage(type: .AWAY)
+        
+        delegate?.electrFenceDidTapCreate()
+    }
+}
+// MARK: - Public Methods
+
+extension DispElectrFenceViewController {
+    func setDelegate(dispMapViewController: DispMapViewController) {
+        delegate = dispMapViewController
     }
 }
 
 // MARK: - Private Methods
 
 extension DispElectrFenceViewController {
+    private func removeObserver() {
+        if let _ = gVar.updateElectrFenceVoObserver {
+            NotificationCenter.default.removeObserver(gVar.updateElectrFenceVoObserver!)
+            gVar.updateElectrFenceVoObserver = nil
+            print("removeObserver: updateElectrFenceVoObserver")
+        }
+    }
+    
+    private func addObserver() {
+        if gVar.updateElectrFenceVoObserver == nil {
+            gVar.updateElectrFenceVoObserver = NotificationCenter.default.addObserver(forName: UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY, object: nil, queue: nil, using: updateElectrFenceVo)
+            print("addObserver: updateElectrFenceVoObserver")
+        }
+    }
+    
     private func updateDataSource() {
         tableViewDelegate = DispElectrFenceViewControllerTableViewDelegate(dispElectrFenceViewController: self, tableView: tableView)
+        tableViewDelegate?.registerCell(cellName: DISP_ELECTR_FENCE_TABLE_VIEW_CELL, cellId: DISP_ELECTR_FENCE_TABLE_VIEW_CELL)
+           
     }
     
     private func updateUI() {
@@ -96,13 +130,19 @@ extension DispElectrFenceViewController {
     }
 }
 
-// MARK: - Public Methods
+// MARK: - Notification Methods
 
 extension DispElectrFenceViewController {
-    func setDelegate(dispMapViewController: DispMapViewController) {
-        delegate = dispMapViewController
+
+    func updateElectrFenceVo(notification: Notification) -> Void {
+        if let electrFenceVo = notification.userInfo?[UPDATE_ELECTR_FENCE_VO_USER_KEY] as? ElectrFenceVo? {
+            tableViewDelegate?.updateNewElectrFenceVo(electrFenceVo)
+            tableViewDelegate?.reloadUI()
+        }
+        
     }
 }
+
 
 // MARK: - Protocol
 

@@ -62,9 +62,16 @@ class DispEditElectrFenceViewController: UIViewController {
     @IBAction func finishButtonTouchUpInside(_ sender: UIButton) {
         updatefinishButtonImage(type: .AWAY)
         
+        currentElectrFenceVo?.title = nameTextField.text
+        
         print(currentElectrFenceVo)
         
         // todo: 更新電子圍籬列表
+        NotificationCenter.default.post(
+            name: UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY,
+            object: self,
+            userInfo: [UPDATE_ELECTR_FENCE_VO_USER_KEY: currentElectrFenceVo]
+        )
         
     }
     
@@ -108,6 +115,9 @@ extension DispEditElectrFenceViewController {
         tableViewDelegate = DispEditElectrFenceViewControllerTableViewDelegate(dispEditElectrFenceViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: DISP_EDIT_ELECTR_FENCE_TABLE_VIEW_CELL, cellId: DISP_EDIT_ELECTR_FENCE_TABLE_VIEW_CELL)
         
+        // 兩種時機:
+        // 1. 建立新的電子圍籬, 會從reloadDefaultElectrFenceVo()取得新的vo, 所以currentElectrFenceVo會有值
+        // 2. 既有的電子圍籬, 會先更新currentElectrFenceVo
         if let electrFenceVo = currentElectrFenceVo {
             tableViewDelegate?.updateElectrFenceVo(electrFenceVo)
         }
