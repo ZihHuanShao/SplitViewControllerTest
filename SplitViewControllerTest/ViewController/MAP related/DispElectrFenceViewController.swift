@@ -27,15 +27,20 @@ class DispElectrFenceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    override func viewWillAppear(_ animated: Bool) {
         updateDataSource()
         updateUI()
+        
+        // 每進「電子圍籬」頁面時, 要在viewWillAppear重新註冊, 而非在viewDidLoad註冊.
+        // 因為在選擇顏色時彈出的視窗, 然後至選完之後重新回到畫面, 會進viewWillDisappear再進viewWillAppear,
+        // 所以如果放在viewDidLoad的話, 就只會被註冊一次, 造成非預期的結果.
         addObserver()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         // 只要離開此「電子圍籬」頁面時, 一定要移除Observer, 然後下次進來時再重新註冊.
-        // 不這麼做的話, 當新的圍籬建立完成時, 從DispEditElectrFenceViewController post到這裡要處理
+        // 不這麼做的話, 當新的圍籬建立完成時(第二次進來時), 從DispEditElectrFenceViewController post到這裡要處理
         // tableViewDelegate?.reloadUI()時, 會造成這次呼叫的tableViewDelegate?.reloadUI()
         // 當中的tableViewDelegate還是前一次註冊的資料, 為邏輯錯誤, 且也導致電子圍籬列表無法被正確刷新
         removeObserver()

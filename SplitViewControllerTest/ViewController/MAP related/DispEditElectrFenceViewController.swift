@@ -47,6 +47,10 @@ class DispEditElectrFenceViewController: UIViewController {
         updateGesture()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        removeObserver()
+    }
+    
     // MARK: - Actions
     
     // [finishButton]
@@ -72,6 +76,8 @@ class DispEditElectrFenceViewController: UIViewController {
             object: self,
             userInfo: [UPDATE_ELECTR_FENCE_VO_USER_KEY: currentElectrFenceVo]
         )
+        
+        removeObserver()
         
     }
     
@@ -201,6 +207,12 @@ extension DispEditElectrFenceViewController {
     }
     
     private func removeObserver() {
+        if let _ = gVar.changeColorObserver {
+            NotificationCenter.default.removeObserver(gVar.changeColorObserver!)
+            gVar.changeColorObserver = nil
+            print("removeObserver: changeColorObserver")
+        }
+        
         if let _ = gVar.autoSwitchPreferGroupChangedObserver {
             NotificationCenter.default.removeObserver(gVar.autoSwitchPreferGroupChangedObserver!)
             gVar.autoSwitchPreferGroupChangedObserver = nil
@@ -236,7 +248,8 @@ extension DispEditElectrFenceViewController {
     private func addObserver() {
         
         if gVar.changeColorObserver == nil {
-            gVar.changeColorObserver = NotificationCenter.default.addObserver(forName: CHANGE_COLOR_NOTIFY_KEY, object: nil, queue: nil, using: changeColor)
+            gVar.changeColorObserver = NotificationCenter.default.addObserver(
+                forName: CHANGE_COLOR_NOTIFY_KEY, object: nil, queue: nil, using: changeColor)
             print("addObserver: changeColorObserver")
         }
         
