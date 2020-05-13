@@ -337,7 +337,7 @@ extension GoogleMapsManager {
         resetDrawingTrack()
         GoogleMapsData.count = -1
         GoogleMapsManager.isFinishDrawing = false
-        
+        setColor(0xFF0000) // default red color
     }
     
     func resetDrawingPolygon() {

@@ -70,9 +70,9 @@ class DispEditElectrFenceViewController: UIViewController {
         
         // 更新電子圍籬列表
         NotificationCenter.default.post(
-            name: UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY,
+            name: UPDATE_NEW_ELECTR_FENCE_VO_NOTIFY_KEY,
             object: self,
-            userInfo: [UPDATE_ELECTR_FENCE_VO_USER_KEY: currentElectrFenceVo]
+            userInfo: [UPDATE_NEW_ELECTR_FENCE_VO_USER_KEY: currentElectrFenceVo]
         )
         
         removeObserver()
@@ -164,11 +164,14 @@ extension DispEditElectrFenceViewController {
         
         // [Custom String & UI]
         
+        // 建立新的電子圍籬
         if displayType == .CREATE {
             customElectrFenceTitle.text = "新增電子圍籬"
             electrFenceColor = 0xFF0000
             colorBarButton.backgroundColor = UIColorFromRGB(colorValue: electrFenceColor)
-        } else if displayType == .EDIT {
+        }
+        // 編輯既有電子圍籬
+        else if displayType == .EDIT {
             customElectrFenceTitle.text = str_dispEditElectrFence_customFenceNamePrefix + (currentElectrFenceVo?.title ?? "")
             electrFenceColor = currentElectrFenceVo?.color ?? 0xFF0000
             colorBarButton.backgroundColor = UIColorFromRGB(colorValue: electrFenceColor)
@@ -254,12 +257,12 @@ extension DispEditElectrFenceViewController {
         
         if gVar.autoSwitchPreferGroupChangedObserver == nil {
             gVar.autoSwitchPreferGroupChangedObserver = NotificationCenter.default.addObserver(forName: AUTO_SWITCH_PREFER_GROUP_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: autoSwitchPreferGroupChanged)
-            print("addObserver: switchChangedObserver")
+            print("addObserver: autoSwitchPreferGroupChangedObserver")
         }
         
         if gVar.enterAlarmChangedObserver == nil {
             gVar.enterAlarmChangedObserver = NotificationCenter.default.addObserver(forName: ENTER_ALARM_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: enterAlarmChanged)
-            print("addObserver: switchChangedObserver")
+            print("addObserver: enterAlarmChangedObserver")
         }
         
         if gVar.enterAlarmVoicePlayChangedObserver == nil {

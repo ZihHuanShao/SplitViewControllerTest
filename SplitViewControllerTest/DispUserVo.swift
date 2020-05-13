@@ -96,7 +96,12 @@ class SelectedMemberVo {
     }
 }
 
+
+class ElectrFenceVoDummyID {
+    static var idCount = 0
+}
 class ElectrFenceVo {
+    var id: String?
     var title: String?
     var color: UInt? = 0xFF0000 // default red color
 
@@ -115,6 +120,9 @@ class ElectrFenceVo {
     var coordinates: [CLLocationCoordinate2D]?
     
     init(title: String?, color: UInt?, notifyTarget: MemberVo?, autoSwitchPreferGroupEnabled: Bool, preferGroup: GroupVo?, enterAlarmEnabled: Bool, enterAlarmVoicePlayEnabled: Bool, enterAlarmVoice: String?, exitAlarmEnabled: Bool, exitAlarmVoicePlayEnabled: Bool, exitAlarmVoice: String, coordinates: [CLLocationCoordinate2D]?) {
+        
+        self.id =  String(ElectrFenceVoDummyID.idCount + 1)
+        
         self.title = title
         self.color = color
         self.notifyTarget = notifyTarget

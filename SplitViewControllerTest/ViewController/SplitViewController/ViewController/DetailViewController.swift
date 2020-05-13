@@ -242,7 +242,7 @@ extension DetailViewController {
             let dispGoogleMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispGoogleMapViewController") as! DispGoogleMapViewController
             
             setChildView(viewController: dispGoogleMapViewController)
-            dispGoogleMapViewController.updateElectrFenceVo(electrFenceVo)
+            dispGoogleMapViewController.setElectrFenceVo(electrFenceVo)
             dispGoogleMapViewController.reloadGoogleMap(type: .EDIT_FENCE_SCOPE)
         
         // 建立完新的電子圍籬之後
@@ -250,7 +250,7 @@ extension DetailViewController {
             let dispGoogleMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispGoogleMapViewController") as! DispGoogleMapViewController
             
             setChildView(viewController: dispGoogleMapViewController)
-            dispGoogleMapViewController.updateElectrFenceVo(electrFenceVo)
+            dispGoogleMapViewController.setElectrFenceVo(electrFenceVo)
             dispGoogleMapViewController.reloadGoogleMap(type: .AFTER_CREATE_ELECTR_FENCE)
             
         

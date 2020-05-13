@@ -39,6 +39,12 @@ class DispGoogleMapViewController: UIViewController {
     @IBOutlet weak var createButtonBackgroundImage: UIImageView!
     @IBOutlet weak var createButton: UIButton!
     
+    // [Edit Fence Scope Hint View]
+    
+    @IBOutlet weak var editFenceScopeHintView: UIView! // 完成
+    @IBOutlet weak var editFenceScopeFinishButtonImage: UIImageView!
+    @IBOutlet weak var editFenceScopeFinishButton: UIButton!
+    
     // MARK: - Properties
     
     fileprivate var isDrag: DragType! // 判斷是拖曳或是建立頂點
@@ -145,7 +151,7 @@ class DispGoogleMapViewController: UIViewController {
         // 取得目前圍籬的所有頂點
         let electrFenceCoordinates = googleMgr.getPoints()
         
-        // 把圍籬的頂點資訊傳到下一步設定資訊頁面(名稱,顏色,警告設定等等), 以設定該圍籬的Vo資訊
+        // 把新建立的圍籬的頂點資訊傳到下一步設定資訊頁面(名稱,顏色,警告設定等等), 以設定該圍籬的Vo資訊
         NotificationCenter.default.post(
             name: CREATE_ELECTR_FENCE_SETTING_NOTIFY_KEY,
             object: nil,
@@ -153,6 +159,30 @@ class DispGoogleMapViewController: UIViewController {
         )
     }
 
+    // [editFenceScopeFinishButton] 完成
+    
+    @IBAction func editFenceScopeFinishButtonTouchDown(_ sender: UIButton) {
+        updateEditFenceScopeFinishButtonImage(type: .PRESSED)
+    }
+    
+    @IBAction func editFenceScopeFinishButtonTouchDragExit(_ sender: UIButton) {
+        updateEditFenceScopeFinishButtonImage(type: .AWAY)
+    }
+    
+    @IBAction func editFenceScopeFinishButtonTouchUpInside(_ sender: UIButton) {
+        updateEditFenceScopeFinishButtonImage(type: .AWAY)
+        
+        editFenceScopeHintView.isHidden = true
+        
+        electrFenceVo?.coordinates = googleMgr.getPoints()
+        
+        // 更新電子圍籬列表
+        NotificationCenter.default.post(
+            name: UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY,
+            object: self,
+            userInfo: [UPDATE_ELECTR_FENCE_VO_USER_KEY: electrFenceVo]
+        )
+    }
 }
 
 // MARK: - Private Methods
@@ -237,9 +267,20 @@ extension DispGoogleMapViewController {
         }
     }
     
+    private func updateEditFenceScopeFinishButtonImage(type: ButtonPressType) {
+        switch type {
+        case .PRESSED:
+            editFenceScopeFinishButtonImage.image = UIImage(named: "btn_text_pressed")
+            
+        case .AWAY:
+            editFenceScopeFinishButtonImage.image = UIImage(named: "btn_text_normal")
+        }
+    }
+    
     private func updateCreateElectrFenceUI(type: CreateElectrFenceType) {
         
         hintView.isHidden = false
+        editFenceScopeHintView.isHidden = true
         
         switch type {
         
@@ -265,6 +306,8 @@ extension DispGoogleMapViewController {
         }
     }
     
+    
+    
     private func focusOnElectrFence(coordinates: [CLLocationCoordinate2D]) {
         // 讓地圖一出現時不要移動到目前自己的位置
         fixLocationFlag = true
@@ -287,7 +330,7 @@ extension DispGoogleMapViewController {
 
 extension DispGoogleMapViewController {
     
-    func updateElectrFenceVo(_ electrFenceVo: ElectrFenceVo?) {
+    func setElectrFenceVo(_ electrFenceVo: ElectrFenceVo?) {
         self.electrFenceVo = electrFenceVo
     }
     
@@ -297,13 +340,16 @@ extension DispGoogleMapViewController {
         // 地圖首頁
         case .MAP:
             hintView.isHidden = true
+            editFenceScopeHintView.isHidden = true
             
         // 電子圍籬
         case .ELECTR_FENCE:
             hintView.isHidden = true
+            editFenceScopeHintView.isHidden = true
             
         // 電子圍籬中的「新增電子圍籬」
         case .CREATE_ELECTR_FENCE:
+            
             updateCreateElectrFenceUI(type: .DRAW_SCOPE)
             
             // 委派mapView.delegate, 讓user可以在地圖上畫圍籬
@@ -315,6 +361,7 @@ extension DispGoogleMapViewController {
         // 點擊「編輯圍籬範圍」
         case .EDIT_FENCE_SCOPE:
             hintView.isHidden = true
+            editFenceScopeHintView.isHidden = false
             
             // [顯示圍籬地圖]
             mapView.delegate = self
@@ -332,6 +379,7 @@ extension DispGoogleMapViewController {
         // 建立完新的電子圍籬之後
         case .AFTER_CREATE_ELECTR_FENCE:
             hintView.isHidden = true
+            editFenceScopeHintView.isHidden = true
             
             // [顯示圍籬地圖]
             mapView.delegate = self
@@ -349,10 +397,12 @@ extension DispGoogleMapViewController {
         // 即時定位
         case .REAL_TIME_POSITION:
             hintView.isHidden = true
+            editFenceScopeHintView.isHidden = true
             
         // 臨時群組
         case .TEMPORARY_GROUP:
             hintView.isHidden = true
+            editFenceScopeHintView.isHidden = true
             
             
         case .EDIT_ELECTR_FENCE, .NONE:

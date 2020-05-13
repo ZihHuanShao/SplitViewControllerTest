@@ -91,10 +91,10 @@ extension DispElectrFenceViewController {
 
 extension DispElectrFenceViewController {
     private func removeObserver() {
-        if let _ = gVar.updateElectrFenceVoObserver {
-            NotificationCenter.default.removeObserver(gVar.updateElectrFenceVoObserver!)
-            gVar.updateElectrFenceVoObserver = nil
-            print("removeObserver: updateElectrFenceVoObserver")
+        if let _ = gVar.updateNewElectrFenceVoObserver {
+            NotificationCenter.default.removeObserver(gVar.updateNewElectrFenceVoObserver!)
+            gVar.updateNewElectrFenceVoObserver = nil
+            print("removeObserver: updateNewElectrFenceVoObserver")
         }
         
         if let _ = gVar.editFenceScopeButtonHandlerObserver {
@@ -102,18 +102,30 @@ extension DispElectrFenceViewController {
             gVar.editFenceScopeButtonHandlerObserver = nil
             print("removeObserver: editFenceScopeButtonHandlerObserver")
         }
+        
+        if let _ = gVar.updateElectrFenceVoObserver {
+            NotificationCenter.default.removeObserver(gVar.updateElectrFenceVoObserver!)
+            gVar.updateElectrFenceVoObserver = nil
+            print("removeObserver: updateElectrFenceVoObserver")
+        }
     }
     
     private func addObserver() {
-        if gVar.updateElectrFenceVoObserver == nil {
-            gVar.updateElectrFenceVoObserver = NotificationCenter.default.addObserver(forName: UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY, object: nil, queue: nil, using: updateElectrFenceVo)
-            print("addObserver: updateElectrFenceVoObserver")
+        if gVar.updateNewElectrFenceVoObserver == nil {
+            gVar.updateNewElectrFenceVoObserver = NotificationCenter.default.addObserver(forName: UPDATE_NEW_ELECTR_FENCE_VO_NOTIFY_KEY, object: nil, queue: nil, using: updateNewElectrFenceVo)
+            print("addObserver: updateNewElectrFenceVoObserver")
         }
         
         
         if gVar.editFenceScopeButtonHandlerObserver == nil {
             gVar.editFenceScopeButtonHandlerObserver = NotificationCenter.default.addObserver(forName: EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY, object: nil, queue: nil, using: editFenceScopeButtonHandler)
             print("addObserver: editFenceScopeButtonHandlerObserver")
+        }
+        
+        
+        if gVar.updateElectrFenceVoObserver == nil {
+            gVar.updateElectrFenceVoObserver = NotificationCenter.default.addObserver(forName: UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY, object: nil, queue: nil, using: updateElectrFenceVo)
+            print("addObserver: updateElectrFenceVoObserver")
         }
     }
     
@@ -165,8 +177,8 @@ extension DispElectrFenceViewController {
     
     }
     
-    func updateElectrFenceVo(notification: Notification) -> Void {
-        if let electrFenceVo = notification.userInfo?[UPDATE_ELECTR_FENCE_VO_USER_KEY] as? ElectrFenceVo? {
+    func updateNewElectrFenceVo(notification: Notification) -> Void {
+        if let electrFenceVo = notification.userInfo?[UPDATE_NEW_ELECTR_FENCE_VO_USER_KEY] as? ElectrFenceVo? {
             
             if let eFenceVo = electrFenceVo {
                 electrFencesVo.append(eFenceVo)
@@ -178,6 +190,20 @@ extension DispElectrFenceViewController {
             
             // 顯示電子圍籬及地圖 (DetailView)
             delegate?.electrFenceReload(electrFenceVo: electrFenceVo)
+        }
+    }
+    
+    func updateElectrFenceVo(notification: Notification) -> Void {
+        if let electrFenceVo = notification.userInfo?[UPDATE_ELECTR_FENCE_VO_USER_KEY] as? ElectrFenceVo? {
+            
+            if let eFenceVo = electrFenceVo {
+                for electrFenceVo in electrFencesVo {
+                    if electrFenceVo.id == eFenceVo.id {
+                        electrFenceVo.coordinates = eFenceVo.coordinates
+                    }
+                }
+            }
+            
         }
     }
 }
