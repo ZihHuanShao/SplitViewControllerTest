@@ -217,7 +217,7 @@ extension DispEditElectrFenceViewController {
         if let _ = gVar.autoSwitchPreferGroupChangedObserver {
             NotificationCenter.default.removeObserver(gVar.autoSwitchPreferGroupChangedObserver!)
             gVar.autoSwitchPreferGroupChangedObserver = nil
-            print("removeObserver: switchChangedObserver")
+            print("removeObserver: autoSwitchPreferGroupChangedObserver")
         }
         
         if let _ = gVar.enterAlarmChangedObserver {

@@ -121,7 +121,8 @@ class ElectrFenceVo {
     
     init(title: String?, color: UInt?, notifyTarget: MemberVo?, autoSwitchPreferGroupEnabled: Bool, preferGroup: GroupVo?, enterAlarmEnabled: Bool, enterAlarmVoicePlayEnabled: Bool, enterAlarmVoice: String?, exitAlarmEnabled: Bool, exitAlarmVoicePlayEnabled: Bool, exitAlarmVoice: String, coordinates: [CLLocationCoordinate2D]?) {
         
-        self.id =  String(ElectrFenceVoDummyID.idCount + 1)
+        self.id =  String(ElectrFenceVoDummyID.idCount)
+        ElectrFenceVoDummyID.idCount = ElectrFenceVoDummyID.idCount + 1 
         
         self.title = title
         self.color = color

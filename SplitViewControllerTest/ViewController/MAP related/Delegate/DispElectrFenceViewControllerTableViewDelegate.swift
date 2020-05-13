@@ -30,8 +30,9 @@ class DispElectrFenceViewControllerTableViewDelegate: NSObject {
     fileprivate var electrFenceVo: ElectrFenceVo?
     
     fileprivate var cellsData = [CellData]()
-    fileprivate var electrFencesVo = [ElectrFenceVo]()
-    fileprivate var createNewElectrFenceFlag = false
+    fileprivate var electrFencesVo: [ElectrFenceVo]?
+    fileprivate var expandIndex: Int?
+    fileprivate var shrinkIndex: Int?
     
     // MARK: - initializer
     
@@ -43,6 +44,7 @@ class DispElectrFenceViewControllerTableViewDelegate: NSObject {
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: .zero)
     }
+    
 }
 
 // MARK: - Public Methods
@@ -60,29 +62,50 @@ extension DispElectrFenceViewControllerTableViewDelegate {
         tableView?.reloadData()
     }
     
-    // 新增電子圍籬才會呼叫
-    func updateNewElectrFenceVo(_ electrFenceVo: ElectrFenceVo?) {
-        self.electrFenceVo = electrFenceVo
-        self.createNewElectrFenceFlag = true
+    // 展開某一列的圍籬資訊
+    func expandElectrFence(index: Int) {
+        // 只能先將要展開的圍籬index存起來, 等reloadCellData()再render
+        // 不能直接對cellsData[index].isOpen = true, 因為cellsData還沒有建立, 會造成系統crash
+        expandIndex = index
     }
     
+    // 收合某一列的圍籬資訊
+    func shrinkElectrFence(index: Int) {
+        shrinkIndex = index
+    }
+    
+    // 收合所有的圍籬資訊
+    func resetElectrFenceList() {
+        for cellData in cellsData {
+            cellData.isOpen = false
+        }
+    }
+    
+    func updateElectrFencesVo(_ electrFencesVo: [ElectrFenceVo]?) {
+        self.electrFencesVo = electrFencesVo
+    }
 }
 
 // MARK: - Private Methods
 
 extension DispElectrFenceViewControllerTableViewDelegate {
     private func reloadCellData() {
-        if let _electrFenceVo = electrFenceVo {
+        cellsData.removeAll()
+        
+        if let eFencesVo = electrFencesVo {
             
-            let cellData = CellData(_electrFenceVo)
-            
-            if createNewElectrFenceFlag {
-                // 當新增電子圍籬建立完成, 電子圍籬列表預設直接展開該圍籬資訊
-                cellData.isOpen = true
-                createNewElectrFenceFlag = false
+            for (index, eFenceVo) in eFencesVo.enumerated() {
+                
+                let cellData = CellData(eFenceVo)
+                
+                if expandIndex != nil {
+                    if (index == expandIndex!) {
+                        cellData.isOpen = true
+                        expandIndex = nil
+                    }
+                }
+                cellsData.append(cellData)
             }
-            
-            cellsData.append(cellData)
         }
     }
 }

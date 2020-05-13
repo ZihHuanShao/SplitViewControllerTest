@@ -76,6 +76,10 @@ class DispElectrFenceViewController: UIViewController {
     @IBAction func createElectrFenceButtonTouchUpInside(_ sender: UIButton) {
         updateCreateElectrFenceButtonImage(type: .AWAY)
         
+        // 點擊「新增電子圍籬」就收合所有列表
+        tableViewDelegate?.resetElectrFenceList()
+        tableViewDelegate?.reloadUI()
+        
         delegate?.electrFenceDidTapCreate()
     }
 }
@@ -132,12 +136,17 @@ extension DispElectrFenceViewController {
     private func updateDataSource() {
         tableViewDelegate = DispElectrFenceViewControllerTableViewDelegate(dispElectrFenceViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: DISP_ELECTR_FENCE_TABLE_VIEW_CELL, cellId: DISP_ELECTR_FENCE_TABLE_VIEW_CELL)
-           
+        
+        // 1. 從Server或DB取得目前所有已存在的圍籬並更新(測試中未實作)
+        // 2. 當在設定新的圍籬資訊(名稱,顏色..)時, 若選擇完顏色回到畫面, 會重新進此VC的生命週期, 所以必須在這裡要更新所有圍籬的資訊, 否則電子圍籬列表會被清空, 造成非預期的錯誤
+        tableViewDelegate?.updateElectrFencesVo(electrFencesVo)
+        tableViewDelegate?.resetElectrFenceList()
     }
     
     private func updateUI() {
         createElectrFenceButton.setTitle(str_dispElectrFence_createElectrFence, for: .normal)
         functionName.text = str_dispMap_electrFence
+        
         tableViewDelegate?.reloadUI()
     }
     
@@ -184,11 +193,15 @@ extension DispElectrFenceViewController {
                 electrFencesVo.append(eFenceVo)
             }
             
-            // 更新列表 (MasterView)
-            tableViewDelegate?.updateNewElectrFenceVo(electrFenceVo)
+            // 取得目前新建圍籬的index
+            let index = electrFencesVo.count - 1
+            
+            // [更新列表] (MasterView)
+            tableViewDelegate?.updateElectrFencesVo(electrFencesVo)
+            tableViewDelegate?.expandElectrFence(index: index) // 設定要展開的圍籬index
             tableViewDelegate?.reloadUI()
             
-            // 顯示電子圍籬及地圖 (DetailView)
+            // [顯示電子圍籬及地圖] (DetailView)
             delegate?.electrFenceReload(electrFenceVo: electrFenceVo)
         }
     }
