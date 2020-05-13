@@ -45,6 +45,9 @@ class DispGoogleMapViewController: UIViewController {
     fileprivate var finishCreatingEletorFence = false // 是否完成此次繪製
     fileprivate var myLocationMgr: CLLocationManager! // 向使用者取得定位權限
     fileprivate let googleMgr = GoogleMapsManager.shareInstance
+    fileprivate var electrFenceVo: ElectrFenceVo?
+    fileprivate var fixLocationFlag = false
+    fileprivate var path: GMSMutablePath!
     
     // MARK: - Life Cycle
     
@@ -261,22 +264,45 @@ extension DispGoogleMapViewController {
             hintDesc.text = str_dispGoogleMap_createFenceDesc
         }
     }
+    
+    private func focusOnElectrFence(coordinates: [CLLocationCoordinate2D]) {
+        // 讓地圖一出現時不要移動到目前自己的位置
+        fixLocationFlag = true
+        
+        path = GMSMutablePath()
+        for coordinate in coordinates {
+            path.add(coordinate)
+        }
+        var bounds: GMSCoordinateBounds = GMSCoordinateBounds()
+        for index in 0 ..< path.count() {
+            bounds = bounds.includingCoordinate(path.coordinate(at: index))
+        }
+        
+        mapView.animate(with: GMSCameraUpdate.fit(bounds))
+        mapView.animate(toZoom: 15)
+    }
 }
 
 // MARK: - Public Methods
 
 extension DispGoogleMapViewController {
+    
+    func updateElectrFenceVo(_ electrFenceVo: ElectrFenceVo?) {
+        self.electrFenceVo = electrFenceVo
+    }
+    
     func reloadGoogleMap(type: ShowMapSegueType) {
         switch type {
-            
+        
+        // 地圖首頁
         case .MAP:
             hintView.isHidden = true
             
-            
+        // 電子圍籬
         case .ELECTR_FENCE:
             hintView.isHidden = true
             
-            
+        // 電子圍籬中的「新增電子圍籬」
         case .CREATE_ELECTR_FENCE:
             updateCreateElectrFenceUI(type: .DRAW_SCOPE)
             
@@ -285,11 +311,46 @@ extension DispGoogleMapViewController {
             
             googleMgr.resetMap(mapView: mapView)
             googleMgr.startAddingVertex()
-
+        
+        // 點擊「編輯圍籬範圍」
+        case .EDIT_FENCE_SCOPE:
+            hintView.isHidden = true
+            
+            // [顯示圍籬地圖]
+            mapView.delegate = self
+            googleMgr.resetMap(mapView: mapView)
+            
+            if let eFenceVo = electrFenceVo, let coordinates = eFenceVo.coordinates, let color = eFenceVo.color {
+                
+                focusOnElectrFence(coordinates: coordinates)
+                
+                googleMgr.editPoints(coordinates: coordinates, forTrack: mapView)
+                googleMgr.setColor(color)
+                googleMgr.dragPoint(true)
+            }
+            
+        // 建立完新的電子圍籬之後
+        case .AFTER_CREATE_ELECTR_FENCE:
+            hintView.isHidden = true
+            
+            // [顯示圍籬地圖]
+            mapView.delegate = self
+            googleMgr.resetMap(mapView: mapView)
+            
+            if let eFenceVo = electrFenceVo, let coordinates = eFenceVo.coordinates, let color = eFenceVo.color {
+                
+                focusOnElectrFence(coordinates: coordinates)
+                
+                googleMgr.editPoints(coordinates: coordinates, forTrack: mapView)
+                googleMgr.setColor(color)
+                googleMgr.dragPoint(false)
+            }
+        
+        // 即時定位
         case .REAL_TIME_POSITION:
             hintView.isHidden = true
             
-            
+        // 臨時群組
         case .TEMPORARY_GROUP:
             hintView.isHidden = true
             
@@ -318,7 +379,10 @@ extension DispGoogleMapViewController: CLLocationManagerDelegate {
             self.present(alertController, animated: true, completion: nil)
         
         case .authorizedWhenInUse:
-            myLocationMgr.startUpdatingLocation() // 將畫面移動到目前使用者的位置
+            if !fixLocationFlag {
+                myLocationMgr.startUpdatingLocation() // 將畫面移動到目前使用者的位置
+                fixLocationFlag = false
+            }
             mapView.isMyLocationEnabled = true  // 開啟我的位置(小藍點)
             mapView.settings.myLocationButton = true // 開啟定位按鈕(右下角的圓點)
             

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class DispElectrFenceViewController: UIViewController {
 
@@ -22,6 +23,8 @@ class DispElectrFenceViewController: UIViewController {
     
     var tableViewDelegate: DispElectrFenceViewControllerTableViewDelegate?
     var delegate: ElectrFenceViewControllerDelegate?
+    
+    fileprivate var electrFencesVo  = [ElectrFenceVo]()
     
     // MARK: - Life Cycle
     
@@ -93,12 +96,24 @@ extension DispElectrFenceViewController {
             gVar.updateElectrFenceVoObserver = nil
             print("removeObserver: updateElectrFenceVoObserver")
         }
+        
+        if let _ = gVar.editFenceScopeButtonHandlerObserver {
+            NotificationCenter.default.removeObserver(gVar.editFenceScopeButtonHandlerObserver!)
+            gVar.editFenceScopeButtonHandlerObserver = nil
+            print("removeObserver: editFenceScopeButtonHandlerObserver")
+        }
     }
     
     private func addObserver() {
         if gVar.updateElectrFenceVoObserver == nil {
             gVar.updateElectrFenceVoObserver = NotificationCenter.default.addObserver(forName: UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY, object: nil, queue: nil, using: updateElectrFenceVo)
             print("addObserver: updateElectrFenceVoObserver")
+        }
+        
+        
+        if gVar.editFenceScopeButtonHandlerObserver == nil {
+            gVar.editFenceScopeButtonHandlerObserver = NotificationCenter.default.addObserver(forName: EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY, object: nil, queue: nil, using: editFenceScopeButtonHandler)
+            print("addObserver: editFenceScopeButtonHandlerObserver")
         }
     }
     
@@ -139,12 +154,31 @@ extension DispElectrFenceViewController {
 
 extension DispElectrFenceViewController {
 
+    func editFenceScopeButtonHandler(notification: Notification) -> Void {
+        if let sectionIndex = notification.userInfo?[EDIT_FENCE_SCOPE_BUTTON_HANDLER_USER_KEY] as? Int {
+            
+            // 取得是哪一個電子圍籬被點擊
+            let electrFenceVo = electrFencesVo[sectionIndex]
+            
+            delegate?.electrFenceDidTapEditFenceScope(electrFenceVo: electrFenceVo)
+        }
+    
+    }
+    
     func updateElectrFenceVo(notification: Notification) -> Void {
         if let electrFenceVo = notification.userInfo?[UPDATE_ELECTR_FENCE_VO_USER_KEY] as? ElectrFenceVo? {
+            
+            if let eFenceVo = electrFenceVo {
+                electrFencesVo.append(eFenceVo)
+            }
+            
+            // 更新列表 (MasterView)
             tableViewDelegate?.updateNewElectrFenceVo(electrFenceVo)
             tableViewDelegate?.reloadUI()
+            
+            // 顯示電子圍籬及地圖 (DetailView)
+            delegate?.electrFenceReload(electrFenceVo: electrFenceVo)
         }
-        
     }
 }
 
@@ -155,4 +189,8 @@ protocol ElectrFenceViewControllerDelegate {
     func electrFenceDidTapBack()   // 點擊「返回」
     func electrFenceDidTapEdit()   // 點擊「設定」
     func electrFenceDidTapCreate() // 點擊「新增電子圍籬」
+    func electrFenceDidTapEditFenceScope(electrFenceVo: ElectrFenceVo?) // 點擊「編輯圍籬範圍」
+    
+    func electrFenceReload(electrFenceVo: ElectrFenceVo?) // 重新載入顯示電子圍籬的地圖
+    
 }

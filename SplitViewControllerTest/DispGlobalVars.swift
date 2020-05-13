@@ -56,4 +56,5 @@ class gVar {
     
     // DispElectrFenceViewController
     static var updateElectrFenceVoObserver: NSObjectProtocol? = nil
+    static var editFenceScopeButtonHandlerObserver: NSObjectProtocol? = nil
 }

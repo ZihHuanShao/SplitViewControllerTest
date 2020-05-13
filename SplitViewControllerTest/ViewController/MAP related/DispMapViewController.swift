@@ -54,12 +54,22 @@ class DispMapViewController: UIViewController {
                 dVC?.setMainMenuSelectedRowIndex(rowIndex)
             }
             
+            // 「新增電子圍籬」的資訊: 建立新的圍籬
             if let createModeInfo = sender as? EditElectrFenceDisplayCreateModeInfo {
                 dVC?.setEditElectrFenceDisplayType(createModeInfo.type)
                 dVC?.updateNewElectrFenceCoordinates(createModeInfo.coordinates)
-            } else if let editModeInfo = sender as? EditElectrFenceDisplayEditModeInfo {
+            }
+            // 電子圍籬「設定」的資訊: 編輯既有圍籬
+            else if let editModeInfo = sender as? EditElectrFenceDisplayEditModeInfo {
                 dVC?.setEditElectrFenceDisplayType(editModeInfo.type)
             }
+            // 1. 新的圍籬建立後要在地圖上顯示圍籬的資訊
+            // 2. 「編輯圍籬範圍」的資訊
+            else if let electrFenceVo = sender as? ElectrFenceVo? {
+                dVC?.updateElectrFenceVo(electrFenceVo)
+            }
+            
+            
             
             dVC?.setMapTabSelected(type: tapType)
         }
@@ -231,6 +241,25 @@ extension DispMapViewController: ElectrFenceViewControllerDelegate {
     func electrFenceDidTapCreate() {
         setTapType(type: .CREATE_ELECTR_FENCE)
         performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: nil)
+    }
+    
+    // 點擊「編輯圍籬範圍」
+    func electrFenceDidTapEditFenceScope(electrFenceVo: ElectrFenceVo?) {
+        setTapType(type: .EDIT_FENCE_SCOPE)
+        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: electrFenceVo)
+    }
+    
+    // 重新載入顯示電子圍籬的地圖
+//    func electrFenceReload(electrFenceCoordinates: [CLLocationCoordinate2D]?) {
+//
+//        setTapType(type: .AFTER_CREATE_ELECTR_FENCE)
+//        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: electrFenceCoordinates)
+//    }
+    
+    func electrFenceReload(electrFenceVo: ElectrFenceVo?) {
+        
+        setTapType(type: .AFTER_CREATE_ELECTR_FENCE)
+        performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: electrFenceVo)
     }
 }
 

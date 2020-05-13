@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MapKit
+import GoogleMaps
 
 // MainMenuIcon [點擊時,未點擊時]
 let MAIN_MENU_ICON_PTT     = ["btn_menu_ptt_selected", "btn_menu_ptt_normal"]
@@ -103,6 +104,7 @@ let EXIT_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY = Notification.Name("exitAlarmVoice
 let CHANGE_COLOR_NOTIFY_KEY = Notification.Name("changeColorNotifyKey")
 let CREATE_ELECTR_FENCE_SETTING_NOTIFY_KEY = NSNotification.Name("createElectrFenceSettingNotifyKey")
 let UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY = NSNotification.Name("updateElectrFenceVoNotifyKey")
+let EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("editFenceScopeButtonHandlerNotifyKey")
 
 // Notification userInfo
 let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
@@ -120,6 +122,7 @@ let EXIT_ALARM_VOICE_PLAY_CHANGED_USER_KEY = "exitAlarmVoicePlayChangedUserKey"
 let CHANGE_COLOR_USER_KEY = "changeColorUserKey"
 let CREATE_ELECTR_FENCE_SETTING_USER_KEY = "createElectrFenceSettingUserKey"
 let UPDATE_ELECTR_FENCE_VO_USER_KEY = "updateElectrFenceVoUserKey"
+let EDIT_FENCE_SCOPE_BUTTON_HANDLER_USER_KEY = "editFenceScopeButtonHandlerUserKey"
 
 // 通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
@@ -154,6 +157,8 @@ enum ButtonPressType: Int {
 }
 
 // [Ptt menu]
+
+//列出在Ptt menu的選單時, DetailView呈現所有畫面的情況
 enum ShowPttSegueType: Int {
     case TAB_GROUP_SELECT  = 0      // 群組
     case TAB_MEMBER_SELECT = 1      // 聯絡人
@@ -189,13 +194,17 @@ enum MemberProfileType: CaseIterable {
 
 
 // [Map menu]
+
+// 列出在Map menu的選單時, DetailView呈現所有畫面的情況
 enum ShowMapSegueType: Int {
-    case MAP = 0                 // 地圖首頁
-    case ELECTR_FENCE = 1        // 電子圍籬
-    case CREATE_ELECTR_FENCE = 2 // 電子圍籬中的「新增電子圍籬」
-    case EDIT_ELECTR_FENCE = 3   // 電子圍籬中的「設定」
-    case REAL_TIME_POSITION = 4  // 即時定位
-    case TEMPORARY_GROUP = 5     // 臨時群組
+    case MAP = 0                        // 地圖首頁
+    case ELECTR_FENCE = 1               // 電子圍籬
+    case CREATE_ELECTR_FENCE = 2        // 電子圍籬中的「新增電子圍籬」
+    case EDIT_ELECTR_FENCE = 3          // 電子圍籬中的「設定」
+    case EDIT_FENCE_SCOPE = 4           // 點擊「編輯圍籬範圍」
+    case AFTER_CREATE_ELECTR_FENCE = 5  // 建立完新的電子圍籬之後
+    case REAL_TIME_POSITION = 6         // 即時定位
+    case TEMPORARY_GROUP = 7            // 臨時群組
     
     
     case NONE = 99
@@ -308,11 +317,13 @@ struct RGBColorCode {
     var blue = Int()
 }
 
+// EDIT_ELECTR_FENCE data
+// 1. DispEditElectrFenceViewController 顯示模式: 建立新的圍籬
 struct EditElectrFenceDisplayCreateModeInfo {
     let type = EditElectrFenceDisplayType.CREATE
     var coordinates: [CLLocationCoordinate2D]?
 }
-
+// 2. DispEditElectrFenceViewController 顯示模式: 編輯既有圍籬
 struct EditElectrFenceDisplayEditModeInfo {
     let type = EditElectrFenceDisplayType.EDIT
     // other 圍籬資訊

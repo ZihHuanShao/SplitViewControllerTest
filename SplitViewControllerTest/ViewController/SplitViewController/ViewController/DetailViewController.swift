@@ -45,6 +45,7 @@ class DetailViewController: UIViewController {
     fileprivate var mapTapType = ShowMapSegueType.NONE
     fileprivate var editElectrFenceDisplayType = EditElectrFenceDisplayType.NONE
     fileprivate var newElectrFenceCoordinates: [CLLocationCoordinate2D]?
+    fileprivate var electrFenceVo: ElectrFenceVo?
     
     // MARK: - Life Cycle
     
@@ -113,6 +114,10 @@ extension DetailViewController {
     
     func updateNewElectrFenceCoordinates(_ newElectrFenceCoordinates: [CLLocationCoordinate2D]?) {
         self.newElectrFenceCoordinates = newElectrFenceCoordinates
+    }
+    
+    func updateElectrFenceVo(_ electrFenceVo: ElectrFenceVo?) {
+        self.electrFenceVo = electrFenceVo
     }
 }
 
@@ -202,7 +207,7 @@ extension DetailViewController {
             
             setChildView(viewController: dispGoogleMapViewController)
             dispGoogleMapViewController.reloadGoogleMap(type: .ELECTR_FENCE)
-            break
+            
         
         // 電子圍籬中的「新增電子圍籬」
         case .CREATE_ELECTR_FENCE:
@@ -210,10 +215,10 @@ extension DetailViewController {
             
             setChildView(viewController: dispGoogleMapViewController)
             dispGoogleMapViewController.reloadGoogleMap(type: .CREATE_ELECTR_FENCE)
-            break
+            
             
         // 電子圍籬中的「設定」, 顯示該頁面有兩種時機:
-        // 1. 針對已存在的電子圍籬做編輯 2. 新增電子圍籬後, 要設定相關圍籬資訊(名稱/顯示顏色/警告設定等等)
+        // 1. 新增電子圍籬後, 要設定相關圍籬資訊(名稱/顯示顏色/警告設定等等) 2. 針對已存在的電子圍籬做編輯
         case .EDIT_ELECTR_FENCE:
             let dispEditElectrFenceViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispEditElectrFenceViewController") as! DispEditElectrFenceViewController
             
@@ -231,7 +236,22 @@ extension DetailViewController {
             case .NONE:
                 break
             }
+        
+        // 點擊「編輯圍籬範圍」
+        case .EDIT_FENCE_SCOPE:
+            let dispGoogleMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispGoogleMapViewController") as! DispGoogleMapViewController
             
+            setChildView(viewController: dispGoogleMapViewController)
+            dispGoogleMapViewController.updateElectrFenceVo(electrFenceVo)
+            dispGoogleMapViewController.reloadGoogleMap(type: .EDIT_FENCE_SCOPE)
+        
+        // 建立完新的電子圍籬之後
+        case .AFTER_CREATE_ELECTR_FENCE:
+            let dispGoogleMapViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispGoogleMapViewController") as! DispGoogleMapViewController
+            
+            setChildView(viewController: dispGoogleMapViewController)
+            dispGoogleMapViewController.updateElectrFenceVo(electrFenceVo)
+            dispGoogleMapViewController.reloadGoogleMap(type: .AFTER_CREATE_ELECTR_FENCE)
             
         
         // 即時定位
@@ -292,19 +312,18 @@ extension DetailViewController {
         case .MAP:
             switch mapTapType {
                 
-            case .MAP, .ELECTR_FENCE, .CREATE_ELECTR_FENCE:
+            case .MAP,
+                 .ELECTR_FENCE,
+                 .CREATE_ELECTR_FENCE,
+                 .EDIT_FENCE_SCOPE,
+                 .AFTER_CREATE_ELECTR_FENCE:
+                
                 let dispGoogleMapViewController = viewController as! DispGoogleMapViewController
                 self.addChild(dispGoogleMapViewController)
                 dispGoogleMapViewController.view.frame = CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height)
                 self.containerView.addSubview(dispGoogleMapViewController.view)
                 
                 dispGoogleMapViewController.didMove(toParent: self)
-            
-//            case .ELECTR_FENCE:
-//                break
-//
-//            case .CREATE_ELECTR_FENCE:
-//                break
                 
             case .EDIT_ELECTR_FENCE:
                 let dispEditElectrFenceViewController = viewController as! DispEditElectrFenceViewController

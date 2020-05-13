@@ -68,9 +68,7 @@ class DispEditElectrFenceViewController: UIViewController {
         
         currentElectrFenceVo?.title = nameTextField.text
         
-        print(currentElectrFenceVo)
-        
-        // todo: 更新電子圍籬列表
+        // 更新電子圍籬列表
         NotificationCenter.default.post(
             name: UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY,
             object: self,

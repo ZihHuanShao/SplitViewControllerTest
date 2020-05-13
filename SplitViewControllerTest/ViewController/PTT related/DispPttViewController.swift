@@ -356,6 +356,8 @@ extension DispPttViewController {
 extension DispPttViewController {
     func changeMonitor(notification: Notification) -> Void {
         if let tableRowIndex = notification.userInfo?[CHANGE_MONITOR_USER_KEY] as? Int {
+            
+            // 取得目前所點擊cell的groupVo
             let groupVo = groupsVo[tableRowIndex]
             groupVo.monitorState = !(groupVo.monitorState)
 

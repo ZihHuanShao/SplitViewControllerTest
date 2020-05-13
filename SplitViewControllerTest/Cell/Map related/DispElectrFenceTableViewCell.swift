@@ -40,6 +40,11 @@ class DispElectrFenceTableViewCell: UITableViewCell {
     @IBOutlet weak var exitAlarmTitle: UILabel!
     @IBOutlet weak var exitAlarmButton: UIButton!
     
+    // MARK: - Properties
+    
+    // 電子圍籬列表中, 存放cell的section index值
+    fileprivate var cellSectionIndex: Int?
+    
     // MARK: - Life Cycle
     
     override func awakeFromNib() {
@@ -54,30 +59,43 @@ class DispElectrFenceTableViewCell: UITableViewCell {
     // MARK: - Actions
     
     @IBAction func sectionHeadButtonPressed(_ sender: UIButton) {
+        print("sectionHeadButtonPressed")
     }
     
     @IBAction func editFenceScopeButtonPressed(_ sender: UIButton) {
+        if let index = cellSectionIndex {
+           NotificationCenter.default.post(name: EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY, object: self, userInfo: [EDIT_FENCE_SCOPE_BUTTON_HANDLER_USER_KEY: index])
+        }
     }
     
     @IBAction func borderColorButtonPressed(_ sender: UIButton) {
+        print("borderColorButtonPressed")
     }
     
     @IBAction func enterAlarmButtonPressed(_ sender: UIButton) {
+        print("enterAlarmButtonPressed")
     }
     
     @IBAction func exitAlarmButtonPressed(_ sender: UIButton) {
+        print("exitAlarmButtonPressed")
     }
     
     @IBAction func forbiddenButtonPressed(_ sender: UIButton) {
+        print("forbiddenButtonPressed")
     }
     
     @IBAction func settingButtonPressed(_ sender: UIButton) {
+        print("settingButtonPressed")
     }
 }
 
 // MARK: - Public Methods
 
 extension DispElectrFenceTableViewCell {
+    func setCellSectionIndex(_ index: Int) {
+        cellSectionIndex = index
+    }
+    
     func updateCell(withHeadTitle title: String) {
         sectionHeadTitle.text = title
         displayMode(mode: .HEAD)

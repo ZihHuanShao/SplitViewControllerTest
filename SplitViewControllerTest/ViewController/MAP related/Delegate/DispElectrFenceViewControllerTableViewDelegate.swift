@@ -31,6 +31,7 @@ class DispElectrFenceViewControllerTableViewDelegate: NSObject {
     
     fileprivate var cellsData = [CellData]()
     fileprivate var electrFencesVo = [ElectrFenceVo]()
+    fileprivate var createNewElectrFenceFlag = false
     
     // MARK: - initializer
     
@@ -59,8 +60,10 @@ extension DispElectrFenceViewControllerTableViewDelegate {
         tableView?.reloadData()
     }
     
+    // 新增電子圍籬才會呼叫
     func updateNewElectrFenceVo(_ electrFenceVo: ElectrFenceVo?) {
         self.electrFenceVo = electrFenceVo
+        self.createNewElectrFenceFlag = true
     }
     
 }
@@ -70,7 +73,16 @@ extension DispElectrFenceViewControllerTableViewDelegate {
 extension DispElectrFenceViewControllerTableViewDelegate {
     private func reloadCellData() {
         if let _electrFenceVo = electrFenceVo {
-            cellsData.append(CellData(_electrFenceVo))
+            
+            let cellData = CellData(_electrFenceVo)
+            
+            if createNewElectrFenceFlag {
+                // 當新增電子圍籬建立完成, 電子圍籬列表預設直接展開該圍籬資訊
+                cellData.isOpen = true
+                createNewElectrFenceFlag = false
+            }
+            
+            cellsData.append(cellData)
         }
     }
 }
@@ -103,6 +115,8 @@ extension DispElectrFenceViewControllerTableViewDelegate: UITableViewDataSource 
             )
 //        }
         
+        cell.setCellSectionIndex(indexPath.section)
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -113,14 +127,17 @@ extension DispElectrFenceViewControllerTableViewDelegate: UITableViewDataSource 
 
 extension DispElectrFenceViewControllerTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if cellsData[indexPath.section].isOpen == true {
-            cellsData[indexPath.section].isOpen = false
-            let indexes = IndexSet(integer: indexPath.section)
-            tableView.reloadSections(indexes, with: .automatic)
-        } else {
-            cellsData[indexPath.section].isOpen = true
-            let indexes = IndexSet(integer: indexPath.section)
-            tableView.reloadSections(indexes, with: .automatic)
+        // 若點擊的為標題列, 展開或收合才會作動
+        if indexPath.row == 0 {
+            if cellsData[indexPath.section].isOpen == true {
+                cellsData[indexPath.section].isOpen = false
+                let indexes = IndexSet(integer: indexPath.section)
+                tableView.reloadSections(indexes, with: .automatic)
+            } else {
+                cellsData[indexPath.section].isOpen = true
+                let indexes = IndexSet(integer: indexPath.section)
+                tableView.reloadSections(indexes, with: .automatic)
+            }
         }
     }
 }
