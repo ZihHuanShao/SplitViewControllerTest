@@ -108,6 +108,7 @@ let UPDATE_NEW_ELECTR_FENCE_VO_NOTIFY_KEY = NSNotification.Name("updateNewElectr
 let EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("editFenceScopeButtonHandlerNotifyKey")
 let UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY = NSNotification.Name("updateElectrFenceVoNotifyKey")
 let BORDER_COLOR_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("borderColorButtonHandlerNotifyKey")
+let SECTION_HEAD_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("sectionHeadButtonHandlerNotifyKey")
 
 // Notification userInfo
 let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
@@ -129,6 +130,7 @@ let UPDATE_NEW_ELECTR_FENCE_VO_USER_KEY = "updateNewElectrFenceVoUserKey"
 let EDIT_FENCE_SCOPE_BUTTON_HANDLER_USER_KEY = "editFenceScopeButtonHandlerUserKey"
 let UPDATE_ELECTR_FENCE_VO_USER_KEY = "updateElectrFenceVoUserKey"
 let BORDER_COLOR_BUTTON_HANDLER_USER_KEY = "borderColorButtonHandlerUserKey"
+let SECTION_HEAD_BUTTON_HANDLER_USER_KEY = "sectionHeadButtonHandlerNotifyKey"
 
 // 通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
@@ -285,6 +287,11 @@ enum ChangeColorMode: Int {
     case BORDER_COLOR = 1 // 透過在電子圍籬列表中的「框線顏色」快速設定
     
     case NONE = 99
+}
+
+enum CollapseCellMode: Int {
+    case ENABLE  = 0
+    case DISABLE = 1
 }
 
 // struct

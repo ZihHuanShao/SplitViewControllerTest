@@ -59,5 +59,6 @@ class gVar {
         static var updateElectrFenceVoObserver: NSObjectProtocol? = nil
         static var borderColorButtonHandlerObserver: NSObjectProtocol? = nil
         static var borderColorChangedObserver: NSObjectProtocol? = nil
+        static var sectionHeadButtonHandlerObserver: NSObjectProtocol? = nil
     }
 }

@@ -60,19 +60,34 @@ class DispElectrFenceTableViewCell: UITableViewCell {
     
     @IBAction func sectionHeadButtonPressed(_ sender: UIButton) {
         print("sectionHeadButtonPressed")
+        if let index = cellSectionIndex {
+            NotificationCenter.default.post(
+                name: SECTION_HEAD_BUTTON_HANDLER_NOTIFY_KEY,
+                object: self,
+                userInfo: [SECTION_HEAD_BUTTON_HANDLER_USER_KEY: index]
+            )
+        }
     }
     
     @IBAction func editFenceScopeButtonPressed(_ sender: UIButton) {
         print("editFenceScopeButtonPressed")
         if let index = cellSectionIndex {
-           NotificationCenter.default.post(name: EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY, object: self, userInfo: [EDIT_FENCE_SCOPE_BUTTON_HANDLER_USER_KEY: index])
+            NotificationCenter.default.post(
+                name: EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY,
+                object: self,
+                userInfo: [EDIT_FENCE_SCOPE_BUTTON_HANDLER_USER_KEY: index]
+            )
         }
     }
     
     @IBAction func borderColorButtonPressed(_ sender: UIButton) {
         print("borderColorButtonPressed")
         if let index = cellSectionIndex {
-           NotificationCenter.default.post(name: BORDER_COLOR_BUTTON_HANDLER_NOTIFY_KEY, object: self, userInfo: [BORDER_COLOR_BUTTON_HANDLER_USER_KEY: index])
+            NotificationCenter.default.post(
+                name: BORDER_COLOR_BUTTON_HANDLER_NOTIFY_KEY,
+                object: self,
+                userInfo: [BORDER_COLOR_BUTTON_HANDLER_USER_KEY: index]
+            )
         }
     }
     
@@ -105,11 +120,18 @@ extension DispElectrFenceTableViewCell {
         displayMode(mode: .HEAD)
     }
     
-    func updateCell(electrFenceTableMode: ElectrFenceTableMode, electrFenceVo: ElectrFenceVo?) {
+    func updateCell(electrFenceTableMode: ElectrFenceTableMode, electrFenceVo: ElectrFenceVo?, isCellOpened: Bool?) {
         switch electrFenceTableMode {
        
         case .HEAD:
             sectionHeadTitle.text = electrFenceVo?.title
+            if let opened = isCellOpened {
+                if opened {
+                    sectionHeadButton.setImage(UIImage(named: "icon_list open"), for: .normal)
+                } else {
+                    sectionHeadButton.setImage(UIImage(named: "icon_list_close"), for: .normal)
+                }
+            }
             displayMode(mode: .HEAD)
             
         case .EDIT_FENCE_SCOPE:

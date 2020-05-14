@@ -131,6 +131,12 @@ extension DispElectrFenceViewController {
             gVar.Notification.borderColorChangedObserver = nil
             print("removeObserver: borderColorChangedObserver")
         }
+        
+        if let _ = gVar.Notification.sectionHeadButtonHandlerObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.sectionHeadButtonHandlerObserver!)
+            gVar.Notification.sectionHeadButtonHandlerObserver = nil
+            print("removeObserver: sectionHeadButtonHandlerObserver")
+        }
     }
     
     private func addObserver() {
@@ -160,6 +166,12 @@ extension DispElectrFenceViewController {
             gVar.Notification.borderColorChangedObserver = NotificationCenter.default.addObserver(
                 forName: BORDER_COLOR_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: borderColorChanged)
             print("addObserver: borderColorChangedObserver")
+        }
+        
+        if gVar.Notification.sectionHeadButtonHandlerObserver == nil {
+            gVar.Notification.sectionHeadButtonHandlerObserver = NotificationCenter.default.addObserver(
+                forName: SECTION_HEAD_BUTTON_HANDLER_NOTIFY_KEY, object: nil, queue: nil, using: sectionHeadButtonHandler)
+            print("addObserver: sectionHeadButtonHandlerObserver")
         }
     }
     
@@ -306,6 +318,14 @@ extension DispElectrFenceViewController {
             }
         }
     }
+    
+    func sectionHeadButtonHandler(notification: Notification) -> Void {
+        if let sectionIndex = notification.userInfo?[SECTION_HEAD_BUTTON_HANDLER_USER_KEY] as? Int {
+            tableViewDelegate?.collapse(mode: .ENABLE)
+            tableViewDelegate?.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: sectionIndex))
+            tableViewDelegate?.collapse(mode: .DISABLE)
+        }
+    }
 }
 
 // MARK: - Event Methods
@@ -331,6 +351,10 @@ extension DispElectrFenceViewController: DispElectrFenceViewControllerTableViewD
     
     func didRemoveExpandIndex(sectionIndex: Int) {
         expandIndexesSet.remove(sectionIndex)
+    }
+    
+    func didElectrFenceReload(sectionIndex: Int) {
+        delegate?.electrFenceReload(electrFenceVo: electrFencesVo[sectionIndex])
     }
 }
 

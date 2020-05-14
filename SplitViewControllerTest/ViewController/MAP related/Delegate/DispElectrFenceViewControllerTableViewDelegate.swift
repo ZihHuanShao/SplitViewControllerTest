@@ -35,7 +35,7 @@ class DispElectrFenceViewControllerTableViewDelegate: NSObject {
     fileprivate var electrFencesVo: [ElectrFenceVo]?
     fileprivate var expandIndex: Int?
     fileprivate var expandIndexes: [Int]?
-    fileprivate var preSection = -1
+    fileprivate var collapseMode: CollapseCellMode!
     
     // MARK: - initializer
     
@@ -92,6 +92,10 @@ extension DispElectrFenceViewControllerTableViewDelegate {
     func setDelegate(dispElectrFenceViewController: DispElectrFenceViewController) {
         delegate = dispElectrFenceViewController
     }
+    
+    func collapse(mode: CollapseCellMode) {
+        collapseMode = mode
+    }
 }
 
 // MARK: - Private Methods
@@ -146,26 +150,19 @@ extension DispElectrFenceViewControllerTableViewDelegate: UITableViewDataSource 
         
         let cell = tableView.dequeueReusableCell(withIdentifier: DISP_ELECTR_FENCE_TABLE_VIEW_CELL, for: indexPath) as! DispElectrFenceTableViewCell
         
-//        if indexPath.row == ElectrFenceTableMode.allCases.count {
-            
-//        } else {
-            cell.updateCell(
-                electrFenceTableMode: ElectrFenceTableMode.allCases[indexPath.row],
-                electrFenceVo: cellsData[indexPath.section].electrFenceVo
-            )
-//        }
+        cell.updateCell(
+            electrFenceTableMode: ElectrFenceTableMode.allCases[indexPath.row],
+            electrFenceVo: cellsData[indexPath.section].electrFenceVo,
+            isCellOpened: cellsData[indexPath.section].isOpen
+        )
         
         cell.setCellSectionIndex(indexPath.section)
         cell.selectionStyle = .none
         
-        // 當新的圍籬建立完成時才會執行, 避免同一個indexPath.section重複
-        if (preSection != indexPath.section) {
-            if cellsData[indexPath.section].isOpen == true {
-                preSection = indexPath.section
-                
-                // 更新目前被展開的sectionIndex陣列
-                delegate?.didUpdateExpandIndex(sectionIndex: indexPath.section)
-            }
+        if cellsData[indexPath.section].isOpen == true {
+               
+            // 更新目前被展開的sectionIndex陣列
+            delegate?.didUpdateExpandIndex(sectionIndex: indexPath.section)
         }
         
         return cell
@@ -178,6 +175,34 @@ extension DispElectrFenceViewControllerTableViewDelegate: UITableViewDataSource 
 
 extension DispElectrFenceViewControllerTableViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+      
+        // 若點擊的為標題列, 展開或收合才會作動
+        if indexPath.row == 0 {
+            
+            if collapseMode == .ENABLE {
+                
+                if cellsData[indexPath.section].isOpen == true {
+                    cellsData[indexPath.section].isOpen = false
+                    let indexes = IndexSet(integer: indexPath.section)
+                    tableView.reloadSections(indexes, with: .automatic)
+                    
+                    delegate?.didRemoveExpandIndex(sectionIndex: indexPath.section)
+                } else {
+                    cellsData[indexPath.section].isOpen = true
+                    let indexes = IndexSet(integer: indexPath.section)
+                    tableView.reloadSections(indexes, with: .automatic)
+                    
+                    delegate?.didUpdateExpandIndex(sectionIndex: indexPath.section)
+                }
+            } else {
+                delegate?.didElectrFenceReload(sectionIndex: indexPath.section)
+            }
+        }
+        
+        
+//        delegate?.didElectrFenceReload(sectionIndex: indexPath.section)
+        /*
         // 若點擊的為標題列, 展開或收合才會作動
         if indexPath.row == 0 {
             if cellsData[indexPath.section].isOpen == true {
@@ -194,6 +219,7 @@ extension DispElectrFenceViewControllerTableViewDelegate: UITableViewDelegate {
                 delegate?.didUpdateExpandIndex(sectionIndex: indexPath.section)
             }
         }
+         */
     }
 }
 
@@ -202,4 +228,5 @@ extension DispElectrFenceViewControllerTableViewDelegate: UITableViewDelegate {
 protocol DispElectrFenceViewControllerTableViewDelegateExtend {
     func didUpdateExpandIndex(sectionIndex: Int) // Update when expand fence
     func didRemoveExpandIndex(sectionIndex: Int) // Update when shrink fence
+    func didElectrFenceReload(sectionIndex: Int) // 重新載入圍籬地圖
 }
