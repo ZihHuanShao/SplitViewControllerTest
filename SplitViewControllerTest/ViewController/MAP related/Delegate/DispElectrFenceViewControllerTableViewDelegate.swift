@@ -27,12 +27,15 @@ class DispElectrFenceViewControllerTableViewDelegate: NSObject {
     
     fileprivate weak var viewController: DispElectrFenceViewController?
     fileprivate weak var tableView: UITableView?
+    fileprivate var delegate: DispElectrFenceViewControllerTableViewDelegateExtend?
+    
     fileprivate var electrFenceVo: ElectrFenceVo?
     
     fileprivate var cellsData = [CellData]()
     fileprivate var electrFencesVo: [ElectrFenceVo]?
     fileprivate var expandIndex: Int?
-    fileprivate var shrinkIndex: Int?
+    fileprivate var expandIndexes: [Int]?
+    fileprivate var preSection = -1
     
     // MARK: - initializer
     
@@ -69,20 +72,25 @@ extension DispElectrFenceViewControllerTableViewDelegate {
         expandIndex = index
     }
     
-    // 收合某一列的圍籬資訊
-    func shrinkElectrFence(index: Int) {
-        shrinkIndex = index
+    func expandElectrFence(indexes: [Int]) {
+        expandIndexes = indexes
     }
     
     // 收合所有的圍籬資訊
-    func resetElectrFenceList() {
+    func resetExpandElectrFences() {
         for cellData in cellsData {
             cellData.isOpen = false
         }
+        
+        expandIndexes?.removeAll()
     }
     
     func updateElectrFencesVo(_ electrFencesVo: [ElectrFenceVo]?) {
         self.electrFencesVo = electrFencesVo
+    }
+    
+    func setDelegate(dispElectrFenceViewController: DispElectrFenceViewController) {
+        delegate = dispElectrFenceViewController
     }
 }
 
@@ -98,13 +106,22 @@ extension DispElectrFenceViewControllerTableViewDelegate {
                 
                 let cellData = CellData(eFenceVo)
                 
+                // 當新的圍籬建立完成時才會執行
                 if expandIndex != nil {
                     if (index == expandIndex!) {
                         cellData.isOpen = true
                         expandIndex = nil
                     }
                 }
+                
                 cellsData.append(cellData)
+            }
+            
+            // 更新目前有展開的所有cell
+            if let indexes = expandIndexes {
+                for index in indexes {
+                    cellsData[index].isOpen = true
+                }
             }
         }
     }
@@ -140,6 +157,17 @@ extension DispElectrFenceViewControllerTableViewDelegate: UITableViewDataSource 
         
         cell.setCellSectionIndex(indexPath.section)
         cell.selectionStyle = .none
+        
+        // 當新的圍籬建立完成時才會執行, 避免同一個indexPath.section重複
+        if (preSection != indexPath.section) {
+            if cellsData[indexPath.section].isOpen == true {
+                preSection = indexPath.section
+                
+                // 更新目前被展開的sectionIndex陣列
+                delegate?.didUpdateExpandIndex(sectionIndex: indexPath.section)
+            }
+        }
+        
         return cell
     }
     
@@ -156,11 +184,22 @@ extension DispElectrFenceViewControllerTableViewDelegate: UITableViewDelegate {
                 cellsData[indexPath.section].isOpen = false
                 let indexes = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexes, with: .automatic)
+                
+                delegate?.didRemoveExpandIndex(sectionIndex: indexPath.section)
             } else {
                 cellsData[indexPath.section].isOpen = true
                 let indexes = IndexSet(integer: indexPath.section)
                 tableView.reloadSections(indexes, with: .automatic)
+                
+                delegate?.didUpdateExpandIndex(sectionIndex: indexPath.section)
             }
         }
     }
+}
+
+// MARK: - Protocol
+
+protocol DispElectrFenceViewControllerTableViewDelegateExtend {
+    func didUpdateExpandIndex(sectionIndex: Int) // Update when expand fence
+    func didRemoveExpandIndex(sectionIndex: Int) // Update when shrink fence
 }

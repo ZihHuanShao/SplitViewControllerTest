@@ -27,6 +27,9 @@ class DispElectrFenceViewController: UIViewController {
     fileprivate var electrFencesVo  = [ElectrFenceVo]()
     fileprivate var timer: Timer!
     
+    // 用來存放目前所展開的所有圍籬的sectionIndex
+    fileprivate var expandIndexesSet = Set<Int>()
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -55,6 +58,7 @@ class DispElectrFenceViewController: UIViewController {
     @IBAction func backButtonTouchDown(_ sender: UIButton) {
         updateBackButtonImage(type: .PRESSED)
     }
+    
     @IBAction func backButtonTouchDragExit(_ sender: UIButton) {
         updateBackButtonImage(type: .AWAY)
     }
@@ -78,8 +82,10 @@ class DispElectrFenceViewController: UIViewController {
         updateCreateElectrFenceButtonImage(type: .AWAY)
         
         // 點擊「新增電子圍籬」就收合所有列表
-        tableViewDelegate?.resetElectrFenceList()
+        tableViewDelegate?.resetExpandElectrFences() // 重設所有展開的圍籬, 全部收合
         tableViewDelegate?.reloadUI()
+        
+        expandIndexesSet.removeAll()
         
         delegate?.electrFenceDidTapCreate()
     }
@@ -160,11 +166,12 @@ extension DispElectrFenceViewController {
     private func updateDataSource() {
         tableViewDelegate = DispElectrFenceViewControllerTableViewDelegate(dispElectrFenceViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: DISP_ELECTR_FENCE_TABLE_VIEW_CELL, cellId: DISP_ELECTR_FENCE_TABLE_VIEW_CELL)
+        tableViewDelegate?.setDelegate(dispElectrFenceViewController: self)
         
         // 1. 從Server或DB取得目前所有已存在的圍籬並更新(測試中未實作)
         // 2. 當在設定新的圍籬資訊(名稱,顏色..)時, 若選擇完顏色回到畫面, 會重新進此VC的生命週期, 所以必須在這裡要更新所有圍籬的資訊, 否則電子圍籬列表會被清空, 造成非預期的錯誤
         tableViewDelegate?.updateElectrFencesVo(electrFencesVo)
-        tableViewDelegate?.resetElectrFenceList()
+        tableViewDelegate?.expandElectrFence(indexes: Array(expandIndexesSet.sorted()))
     }
     
     private func updateUI() {
@@ -258,7 +265,7 @@ extension DispElectrFenceViewController {
             
             // 更新圍籬列表
             tableViewDelegate?.updateElectrFencesVo(electrFencesVo)
-            tableViewDelegate?.expandElectrFence(index: index)
+            tableViewDelegate?.expandElectrFence(indexes: Array(expandIndexesSet.sorted()))
             tableViewDelegate?.reloadUI()
             
             // 重新載入圍籬地圖
@@ -277,8 +284,9 @@ extension DispElectrFenceViewController {
             let index = electrFencesVo.count - 1
             
             // [更新列表] (MasterView)
-            tableViewDelegate?.updateElectrFencesVo(electrFencesVo)
-            tableViewDelegate?.expandElectrFence(index: index) // 設定要展開的圍籬index
+            tableViewDelegate?.updateElectrFencesVo(electrFencesVo) // 更新所有圍籬資訊(electrFencesVo)
+            tableViewDelegate?.resetExpandElectrFences() // 重設所有展開的圍籬, 全部收合
+            tableViewDelegate?.expandElectrFence(index: index) // 設定新的要展開的圍籬index
             tableViewDelegate?.reloadUI()
             
             // [顯示電子圍籬及地圖] (DetailView)
@@ -296,7 +304,6 @@ extension DispElectrFenceViewController {
                     }
                 }
             }
-            
         }
     }
 }
@@ -315,6 +322,17 @@ extension DispElectrFenceViewController {
     }
 }
 
+// MARK: - DispElectrFenceViewControllerTableViewDelegateExtend
+
+extension DispElectrFenceViewController: DispElectrFenceViewControllerTableViewDelegateExtend {
+    func didUpdateExpandIndex(sectionIndex: Int) {
+        expandIndexesSet.insert(sectionIndex)
+    }
+    
+    func didRemoveExpandIndex(sectionIndex: Int) {
+        expandIndexesSet.remove(sectionIndex)
+    }
+}
 
 // MARK: - Protocol
 
