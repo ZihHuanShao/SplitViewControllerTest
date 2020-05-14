@@ -95,16 +95,16 @@ extension DispAddMemberViewController {
 extension DispAddMemberViewController {
     
     private func removeObserver() {
-        if let _ = gVar.dropSelectedMemberObserver {
-            NotificationCenter.default.removeObserver(gVar.dropSelectedMemberObserver!)
-            gVar.dropSelectedMemberObserver = nil
+        if let _ = gVar.Notification.dropSelectedMemberObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.dropSelectedMemberObserver!)
+            gVar.Notification.dropSelectedMemberObserver = nil
             print("removeObserver: dropSelectedMemberObserver")
         }
     }
     
     private func addObserver() {
-        if gVar.dropSelectedMemberObserver == nil {
-            gVar.dropSelectedMemberObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_MEMBER_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedMember)
+        if gVar.Notification.dropSelectedMemberObserver == nil {
+            gVar.Notification.dropSelectedMemberObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_MEMBER_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedMember)
             print("addObserver: dropSelectedMemberObserver")
         }
     }

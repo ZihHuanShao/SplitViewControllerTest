@@ -133,11 +133,16 @@ extension AppDelegate {
          showPresentView(viewController: dispAddMemberViewController)
     }
     
-    func showEditColorModal(colorCode: RGBColorCode) {
+    func showEditColorModal(colorCode: RGBColorCode, changeColorMode mode: ChangeColorMode, sectionIndex: Int? = nil) {
         let storyboard = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil)
         let dispEditColorViewController = storyboard.instantiateViewController(withIdentifier: DISP_EDIT_COLOR_VIEW_CONTROLLER) as? DispEditColorViewController
-       
+        
+        // 從圍籬列表點擊「框線顏色」才會有值觸發
+        dispEditColorViewController?.setSectionIndex(sectionIndex)
+        
+        dispEditColorViewController?.setChangeColorMode(mode)
         dispEditColorViewController?.updateColorCode(colorCode: colorCode)
+        
         dispEditColorViewController?.modalPresentationStyle = .formSheet
         
         showPresentView(viewController: dispEditColorViewController)
@@ -168,11 +173,29 @@ extension AppDelegate {
             gVar.isHoldFormSheetView = false
             
             NotificationCenter.default.post(
-                name: CHANGE_COLOR_NOTIFY_KEY,
+                name: COLOR_CHANGED_NOTIFY_KEY,
                 object: self,
-                userInfo: [CHANGE_COLOR_USER_KEY: rgbColorCode]
+                userInfo: [COLOR_CHANGED_USER_KEY: rgbColorCode]
             )
             
+        })
+    }
+    
+    func dismissOverlayWithBorderColorChanged(_ rgbColorCode: RGBColorCode, _ cellSectionIndex: Int) {
+        // dismiss the overlay
+        window?.rootViewController?.dismiss(animated: true, completion: {
+            if let vc = self.originalSplitVC {
+                self.window?.rootViewController = vc
+            }
+            gVar.isHoldFormSheetView = false
+            
+            let data = BorderColorChangedInfo(colorCode: rgbColorCode, sectionIndex: cellSectionIndex)
+            
+            NotificationCenter.default.post(
+                name: BORDER_COLOR_CHANGED_NOTIFY_KEY,
+                object: self,
+                userInfo: [BORDER_COLOR_CHANGED_USER_KEY: data]
+            )
         })
     }
     

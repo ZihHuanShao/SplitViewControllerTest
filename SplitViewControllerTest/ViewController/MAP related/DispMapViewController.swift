@@ -88,16 +88,16 @@ extension DispMapViewController {
 
 extension DispMapViewController {
     private func removeObserver() {
-        if let _ = gVar.createElectrFenceSettingObserver {
-            NotificationCenter.default.removeObserver(gVar.createElectrFenceSettingObserver!)
-            gVar.createElectrFenceSettingObserver = nil
+        if let _ = gVar.Notification.createElectrFenceSettingObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.createElectrFenceSettingObserver!)
+            gVar.Notification.createElectrFenceSettingObserver = nil
             print("removeObserver: createElectrFenceSettingObserver")
         }
     }
     
     private func addObserver() {
-        if gVar.createElectrFenceSettingObserver == nil {
-            gVar.createElectrFenceSettingObserver = NotificationCenter.default.addObserver(forName: CREATE_ELECTR_FENCE_SETTING_NOTIFY_KEY, object: nil, queue: nil, using: createElectrFenceSetting)
+        if gVar.Notification.createElectrFenceSettingObserver == nil {
+            gVar.Notification.createElectrFenceSettingObserver = NotificationCenter.default.addObserver(forName: CREATE_ELECTR_FENCE_SETTING_NOTIFY_KEY, object: nil, queue: nil, using: createElectrFenceSetting)
             
             print("addObserver: createElectrFenceSettingObserver")
         }

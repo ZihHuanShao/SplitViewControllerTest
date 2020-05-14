@@ -63,6 +63,7 @@ class DispElectrFenceTableViewCell: UITableViewCell {
     }
     
     @IBAction func editFenceScopeButtonPressed(_ sender: UIButton) {
+        print("editFenceScopeButtonPressed")
         if let index = cellSectionIndex {
            NotificationCenter.default.post(name: EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY, object: self, userInfo: [EDIT_FENCE_SCOPE_BUTTON_HANDLER_USER_KEY: index])
         }
@@ -70,6 +71,9 @@ class DispElectrFenceTableViewCell: UITableViewCell {
     
     @IBAction func borderColorButtonPressed(_ sender: UIButton) {
         print("borderColorButtonPressed")
+        if let index = cellSectionIndex {
+           NotificationCenter.default.post(name: BORDER_COLOR_BUTTON_HANDLER_NOTIFY_KEY, object: self, userInfo: [BORDER_COLOR_BUTTON_HANDLER_USER_KEY: index])
+        }
     }
     
     @IBAction func enterAlarmButtonPressed(_ sender: UIButton) {

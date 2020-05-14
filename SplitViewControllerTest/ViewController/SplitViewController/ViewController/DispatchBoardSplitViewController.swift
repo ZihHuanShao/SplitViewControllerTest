@@ -75,16 +75,16 @@ class DispatchBoardSplitViewController: UISplitViewController {
 extension DispatchBoardSplitViewController {
 
     private func removeObserver() {
-        if let _ = gVar.keepOriginalSplitViewControllerObserver {
-            NotificationCenter.default.removeObserver(gVar.keepOriginalSplitViewControllerObserver!)
-            gVar.keepOriginalSplitViewControllerObserver = nil
+        if let _ = gVar.Notification.keepOriginalSplitViewControllerObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.keepOriginalSplitViewControllerObserver!)
+            gVar.Notification.keepOriginalSplitViewControllerObserver = nil
             print("removeObserver: keepOriginalSplitViewControllerObserver")
         }
     }
     
     private func addObserver() {
-        if gVar.keepOriginalSplitViewControllerObserver == nil {
-            gVar.keepOriginalSplitViewControllerObserver = NotificationCenter.default.addObserver(forName: KEEP_ORIGINAL_SPLIT_VIEW_CONTROLLER_NOTIFY_KEY, object: nil, queue: nil, using: keepOriginalSplitViewController)
+        if gVar.Notification.keepOriginalSplitViewControllerObserver == nil {
+            gVar.Notification.keepOriginalSplitViewControllerObserver = NotificationCenter.default.addObserver(forName: KEEP_ORIGINAL_SPLIT_VIEW_CONTROLLER_NOTIFY_KEY, object: nil, queue: nil, using: keepOriginalSplitViewController)
                
                    print("addObserver: keepOriginalSplitViewControllerObserver")
         }

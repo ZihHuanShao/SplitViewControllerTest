@@ -208,39 +208,39 @@ extension DispEditElectrFenceViewController {
     }
     
     private func removeObserver() {
-        if let _ = gVar.changeColorObserver {
-            NotificationCenter.default.removeObserver(gVar.changeColorObserver!)
-            gVar.changeColorObserver = nil
-            print("removeObserver: changeColorObserver")
+        if let _ = gVar.Notification.colorChangedObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.colorChangedObserver!)
+            gVar.Notification.colorChangedObserver = nil
+            print("removeObserver: colorChangedObserver")
         }
         
-        if let _ = gVar.autoSwitchPreferGroupChangedObserver {
-            NotificationCenter.default.removeObserver(gVar.autoSwitchPreferGroupChangedObserver!)
-            gVar.autoSwitchPreferGroupChangedObserver = nil
+        if let _ = gVar.Notification.autoSwitchPreferGroupChangedObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.autoSwitchPreferGroupChangedObserver!)
+            gVar.Notification.autoSwitchPreferGroupChangedObserver = nil
             print("removeObserver: autoSwitchPreferGroupChangedObserver")
         }
         
-        if let _ = gVar.enterAlarmChangedObserver {
-            NotificationCenter.default.removeObserver(gVar.enterAlarmChangedObserver!)
-            gVar.enterAlarmChangedObserver = nil
+        if let _ = gVar.Notification.enterAlarmChangedObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.enterAlarmChangedObserver!)
+            gVar.Notification.enterAlarmChangedObserver = nil
             print("removeObserver: enterAlarmChangedObserver")
         }
         
-        if let _ = gVar.enterAlarmVoicePlayChangedObserver {
-            NotificationCenter.default.removeObserver(gVar.enterAlarmVoicePlayChangedObserver!)
-            gVar.enterAlarmVoicePlayChangedObserver = nil
+        if let _ = gVar.Notification.enterAlarmVoicePlayChangedObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.enterAlarmVoicePlayChangedObserver!)
+            gVar.Notification.enterAlarmVoicePlayChangedObserver = nil
             print("removeObserver: enterAlarmVoicePlayChangedObserver")
         }
         
-        if let _ = gVar.exitAlarmChangedObserver {
-            NotificationCenter.default.removeObserver(gVar.exitAlarmChangedObserver!)
-            gVar.exitAlarmChangedObserver = nil
+        if let _ = gVar.Notification.exitAlarmChangedObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.exitAlarmChangedObserver!)
+            gVar.Notification.exitAlarmChangedObserver = nil
             print("removeObserver: exitAlarmChangedObserver")
         }
         
-        if let _ = gVar.exitAlarmVoicePlayChangedObserver {
-            NotificationCenter.default.removeObserver(gVar.exitAlarmVoicePlayChangedObserver!)
-            gVar.exitAlarmVoicePlayChangedObserver = nil
+        if let _ = gVar.Notification.exitAlarmVoicePlayChangedObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.exitAlarmVoicePlayChangedObserver!)
+            gVar.Notification.exitAlarmVoicePlayChangedObserver = nil
             print("removeObserver: exitAlarmVoicePlayChangedObserver")
         }
         
@@ -248,35 +248,35 @@ extension DispEditElectrFenceViewController {
     
     private func addObserver() {
         
-        if gVar.changeColorObserver == nil {
-            gVar.changeColorObserver = NotificationCenter.default.addObserver(
-                forName: CHANGE_COLOR_NOTIFY_KEY, object: nil, queue: nil, using: changeColor)
-            print("addObserver: changeColorObserver")
+        if gVar.Notification.colorChangedObserver == nil {
+            gVar.Notification.colorChangedObserver = NotificationCenter.default.addObserver(
+                forName: COLOR_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: colorChanged)
+            print("addObserver: colorChangedObserver")
         }
         
         
-        if gVar.autoSwitchPreferGroupChangedObserver == nil {
-            gVar.autoSwitchPreferGroupChangedObserver = NotificationCenter.default.addObserver(forName: AUTO_SWITCH_PREFER_GROUP_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: autoSwitchPreferGroupChanged)
+        if gVar.Notification.autoSwitchPreferGroupChangedObserver == nil {
+            gVar.Notification.autoSwitchPreferGroupChangedObserver = NotificationCenter.default.addObserver(forName: AUTO_SWITCH_PREFER_GROUP_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: autoSwitchPreferGroupChanged)
             print("addObserver: autoSwitchPreferGroupChangedObserver")
         }
         
-        if gVar.enterAlarmChangedObserver == nil {
-            gVar.enterAlarmChangedObserver = NotificationCenter.default.addObserver(forName: ENTER_ALARM_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: enterAlarmChanged)
+        if gVar.Notification.enterAlarmChangedObserver == nil {
+            gVar.Notification.enterAlarmChangedObserver = NotificationCenter.default.addObserver(forName: ENTER_ALARM_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: enterAlarmChanged)
             print("addObserver: enterAlarmChangedObserver")
         }
         
-        if gVar.enterAlarmVoicePlayChangedObserver == nil {
-            gVar.enterAlarmVoicePlayChangedObserver = NotificationCenter.default.addObserver(forName: ENTER_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: enterAlarmVoicePlayChanged)
+        if gVar.Notification.enterAlarmVoicePlayChangedObserver == nil {
+            gVar.Notification.enterAlarmVoicePlayChangedObserver = NotificationCenter.default.addObserver(forName: ENTER_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: enterAlarmVoicePlayChanged)
             print("addObserver: enterAlarmVoicePlayChangedObserver")
         }
         
-        if gVar.exitAlarmChangedObserver == nil {
-            gVar.exitAlarmChangedObserver = NotificationCenter.default.addObserver(forName: EXIT_ALARM_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: exitAlarmChanged)
+        if gVar.Notification.exitAlarmChangedObserver == nil {
+            gVar.Notification.exitAlarmChangedObserver = NotificationCenter.default.addObserver(forName: EXIT_ALARM_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: exitAlarmChanged)
             print("addObserver: exitAlarmChangedObserver")
         }
         
-        if gVar.exitAlarmVoicePlayChangedObserver == nil {
-            gVar.exitAlarmVoicePlayChangedObserver = NotificationCenter.default.addObserver(forName: EXIT_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: exitAlarmVoicePlayChanged)
+        if gVar.Notification.exitAlarmVoicePlayChangedObserver == nil {
+            gVar.Notification.exitAlarmVoicePlayChangedObserver = NotificationCenter.default.addObserver(forName: EXIT_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: exitAlarmVoicePlayChanged)
             print("addObserver: exitAlarmVoicePlayChangedObserver")
         }
     }
@@ -320,8 +320,8 @@ extension DispEditElectrFenceViewController: UITextFieldDelegate {
 // MARK: - Notification Methods
 
 extension DispEditElectrFenceViewController {
-    func changeColor(notification: Notification) -> Void {
-        if let rgbColorCode = notification.userInfo?[CHANGE_COLOR_USER_KEY] as? RGBColorCode {
+    func colorChanged(notification: Notification) -> Void {
+        if let rgbColorCode = notification.userInfo?[COLOR_CHANGED_USER_KEY] as? RGBColorCode {
             // update color
             currentElectrFenceVo?.color = getUIntColor(rgbColor: rgbColorCode)
             
@@ -380,6 +380,6 @@ extension DispEditElectrFenceViewController {
         // 將目前圍籬的顏色(EX: 0xFF0A0B)改為RGB值(EX: r:255, g:10, b:11)
         let colorCode = getRGBColor(colorValue: colorValue)
         
-        appDelegate?.showEditColorModal(colorCode: colorCode)
+        appDelegate?.showEditColorModal(colorCode: colorCode, changeColorMode: .EDIT_ELECTR_FENCE_PAGE)
     }
 }

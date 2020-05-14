@@ -115,16 +115,16 @@ class DispCreateGroupViewController: UIViewController {
 extension DispCreateGroupViewController {
     
     private func removeObserver() {
-        if let _ = gVar.selectedMembersReloadedObserver {
-            NotificationCenter.default.removeObserver(gVar.selectedMembersReloadedObserver!)
-            gVar.selectedMembersReloadedObserver = nil
+        if let _ = gVar.Notification.selectedMembersReloadedObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.selectedMembersReloadedObserver!)
+            gVar.Notification.selectedMembersReloadedObserver = nil
             print("removeObserver: selectedMembersReloadedObserver")
         }
     }
     
     private func addObserver() {
-        if gVar.selectedMembersReloadedObserver == nil {
-            gVar.selectedMembersReloadedObserver = NotificationCenter.default.addObserver(forName: SELECTED_MEMBERS_RELOADED_NOTIFY_KEY, object: nil, queue: nil, using: selectedMembersReloaded)
+        if gVar.Notification.selectedMembersReloadedObserver == nil {
+            gVar.Notification.selectedMembersReloadedObserver = NotificationCenter.default.addObserver(forName: SELECTED_MEMBERS_RELOADED_NOTIFY_KEY, object: nil, queue: nil, using: selectedMembersReloaded)
             print("addObserver: selectedMembersReloadedObserver")
         }
     }

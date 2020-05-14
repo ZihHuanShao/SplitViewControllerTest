@@ -96,16 +96,16 @@ extension DispGroupDispatchViewController {
 extension DispGroupDispatchViewController {
     
     private func removeObserver() {
-        if let _ = gVar.dropSelectedGroupObserver {
-            NotificationCenter.default.removeObserver(gVar.dropSelectedGroupObserver!)
-            gVar.dropSelectedGroupObserver = nil
+        if let _ = gVar.Notification.dropSelectedGroupObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.dropSelectedGroupObserver!)
+            gVar.Notification.dropSelectedGroupObserver = nil
             print("removeObserver: dropSelectedGroupObserver")
         }
     }
     
     private func addObserver() {
-        if gVar.dropSelectedGroupObserver == nil {
-            gVar.dropSelectedGroupObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_GROUP_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedGroup)
+        if gVar.Notification.dropSelectedGroupObserver == nil {
+            gVar.Notification.dropSelectedGroupObserver = NotificationCenter.default.addObserver(forName: DROP_SELECTED_GROUP_TABLE_CELL_NOTIFY_KEY, object: nil, queue: nil, using: dropSelectedGroup)
             print("addObserver: dropSelectedGroupObserver")
         }
     }

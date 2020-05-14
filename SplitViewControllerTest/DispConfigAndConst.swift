@@ -101,11 +101,13 @@ let ENTER_ALARM_CHANGED_NOTIFY_KEY = Notification.Name("enterAlarmChangedNotifyK
 let ENTER_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY = Notification.Name("enterAlarmVoicePlayChangedNotifyKey")
 let EXIT_ALARM_CHANGED_NOTIFY_KEY = Notification.Name("exitAlarmChangedNotifyKey")
 let EXIT_ALARM_VOICE_PLAY_CHANGED_NOTIFY_KEY = Notification.Name("exitAlarmVoicePlayChangedNotifyKey")
-let CHANGE_COLOR_NOTIFY_KEY = Notification.Name("changeColorNotifyKey")
+let COLOR_CHANGED_NOTIFY_KEY = Notification.Name("colorChangedNotifyKey")
+let BORDER_COLOR_CHANGED_NOTIFY_KEY = Notification.Name("borderColorChangedNotifyKey")
 let CREATE_ELECTR_FENCE_SETTING_NOTIFY_KEY = NSNotification.Name("createElectrFenceSettingNotifyKey")
 let UPDATE_NEW_ELECTR_FENCE_VO_NOTIFY_KEY = NSNotification.Name("updateNewElectrFenceVoNotifyKey")
 let EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("editFenceScopeButtonHandlerNotifyKey")
 let UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY = NSNotification.Name("updateElectrFenceVoNotifyKey")
+let BORDER_COLOR_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("borderColorButtonHandlerNotifyKey")
 
 // Notification userInfo
 let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
@@ -120,11 +122,13 @@ let ENTER_ALARM_CHANGED_USER_KEY = "enterAlarmChangedUserKey"
 let ENTER_ALARM_VOICE_PLAY_CHANGED_USER_KEY = "enterAlarmVoicePlayChangedUserKey"
 let EXIT_ALARM_CHANGED_USER_KEY = "exitAlarmChangedUserKey"
 let EXIT_ALARM_VOICE_PLAY_CHANGED_USER_KEY = "exitAlarmVoicePlayChangedUserKey"
-let CHANGE_COLOR_USER_KEY = "changeColorUserKey"
+let COLOR_CHANGED_USER_KEY = "colorChangedUserKey"
+let BORDER_COLOR_CHANGED_USER_KEY = "borderColorChangedUserKey"
 let CREATE_ELECTR_FENCE_SETTING_USER_KEY = "createElectrFenceSettingUserKey"
 let UPDATE_NEW_ELECTR_FENCE_VO_USER_KEY = "updateNewElectrFenceVoUserKey"
 let EDIT_FENCE_SCOPE_BUTTON_HANDLER_USER_KEY = "editFenceScopeButtonHandlerUserKey"
 let UPDATE_ELECTR_FENCE_VO_USER_KEY = "updateElectrFenceVoUserKey"
+let BORDER_COLOR_BUTTON_HANDLER_USER_KEY = "borderColorButtonHandlerUserKey"
 
 // 通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
@@ -275,6 +279,13 @@ enum EditElectrFenceDisplayType: Int {
     case NONE   = 99
 }
 
+// 是從哪個地方設定顏色
+enum ChangeColorMode: Int {
+    case EDIT_ELECTR_FENCE_PAGE = 0 // 不管是新增電子圍籬或是既有圍籬, 只要是在「設定」頁面就算
+    case BORDER_COLOR = 1 // 透過在電子圍籬列表中的「框線顏色」快速設定
+    
+    case NONE = 99
+}
 
 // struct
 struct GroupInfo {
@@ -329,4 +340,9 @@ struct EditElectrFenceDisplayCreateModeInfo {
 struct EditElectrFenceDisplayEditModeInfo {
     let type = EditElectrFenceDisplayType.EDIT
     // other 圍籬資訊
+}
+
+struct BorderColorChangedInfo {
+    var colorCode = RGBColorCode.init()
+    var sectionIndex = Int()
 }

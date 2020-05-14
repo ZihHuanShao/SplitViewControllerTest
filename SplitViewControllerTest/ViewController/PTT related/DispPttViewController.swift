@@ -189,27 +189,27 @@ extension DispPttViewController {
 extension DispPttViewController {
     
     private func removeObserver() {
-        if let _ = gVar.changeMonitorObserver {
-            NotificationCenter.default.removeObserver(gVar.changeMonitorObserver!)
-            gVar.changeMonitorObserver = nil
+        if let _ = gVar.Notification.changeMonitorObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.changeMonitorObserver!)
+            gVar.Notification.changeMonitorObserver = nil
             print("removeObserver: changeMonitorObserver")
         }
         
-        if let _ = gVar.reloadGroupTableViewObserver {
-            NotificationCenter.default.removeObserver(gVar.reloadGroupTableViewObserver!)
-            gVar.reloadGroupTableViewObserver = nil
+        if let _ = gVar.Notification.reloadGroupTableViewObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.reloadGroupTableViewObserver!)
+            gVar.Notification.reloadGroupTableViewObserver = nil
             print("removeObserver: reloadGroupTableViewObserver")
         }
     }
     
     private func addObserver() {
-        if gVar.changeMonitorObserver == nil {
-            gVar.changeMonitorObserver = NotificationCenter.default.addObserver(forName: CHANGE_MONITOR_NOTIFY_KEY, object: nil, queue: nil, using: changeMonitor)
+        if gVar.Notification.changeMonitorObserver == nil {
+            gVar.Notification.changeMonitorObserver = NotificationCenter.default.addObserver(forName: CHANGE_MONITOR_NOTIFY_KEY, object: nil, queue: nil, using: changeMonitor)
             print("addObserver: changeMonitorObserver")
         }
         
-        if gVar.reloadGroupTableViewObserver == nil {
-            gVar.reloadGroupTableViewObserver = NotificationCenter.default.addObserver(forName: RELOAD_GROUP_TABLE_VIEW_NOTIFY_KEY, object: nil, queue: nil, using: reloadGroupTableView)
+        if gVar.Notification.reloadGroupTableViewObserver == nil {
+            gVar.Notification.reloadGroupTableViewObserver = NotificationCenter.default.addObserver(forName: RELOAD_GROUP_TABLE_VIEW_NOTIFY_KEY, object: nil, queue: nil, using: reloadGroupTableView)
             print("addObserver: reloadGroupTableViewObserver")
         }
         

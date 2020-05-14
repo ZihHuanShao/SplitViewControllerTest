@@ -49,16 +49,16 @@ class MasterViewController: UIViewController {
 extension MasterViewController {
     
     private func removeObserver() {
-        if let _ = gVar.switchMainMenuObserver {
-            NotificationCenter.default.removeObserver(gVar.switchMainMenuObserver!)
-            gVar.switchMainMenuObserver = nil
+        if let _ = gVar.Notification.switchMainMenuObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.switchMainMenuObserver!)
+            gVar.Notification.switchMainMenuObserver = nil
             print("removeObserver: switchMainMenuObserver")
         }
     }
     
     private func addObserver() {
-        if gVar.switchMainMenuObserver == nil {
-            gVar.switchMainMenuObserver = NotificationCenter.default.addObserver(forName: SWITCH_MAIN_MENU_NOTIFY_KEY, object: nil, queue: nil, using: switchMainMenu)
+        if gVar.Notification.switchMainMenuObserver == nil {
+            gVar.Notification.switchMainMenuObserver = NotificationCenter.default.addObserver(forName: SWITCH_MAIN_MENU_NOTIFY_KEY, object: nil, queue: nil, using: switchMainMenu)
             print("addObserver: switchMainMenuObserver")
         }
     }

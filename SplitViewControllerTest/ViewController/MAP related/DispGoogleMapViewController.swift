@@ -449,7 +449,7 @@ extension DispGoogleMapViewController: CLLocationManagerDelegate {
             let lng = location.coordinate.longitude
             
             // 印出目前所在位置座標
-            print("[Current Location]: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+            //print("[Current Location]: \(location.coordinate.latitude), \(location.coordinate.longitude)")
             
             // 將視角切換至使用者當前的位置
             let myPos = GMSCameraPosition.camera(withLatitude: lat, longitude: lng, zoom: 15)
@@ -468,7 +468,7 @@ extension DispGoogleMapViewController: GMSMapViewDelegate {
     // 長按
     func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
         let newCoordinate = coordinate
-        print("[didLongPressAt]: \(coordinate)")
+        //print("[didLongPressAt]: \(coordinate)")
         
         // 多邊形已畫完
         if googleMgr.checkFinishDrawing() {
@@ -482,7 +482,7 @@ extension DispGoogleMapViewController: GMSMapViewDelegate {
             }
             // 非拖曳(建立新點)
             else {
-                print("[New Point] lat: \(newCoordinate.latitude), lng: \(newCoordinate.longitude)")
+                //print("[New Point] lat: \(newCoordinate.latitude), lng: \(newCoordinate.longitude)")
                 googleMgr.newPoint(coordinate: newCoordinate, forPolygon: mapView)
             }
         }
@@ -494,7 +494,7 @@ extension DispGoogleMapViewController: GMSMapViewDelegate {
     
     // 開始拖曳
     func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
-        print("[didBeginDragging]: \(marker.position)")
+        //print("[didBeginDragging]: \(marker.position)")
         
         // 多邊形未畫完, isDrag設為dragNotFinishDrawingYet
         if !googleMgr.checkFinishDrawing() {
@@ -504,7 +504,7 @@ extension DispGoogleMapViewController: GMSMapViewDelegate {
     
     // 拖曳中
     func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker) {
-        print("[didDrag]: \(marker.position)")
+        //print("[didDrag]: \(marker.position)")
         
         googleMgr.modifyPoint(newMarker: marker, mapView: mapView)
         
@@ -520,7 +520,7 @@ extension DispGoogleMapViewController: GMSMapViewDelegate {
     
     // 結束拖曳
     func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
-        print("[didEndDragging]: \(marker.position)")
+        //print("[didEndDragging]: \(marker.position)")
         
         if googleMgr.checkFinishDrawing() {
             isDrag = .dragWithFinishDrawing

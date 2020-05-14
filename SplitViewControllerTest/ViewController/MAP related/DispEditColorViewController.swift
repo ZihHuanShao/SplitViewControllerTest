@@ -21,7 +21,9 @@ class DispEditColorViewController: UIViewController {
     @IBOutlet weak var redColorSlider: UISlider!
     
     // MARK: - Properties
-    var colorCode = RGBColorCode(red: 255, green: 0, blue: 0)
+    private var colorCode = RGBColorCode(red: 255, green: 0, blue: 0)
+    private var changeColorMode = ChangeColorMode.NONE
+    private var cellSectionIndex: Int?
     
     // MARK: - Life Cycle
     
@@ -44,7 +46,20 @@ class DispEditColorViewController: UIViewController {
     
     @IBAction func finishButtonPressed(_ sender: UIButton) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.dismissOverlayWithColorChanged(colorCode)
+        
+        switch changeColorMode {
+        
+        case .EDIT_ELECTR_FENCE_PAGE:
+            appDelegate?.dismissOverlayWithColorChanged(colorCode)
+            
+        case .BORDER_COLOR:
+            if let sectionIndex = cellSectionIndex {
+                appDelegate?.dismissOverlayWithBorderColorChanged(colorCode, sectionIndex)
+            }
+
+        case .NONE:
+            break
+        }
     }
 
     // [Slider]
@@ -72,6 +87,14 @@ extension DispEditColorViewController {
         self.colorCode.red = colorCode.red
         self.colorCode.green = colorCode.green
         self.colorCode.blue = colorCode.blue
+    }
+    
+    func setChangeColorMode(_ mode: ChangeColorMode) {
+        changeColorMode = mode
+    }
+    
+    func setSectionIndex(_ index: Int?) {
+        cellSectionIndex = index
     }
 }
 

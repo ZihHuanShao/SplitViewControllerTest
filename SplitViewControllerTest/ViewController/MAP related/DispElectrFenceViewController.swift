@@ -25,6 +25,7 @@ class DispElectrFenceViewController: UIViewController {
     var delegate: ElectrFenceViewControllerDelegate?
     
     fileprivate var electrFencesVo  = [ElectrFenceVo]()
+    fileprivate var timer: Timer!
     
     // MARK: - Life Cycle
     
@@ -95,41 +96,64 @@ extension DispElectrFenceViewController {
 
 extension DispElectrFenceViewController {
     private func removeObserver() {
-        if let _ = gVar.updateNewElectrFenceVoObserver {
-            NotificationCenter.default.removeObserver(gVar.updateNewElectrFenceVoObserver!)
-            gVar.updateNewElectrFenceVoObserver = nil
+        if let _ = gVar.Notification.updateNewElectrFenceVoObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.updateNewElectrFenceVoObserver!)
+            gVar.Notification.updateNewElectrFenceVoObserver = nil
             print("removeObserver: updateNewElectrFenceVoObserver")
         }
         
-        if let _ = gVar.editFenceScopeButtonHandlerObserver {
-            NotificationCenter.default.removeObserver(gVar.editFenceScopeButtonHandlerObserver!)
-            gVar.editFenceScopeButtonHandlerObserver = nil
+        if let _ = gVar.Notification.editFenceScopeButtonHandlerObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.editFenceScopeButtonHandlerObserver!)
+            gVar.Notification.editFenceScopeButtonHandlerObserver = nil
             print("removeObserver: editFenceScopeButtonHandlerObserver")
         }
         
-        if let _ = gVar.updateElectrFenceVoObserver {
-            NotificationCenter.default.removeObserver(gVar.updateElectrFenceVoObserver!)
-            gVar.updateElectrFenceVoObserver = nil
+        if let _ = gVar.Notification.updateElectrFenceVoObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.updateElectrFenceVoObserver!)
+            gVar.Notification.updateElectrFenceVoObserver = nil
             print("removeObserver: updateElectrFenceVoObserver")
+        }
+        
+        if let _ = gVar.Notification.borderColorButtonHandlerObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.borderColorButtonHandlerObserver!)
+            gVar.Notification.borderColorButtonHandlerObserver = nil
+            print("removeObserver: borderColorButtonHandlerObserver")
+        }
+        
+        if let _ = gVar.Notification.borderColorChangedObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.borderColorChangedObserver!)
+            gVar.Notification.borderColorChangedObserver = nil
+            print("removeObserver: borderColorChangedObserver")
         }
     }
     
     private func addObserver() {
-        if gVar.updateNewElectrFenceVoObserver == nil {
-            gVar.updateNewElectrFenceVoObserver = NotificationCenter.default.addObserver(forName: UPDATE_NEW_ELECTR_FENCE_VO_NOTIFY_KEY, object: nil, queue: nil, using: updateNewElectrFenceVo)
+        if gVar.Notification.updateNewElectrFenceVoObserver == nil {
+            gVar.Notification.updateNewElectrFenceVoObserver = NotificationCenter.default.addObserver(forName: UPDATE_NEW_ELECTR_FENCE_VO_NOTIFY_KEY, object: nil, queue: nil, using: updateNewElectrFenceVo)
             print("addObserver: updateNewElectrFenceVoObserver")
         }
         
         
-        if gVar.editFenceScopeButtonHandlerObserver == nil {
-            gVar.editFenceScopeButtonHandlerObserver = NotificationCenter.default.addObserver(forName: EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY, object: nil, queue: nil, using: editFenceScopeButtonHandler)
+        if gVar.Notification.editFenceScopeButtonHandlerObserver == nil {
+            gVar.Notification.editFenceScopeButtonHandlerObserver = NotificationCenter.default.addObserver(forName: EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY, object: nil, queue: nil, using: editFenceScopeButtonHandler)
             print("addObserver: editFenceScopeButtonHandlerObserver")
         }
         
         
-        if gVar.updateElectrFenceVoObserver == nil {
-            gVar.updateElectrFenceVoObserver = NotificationCenter.default.addObserver(forName: UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY, object: nil, queue: nil, using: updateElectrFenceVo)
+        if gVar.Notification.updateElectrFenceVoObserver == nil {
+            gVar.Notification.updateElectrFenceVoObserver = NotificationCenter.default.addObserver(forName: UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY, object: nil, queue: nil, using: updateElectrFenceVo)
             print("addObserver: updateElectrFenceVoObserver")
+        }
+        
+        if gVar.Notification.borderColorButtonHandlerObserver == nil {
+            gVar.Notification.borderColorButtonHandlerObserver = NotificationCenter.default.addObserver(forName: BORDER_COLOR_BUTTON_HANDLER_NOTIFY_KEY, object: nil, queue: nil, using: borderColorButtonHandler)
+            print("addObserver: borderColorButtonHandlerObserver")
+        }
+        
+        if gVar.Notification.borderColorChangedObserver == nil {
+            gVar.Notification.borderColorChangedObserver = NotificationCenter.default.addObserver(
+                forName: BORDER_COLOR_CHANGED_NOTIFY_KEY, object: nil, queue: nil, using: borderColorChanged)
+            print("addObserver: borderColorChangedObserver")
         }
     }
     
@@ -169,6 +193,24 @@ extension DispElectrFenceViewController {
             createElectrFenceButtonImage.image = UIImage(named: "btn_contact_normal")
         }
     }
+    
+    // EX: UInt(0xFF0A0B) 轉換 RGBColorCode(r:255, g:10, b:11)
+    private func getRGBColor(colorValue: UInt) -> RGBColorCode {
+        let rVal = Int((colorValue & 0xFF0000) >> 16) // 0xFF -> 255
+        let gVal = Int((colorValue & 0x00FF00) >> 8)  // 0x0A -> 10
+        let bVal = Int(colorValue & 0x0000FF)         // 0x0B -> 11
+        
+        return RGBColorCode(red: rVal, green: gVal, blue: bVal)
+    }
+    
+    // EX: RGBColorCode(r:255, g:10, b:11) 轉換 UInt(0xFF0A0B)
+    private func getUIntColor(rgbColor: RGBColorCode) -> UInt {
+        let rHex = (UInt(rgbColor.red)   & 0xFF) << 16 // 255 -> 0xFF0000
+        let gHex = (UInt(rgbColor.green) & 0xFF) << 8  // 10  -> 0x  000A
+        let bHex = UInt(rgbColor.blue)   & 0xFF        // 11  -> 0x    0B
+        
+        return (rHex | gHex | bHex)
+    }
 }
 
 // MARK: - Notification Methods
@@ -183,7 +225,45 @@ extension DispElectrFenceViewController {
             
             delegate?.electrFenceDidTapEditFenceScope(electrFenceVo: electrFenceVo)
         }
+    }
     
+    func borderColorButtonHandler(notification: Notification) -> Void {
+        if let sectionIndex = notification.userInfo?[BORDER_COLOR_BUTTON_HANDLER_USER_KEY] as? Int {
+            
+            // 取得是哪一個電子圍籬被點擊及顏色資訊
+            if let colorValue = electrFencesVo[sectionIndex].color {
+                
+                // 將目前圍籬的顏色(EX: 0xFF0A0B)改為RGB值(EX: r:255, g:10, b:11)
+                let colorCode = getRGBColor(colorValue: colorValue)
+                
+                let data = BorderColorChangedInfo(colorCode: colorCode, sectionIndex: sectionIndex)
+                
+                if !gVar.isHoldFormSheetView {
+                    gVar.isHoldFormSheetView = true
+                    
+                    // wait a moment before taking the screenshot
+                    timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: (#selector(showEdidColorModalDelayed(sender:))), userInfo: data, repeats: false)
+                }
+            }
+        }
+    }
+    
+    func borderColorChanged(notification: Notification) -> Void {
+        if let data = notification.userInfo?[BORDER_COLOR_CHANGED_USER_KEY] as? BorderColorChangedInfo {
+            
+            let index = data.sectionIndex
+            
+            // 更新顏色
+            electrFencesVo[index].color = getUIntColor(rgbColor: data.colorCode)
+            
+            // 更新圍籬列表
+            tableViewDelegate?.updateElectrFencesVo(electrFencesVo)
+            tableViewDelegate?.expandElectrFence(index: index)
+            tableViewDelegate?.reloadUI()
+            
+            // 重新載入圍籬地圖
+            delegate?.electrFenceReload(electrFenceVo: electrFencesVo[index])
+        }
     }
     
     func updateNewElectrFenceVo(notification: Notification) -> Void {
@@ -217,6 +297,20 @@ extension DispElectrFenceViewController {
                 }
             }
             
+        }
+    }
+}
+
+// MARK: - Event Methods
+
+extension DispElectrFenceViewController {
+    @objc func showEdidColorModalDelayed(sender: Timer) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        if let data = timer.userInfo as? BorderColorChangedInfo {
+            let colorCode = data.colorCode
+            let sectionIndex = data.sectionIndex
+            
+            appDelegate?.showEditColorModal(colorCode: colorCode, changeColorMode: .BORDER_COLOR, sectionIndex: sectionIndex)
         }
     }
 }
