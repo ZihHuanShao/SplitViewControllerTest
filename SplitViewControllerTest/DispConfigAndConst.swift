@@ -110,6 +110,9 @@ let UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY = NSNotification.Name("updateElectrFenceVo
 let BORDER_COLOR_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("borderColorButtonHandlerNotifyKey")
 let SECTION_HEAD_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("sectionHeadButtonHandlerNotifyKey")
 let SETTING_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("settingButtonHandlerNotifyKey")
+let ENTER_ALARM_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("enterAlarmButtonHandlerNotifyKey")
+let EXIT_ALARM_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("exitAlarmButtonHandlerNotifyKey")
+let RELOAD_ELECTR_FENCE_NOTIFY_KEY = NSNotification.Name("reloadElectrFenceNotifyKey")
 
 // Notification userInfo
 let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
@@ -131,8 +134,11 @@ let UPDATE_NEW_ELECTR_FENCE_VO_USER_KEY = "updateNewElectrFenceVoUserKey"
 let EDIT_FENCE_SCOPE_BUTTON_HANDLER_USER_KEY = "editFenceScopeButtonHandlerUserKey"
 let UPDATE_ELECTR_FENCE_VO_USER_KEY = "updateElectrFenceVoUserKey"
 let BORDER_COLOR_BUTTON_HANDLER_USER_KEY = "borderColorButtonHandlerUserKey"
-let SECTION_HEAD_BUTTON_HANDLER_USER_KEY = "sectionHeadButtonHandlerNotifyKey"
+let SECTION_HEAD_BUTTON_HANDLER_USER_KEY = "sectionHeadButtonHandlerUserKey"
 let SETTING_BUTTON_HANDLER_USER_KEY = "settingButtonHandlerUserKey"
+let ENTER_ALARM_BUTTON_HANDLER_USER_KEY = "enterAlarmButtonHandlerUserKey"
+let EXIT_ALARM_BUTTON_HANDLER_USER_KEY = "exitAlarmButtonHandlerUserKey"
+let RELOAD_ELECTR_FENCE_USER_KEY = "reloadElectrFenceUserKey"
 
 // 通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼

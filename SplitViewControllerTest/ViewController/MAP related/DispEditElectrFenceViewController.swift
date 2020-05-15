@@ -49,6 +49,7 @@ class DispEditElectrFenceViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         removeObserver()
+        gVar.Map.editElectrFenceDisplayType = .NONE
     }
     
     // MARK: - Actions
@@ -346,6 +347,8 @@ extension DispEditElectrFenceViewController {
         if let electrFenceVo = currentElectrFenceVo {
             electrFenceVo.enterAlarmEnabled = !(electrFenceVo.enterAlarmEnabled)
             tableViewDelegate?.reloadUI()
+            
+            NotificationCenter.default.post(name: RELOAD_ELECTR_FENCE_NOTIFY_KEY, object: self, userInfo: nil)
         }
     }
     
@@ -360,6 +363,8 @@ extension DispEditElectrFenceViewController {
         if let electrFenceVo = currentElectrFenceVo {
             electrFenceVo.exitAlarmEnabled = !(electrFenceVo.exitAlarmEnabled)
             tableViewDelegate?.reloadUI()
+            
+            NotificationCenter.default.post(name: RELOAD_ELECTR_FENCE_NOTIFY_KEY, object: self, userInfo: nil)
         }
     }
     

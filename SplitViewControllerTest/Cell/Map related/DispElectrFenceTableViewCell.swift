@@ -93,10 +93,24 @@ class DispElectrFenceTableViewCell: UITableViewCell {
     
     @IBAction func enterAlarmButtonPressed(_ sender: UIButton) {
         print("enterAlarmButtonPressed")
+        if let index = cellSectionIndex {
+            NotificationCenter.default.post(
+                name: ENTER_ALARM_BUTTON_HANDLER_NOTIFY_KEY,
+                object: self,
+                userInfo: [ENTER_ALARM_BUTTON_HANDLER_USER_KEY: index]
+            )
+        }
     }
     
     @IBAction func exitAlarmButtonPressed(_ sender: UIButton) {
         print("exitAlarmButtonPressed")
+        if let index = cellSectionIndex {
+            NotificationCenter.default.post(
+                name: EXIT_ALARM_BUTTON_HANDLER_NOTIFY_KEY,
+                object: self,
+                userInfo: [EXIT_ALARM_BUTTON_HANDLER_USER_KEY: index]
+            )
+        }
     }
     
     @IBAction func forbiddenButtonPressed(_ sender: UIButton) {

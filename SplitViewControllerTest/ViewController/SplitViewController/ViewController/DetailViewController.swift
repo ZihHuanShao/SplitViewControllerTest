@@ -230,6 +230,7 @@ extension DetailViewController {
                 setChildView(viewController: dispEditElectrFenceVC)
                 
             case .EDIT:
+                gVar.Map.editElectrFenceDisplayType = .EDIT
                 dispEditElectrFenceVC.setDisplayMode(type: .EDIT)
                 dispEditElectrFenceVC.updateElectrFenceVo(electrFenceVo: electrFenceVo)
                 setChildView(viewController: dispEditElectrFenceVC)

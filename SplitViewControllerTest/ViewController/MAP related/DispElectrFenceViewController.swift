@@ -30,6 +30,9 @@ class DispElectrFenceViewController: UIViewController {
     // 用來存放目前所展開的所有圍籬的sectionIndex
     fileprivate var expandIndexesSet = Set<Int>()
     
+    // 目前點擊圍籬的sectionCellIndex
+    fileprivate var currentFocusSectionCellIndex: Int?
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -143,6 +146,24 @@ extension DispElectrFenceViewController {
             gVar.Notification.settingButtonHandlerObserver = nil
             print("removeObserver: settingButtonHandlerObserver")
         }
+        
+        if let _ = gVar.Notification.enterAlarmButtonHandlerObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.enterAlarmButtonHandlerObserver!)
+            gVar.Notification.enterAlarmButtonHandlerObserver = nil
+            print("removeObserver: enterAlarmButtonHandlerObserver")
+        }
+        
+        if let _ = gVar.Notification.exitAlarmButtonHandlerObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.exitAlarmButtonHandlerObserver!)
+            gVar.Notification.exitAlarmButtonHandlerObserver = nil
+            print("removeObserver: exitAlarmButtonHandlerObserver")
+        }
+        
+        if let _ = gVar.Notification.reloadElectrFenceObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.reloadElectrFenceObserver!)
+            gVar.Notification.reloadElectrFenceObserver = nil
+            print("removeObserver: reloadElectrFenceObserver")
+        }
     }
     
     private func addObserver() {
@@ -151,12 +172,10 @@ extension DispElectrFenceViewController {
             print("addObserver: updateNewElectrFenceVoObserver")
         }
         
-        
         if gVar.Notification.editFenceScopeButtonHandlerObserver == nil {
             gVar.Notification.editFenceScopeButtonHandlerObserver = NotificationCenter.default.addObserver(forName: EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY, object: nil, queue: nil, using: editFenceScopeButtonHandler)
             print("addObserver: editFenceScopeButtonHandlerObserver")
         }
-        
         
         if gVar.Notification.updateElectrFenceVoObserver == nil {
             gVar.Notification.updateElectrFenceVoObserver = NotificationCenter.default.addObserver(forName: UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY, object: nil, queue: nil, using: updateElectrFenceVo)
@@ -184,6 +203,23 @@ extension DispElectrFenceViewController {
             gVar.Notification.settingButtonHandlerObserver = NotificationCenter.default.addObserver(
                 forName: SETTING_BUTTON_HANDLER_NOTIFY_KEY, object: nil, queue: nil, using: settingButtonHandler)
             print("addObserver: settingButtonHandlerObserver")
+        }
+        
+        if gVar.Notification.enterAlarmButtonHandlerObserver == nil {
+            gVar.Notification.enterAlarmButtonHandlerObserver = NotificationCenter.default.addObserver(
+                forName: ENTER_ALARM_BUTTON_HANDLER_NOTIFY_KEY, object: nil, queue: nil, using: enterAlarmButtonHandler)
+            print("addObserver: enterAlarmButtonHandlerObserver")
+        }
+        
+        if gVar.Notification.exitAlarmButtonHandlerObserver == nil {
+            gVar.Notification.exitAlarmButtonHandlerObserver = NotificationCenter.default.addObserver(
+                forName: EXIT_ALARM_BUTTON_HANDLER_NOTIFY_KEY, object: nil, queue: nil, using: exitAlarmButtonHandler)
+            print("addObserver: exitAlarmButtonHandlerObserver")
+        }
+        
+        if gVar.Notification.reloadElectrFenceObserver == nil {
+            gVar.Notification.reloadElectrFenceObserver = NotificationCenter.default.addObserver(forName: RELOAD_ELECTR_FENCE_NOTIFY_KEY, object: nil, queue: nil, using: reloadElectrFence)
+            print("addObserver: reloadElectrFenceObserver")
         }
     }
     
@@ -341,9 +377,49 @@ extension DispElectrFenceViewController {
     
     func settingButtonHandler(notification: Notification) -> Void {
         if let sectionIndex = notification.userInfo?[SETTING_BUTTON_HANDLER_USER_KEY] as? Int {
+            currentFocusSectionCellIndex = sectionIndex
             delegate?.electrFenceDidTapEdit(electrFenceVo: electrFencesVo[sectionIndex])
             
         }
+    }
+    
+    func enterAlarmButtonHandler(notification: Notification) -> Void {
+        if let sectionIndex = notification.userInfo?[ENTER_ALARM_BUTTON_HANDLER_USER_KEY] as? Int {
+            
+            electrFencesVo[sectionIndex].enterAlarmEnabled = !(electrFencesVo[sectionIndex].enterAlarmEnabled)
+            tableViewDelegate?.updateElectrFencesVo(electrFencesVo)
+            tableViewDelegate?.expandElectrFence(indexes: Array(expandIndexesSet.sorted()))
+            tableViewDelegate?.reloadUI()
+            
+            if gVar.Map.editElectrFenceDisplayType == .EDIT {
+                // 在電子圍籬列表點擊的「進入警告」與DetailView上的設定畫面是否為同一個圍籬, 相同才刷新畫面
+                if currentFocusSectionCellIndex == sectionIndex {
+                    delegate?.electrFenceDidTapEdit(electrFenceVo: electrFencesVo[sectionIndex])
+                }
+            }
+        }
+    }
+    
+    func exitAlarmButtonHandler(notification: Notification) -> Void {
+        if let sectionIndex = notification.userInfo?[EXIT_ALARM_BUTTON_HANDLER_USER_KEY] as? Int {
+            
+            electrFencesVo[sectionIndex].exitAlarmEnabled = !(electrFencesVo[sectionIndex].exitAlarmEnabled)
+            tableViewDelegate?.updateElectrFencesVo(electrFencesVo)
+            tableViewDelegate?.expandElectrFence(indexes: Array(expandIndexesSet.sorted()))
+            tableViewDelegate?.reloadUI()
+            
+            if gVar.Map.editElectrFenceDisplayType == .EDIT {
+                // 在電子圍籬列表點擊的「進入警告」與DetailView上的設定畫面是否為同一個圍籬, 相同才刷新畫面
+                if currentFocusSectionCellIndex == sectionIndex {
+                    delegate?.electrFenceDidTapEdit(electrFenceVo: electrFencesVo[sectionIndex])
+                }
+            }
+        }
+    }
+    
+    func reloadElectrFence(notification: Notification) -> Void {
+        tableViewDelegate?.expandElectrFence(indexes: Array(expandIndexesSet.sorted()))
+        tableViewDelegate?.reloadUI()
     }
 }
 

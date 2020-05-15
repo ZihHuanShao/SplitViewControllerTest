@@ -14,6 +14,10 @@ class gVar {
     // 避免連續點擊兩次以上, 造成不可預期的問題
     static var isHoldFormSheetView = false
     
+    class Map {
+        static var editElectrFenceDisplayType = EditElectrFenceDisplayType.NONE
+    }
+    
     // Notification used
     class Notification {
     
@@ -61,5 +65,8 @@ class gVar {
         static var borderColorChangedObserver: NSObjectProtocol? = nil
         static var sectionHeadButtonHandlerObserver: NSObjectProtocol? = nil
         static var settingButtonHandlerObserver: NSObjectProtocol? = nil
+        static var enterAlarmButtonHandlerObserver: NSObjectProtocol? = nil
+        static var exitAlarmButtonHandlerObserver: NSObjectProtocol? = nil
+        static var reloadElectrFenceObserver: NSObjectProtocol? = nil
     }
 }
