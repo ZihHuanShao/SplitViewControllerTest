@@ -111,6 +111,12 @@ extension DispElectrFenceViewController {
             print("removeObserver: updateNewElectrFenceVoObserver")
         }
         
+        if let _ = gVar.Notification.updateExistElectrFenceVoObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.updateExistElectrFenceVoObserver!)
+            gVar.Notification.updateExistElectrFenceVoObserver = nil
+            print("removeObserver: updateExistElectrFenceVoObserver")
+        }
+        
         if let _ = gVar.Notification.editFenceScopeButtonHandlerObserver {
             NotificationCenter.default.removeObserver(gVar.Notification.editFenceScopeButtonHandlerObserver!)
             gVar.Notification.editFenceScopeButtonHandlerObserver = nil
@@ -170,6 +176,11 @@ extension DispElectrFenceViewController {
         if gVar.Notification.updateNewElectrFenceVoObserver == nil {
             gVar.Notification.updateNewElectrFenceVoObserver = NotificationCenter.default.addObserver(forName: UPDATE_NEW_ELECTR_FENCE_VO_NOTIFY_KEY, object: nil, queue: nil, using: updateNewElectrFenceVo)
             print("addObserver: updateNewElectrFenceVoObserver")
+        }
+        
+        if gVar.Notification.updateExistElectrFenceVoObserver == nil {
+            gVar.Notification.updateExistElectrFenceVoObserver = NotificationCenter.default.addObserver(forName: UPDATE_EXIST_ELECTR_FENCE_VO_NOTIFY_KEY, object: nil, queue: nil, using: updateExistElectrFenceVo)
+            print("addObserver: updateExistElectrFenceVoObserver")
         }
         
         if gVar.Notification.editFenceScopeButtonHandlerObserver == nil {
@@ -307,6 +318,7 @@ extension DispElectrFenceViewController {
                 
                 if !gVar.isHoldFormSheetView {
                     gVar.isHoldFormSheetView = true
+                    gVar.presentModal = true
                     
                     // wait a moment before taking the screenshot
                     timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: (#selector(showEdidColorModalDelayed(sender:))), userInfo: data, repeats: false)
@@ -318,25 +330,34 @@ extension DispElectrFenceViewController {
     func borderColorChanged(notification: Notification) -> Void {
         if let data = notification.userInfo?[BORDER_COLOR_CHANGED_USER_KEY] as? BorderColorChangedInfo {
             
-            let index = data.sectionIndex
+            let sectionIndex = data.sectionIndex
             
             // 更新顏色
-            electrFencesVo[index].color = getUIntColor(rgbColor: data.colorCode)
+            electrFencesVo[sectionIndex].color = getUIntColor(rgbColor: data.colorCode)
             
             // 更新圍籬列表
             tableViewDelegate?.updateElectrFencesVo(electrFencesVo)
             tableViewDelegate?.expandElectrFence(indexes: Array(expandIndexesSet.sorted()))
             tableViewDelegate?.reloadUI()
             
-            // 重新載入圍籬地圖
-            delegate?.electrFenceReload(electrFenceVo: electrFencesVo[index])
+            // 當前位於「設定頁面」
+            if gVar.Map.editElectrFenceDisplayType == .EDIT {
+                // 在電子圍籬列表點擊的「框線顏色」與DetailView上的設定畫面是否為同一個圍籬, 相同才刷新畫面
+                if currentFocusSectionCellIndex == sectionIndex {
+                    delegate?.electrFenceDidTapEdit(electrFenceVo: electrFencesVo[sectionIndex])
+                }
+            }
+            // 當前非位於「設定畫面」, 顯示圍籬地圖
+            else {
+                delegate?.electrFenceReload(electrFenceVo: electrFencesVo[sectionIndex])
+            }
         }
     }
     
     func updateNewElectrFenceVo(notification: Notification) -> Void {
-        if let electrFenceVo = notification.userInfo?[UPDATE_NEW_ELECTR_FENCE_VO_USER_KEY] as? ElectrFenceVo? {
+        if let newElectrFenceVo = notification.userInfo?[UPDATE_NEW_ELECTR_FENCE_VO_USER_KEY] as? ElectrFenceVo? {
             
-            if let eFenceVo = electrFenceVo {
+            if let eFenceVo = newElectrFenceVo {
                 electrFencesVo.append(eFenceVo)
             }
             
@@ -350,7 +371,33 @@ extension DispElectrFenceViewController {
             tableViewDelegate?.reloadUI()
             
             // [顯示電子圍籬及地圖] (DetailView)
-            delegate?.electrFenceReload(electrFenceVo: electrFenceVo)
+            delegate?.electrFenceReload(electrFenceVo: newElectrFenceVo)
+        }
+    }
+    
+    func updateExistElectrFenceVo(notification: Notification) -> Void {
+        if let existElectrFenceVo = notification.userInfo?[UPDATE_EXIST_ELECTR_FENCE_VO_USER_KEY] as? ElectrFenceVo {
+            for electrFenceVo in electrFencesVo {
+                if electrFenceVo.id == existElectrFenceVo.id {
+                    electrFenceVo.title = existElectrFenceVo.title
+                    electrFenceVo.color = existElectrFenceVo.color
+                    electrFenceVo.notifyTarget = existElectrFenceVo.notifyTarget
+                    electrFenceVo.autoSwitchPreferGroupEnabled = existElectrFenceVo.autoSwitchPreferGroupEnabled
+                    electrFenceVo.preferGroup = existElectrFenceVo.preferGroup
+                    electrFenceVo.enterAlarmEnabled = existElectrFenceVo.enterAlarmEnabled
+                    electrFenceVo.enterAlarmVoicePlayEnabled = existElectrFenceVo.enterAlarmVoicePlayEnabled
+                    electrFenceVo.enterAlarmVoice = existElectrFenceVo.enterAlarmVoice
+                    electrFenceVo.exitAlarmEnabled = existElectrFenceVo.exitAlarmEnabled
+                    electrFenceVo.exitAlarmVoicePlayEnabled = existElectrFenceVo.exitAlarmVoicePlayEnabled
+                    electrFenceVo.exitAlarmVoice = existElectrFenceVo.exitAlarmVoice
+                    electrFenceVo.coordinates = existElectrFenceVo.coordinates
+                }
+            }
+            
+            // [更新列表] (MasterView)
+            tableViewDelegate?.updateElectrFencesVo(electrFencesVo) // 更新所有圍籬資訊(electrFencesVo)
+            tableViewDelegate?.expandElectrFence(indexes: Array(expandIndexesSet.sorted()))
+            tableViewDelegate?.reloadUI()
         }
     }
     
@@ -369,6 +416,7 @@ extension DispElectrFenceViewController {
     
     func sectionHeadButtonHandler(notification: Notification) -> Void {
         if let sectionIndex = notification.userInfo?[SECTION_HEAD_BUTTON_HANDLER_USER_KEY] as? Int {
+            
             tableViewDelegate?.collapse(mode: .ENABLE)
             tableViewDelegate?.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: sectionIndex))
             tableViewDelegate?.collapse(mode: .DISABLE)
@@ -377,16 +425,19 @@ extension DispElectrFenceViewController {
     
     func settingButtonHandler(notification: Notification) -> Void {
         if let sectionIndex = notification.userInfo?[SETTING_BUTTON_HANDLER_USER_KEY] as? Int {
+            
             currentFocusSectionCellIndex = sectionIndex
             delegate?.electrFenceDidTapEdit(electrFenceVo: electrFencesVo[sectionIndex])
-            
         }
     }
     
     func enterAlarmButtonHandler(notification: Notification) -> Void {
         if let sectionIndex = notification.userInfo?[ENTER_ALARM_BUTTON_HANDLER_USER_KEY] as? Int {
             
-            electrFencesVo[sectionIndex].enterAlarmEnabled = !(electrFencesVo[sectionIndex].enterAlarmEnabled)
+            if let enterAlarmEnabled = electrFencesVo[sectionIndex].enterAlarmEnabled {
+                electrFencesVo[sectionIndex].enterAlarmEnabled = !enterAlarmEnabled
+            }
+            
             tableViewDelegate?.updateElectrFencesVo(electrFencesVo)
             tableViewDelegate?.expandElectrFence(indexes: Array(expandIndexesSet.sorted()))
             tableViewDelegate?.reloadUI()
@@ -403,13 +454,16 @@ extension DispElectrFenceViewController {
     func exitAlarmButtonHandler(notification: Notification) -> Void {
         if let sectionIndex = notification.userInfo?[EXIT_ALARM_BUTTON_HANDLER_USER_KEY] as? Int {
             
-            electrFencesVo[sectionIndex].exitAlarmEnabled = !(electrFencesVo[sectionIndex].exitAlarmEnabled)
+            if let exitAlarmEnabled = electrFencesVo[sectionIndex].exitAlarmEnabled {
+                electrFencesVo[sectionIndex].exitAlarmEnabled = !exitAlarmEnabled
+            }
+            
             tableViewDelegate?.updateElectrFencesVo(electrFencesVo)
             tableViewDelegate?.expandElectrFence(indexes: Array(expandIndexesSet.sorted()))
             tableViewDelegate?.reloadUI()
             
             if gVar.Map.editElectrFenceDisplayType == .EDIT {
-                // 在電子圍籬列表點擊的「進入警告」與DetailView上的設定畫面是否為同一個圍籬, 相同才刷新畫面
+                // 在電子圍籬列表點擊的「離開警告」與DetailView上的設定畫面是否為同一個圍籬, 相同才刷新畫面
                 if currentFocusSectionCellIndex == sectionIndex {
                     delegate?.electrFenceDidTapEdit(electrFenceVo: electrFencesVo[sectionIndex])
                 }

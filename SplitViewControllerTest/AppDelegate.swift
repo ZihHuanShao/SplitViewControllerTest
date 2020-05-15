@@ -156,6 +156,7 @@ extension AppDelegate {
                 self.window?.rootViewController = vc
             }
             gVar.isHoldFormSheetView = false
+            gVar.presentModal = false
             
             // reload建立群組中的群組成員tableview
             if let _membersVo = membersVo {
@@ -171,6 +172,7 @@ extension AppDelegate {
                 self.window?.rootViewController = vc
             }
             gVar.isHoldFormSheetView = false
+            gVar.presentModal = false
             
             NotificationCenter.default.post(
                 name: COLOR_CHANGED_NOTIFY_KEY,
@@ -188,6 +190,7 @@ extension AppDelegate {
                 self.window?.rootViewController = vc
             }
             gVar.isHoldFormSheetView = false
+            gVar.presentModal = false
             
             let data = BorderColorChangedInfo(colorCode: rgbColorCode, sectionIndex: cellSectionIndex)
             
@@ -206,6 +209,7 @@ extension AppDelegate {
                 self.window?.rootViewController = vc
             }
             gVar.isHoldFormSheetView = false
+            gVar.presentModal = false
             
             // reload群組列表的tableview
             NotificationCenter.default.post(name: RELOAD_GROUP_TABLE_VIEW_NOTIFY_KEY, object: self, userInfo: nil)

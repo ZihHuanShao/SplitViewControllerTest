@@ -14,7 +14,12 @@ class gVar {
     // 避免連續點擊兩次以上, 造成不可預期的問題
     static var isHoldFormSheetView = false
     
+    // 當彈出Modal視窗時, 系統會離開當前VC的生命週期, 如果在VC的生命週期(viewWillDisappear/ viewDidDisappear/ ..)設定全域變數,
+    // 會造成邏輯錯誤, 因此利用此flag擋, 在彈出前設true, 離開彈出的視窗後再設回false
+    static var presentModal = false
+    
     class Map {
+        // 判斷是否要顯示圍籬地圖, 若為CREATE則顯示, 若為EDIT則維持在原頁面
         static var editElectrFenceDisplayType = EditElectrFenceDisplayType.NONE
     }
     
@@ -59,6 +64,7 @@ class gVar {
         
         // DispElectrFenceViewController
         static var updateNewElectrFenceVoObserver: NSObjectProtocol? = nil
+        static var updateExistElectrFenceVoObserver: NSObjectProtocol? = nil
         static var editFenceScopeButtonHandlerObserver: NSObjectProtocol? = nil
         static var updateElectrFenceVoObserver: NSObjectProtocol? = nil
         static var borderColorButtonHandlerObserver: NSObjectProtocol? = nil

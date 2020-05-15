@@ -225,6 +225,7 @@ extension DetailViewController {
             switch editElectrFenceDisplayType {
                 
             case .CREATE:
+                gVar.Map.editElectrFenceDisplayType = .CREATE
                 dispEditElectrFenceVC.setDisplayMode(type: .CREATE)
                 dispEditElectrFenceVC.updateNewElectrFenceCoordinates(newElectrFenceCoordinates)
                 setChildView(viewController: dispEditElectrFenceVC)

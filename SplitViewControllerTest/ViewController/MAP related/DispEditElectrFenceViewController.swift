@@ -28,10 +28,11 @@ class DispEditElectrFenceViewController: UIViewController {
     // MARK: - Properties
     
     var tableViewDelegate: DispEditElectrFenceViewControllerTableViewDelegate?
-    var currentElectrFenceVo: ElectrFenceVo?
+    var baseElectrFenceVo: ElectrFenceVo?
     var newElectrFenceCoordinates: [CLLocationCoordinate2D]?
     var displayType = EditElectrFenceDisplayType.NONE
     var electrFenceColor = UInt()
+    private var newElectrFenceVo: ElectrFenceVo?
     
     // MARK: - Life Cycle
     
@@ -49,7 +50,9 @@ class DispEditElectrFenceViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         removeObserver()
-        gVar.Map.editElectrFenceDisplayType = .NONE
+        if !gVar.presentModal {
+            gVar.Map.editElectrFenceDisplayType = .NONE
+        }
     }
     
     // MARK: - Actions
@@ -67,16 +70,34 @@ class DispEditElectrFenceViewController: UIViewController {
     @IBAction func finishButtonTouchUpInside(_ sender: UIButton) {
         updatefinishButtonImage(type: .AWAY)
         
-        currentElectrFenceVo?.title = nameTextField.text
+        customElectrFenceTitle.text = str_dispEditElectrFence_customFenceNamePrefix + (nameTextField.text ?? "")
+        newElectrFenceVo?.title = nameTextField.text
         
-        // 更新電子圍籬列表
-        NotificationCenter.default.post(
-            name: UPDATE_NEW_ELECTR_FENCE_VO_NOTIFY_KEY,
-            object: self,
-            userInfo: [UPDATE_NEW_ELECTR_FENCE_VO_USER_KEY: currentElectrFenceVo]
-        )
+        switch gVar.Map.editElectrFenceDisplayType {
         
-        removeObserver()
+        case .CREATE:
+            if let electrFenceVo = newElectrFenceVo {
+                // 更新電子圍籬列表
+                NotificationCenter.default.post(
+                    name: UPDATE_NEW_ELECTR_FENCE_VO_NOTIFY_KEY,
+                    object: self,
+                    userInfo: [UPDATE_NEW_ELECTR_FENCE_VO_USER_KEY: electrFenceVo]
+                )
+            }
+            
+        case .EDIT:
+            if let electrFenceVo = newElectrFenceVo {
+                // 更新電子圍籬列表
+                NotificationCenter.default.post(
+                    name: UPDATE_EXIST_ELECTR_FENCE_VO_NOTIFY_KEY,
+                    object: self,
+                    userInfo: [UPDATE_EXIST_ELECTR_FENCE_VO_USER_KEY: electrFenceVo]
+                )
+            }
+            
+        case .NONE:
+            break
+        }
         
     }
     
@@ -85,6 +106,7 @@ class DispEditElectrFenceViewController: UIViewController {
         
         if !gVar.isHoldFormSheetView {
             gVar.isHoldFormSheetView = true
+            gVar.presentModal = true
             
             // wait a moment before taking the screenshot
             let _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(showEdidColorModalDelayed), userInfo: nil, repeats: false)
@@ -104,7 +126,7 @@ extension DispEditElectrFenceViewController {
     }
     
     func updateElectrFenceVo(electrFenceVo: ElectrFenceVo?) {
-        self.currentElectrFenceVo = electrFenceVo
+        self.baseElectrFenceVo = electrFenceVo
     }
 }
 
@@ -113,6 +135,7 @@ extension DispEditElectrFenceViewController {
 extension DispEditElectrFenceViewController {
     private func updateDataSource() {
         
+        // 若為新增電子圍籬, 系統會產生一個預設的vo讓UI能夠呈現
         if displayType == .CREATE {
             reloadDefaultElectrFenceVo()
         }
@@ -121,10 +144,13 @@ extension DispEditElectrFenceViewController {
         tableViewDelegate?.registerCell(cellName: DISP_EDIT_ELECTR_FENCE_TABLE_VIEW_CELL, cellId: DISP_EDIT_ELECTR_FENCE_TABLE_VIEW_CELL)
         
         // 兩種時機:
-        // 1. 建立新的電子圍籬, 會從reloadDefaultElectrFenceVo()取得新的vo, 所以currentElectrFenceVo會有值
-        // 2. 既有的電子圍籬, 會先更新currentElectrFenceVo
-        if let electrFenceVo = currentElectrFenceVo {
+        // 1. 建立新的電子圍籬, 會從reloadDefaultElectrFenceVo()取得新的vo, 所以baseElectrFenceVo會有值
+        // 2. 既有的電子圍籬, 會先透過updateElectrFenceVo()更新baseElectrFenceVo
+        if let electrFenceVo = baseElectrFenceVo {
             tableViewDelegate?.updateElectrFenceVo(electrFenceVo)
+            
+            // 複製一個vo, 在還沒按下「完成」之前, 所有的更動都先用這個vo呈現UI
+            newElectrFenceVo = ElectrFenceVo(electorFenceVo: electrFenceVo)
         }
         
         nameTextField.delegate = self
@@ -134,7 +160,7 @@ extension DispEditElectrFenceViewController {
         let notifyTargetMemberVo = MemberVo(name: "調度員Maxkit")
         let preferGroupGroupVo = GroupVo(name: "緊急通報群組")
         
-        currentElectrFenceVo = ElectrFenceVo(
+        baseElectrFenceVo = ElectrFenceVo(
             title: nameTextField.text ?? "",
             color: 0xFF0000,
             notifyTarget: notifyTargetMemberVo,
@@ -173,9 +199,9 @@ extension DispEditElectrFenceViewController {
         }
         // 編輯既有電子圍籬
         else if displayType == .EDIT {
-            nameTextField?.text = currentElectrFenceVo?.title
-            customElectrFenceTitle.text = str_dispEditElectrFence_customFenceNamePrefix + (currentElectrFenceVo?.title ?? "")
-            electrFenceColor = currentElectrFenceVo?.color ?? 0xFF0000
+            nameTextField?.text = baseElectrFenceVo?.title
+            customElectrFenceTitle.text = str_dispEditElectrFence_customFenceNamePrefix + (baseElectrFenceVo?.title ?? "")
+            electrFenceColor = baseElectrFenceVo?.color ?? 0xFF0000
             colorBarButton.backgroundColor = UIColorFromRGB(colorValue: electrFenceColor)
         }
         
@@ -325,7 +351,7 @@ extension DispEditElectrFenceViewController {
     func colorChanged(notification: Notification) -> Void {
         if let rgbColorCode = notification.userInfo?[COLOR_CHANGED_USER_KEY] as? RGBColorCode {
             // update color
-            currentElectrFenceVo?.color = getUIntColor(rgbColor: rgbColorCode)
+            newElectrFenceVo?.color = getUIntColor(rgbColor: rgbColorCode)
             
             colorBarButton.backgroundColor = UIColor(
                 red:   CGFloat(rgbColorCode.red) / 255,
@@ -337,40 +363,66 @@ extension DispEditElectrFenceViewController {
     }
     
     func autoSwitchPreferGroupChanged(notification: Notification) -> Void {
-        if let electrFenceVo = currentElectrFenceVo {
-            electrFenceVo.autoSwitchPreferGroupEnabled = !(electrFenceVo.autoSwitchPreferGroupEnabled)
+        
+        if let electrFenceVo = newElectrFenceVo {
+            if let autoSwitchPreferGroupEnabled = electrFenceVo.autoSwitchPreferGroupEnabled {
+                electrFenceVo.autoSwitchPreferGroupEnabled = !autoSwitchPreferGroupEnabled
+            }
+            
+            tableViewDelegate?.updateElectrFenceVo(newElectrFenceVo)
             tableViewDelegate?.reloadUI()
         }
     }
     
     func enterAlarmChanged(notification: Notification) -> Void {
-        if let electrFenceVo = currentElectrFenceVo {
-            electrFenceVo.enterAlarmEnabled = !(electrFenceVo.enterAlarmEnabled)
+        if let electrFenceVo = newElectrFenceVo {
+
+            if let enterAlarmEnabled = electrFenceVo.enterAlarmEnabled {
+                newElectrFenceVo?.enterAlarmEnabled = !enterAlarmEnabled
+            }
+            
+            tableViewDelegate?.updateElectrFenceVo(newElectrFenceVo)
             tableViewDelegate?.reloadUI()
             
-            NotificationCenter.default.post(name: RELOAD_ELECTR_FENCE_NOTIFY_KEY, object: self, userInfo: nil)
+            // 同步更新電子圍籬列表的狀態, 因為要按下「完成」才會更新列表, 這裡不適用所以註解掉
+            //NotificationCenter.default.post(name: RELOAD_ELECTR_FENCE_NOTIFY_KEY, object: self, userInfo: nil)
         }
     }
     
     func enterAlarmVoicePlayChanged(notification: Notification) -> Void {
-        if let electrFenceVo = currentElectrFenceVo {
-            electrFenceVo.enterAlarmVoicePlayEnabled = !(electrFenceVo.enterAlarmVoicePlayEnabled)
+        if let electrFenceVo = newElectrFenceVo {
+            if let enterAlarmVoicePlayEnabled = electrFenceVo.enterAlarmVoicePlayEnabled {
+                electrFenceVo.enterAlarmVoicePlayEnabled = !enterAlarmVoicePlayEnabled
+            }
+            
+            tableViewDelegate?.updateElectrFenceVo(newElectrFenceVo)
             tableViewDelegate?.reloadUI()
         }
     }
     
     func exitAlarmChanged(notification: Notification) -> Void {
-        if let electrFenceVo = currentElectrFenceVo {
-            electrFenceVo.exitAlarmEnabled = !(electrFenceVo.exitAlarmEnabled)
+        if let electrFenceVo = newElectrFenceVo {
+            
+            if let exitAlarmEnabled = electrFenceVo.exitAlarmEnabled {
+                newElectrFenceVo?.exitAlarmEnabled = !exitAlarmEnabled
+            }
+            
+            tableViewDelegate?.updateElectrFenceVo(newElectrFenceVo)
             tableViewDelegate?.reloadUI()
             
-            NotificationCenter.default.post(name: RELOAD_ELECTR_FENCE_NOTIFY_KEY, object: self, userInfo: nil)
+            // 同步更新電子圍籬列表的狀態, 因為要按下「完成」才會更新列表, 這裡不適用所以註解掉
+            //NotificationCenter.default.post(name: RELOAD_ELECTR_FENCE_NOTIFY_KEY, object: self, userInfo: nil)
+            
         }
     }
     
     func exitAlarmVoicePlayChanged(notification: Notification) -> Void {
-        if let electrFenceVo = currentElectrFenceVo {
-            electrFenceVo.exitAlarmVoicePlayEnabled = !(electrFenceVo.exitAlarmVoicePlayEnabled)
+        if let electrFenceVo = newElectrFenceVo {
+            if let exitAlarmVoicePlayEnabled = electrFenceVo.exitAlarmVoicePlayEnabled {
+                electrFenceVo.exitAlarmVoicePlayEnabled = !exitAlarmVoicePlayEnabled
+            }
+            
+            tableViewDelegate?.updateElectrFenceVo(newElectrFenceVo)
             tableViewDelegate?.reloadUI()
         }
     }
@@ -381,7 +433,7 @@ extension DispEditElectrFenceViewController {
 extension DispEditElectrFenceViewController {
     @objc func showEdidColorModalDelayed() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        let colorValue = currentElectrFenceVo?.color ?? 0
+        let colorValue = baseElectrFenceVo?.color ?? 0
         
         // 將目前圍籬的顏色(EX: 0xFF0A0B)改為RGB值(EX: r:255, g:10, b:11)
         let colorCode = getRGBColor(colorValue: colorValue)

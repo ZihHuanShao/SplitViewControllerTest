@@ -44,7 +44,7 @@ class DispEditElectrFenceViewControllerTableViewDelegate: NSObject {
 
 extension DispEditElectrFenceViewControllerTableViewDelegate {
     
-    func updateElectrFenceVo(_ electrFenceVo: ElectrFenceVo) {
+    func updateElectrFenceVo(_ electrFenceVo: ElectrFenceVo?) {
         self.electrFenceVo = electrFenceVo
     }
     

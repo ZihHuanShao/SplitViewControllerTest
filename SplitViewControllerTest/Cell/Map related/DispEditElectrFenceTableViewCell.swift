@@ -109,10 +109,12 @@ extension DispEditElectrFenceTableViewCell {
             
         case .AUTO_SWITCH_PREFER_GROUP:
             itemTitle.text = str_dispEditElectrFence_autoSwitchPreferGroup
-            if electrFenceVo.autoSwitchPreferGroupEnabled {
-                switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
-            } else {
-                switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
+            if let autoSwitchPreferGroupEnabled = electrFenceVo.autoSwitchPreferGroupEnabled {
+                if autoSwitchPreferGroupEnabled {
+                    switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
+                } else {
+                    switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
+                }
             }
             displayMode(mode: .SWITCH)
             
@@ -129,20 +131,26 @@ extension DispEditElectrFenceTableViewCell {
             
         case .ENTER_ALARM:
             itemTitle.text = str_dispEditElectrFence_enterAlarm
-            if electrFenceVo.enterAlarmEnabled {
-                switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
-            } else {
-                switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
+            if let enterAlarmEnabled = electrFenceVo.enterAlarmEnabled {
+                if enterAlarmEnabled {
+                    switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
+                } else {
+                    switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
+                }
             }
+            
             displayMode(mode: .SWITCH)
             
         case .ENTER_ALARM_VOICE_PLAY:
             itemTitle.text = str_dispEditElectrFence_playAlarmVoice
-            if electrFenceVo.enterAlarmVoicePlayEnabled {
-                switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
-            } else {
-                switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
+            if let enterAlarmVoicePlayEnabled = electrFenceVo.enterAlarmVoicePlayEnabled {
+                if enterAlarmVoicePlayEnabled {
+                    switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
+                } else {
+                    switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
+                }
             }
+            
             displayMode(mode: .SWITCH)
             
         case .ENTER_ALARM_VOICE:
@@ -157,20 +165,28 @@ extension DispEditElectrFenceTableViewCell {
             
         case .EXIT_ALARM:
             itemTitle.text = str_dispEditElectrFence_exitAlarm
-            if electrFenceVo.exitAlarmEnabled {
-                switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
-            } else {
-                switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
+            
+            if let exitAlarmEnabled = electrFenceVo.exitAlarmEnabled {
+                if exitAlarmEnabled {
+                    switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
+                } else {
+                    switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
+                }
             }
+            
             displayMode(mode: .SWITCH)
             
         case .EXIT_ALARM_VOICE_PLAY:
             itemTitle.text = str_dispEditElectrFence_playAlarmVoice
-            if electrFenceVo.exitAlarmVoicePlayEnabled {
-                switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
-            } else {
-                switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
+            
+            if let exitAlarmVoicePlayEnabled = electrFenceVo.exitAlarmVoicePlayEnabled {
+                if exitAlarmVoicePlayEnabled {
+                    switchButton.setImage(UIImage(named: "btn_switch_on"), for: .normal)
+                } else {
+                    switchButton.setImage(UIImage(named: "btn_switch_off"), for: .normal)
+                }
             }
+            
             displayMode(mode: .SWITCH)
             
         case .EXIT_ALARM_VOICE:

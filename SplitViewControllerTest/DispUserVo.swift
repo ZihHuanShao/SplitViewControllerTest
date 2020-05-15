@@ -106,15 +106,15 @@ class ElectrFenceVo {
     var color: UInt? = 0xFF0000 // default red color
 
     var notifyTarget: MemberVo?
-    var autoSwitchPreferGroupEnabled = Bool()
+    var autoSwitchPreferGroupEnabled: Bool?
     var preferGroup: GroupVo?
     
-    var enterAlarmEnabled = Bool()
-    var enterAlarmVoicePlayEnabled = Bool()
+    var enterAlarmEnabled: Bool?
+    var enterAlarmVoicePlayEnabled: Bool?
     var enterAlarmVoice: String?
     
-    var exitAlarmEnabled = Bool()
-    var exitAlarmVoicePlayEnabled = Bool()
+    var exitAlarmEnabled: Bool?
+    var exitAlarmVoicePlayEnabled: Bool?
     var exitAlarmVoice: String?
     
     var coordinates: [CLLocationCoordinate2D]?
@@ -136,5 +136,21 @@ class ElectrFenceVo {
         self.exitAlarmVoicePlayEnabled = exitAlarmVoicePlayEnabled
         self.exitAlarmVoice = exitAlarmVoice
         self.coordinates = coordinates
+    }
+    
+    init(electorFenceVo: ElectrFenceVo) {
+        self.id =  electorFenceVo.id
+        self.title = electorFenceVo.title
+        self.color = electorFenceVo.color
+        self.notifyTarget = electorFenceVo.notifyTarget
+        self.autoSwitchPreferGroupEnabled = electorFenceVo.autoSwitchPreferGroupEnabled
+        self.preferGroup = electorFenceVo.preferGroup
+        self.enterAlarmEnabled = electorFenceVo.enterAlarmEnabled
+        self.enterAlarmVoicePlayEnabled = electorFenceVo.enterAlarmVoicePlayEnabled
+        self.enterAlarmVoice = electorFenceVo.enterAlarmVoice
+        self.exitAlarmEnabled = electorFenceVo.exitAlarmEnabled
+        self.exitAlarmVoicePlayEnabled = electorFenceVo.exitAlarmVoicePlayEnabled
+        self.exitAlarmVoice = electorFenceVo.exitAlarmVoice
+        self.coordinates = electorFenceVo.coordinates
     }
 }
