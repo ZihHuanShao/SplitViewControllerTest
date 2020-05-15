@@ -220,18 +220,19 @@ extension DetailViewController {
         // 電子圍籬中的「設定」, 顯示該頁面有兩種時機:
         // 1. 新增電子圍籬後, 要設定相關圍籬資訊(名稱/顯示顏色/警告設定等等) 2. 針對已存在的電子圍籬做編輯
         case .EDIT_ELECTR_FENCE:
-            let dispEditElectrFenceViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispEditElectrFenceViewController") as! DispEditElectrFenceViewController
+            let dispEditElectrFenceVC = UIStoryboard(name: STORYBOARD_NAME_DISP_MAP, bundle: nil).instantiateViewController(withIdentifier: "DispEditElectrFenceViewController") as! DispEditElectrFenceViewController
             
             switch editElectrFenceDisplayType {
                 
             case .CREATE:
-                dispEditElectrFenceViewController.setDisplayMode(type: .CREATE)
-                dispEditElectrFenceViewController.updateNewElectrFenceCoordinates(newElectrFenceCoordinates)
-                setChildView(viewController: dispEditElectrFenceViewController)
+                dispEditElectrFenceVC.setDisplayMode(type: .CREATE)
+                dispEditElectrFenceVC.updateNewElectrFenceCoordinates(newElectrFenceCoordinates)
+                setChildView(viewController: dispEditElectrFenceVC)
                 
             case .EDIT:
-                dispEditElectrFenceViewController.setDisplayMode(type: .EDIT)
-                setChildView(viewController: dispEditElectrFenceViewController)
+                dispEditElectrFenceVC.setDisplayMode(type: .EDIT)
+                dispEditElectrFenceVC.updateElectrFenceVo(electrFenceVo: electrFenceVo)
+                setChildView(viewController: dispEditElectrFenceVC)
                 
             case .NONE:
                 break

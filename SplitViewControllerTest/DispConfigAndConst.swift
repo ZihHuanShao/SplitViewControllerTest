@@ -109,6 +109,7 @@ let EDIT_FENCE_SCOPE_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("editFenceS
 let UPDATE_ELECTR_FENCE_VO_NOTIFY_KEY = NSNotification.Name("updateElectrFenceVoNotifyKey")
 let BORDER_COLOR_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("borderColorButtonHandlerNotifyKey")
 let SECTION_HEAD_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("sectionHeadButtonHandlerNotifyKey")
+let SETTING_BUTTON_HANDLER_NOTIFY_KEY = NSNotification.Name("settingButtonHandlerNotifyKey")
 
 // Notification userInfo
 let DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY = "dropSelectedGroupTableCellUserKey"
@@ -131,6 +132,7 @@ let EDIT_FENCE_SCOPE_BUTTON_HANDLER_USER_KEY = "editFenceScopeButtonHandlerUserK
 let UPDATE_ELECTR_FENCE_VO_USER_KEY = "updateElectrFenceVoUserKey"
 let BORDER_COLOR_BUTTON_HANDLER_USER_KEY = "borderColorButtonHandlerUserKey"
 let SECTION_HEAD_BUTTON_HANDLER_USER_KEY = "sectionHeadButtonHandlerNotifyKey"
+let SETTING_BUTTON_HANDLER_USER_KEY = "settingButtonHandlerUserKey"
 
 // 通訊錄Tab
 let TAB_BOTTOM_LINE_COLOR      = 0xE94242 // 底線色碼
@@ -347,6 +349,7 @@ struct EditElectrFenceDisplayCreateModeInfo {
 struct EditElectrFenceDisplayEditModeInfo {
     let type = EditElectrFenceDisplayType.EDIT
     // other 圍籬資訊
+    var electrFenceVo: ElectrFenceVo?
 }
 
 struct BorderColorChangedInfo {

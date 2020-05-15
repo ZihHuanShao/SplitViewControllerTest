@@ -105,6 +105,13 @@ class DispElectrFenceTableViewCell: UITableViewCell {
     
     @IBAction func settingButtonPressed(_ sender: UIButton) {
         print("settingButtonPressed")
+        if let index = cellSectionIndex {
+            NotificationCenter.default.post(
+                name: SETTING_BUTTON_HANDLER_NOTIFY_KEY,
+                object: self,
+                userInfo: [SETTING_BUTTON_HANDLER_USER_KEY: index]
+            )
+        }
     }
 }
 

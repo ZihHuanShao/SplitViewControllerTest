@@ -151,7 +151,7 @@ extension DispEditElectrFenceViewController {
     
     private func updateUI() {
         
-        // [Fixed String]
+        // [Fixed String & UI]
         
         nameLabel.text = str_dispEditElectrFence_name // 名稱
         colorLabel.text = str_dispEditElectrFence_colorName // 顏色
@@ -172,6 +172,7 @@ extension DispEditElectrFenceViewController {
         }
         // 編輯既有電子圍籬
         else if displayType == .EDIT {
+            nameTextField?.text = currentElectrFenceVo?.title
             customElectrFenceTitle.text = str_dispEditElectrFence_customFenceNamePrefix + (currentElectrFenceVo?.title ?? "")
             electrFenceColor = currentElectrFenceVo?.color ?? 0xFF0000
             colorBarButton.backgroundColor = UIColorFromRGB(colorValue: electrFenceColor)

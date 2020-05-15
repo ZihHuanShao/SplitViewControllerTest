@@ -137,6 +137,12 @@ extension DispElectrFenceViewController {
             gVar.Notification.sectionHeadButtonHandlerObserver = nil
             print("removeObserver: sectionHeadButtonHandlerObserver")
         }
+        
+        if let _ = gVar.Notification.settingButtonHandlerObserver {
+            NotificationCenter.default.removeObserver(gVar.Notification.settingButtonHandlerObserver!)
+            gVar.Notification.settingButtonHandlerObserver = nil
+            print("removeObserver: settingButtonHandlerObserver")
+        }
     }
     
     private func addObserver() {
@@ -172,6 +178,12 @@ extension DispElectrFenceViewController {
             gVar.Notification.sectionHeadButtonHandlerObserver = NotificationCenter.default.addObserver(
                 forName: SECTION_HEAD_BUTTON_HANDLER_NOTIFY_KEY, object: nil, queue: nil, using: sectionHeadButtonHandler)
             print("addObserver: sectionHeadButtonHandlerObserver")
+        }
+        
+        if gVar.Notification.settingButtonHandlerObserver == nil {
+            gVar.Notification.settingButtonHandlerObserver = NotificationCenter.default.addObserver(
+                forName: SETTING_BUTTON_HANDLER_NOTIFY_KEY, object: nil, queue: nil, using: settingButtonHandler)
+            print("addObserver: settingButtonHandlerObserver")
         }
     }
     
@@ -326,6 +338,13 @@ extension DispElectrFenceViewController {
             tableViewDelegate?.collapse(mode: .DISABLE)
         }
     }
+    
+    func settingButtonHandler(notification: Notification) -> Void {
+        if let sectionIndex = notification.userInfo?[SETTING_BUTTON_HANDLER_USER_KEY] as? Int {
+            delegate?.electrFenceDidTapEdit(electrFenceVo: electrFencesVo[sectionIndex])
+            
+        }
+    }
 }
 
 // MARK: - Event Methods
@@ -362,7 +381,7 @@ extension DispElectrFenceViewController: DispElectrFenceViewControllerTableViewD
 
 protocol ElectrFenceViewControllerDelegate {
     func electrFenceDidTapBack()   // 點擊「返回」
-    func electrFenceDidTapEdit()   // 點擊「設定」
+    func electrFenceDidTapEdit(electrFenceVo: ElectrFenceVo?)   // 點擊「設定」
     func electrFenceDidTapCreate() // 點擊「新增電子圍籬」
     func electrFenceDidTapEditFenceScope(electrFenceVo: ElectrFenceVo?) // 點擊「編輯圍籬範圍」
     

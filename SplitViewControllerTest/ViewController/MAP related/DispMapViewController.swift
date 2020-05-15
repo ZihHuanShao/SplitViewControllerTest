@@ -62,6 +62,7 @@ class DispMapViewController: UIViewController {
             // 電子圍籬「設定」的資訊: 編輯既有圍籬
             else if let editModeInfo = sender as? EditElectrFenceDisplayEditModeInfo {
                 dVC?.setEditElectrFenceDisplayType(editModeInfo.type)
+                dVC?.updateElectrFenceVo(editModeInfo.electrFenceVo)
             }
             // 1. 新的圍籬建立後要在地圖上顯示圍籬的資訊
             // 2. 「編輯圍籬範圍」的資訊
@@ -229,10 +230,10 @@ extension DispMapViewController: ElectrFenceViewControllerDelegate {
     }
     
     // 點擊「設定」
-    func electrFenceDidTapEdit() {
+    func electrFenceDidTapEdit(electrFenceVo: ElectrFenceVo?) {
         setTapType(type: .EDIT_ELECTR_FENCE)
         
-        let data = EditElectrFenceDisplayEditModeInfo()
+        let data = EditElectrFenceDisplayEditModeInfo(electrFenceVo: electrFenceVo)
             
         performSegue(withIdentifier: SHOW_MAP_SEGUE, sender: data)
     }
