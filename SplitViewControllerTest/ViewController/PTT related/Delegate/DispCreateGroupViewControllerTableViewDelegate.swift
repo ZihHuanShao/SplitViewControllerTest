@@ -34,6 +34,7 @@ class DispCreateGroupViewControllerTableViewDelegate: NSObject {
         self.tableView = tableView
         tableView.dataSource = self
         tableView.delegate   = self
+        tableView.tableFooterView = UIView(frame: .zero)
     }
 }
 
