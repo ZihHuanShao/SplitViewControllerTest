@@ -61,14 +61,19 @@ class DispPttViewController: UIViewController {
         updateDataSource()
         updateUI()
         updateGesture()
-        addObserver()
         
         // 預設顯示「群組」列表
         tabLeftContentButtonPressed(UIButton())
         tableViewDelegate?.tableView(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        addObserver()
+    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        removeObserver()
+    }
     
     override func viewDidDisappear(_ animated: Bool) {
 //        NotificationCenter.default.removeObserver(changeMonitorObserver!)

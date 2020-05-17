@@ -51,11 +51,15 @@ class DispCreateGroupViewController: UIViewController {
         super.viewDidLoad()
         reloadTestData()
         updateDataSource()
-        addObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         updateUI()
+        addObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        removeObserver()
     }
     
     // MARK: - Actions
@@ -74,7 +78,6 @@ class DispCreateGroupViewController: UIViewController {
     
     @IBAction func finishButtonTouchUpInside(_ sender: UIButton) {
         updatefinishButtonImage(type: .AWAY)
-        removeObserver()
     }
     
     //
