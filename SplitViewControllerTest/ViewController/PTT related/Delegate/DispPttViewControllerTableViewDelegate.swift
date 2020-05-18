@@ -12,17 +12,21 @@ import UIKit
 
 
 private class GroupCellData {
+    var isClicked: Bool?
     var groupVo: GroupVo?
     
     init(_ groupVo: GroupVo) {
+        self.isClicked = false
         self.groupVo = groupVo
     }
 }
 
 private class MemberCellData {
+    var isClicked: Bool?
     var memberVo: MemberVo?
     
     init(_ memberVo: MemberVo) {
+        self.isClicked = false
         self.memberVo = memberVo
     }
 }
@@ -42,7 +46,9 @@ class DispPttViewControllerTableViewDelegate: NSObject {
     fileprivate var membersVo = [MemberVo]()
     
     fileprivate var tabType = PttContactTabType.NONE
-    fileprivate var preSelectedColorIndex: Int?
+    
+    var didSelectedRow: Int?
+    var preDidSelectedRow: Int?
     
     // MARK: - initializer
     
@@ -56,23 +62,6 @@ class DispPttViewControllerTableViewDelegate: NSObject {
         tabType = type   
     }
     
-    deinit {
-        switch tabType {
-        case .GROUP:
-            if let index = preSelectedColorIndex {
-                groupsVo[index].isSelected = false
-            }
-            
-        case .MEMBER:
-            if let index = preSelectedColorIndex {
-                membersVo[index].isSelected = false
-            }
-            
-        case .NONE:
-            break
-        }
-        
-    }
 }
 
 // MARK: - Private Methods
@@ -82,17 +71,54 @@ extension DispPttViewControllerTableViewDelegate {
         switch tabType {
         case .GROUP:
             groupCellsData.removeAll()
-            for groupVo in groupsVo {
+            
+            for (index, groupVo) in groupsVo.enumerated() {
                 groupCellsData.append(GroupCellData(groupVo))
+                
+                // 位於列表的第一個群組
+                if index == 0 {
+                    // 第一次進來Group分頁, 還未點擊其他群組, 預設顯示第一個
+                    if didSelectedRow == nil {
+                        groupCellsData[index].isClicked = true
+                    }
+                }
             }
-            break
+            
+            // 前一次點擊
+            if preDidSelectedRow != nil {
+                groupCellsData[preDidSelectedRow!].isClicked = false
+            }
+            
+            // 目前所點擊群組
+            if didSelectedRow != nil {
+                groupCellsData[didSelectedRow!].isClicked = true
+            }
+            
             
         case .MEMBER:
             memberCellsData.removeAll()
-            for memberVo in membersVo {
+            
+            for (index, memberVo) in membersVo.enumerated() {
                 memberCellsData.append(MemberCellData(memberVo))
+                
+                // 位於列表的第一個群組
+                if index == 0 {
+                    // 第一次進來Group分頁, 還未點擊其他群組, 預設顯示第一個
+                    if didSelectedRow == nil {
+                        memberCellsData[index].isClicked = true
+                    }
+                }
             }
-            break
+            
+            // 前一次點擊
+            if preDidSelectedRow != nil {
+                memberCellsData[preDidSelectedRow!].isClicked = false
+            }
+            
+            // 目前所點擊群組
+            if didSelectedRow != nil {
+                memberCellsData[didSelectedRow!].isClicked = true
+            }
             
         case .NONE:
             break
@@ -101,23 +127,11 @@ extension DispPttViewControllerTableViewDelegate {
     
     private func setColorBar(rowIndex: Int) {
         
-        switch tabType {
-        case .GROUP:
-            if let index = preSelectedColorIndex {
-                groupsVo[index].isSelected = false
-            }
-            groupsVo[rowIndex].isSelected = true
-            
-        case .MEMBER:
-            if let index = preSelectedColorIndex {
-                membersVo[index].isSelected = false
-            }
-            membersVo[rowIndex].isSelected = true
-            
-        case .NONE:
-            break
+        // 若不是第一次點擊其他的群組
+        if let row = didSelectedRow {
+            preDidSelectedRow = row
         }
-        
+        didSelectedRow = rowIndex
     }
 }
 
@@ -138,7 +152,8 @@ extension DispPttViewControllerTableViewDelegate {
     // 更新某個group資訊
     func updateGroup(_ groupVo: GroupVo) {
         for gVo in groupsVo {
-            if (gVo.name == groupVo.name) {
+            if (gVo.id == groupVo.id) {
+                gVo.name = groupVo.name
                 gVo.count = groupVo.count
                 gVo.desc = groupVo.desc
                 gVo.imageName = groupVo.imageName
@@ -203,7 +218,7 @@ extension DispPttViewControllerTableViewDelegate: UITableViewDataSource {
                 cell.disableMonitor()
             }
             
-            (groupCellData.groupVo?.isSelected == true) ? cell.enableColor() : cell.disableColor()
+            (groupCellData.isClicked == true) ? cell.enableColor() : cell.disableColor()
        
             cell.selectionStyle = .none
 
@@ -232,7 +247,7 @@ extension DispPttViewControllerTableViewDelegate: UITableViewDataSource {
                 }
             }
             
-            (memberCellData.memberVo?.isSelected == true) ? cell.enableColor() : cell.disableColor()
+            (memberCellData.isClicked == true) ? cell.enableColor() : cell.disableColor()
 
             cell.selectionStyle = .none
             
@@ -274,7 +289,6 @@ extension DispPttViewControllerTableViewDelegate: UITableViewDelegate {
             break
         }
         
-        preSelectedColorIndex = indexPath.row
         reloadUI()
     }
 }

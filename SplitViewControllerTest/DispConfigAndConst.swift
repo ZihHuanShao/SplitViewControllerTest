@@ -311,7 +311,7 @@ struct GroupInfo {
     var imageName: String?
     var desc: String?
     var monitorState = Bool()
-    var isSelected = Bool()
+    var isSelected: Bool?
 }
 
 struct MemberInfo {
@@ -322,7 +322,7 @@ struct MemberInfo {
     var country: String?
     var email: String?
     var onlineState = OnlineType.OFFLINE
-    var isSelected = Bool()
+    var isSelected: Bool?
 }
 
 struct MainMenuIconInfo {

@@ -10,15 +10,22 @@ import Foundation
 import UIKit
 import MapKit
 
+
+class GroupVoDummyID {
+    static var idCount = 0
+}
 class GroupVo {
+    var id: String?
     var name: String?
     var count: Int?
     var imageName: String?
     var desc: String?
     var monitorState = Bool()
-    var isSelected = Bool()
+    var isSelected: Bool?
     
-    init(name: String?, count: Int?, imageName: String?, desc: String?, monitorState: Bool, isSelected: Bool) {
+    init(name: String?, count: Int?, imageName: String?, desc: String?, monitorState: Bool, isSelected: Bool?) {
+        self.id =  String(GroupVoDummyID.idCount)
+        GroupVoDummyID.idCount = GroupVoDummyID.idCount + 1
         self.name = name
         self.count = count
         self.imageName = imageName
@@ -32,7 +39,11 @@ class GroupVo {
     }
 }
 
+class MemberVoDummyID {
+    static var idCount = 0
+}
 class MemberVo {
+    var id: String?
     var name: String?
     var imageName: String?
     var userId: String?
@@ -40,11 +51,13 @@ class MemberVo {
     var country: String?
     var email: String?
     var onlineState = OnlineType.OFFLINE
-    var isSelected = Bool()
+    var isSelected: Bool?
     
     
     
-    init(name: String?, imageName: String?, userId: String?, sipId: String?, country: String?, email: String?, onlineState: OnlineType, isSelected: Bool) {
+    init(name: String?, imageName: String?, userId: String?, sipId: String?, country: String?, email: String?, onlineState: OnlineType, isSelected: Bool?) {
+        self.id =  String(MemberVoDummyID.idCount)
+        MemberVoDummyID.idCount = MemberVoDummyID.idCount + 1
         self.name = name
         self.imageName = imageName
         self.userId = userId

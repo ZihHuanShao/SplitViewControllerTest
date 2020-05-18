@@ -88,17 +88,19 @@ class DispPttViewController: UIViewController {
     
     // MARK: - Actions
     
-    //
     // tabLeftContentButton
-    //
     
     @IBAction func tabLeftContentButtonPressed(_ sender: UIButton) {
         tabLeftContentButtonPressedHandler()
     }
     
+    // tabLeftContentButton
+    
     @IBAction func tabRightContentButtonPressed(_ sender: UIButton) {
         tabRightContentButtonPressedHandler()
     }
+    
+    // createGroupButtonPressed
     
     @IBAction func createGroupButtonPressed(_ sender: UIButton) {
 //        print("createGroupButtonPressed pressed")
@@ -107,9 +109,7 @@ class DispPttViewController: UIViewController {
     }
     
     
-    //
-    // GroupDispatchButton
-    //
+    // [GroupDispatchButton]
     
     @IBAction func groupDispatchButtonTouchDown(_ sender: UIButton) {
         updateGroupDispatchButtonImage(type: .PRESSED)
@@ -227,16 +227,18 @@ extension DispPttViewController {
     
     private func reloadTestData() {
         for group in TEST_GROUPS {
-            groupsVo.append(
-                GroupVo(
-                    name: group.name,
-                    count: group.count,
-                    imageName: group.imageName,
-                    desc: group.desc,
-                    monitorState: group.monitorState,
-                    isSelected: group.isSelected
+            if group.isSelected == true {
+                groupsVo.append(
+                    GroupVo(
+                        name: group.name,
+                        count: group.count,
+                        imageName: group.imageName,
+                        desc: group.desc,
+                        monitorState: group.monitorState,
+                        isSelected: group.isSelected
+                    )
                 )
-            )
+            }
         }
         
         for member in TEST_MEMBERS {

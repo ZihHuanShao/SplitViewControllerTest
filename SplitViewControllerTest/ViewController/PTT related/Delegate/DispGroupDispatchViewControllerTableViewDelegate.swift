@@ -121,8 +121,8 @@ extension DispGroupDispatchViewControllerTableViewDelegate: UITableViewDelegate 
         
         let rowIndex  = indexPath.row
         
-        if let cellData = cellsData[rowIndex].groupVo {
-            cellData.isSelected = !(cellData.isSelected)
+        if let cellData = cellsData[rowIndex].groupVo, let isSelected = cellData.isSelected {
+            cellData.isSelected = !isSelected
         }
 
         //

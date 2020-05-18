@@ -118,8 +118,8 @@ extension DispAddMemberViewControllerTableViewDelegate: UITableViewDelegate {
         
         let rowIndex  = indexPath.row
         
-        if let cellData = cellsData[rowIndex].memberVo {
-            cellData.isSelected = !(cellData.isSelected)
+        if let cellData = cellsData[rowIndex].memberVo, let isSelected = cellData.isSelected {
+            cellData.isSelected = isSelected
         }
 
         //

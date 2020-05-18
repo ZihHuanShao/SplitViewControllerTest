@@ -13,12 +13,12 @@ import Foundation
 //
 
 let TEST_GROUPS: [GroupInfo] =
-    [GroupInfo(name: "Martin Group", count: 6, imageName: nil, desc: "Martin Group", monitorState: false, isSelected: false),
-     GroupInfo(name: "Charley Group", count: 35, imageName: nil, desc: "Charley Group", monitorState: false, isSelected: false),
-     GroupInfo(name: "Fred Group", count: 18, imageName: nil, desc: "Fred Group", monitorState: false, isSelected: false),
-     GroupInfo(name: "May Group", count: 26, imageName: nil, desc: "May Group", monitorState: false, isSelected: false),
-     GroupInfo(name: "Michael Group", count: 50, imageName: nil, desc: "Michael Group", monitorState: false, isSelected: false),
-     GroupInfo(name: "Maxkit Group", count: 40, imageName: nil, desc: "Maxkit Group", monitorState: false, isSelected: false),
+    [GroupInfo(name: "Martin Group", count: 6, imageName: nil, desc: "Martin Group", monitorState: false, isSelected: true),
+     GroupInfo(name: "Charley Group", count: 35, imageName: nil, desc: "Charley Group", monitorState: false, isSelected: true),
+     GroupInfo(name: "Fred Group", count: 18, imageName: nil, desc: "Fred Group", monitorState: false, isSelected: true),
+     GroupInfo(name: "May Group", count: 26, imageName: nil, desc: "May Group", monitorState: false, isSelected: true),
+     GroupInfo(name: "Michael Group", count: 50, imageName: nil, desc: "Michael Group", monitorState: false, isSelected: true),
+     GroupInfo(name: "Maxkit Group", count: 40, imageName: nil, desc: "Maxkit Group", monitorState: false, isSelected: true),
      GroupInfo(name: "Test Group 001", count: 17, imageName: nil, desc: "Test Group 001", monitorState: false, isSelected: false),
      GroupInfo(name: "Test Group 002", count: 63, imageName: nil, desc: "Test Group 002", monitorState: false, isSelected: false),
      GroupInfo(name: "Test Group 003", count: 38, imageName: nil, desc: "Test Group 003", monitorState: false, isSelected: false),

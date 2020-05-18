@@ -131,17 +131,13 @@ extension DispGroupDispatchViewController {
         cancelButtonView.setTitle(str_dispGroupDispatch_cancel, for: .normal)
         finishButtonView.setTitle(str_dispGroupDispatch_finish, for: .normal)
         
-        //
-        // TableView
-        //
+        // [TableView]
         
         tableViewDelegate = DispGroupDispatchViewControllerTableViewDelegate(dispGroupDispatchViewController: self, tableView: tableView)
         tableViewDelegate?.registerCell(cellName: DISP_GROUP_DISPATCH_TABLE_VIEW_CELL, cellId: DISP_GROUP_DISPATCH_TABLE_VIEW_CELL)
         tableViewDelegate?.updateGroupsVo(groupsVo)
         
-        //
-        // CollectionView
-        //
+        // [CollectionView]
         
         collectionViewDelegate = DispGroupDispatchViewControllerCollectionViewDelegate(dispGroupDispatchViewController: self, collectionView: collectionView)
         collectionViewDelegate?.registerCell(cellName: DISP_GROUP_DISPATCH_COLLECTION_VIEW_CELL, cellId: DISP_GROUP_DISPATCH_COLLECTION_VIEW_CELL)
