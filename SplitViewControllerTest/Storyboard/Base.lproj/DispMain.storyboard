@@ -569,6 +569,7 @@
                         <outlet property="createGroupoView" destination="oGp-r0-P3W" id="jcm-cF-olp"/>
                         <outlet property="groupDispatchButton" destination="OiI-Lb-rPc" id="dC7-FO-J6j"/>
                         <outlet property="groupDispatchButtonImage" destination="4rs-yJ-gYk" id="9Kn-Yk-4aD"/>
+                        <outlet property="groupDispatchHeightConstraint" destination="wQA-am-bCE" id="Pmc-za-cLn"/>
                         <outlet property="groupDispatchView" destination="ddf-KN-WWa" id="sOQ-w1-oCj"/>
                         <outlet property="searchTextField" destination="20c-mS-abB" id="UAd-qo-xTf"/>
                         <outlet property="tabBottomLeftLine" destination="tK6-Wp-bbP" id="TqK-X7-i9a"/>
@@ -671,7 +672,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ELf-fW-w15"/>
+        <segue reference="hFN-tr-p0g"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bg_menu.png" width="784" height="64"/>

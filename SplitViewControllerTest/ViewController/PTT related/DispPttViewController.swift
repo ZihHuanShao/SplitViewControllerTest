@@ -33,6 +33,7 @@ class DispPttViewController: UIViewController {
     @IBOutlet weak var groupDispatchButton: UIButton!
     @IBOutlet weak var groupDispatchView: UIView!
     @IBOutlet weak var groupDispatchButtonImage: UIImageView!
+    @IBOutlet weak var groupDispatchHeightConstraint: NSLayoutConstraint!
     
     
     // MARK: - Properties
@@ -89,19 +90,19 @@ class DispPttViewController: UIViewController {
     
     // MARK: - Actions
     
-    // tabLeftContentButton
+    // tabLeftContentButton (群組)
     
     @IBAction func tabLeftContentButtonPressed(_ sender: UIButton) {
         tabLeftContentButtonPressedHandler()
     }
     
-    // tabLeftContentButton
+    // tabRightContentButton (聯絡人)
     
     @IBAction func tabRightContentButtonPressed(_ sender: UIButton) {
         tabRightContentButtonPressedHandler()
     }
     
-    // createGroupButtonPressed
+    // createGroupButtonPressed (建立群組)
     
     @IBAction func createGroupButtonPressed(_ sender: UIButton) {
 //        print("createGroupButtonPressed pressed")
@@ -110,7 +111,7 @@ class DispPttViewController: UIViewController {
     }
     
     
-    // [GroupDispatchButton]
+    // [GroupDispatchButton] (群組調度)
     
     @IBAction func groupDispatchButtonTouchDown(_ sender: UIButton) {
         updateGroupDispatchButtonImage(type: .PRESSED)
@@ -309,6 +310,7 @@ extension DispPttViewController {
         tabBottomLeftLine.isHidden  = false
         tabBottomRightLine.isHidden = true
         groupDispatchView.isHidden = false
+        groupDispatchHeightConstraint.constant = 40
         
         //
         // update tableView
@@ -338,6 +340,7 @@ extension DispPttViewController {
         tabBottomLeftLine.isHidden  = true
         tabBottomRightLine.isHidden = false
         groupDispatchView.isHidden = true
+        groupDispatchHeightConstraint.constant = 0
         
         //
         // update tableView
