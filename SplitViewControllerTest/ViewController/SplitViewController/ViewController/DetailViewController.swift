@@ -168,9 +168,16 @@ extension DetailViewController {
         case .TAB_GROUP_SELECT:
             let dispGroupViewController = UIStoryboard(name: STORYBOARD_NAME_DISP_GROUP, bundle: nil).instantiateViewController(withIdentifier: "DispGroupViewController") as! DispGroupViewController
             
+            // 群組列表非空
             if let _groupVo = groupVo {
                 dispGroupViewController.updateGroupVo(_groupVo)
+                dispGroupViewController.setViewMode(.NON_EMPTY)
             }
+            // 群組列表為空, 沒有任何的調度群組
+            else {
+                dispGroupViewController.setViewMode(.EMPTY)
+            }
+            
             setChildView(viewController: dispGroupViewController)
             
         case .TAB_MEMBER_SELECT:

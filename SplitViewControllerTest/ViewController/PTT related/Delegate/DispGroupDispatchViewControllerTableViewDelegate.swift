@@ -27,6 +27,8 @@ class DispGroupDispatchViewControllerTableViewDelegate: NSObject {
     
     fileprivate var cellsData = [CellData]()
     fileprivate var groupsVo = [GroupVo]()
+    var pickUpRowIndex: Int?
+    var isUserPickingUp = false
     
     // MARK: - initializer
     
@@ -46,10 +48,14 @@ class DispGroupDispatchViewControllerTableViewDelegate: NSObject {
 extension DispGroupDispatchViewControllerTableViewDelegate {
     private func reloadCellData() {
         cellsData.removeAll()
+        
         for groupVo in groupsVo {
             cellsData.append(CellData(groupVo))
         }
-
+        
+        if let rowIndex = pickUpRowIndex, let isSelected = cellsData[rowIndex].groupVo?.isSelected {
+            cellsData[rowIndex].groupVo?.isSelected = !isSelected
+        }
     }
 }
 
@@ -83,6 +89,10 @@ extension DispGroupDispatchViewControllerTableViewDelegate {
         reloadCellData()
         tableView?.reloadData()
     }
+    
+    func setUserIsPickingUp() {
+        isUserPickingUp = true
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -95,7 +105,8 @@ extension DispGroupDispatchViewControllerTableViewDelegate: UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DISP_GROUP_DISPATCH_TABLE_VIEW_CELL, for: indexPath) as! DispGroupDispatchTableViewCell
         
-        let cellData = cellsData[indexPath.row]
+        let rowIndex  = indexPath.row
+        let cellData = cellsData[rowIndex]
         
         cell.selectionStyle = .none
         cell.setGroupName(name: cellData.groupVo?.name ?? "")
@@ -103,8 +114,16 @@ extension DispGroupDispatchViewControllerTableViewDelegate: UITableViewDataSourc
         cell.setGroupMemberCount(cellData.groupVo?.count ?? 0)
         cell.setGroupDesc(desc: cellData.groupVo?.desc ?? "")
         
-        (cellData.groupVo?.isSelected == true) ? cell.enableCheckbox() : cell.disableCheckbox()
-        
+        if cellData.groupVo?.isSelected == true {
+            cell.enableCheckbox() // 顯示勾勾
+            if isUserPickingUp {
+                
+            } else {
+                tableViewExtendDelegate?.pickupGroup(tableRowIndex: rowIndex, selectedGroupVo: groupsVo[rowIndex])
+            }
+        } else {
+            cell.disableCheckbox() // 不顯示勾勾
+        }
         
         return cell
     }
@@ -121,15 +140,10 @@ extension DispGroupDispatchViewControllerTableViewDelegate: UITableViewDelegate 
         
         let rowIndex  = indexPath.row
         
-        if let cellData = cellsData[rowIndex].groupVo, let isSelected = cellData.isSelected {
-            cellData.isSelected = !isSelected
-        }
-
-        //
-        let selectedGroupVo = groupsVo[rowIndex]
-        print("rowIndex: \(rowIndex), groupName: \(String(describing: selectedGroupVo.name))")
-        tableViewExtendDelegate?.pickupGroup(tableRowIndex: rowIndex, selectedGroupVo: selectedGroupVo)
+        tableViewExtendDelegate?.pickupGroup(tableRowIndex: rowIndex, selectedGroupVo: groupsVo[rowIndex])
+        pickUpRowIndex = rowIndex
         
+        setUserIsPickingUp()
         reloadUI()
     }
 }

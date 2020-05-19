@@ -202,7 +202,7 @@ extension AppDelegate {
         })
     }
     
-    func dismissOverlay() {
+    func dismissOverlayWithGroupsDispatchChanged(_ groupsVo: [GroupVo]?) {
         // dismiss the overlay
         window?.rootViewController?.dismiss(animated: true, completion: {
             if let vc = self.originalSplitVC {
@@ -212,7 +212,24 @@ extension AppDelegate {
             gVar.presentModal = false
             
             // reload群組列表的tableview
-            NotificationCenter.default.post(name: RELOAD_GROUP_TABLE_VIEW_NOTIFY_KEY, object: self, userInfo: nil)
+            NotificationCenter.default.post(
+                name: RELOAD_GROUP_TABLE_VIEW_NOTIFY_KEY,
+                object: self,
+                userInfo: [RELOAD_GROUP_TABLE_VIEW_USER_KEY: groupsVo]
+            )
+        })
+        
+    }
+    
+    func dismissOverlay() {
+        // dismiss the overlay
+        window?.rootViewController?.dismiss(animated: true, completion: {
+            if let vc = self.originalSplitVC {
+                self.window?.rootViewController = vc
+            }
+            gVar.isHoldFormSheetView = false
+            gVar.presentModal = false
+            
         })
         
     }

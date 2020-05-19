@@ -36,18 +36,21 @@ class DispGroupDispatchViewController: UIViewController {
         super.viewDidLoad()
         updateDataSource()
         updateGesture()
-        addObserver()
         updateUI()
     }
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         updateSelfViewSize()
+        addObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        removeObserver()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        removeObserver()
     }
     
     // MARK: - Actions
@@ -59,7 +62,16 @@ class DispGroupDispatchViewController: UIViewController {
     
     @IBAction func finishButtonPressed(_ sender: UIButton) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.dismissOverlay()
+        
+        var selectedGroupsVo = [GroupVo]()
+        
+        for groupVo in groupsVo {
+            if groupVo.isSelected == true {
+                selectedGroupsVo.append(groupVo)
+            }
+        }
+        
+        appDelegate?.dismissOverlayWithGroupsDispatchChanged(selectedGroupsVo)
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
@@ -143,11 +155,11 @@ extension DispGroupDispatchViewController {
         collectionViewDelegate?.registerCell(cellName: DISP_GROUP_DISPATCH_COLLECTION_VIEW_CELL, cellId: DISP_GROUP_DISPATCH_COLLECTION_VIEW_CELL)
         
         
-        tableViewDelegate?.resetGroups()
+
         tableViewDelegate?.reloadUI()
         
-        collectionViewDelegate?.reloadUI()
         collectionViewDelegate?.resetSelectGroups()
+        collectionViewDelegate?.reloadUI()
     }
     
     private func updateDataSource() {
@@ -177,6 +189,7 @@ extension DispGroupDispatchViewController {
         if let rowIndex = notification.userInfo?[DROP_SELECTED_GROUP_TABLE_CELL_USER_KEY] as? Int {
             
             tableViewDelegate?.deselectGroup(rowIndex: rowIndex)
+            tableViewDelegate?.setUserIsPickingUp()
             tableViewDelegate?.reloadUI()
             
             collectionViewDelegate?.removeSelectedGroup(tableRowIndex: rowIndex)

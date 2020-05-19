@@ -44,8 +44,9 @@ class DispPttViewController: UIViewController {
     
     // Original Test data
 
-    fileprivate var groupsVo  = [GroupVo]()
-    fileprivate var membersVo = [MemberVo]()
+    fileprivate var groupsVo     = [GroupVo]() // 該teamwork所有已被加入調度的群組列表
+    fileprivate var allGroupsVo  = [GroupVo]() // 該teamwork所有的群組列表
+    fileprivate var membersVo    = [MemberVo]()
 
     // 目前tableview列表所點擊的cell的row index
     var currentTableCellRowIndex: Int?
@@ -152,7 +153,8 @@ class DispPttViewController: UIViewController {
             
             var rowIndex = Int()
             
-            // 透過點擊monitor button取得tableview cell row index
+            // 1. 透過點擊monitor button取得tableview cell row index
+            // 2. 在加入要調度的群組之後, 要呈現哪個群組的資訊
             if let index = sender as? Int {
                 rowIndex = index
             }
@@ -165,7 +167,9 @@ class DispPttViewController: UIViewController {
             switch tapType {
                 
             case .TAB_GROUP_SELECT:
-                dVC?.updateGroup(groupsVo[rowIndex])
+                if groupsVo.count != 0 {
+                    dVC?.updateGroup(groupsVo[rowIndex])
+                }
                 
             case .TAB_MEMBER_SELECT:
                 dVC?.updateMember(membersVo[rowIndex])
@@ -226,20 +230,31 @@ extension DispPttViewController {
     }
     
     private func reloadTestData() {
+        allGroupsVo.removeAll()
+        groupsVo.removeAll()
+        membersVo.removeAll()
+        
+        // EX: 取得此teamwork所有群組
         for group in TEST_GROUPS {
-            if group.isSelected == true {
-                groupsVo.append(
-                    GroupVo(
-                        name: group.name,
-                        count: group.count,
-                        imageName: group.imageName,
-                        desc: group.desc,
-                        monitorState: group.monitorState,
-                        isSelected: group.isSelected
-                    )
+            allGroupsVo.append(
+                GroupVo(
+                    name: group.name,
+                    count: group.count,
+                    imageName: group.imageName,
+                    desc: group.desc,
+                    monitorState: group.monitorState,
+                    isSelected: group.isSelected
                 )
+            )
+        }
+        
+        // EX: 取得此teamwork目前有被加入調度的群組
+        for groupVo in allGroupsVo {
+            if groupVo.isSelected == true {
+                groupsVo.append(groupVo)
             }
         }
+        
         
         for member in TEST_MEMBERS {
             membersVo.append(
@@ -356,6 +371,19 @@ extension DispPttViewController {
             groupDispatchButtonImage.image = UIImage(named: "btn_contact_normal")
         }
     }
+    
+    private func updateAllgroupsVo(_ changedGroupVo: GroupVo) {
+        for groupVo in allGroupsVo {
+            if groupVo.id == changedGroupVo.id {
+                groupVo.name = changedGroupVo.name
+                groupVo.count = changedGroupVo.count
+                groupVo.imageName = changedGroupVo.imageName
+                groupVo.desc = changedGroupVo.desc
+                groupVo.monitorState = changedGroupVo.monitorState
+                groupVo.isSelected = changedGroupVo.isSelected
+            }
+        }
+    }
 }
 
 // MARK: - Notification Methods
@@ -364,12 +392,14 @@ extension DispPttViewController {
     func changeMonitor(notification: Notification) -> Void {
         if let tableRowIndex = notification.userInfo?[CHANGE_MONITOR_USER_KEY] as? Int {
             
-            // 取得目前所點擊cell的groupVo
-            let groupVo = groupsVo[tableRowIndex]
-            groupVo.monitorState = !(groupVo.monitorState)
+            // 取得目前所點擊cell的groupVo並更新監聽狀態
+            let monitorState = groupsVo[tableRowIndex].monitorState
+            groupsVo[tableRowIndex].monitorState = !monitorState
 
-            tableViewDelegate?.updateGroup(groupVo)
+            tableViewDelegate?.updateGroup(groupsVo[tableRowIndex])
             tableViewDelegate?.reloadUI()
+            
+            updateAllgroupsVo(groupsVo[tableRowIndex])
             
             // 若點擊的監聽按鈕為當前cell的監聽按鈕, 則更新DetailViewController畫面
             if let _currentTableCellRowIndex = currentTableCellRowIndex {
@@ -382,7 +412,23 @@ extension DispPttViewController {
     }
     
     func reloadGroupTableView(notification: Notification) -> Void {
-        tableViewDelegate?.reloadUI()
+        if let updatedGroupsVo = notification.userInfo?[RELOAD_GROUP_TABLE_VIEW_USER_KEY] as? [GroupVo]? {
+            groupsVo.removeAll()
+            
+            if let updatedGroupsVo = updatedGroupsVo {
+                for groupVo in updatedGroupsVo {
+                    groupsVo.append(groupVo)
+                }
+            }
+            
+            tableViewDelegate?.updateGroups(groupsVo)
+            tableViewDelegate?.reloadUI()
+            
+            // 現在沒有選擇任何要調度的群組, 群組列表為空
+            if groupsVo.count == 0 {
+                performSegue(withIdentifier: SHOW_PTT_SEGUE, sender: self)
+            }
+        }
     }
 }
 
@@ -396,7 +442,13 @@ extension DispPttViewController {
     
     @objc func showGroupDispatchModalDelayed() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.showGroupDispatchModal(groupsVo: groupsVo)
+        
+        // 群組列表為空時
+        if groupsVo.count == 0 {
+            tableViewDelegate?.resetDidSelectedRow()
+        }
+        
+        appDelegate?.showGroupDispatchModal(groupsVo: allGroupsVo)
     }
 }
 
@@ -419,5 +471,9 @@ extension DispPttViewController: PttViewControllerTableViewDelegateExtend {
     
     func setCurrentCellRowIndex(_ rowIndex: Int) {
         currentTableCellRowIndex = rowIndex
+    }
+
+    func showGroup(withRowIndex: Int) {
+        performSegue(withIdentifier: SHOW_PTT_SEGUE, sender: withRowIndex)
     }
 }

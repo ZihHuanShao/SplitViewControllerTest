@@ -203,6 +203,11 @@ enum GroupSettingType: CaseIterable {
     case EDIT_GROUP   // 編輯群組
 }
 
+enum GroupViewMode: CaseIterable {
+    case EMPTY
+    case NON_EMPTY
+}
+
 enum MemberProfileType: CaseIterable {
     case USER_ID    // 帳號
     case SIP_NUMBER // SIP號碼

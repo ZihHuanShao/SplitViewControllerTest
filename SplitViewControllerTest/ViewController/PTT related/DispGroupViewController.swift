@@ -11,6 +11,8 @@ import UIKit
 class DispGroupViewController: UIViewController {
     
     // MARK: - IBOutlet
+    @IBOutlet weak var nonEmptyView: UIView!
+    @IBOutlet weak var emptyView: UIView!
     
     // Bottom View
     @IBOutlet weak var collectionView: UICollectionView!
@@ -52,34 +54,38 @@ class DispGroupViewController: UIViewController {
     fileprivate var collectionViewDelegate: DispGroupViewControllerCollectionoViewDelegate?
     fileprivate var callingType = GroupMemberCallingType.PTT
     fileprivate var groupSettingInfTableViewDelegate: DispGroupViewControllerGroupSettingInfoTableViewDelegate?
-    
+    fileprivate var viewMode = GroupViewMode.NON_EMPTY
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateDataSource()
-        updateUI()
-        resetGroupSettingInfoViewUI()
-        resetGroupMemberInfoViewUI()
-        updateGesture()
+        switch viewMode {
+            
+        case .EMPTY:
+            showView(mode: .EMPTY)
+            
+        case .NON_EMPTY:
+            showView(mode: .NON_EMPTY)
+            updateDataSource()
+            updateUI()
+            resetGroupSettingInfoViewUI()
+            resetGroupMemberInfoViewUI()
+            updateGesture()
+        }
     }
     
     // MARK: - Actions
     
-    //
     // groupSettingButton
-    //
     
     @IBAction func groupSettingButtonPressed(_ sender: UIButton) {
         print("groupSettingButtonPressed")
         showGroupSettingInfoView(groupVo: groupVo)
     }
     
-    //
-    // pttButton
-    //
+    // [pttButton]
     
     @IBAction func pttButtonTouchDown(_ sender: UIButton) {
         updatePttButtonImage(type: .PRESSED)
@@ -93,9 +99,7 @@ class DispGroupViewController: UIViewController {
         updatePttButtonImage(type: .AWAY)
     }
     
-    //
-    // chatButton
-    //
+    // [chatButton]
     
     @IBAction func chatButtonTouchDown(_ sender: UIButton) {
         updateChatButtonImage(type: .PRESSED)
@@ -109,9 +113,7 @@ class DispGroupViewController: UIViewController {
         updateChatButtonImage(type: .AWAY)
     }
     
-    //
-    // GroupMemberPttButton
-    //
+    // [GroupMemberPttButton]
     
     @IBAction func groupMemberPttButtonTouchDown(_ sender: UIButton) {
         if (callingType == .SIP_CALL || callingType == .VIDEO) {
@@ -141,9 +143,7 @@ class DispGroupViewController: UIViewController {
         }
     }
 
-    //
-    // groupMemberSipButton (Sip/ Mute)
-    //
+    // [groupMemberSipButton] (Sip/ Mute)
     
     @IBAction func groupMemberSipButtonPressed(_ sender: UIButton) {
         if callingType == .SIP_CALL {
@@ -154,9 +154,7 @@ class DispGroupViewController: UIViewController {
         }
     }
 
-    //
-    // GroupMemberVideoButton (Video/ Speaker)
-    //
+    // [GroupMemberVideoButton] (Video/ Speaker)
     
     @IBAction func GroupMemberVideoButtonPressed(_ sender: UIButton) {
         if callingType == .VIDEO {
@@ -174,6 +172,10 @@ extension DispGroupViewController {
     func updateGroupVo(_ groupVo: GroupVo) {
         self.groupVo = groupVo
     }
+    
+    func setViewMode(_ mode: GroupViewMode) {
+        viewMode = mode
+    }
 }
 
 // MARK: - Private Methods
@@ -185,9 +187,7 @@ extension DispGroupViewController {
     }
     
     private func updateUI() {
-        //
-        // collectionViewDelegate
-        //
+        // [collectionViewDelegate]
         
         guard let gVo = groupVo else {
             return
@@ -195,7 +195,6 @@ extension DispGroupViewController {
         
         groupNameLabel.text = gVo.name
         (gVo.monitorState == true) ? enableMonitor() : disableMonitor()
-
         
         collectionViewDelegate?.registerCell(cellName: DISP_GROUP_COLLECTION_VIEW_CELL, cellId: DISP_GROUP_COLLECTION_VIEW_CELL)
         
@@ -211,7 +210,7 @@ extension DispGroupViewController {
                 count -= 1
             }
         }
-                
+        
         if let _membersVo = membersVo {
             collectionViewDelegate?.updateMembersVo(_membersVo)
         }
@@ -250,9 +249,8 @@ extension DispGroupViewController {
     }
     
     private func updateGesture() {
-        //
-        // groupMemberInfo
-        //
+
+        // [groupMemberInfo]
         
         groupMemberInfoMaskView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dissmissGroupMemberInfoMaskView)))
         
@@ -260,9 +258,7 @@ extension DispGroupViewController {
         groupMemberInfoViewTap.cancelsTouchesInView = false // 可以避免在view上加手勢, 點擊cell無法被trigger
         groupMemberInfoView.addGestureRecognizer(groupMemberInfoViewTap)
         
-        //
-        // groupSettingInfo
-        //
+        // [groupSettingInfo]
         
         groupSettingInfoMaskView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dissmissGroupSettingInfoMaskView)))
         
@@ -275,6 +271,18 @@ extension DispGroupViewController {
     private func keepViewFront() {
         // do nothing
         // 點擊到焦點畫面不應該被dismiss, 做一個空的function擋
+    }
+    
+    private func showView(mode: GroupViewMode) {
+        switch mode {
+        case .EMPTY:
+            emptyView.isHidden = false
+            nonEmptyView.isHidden = true
+            
+        case .NON_EMPTY:
+            emptyView.isHidden = true
+            nonEmptyView.isHidden = false
+        }
     }
     
     private func showGroupSettingInfoView(groupVo: GroupVo?) {

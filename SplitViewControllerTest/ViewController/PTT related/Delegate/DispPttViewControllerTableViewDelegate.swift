@@ -47,8 +47,9 @@ class DispPttViewControllerTableViewDelegate: NSObject {
     
     fileprivate var tabType = PttContactTabType.NONE
     
-    var didSelectedRow: Int?
-    var preDidSelectedRow: Int?
+    fileprivate var didSelectedRow: Int?    // 現在點擊的群組
+    fileprivate var preDidSelectedRow: Int? // 前一次點擊的群組
+    fileprivate var didSelectedGroupId: String? // 現在點擊的群組的id
     
     // MARK: - initializer
     
@@ -72,28 +73,51 @@ extension DispPttViewControllerTableViewDelegate {
         case .GROUP:
             groupCellsData.removeAll()
             
-            for (index, groupVo) in groupsVo.enumerated() {
+            for groupVo in groupsVo {
                 groupCellsData.append(GroupCellData(groupVo))
+            }
+            
+            if groupsVo.count != 0 {
                 
-                // 位於列表的第一個群組
-                if index == 0 {
-                    // 第一次進來Group分頁, 還未點擊其他群組, 預設顯示第一個
-                    if didSelectedRow == nil {
-                        groupCellsData[index].isClicked = true
+                // 前一次點擊
+                if preDidSelectedRow != nil {
+                    if preDidSelectedRow! >= groupCellsData.count {
+                        // do nothing,
+                        // 避免preDidSelectedRow被移除, 且又對groupCellsData[preDidSelectedRow!]賦值造成crash
+                    } else {
+                        groupCellsData[preDidSelectedRow!].isClicked = false
+                    }
+                }
+                
+                // 目前所點擊群組
+                // 觸發時機: 當群組列表為空, 此時選擇要加入的調度群組, 完成後預設顯示第一個群組的選擇光條與資訊
+                if didSelectedRow == nil {
+                    groupCellsData[0].isClicked = true
+                    tableViewDelegateExtend?.showGroup(withRowIndex: 0)
+                }
+                // 列表不為空時, 則依照點擊的群組顯示該光條與資訊
+                else {
+                    var rowindex: Int?
+                    
+                    // 尋找最後一次點擊的群組, 利用群組id去找到index
+                    for (index,groupCellData) in groupCellsData.enumerated() {
+                        if groupCellData.groupVo?.id == didSelectedGroupId {
+                            rowindex = index
+                        }
+                    }
+                    
+                    // 有找到, 顯示該群組
+                    if let rIndex = rowindex {
+                        groupCellsData[rIndex].isClicked = true
+                        tableViewDelegateExtend?.showGroup(withRowIndex: rIndex)
+                    }
+                    // 未找到, 顯示第一個群組
+                    else {
+                        groupCellsData[0].isClicked = true
+                        tableViewDelegateExtend?.showGroup(withRowIndex: 0)
                     }
                 }
             }
-            
-            // 前一次點擊
-            if preDidSelectedRow != nil {
-                groupCellsData[preDidSelectedRow!].isClicked = false
-            }
-            
-            // 目前所點擊群組
-            if didSelectedRow != nil {
-                groupCellsData[didSelectedRow!].isClicked = true
-            }
-            
             
         case .MEMBER:
             memberCellsData.removeAll()
@@ -132,6 +156,10 @@ extension DispPttViewControllerTableViewDelegate {
             preDidSelectedRow = row
         }
         didSelectedRow = rowIndex
+        
+        if groupsVo.count != 0 {
+            didSelectedGroupId = groupsVo[rowIndex].id
+        }
     }
 }
 
@@ -173,6 +201,10 @@ extension DispPttViewControllerTableViewDelegate {
     func reloadUI() {
         reloadCellData()
         tableView?.reloadData()
+    }
+    
+    func resetDidSelectedRow() {
+        didSelectedRow = nil
     }
 }
 
@@ -298,4 +330,5 @@ extension DispPttViewControllerTableViewDelegate: UITableViewDelegate {
 protocol PttViewControllerTableViewDelegateExtend: NSObject {
     func activateSegue(tapType: ShowPttSegueType)
     func setCurrentCellRowIndex(_ rowIndex: Int)
+    func showGroup(withRowIndex: Int)
 }
