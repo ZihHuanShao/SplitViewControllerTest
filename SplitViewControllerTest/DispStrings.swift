@@ -8,6 +8,8 @@
 
 import Foundation
 
+// [PTT]
+
 // DispPttViewController
 let str_dispPtt_contactTab_group  = "群組"
 let str_dispPtt_contactTab_member = "聯絡人"
@@ -37,6 +39,11 @@ let str_dispCreateGroup_groupDesc = "描述"
 let str_dispCreateGroup_groupDesc_placeholder = "請輸入群組描述"
 let str_dispCreateGroup_groupMember = "群組成員"
 let str_dispCreateGroup_createMember = "新增成員"
+
+// DispGroupViewController
+let str_group_emptyViewHintDesc = "目前尚未加入調度群組，請點擊左下方群組調度按鈕，選擇欲加入調度的群組。"
+
+// [MAP]
 
 // DispMapViewController
 let str_dispMap_electrFence = "電子圍籬"

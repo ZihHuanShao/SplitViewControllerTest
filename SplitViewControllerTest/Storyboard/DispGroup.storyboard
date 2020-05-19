@@ -527,6 +527,7 @@
                         <outlet property="collectionView" destination="DbG-Kc-rgj" id="3fv-mZ-Jju"/>
                         <outlet property="connectionDurationTimeLabel" destination="sB1-5w-Cut" id="lwR-qt-J7p"/>
                         <outlet property="emptyView" destination="zPw-Nu-z3o" id="I24-YP-hnH"/>
+                        <outlet property="emptyViewHintDesc" destination="UuX-ZS-UfT" id="dqa-bi-2Ud"/>
                         <outlet property="groupMemberImage" destination="kHW-Xh-9xi" id="Kyc-Oj-i21"/>
                         <outlet property="groupMemberInfoMaskView" destination="03M-Rg-JxO" id="oar-mM-Ym5"/>
                         <outlet property="groupMemberInfoView" destination="pfg-F0-MQp" id="dgh-bA-C3h"/>

@@ -13,6 +13,7 @@ class DispGroupViewController: UIViewController {
     // MARK: - IBOutlet
     @IBOutlet weak var nonEmptyView: UIView!
     @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var emptyViewHintDesc: UILabel!
     
     // Bottom View
     @IBOutlet weak var collectionView: UICollectionView!
@@ -278,6 +279,7 @@ extension DispGroupViewController {
         case .EMPTY:
             emptyView.isHidden = false
             nonEmptyView.isHidden = true
+            emptyViewHintDesc.text = str_group_emptyViewHintDesc
             
         case .NON_EMPTY:
             emptyView.isHidden = true
