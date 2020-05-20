@@ -49,8 +49,15 @@ extension DispGroupDispatchViewControllerTableViewDelegate {
     private func reloadCellData() {
         cellsData.removeAll()
         
-        for groupVo in groupsVo {
+        for (rowIndex, groupVo) in groupsVo.enumerated() {
             cellsData.append(CellData(groupVo))
+            
+            // 只要當開啟群組調度頁面時, 將原本已經存在群組列表的群組加入到collectionView
+            if !isUserPickingUp {
+                if groupVo.isSelected == true {
+                    tableViewExtendDelegate?.pickupGroup(tableRowIndex: rowIndex, selectedGroupVo: groupVo)
+                }
+            }
         }
         
         if let rowIndex = pickUpRowIndex, let isSelected = cellsData[rowIndex].groupVo?.isSelected {
@@ -87,6 +94,7 @@ extension DispGroupDispatchViewControllerTableViewDelegate {
     
     func reloadUI() {
         reloadCellData()
+        tableViewExtendDelegate?.syncUpdateCollectionView()
         tableView?.reloadData()
     }
     
@@ -116,11 +124,6 @@ extension DispGroupDispatchViewControllerTableViewDelegate: UITableViewDataSourc
         
         if cellData.groupVo?.isSelected == true {
             cell.enableCheckbox() // 顯示勾勾
-            if isUserPickingUp {
-                
-            } else {
-                tableViewExtendDelegate?.pickupGroup(tableRowIndex: rowIndex, selectedGroupVo: groupsVo[rowIndex])
-            }
         } else {
             cell.disableCheckbox() // 不顯示勾勾
         }
@@ -141,6 +144,7 @@ extension DispGroupDispatchViewControllerTableViewDelegate: UITableViewDelegate 
         let rowIndex  = indexPath.row
         
         tableViewExtendDelegate?.pickupGroup(tableRowIndex: rowIndex, selectedGroupVo: groupsVo[rowIndex])
+        tableViewExtendDelegate?.syncUpdateCollectionView()
         pickUpRowIndex = rowIndex
         
         setUserIsPickingUp()
@@ -155,4 +159,6 @@ protocol GroupDispatchViewControllerTableViewDelegateExtend {
     // 選到的Group會被加入到CollectionView裡面
     func pickupGroup(tableRowIndex: Int, selectedGroupVo: GroupVo)
     
+    // 同步更新CollectionView UI
+    func syncUpdateCollectionView()
 }

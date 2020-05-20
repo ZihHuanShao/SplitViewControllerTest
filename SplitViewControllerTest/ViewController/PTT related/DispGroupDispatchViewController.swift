@@ -157,8 +157,6 @@ extension DispGroupDispatchViewController {
         
 
         tableViewDelegate?.reloadUI()
-        
-        collectionViewDelegate?.resetSelectGroups()
         collectionViewDelegate?.reloadUI()
     }
     
@@ -205,6 +203,9 @@ extension DispGroupDispatchViewController {
 extension DispGroupDispatchViewController: GroupDispatchViewControllerTableViewDelegateExtend {
     func pickupGroup(tableRowIndex: Int, selectedGroupVo: GroupVo) {
         collectionViewDelegate?.appendSelectedGroup(tableRowIndex: tableRowIndex, selectedGroupVo)
+    }
+    
+    func syncUpdateCollectionView() {
         collectionViewDelegate?.reloadUI()
     }
 }
