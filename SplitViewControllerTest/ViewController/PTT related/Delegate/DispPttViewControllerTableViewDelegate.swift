@@ -115,6 +115,7 @@ extension DispPttViewControllerTableViewDelegate {
                     else {
                         groupCellsData[0].isClicked = true
                         tableViewDelegateExtend?.showGroup(withRowIndex: 0)
+                        didSelectedGroupId = nil
                     }
                 }
             }
